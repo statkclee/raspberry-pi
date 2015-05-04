@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>xwMOOC: 컴퓨터적 사고 함양을 위한 라즈베리 파이</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">컴퓨터적 사고 함양을 위한 라즈베리 파이</h1>
+          <h2 class="subtitle">무선 인터넷 와이파이 사용하기</h2>
+<blockquote>
+<h2>학습 목표</h2>
+<ul>
+<li>무선 인터넷 와이파이를 설정한다.</li>
+<li>GUI를 사용해서 무선 인터넷을 설정한다.</li>
+<li>명령-라인(Command-Line) 명령어를 사용해서 무선 인터넷을 설정한다.</li>
+</ul>
+</blockquote>
+<h2 id="무선-인터넷-와이파이wifi">무선 인터넷 와이파이(WiFi)</h2>
+<p>라즈베리 파이에 무선 인터넷 와이파이(WiFi)를 사용하도록 준비하는 방법은 매우 다양한다. 여기서 세가지 와이파이 환경설정하는 방법만 다룬다.</p>
+<h3 id="gui-응용프로그램을-사용한-방법">GUI 응용프로그램을 사용한 방법</h3>
+<p>출처: <a href="http://learn.adafruit.com/adafruits-raspberry-pi-lesson-3-network-setup/setting-up-wifi-with-raspbian">adafruit</a> 내용을 한글로 번역한 것으로 저작권에 문제가 있다면 바로 삭제하겠습니다.</p>
+<div id="주의-사항" class="callout panel panel-info">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pushpin"></span>주의 사항</h2>
+</div>
+<div class="panel-body">
+<p>와이파이 설정하는데 라우터가 SSID를 방송(broadcasting)해야 한다. 라우터에 “Broadcast SSID”로 설정되었는지 확인한다! “Private SSID”로는 정상동작하지 않는다.</p>
+</div>
+</div>
+<p>2012-10-28일 뒤에 출시된 라즈비안에는 와이파이 환경설정 유틸리티(WiFi configuration utility)가 포함되어 있다. 바탕화면(Desktop)에 단축아이콘을 찾는다.만약 명령-라인 도구나 이더넷으로 로그인했다면, 수동으로 <strong>/etc/network/interfaces</strong>을 편집하는 방법을 참고한다.</p>
+<div class="figure">
+<img src="fig/learn_raspberry_pi_wifi_config_icon.png" alt="와이파이 환경설정 아이콘" /><p class="caption">와이파이 환경설정 아이콘</p>
+</div>
+<h4 id="단계">1 단계</h4>
+<p>와이파이 환경설정(WiFi Config) 아이콘을 두번 클릭하면, 다음 윈도우를 볼 수 있다.</p>
+<div class="figure">
+<img src="fig/learn_raspberry_pi_wpa_gui_1.png" alt="와이파이 설정 1단계" /><p class="caption">와이파이 설정 1단계</p>
+</div>
+<h4 id="단계-1">2 단계</h4>
+<p>상기 그림 윈도우에서 스캔(<code>Scan</code>) 버튼을 클릭하면 두번째 윈도우가 열린다. 목록에서 무선 접근지점(wireless access point)를 찾아서 두번 클릭한다. 그러면 또다른 윈도우가 열린다.</p>
+<div class="figure">
+<img src="fig/learn_raspberry_pi_wpa_gui2.png" alt="와이파이 설정 2단계" /><p class="caption">와이파이 설정 2단계</p>
+</div>
+<h4 id="단계-2">3 단계</h4>
+<p>PSK 필드에 비밀번호를 입력하고 추가(<code>Add</code>)를 클릭한다. 첫번째 윈도우를 볼 때, 연결정보가 바로 사용하도록 설정된 것이 보여야 한다. 하단 버튼을 사용해서 연결(<code>Connect</code>) 혹은 연결 끊기(<code>Disconnect</code>)를 수행한다. 라즈베리 파이 IP 주소가 윈도우 하단에 보이는데 주목한다.</p>
+<div class="figure">
+<img src="fig/learn_raspberry_pi_wpa_gui5.png" alt="와이파이 설정 3단계" /><p class="caption">와이파이 설정 3단계</p>
+</div>
+<h3 id="명령-라인command-line-방식을-사용한-방법">명령-라인(Command-Line) 방식을 사용한 방법</h3>
+<p>출처: <a href="https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md">adafruit</a> 내용을 한글로 번역한 것으로 저작권에 문제가 있다면 바로 삭제하겠습니다.</p>
+<div id="주의-사항-1" class="callout panel panel-info">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pushpin"></span>주의 사항</h2>
+</div>
+<div class="panel-body">
+<p>와이파이 설정하는데 라우터가 SSID를 방송(broadcasting)해야 한다. 라우터에 “Broadcast SSID”로 설정되었는지 확인한다! “Private SSID”로는 정상동작하지 않는다.</p>
+</div>
+</div>
+<p>명령-라인 방식을 통한 와이파이 설정은 매우 간단한다. 무선 네트워크 이름(SSID)과 비밀번호를 환경설정 파일에 추가하면 된다.</p>
+<h4 id="단계-3">1 단계</h4>
+<p>와이파이 어탭터 플러그를 꽂지 않은 상태로 라즈베리 파이를 부팅한다.</p>
+<h4 id="단계-4">2 단계</h4>
+<p>LXTerminal 아이콘을 클릭해서 터미널을 연다. 그리고 터미널 명령 프롬프트에 다음 명령어를 타이핑한다:</p>
+<pre class="input"><code>sudo nano /etc/network/interfaces</code></pre>
+<div class="figure">
+<img src="fig/learn_raspberry_pi_occ_1.png" alt="나노 편집기 실행" /><p class="caption">나노 편집기 실행</p>
+</div>
+<pre class="input"><code>auto lo
+ 
+iface lo inet loopback
+iface eth0 inet dhcp
+ 
+allow-hotplug wlan0
+auto wlan0
+ 
+ 
+iface wlan0 inet dhcp
+        wpa-ssid &quot;ssid&quot;
+        wpa-psk &quot;password&quot;</code></pre>
+<p>상기 환경설정 정보를 복사하여 붙여넣는다. 만약 ’hidden SSID’를 사용한다면, 다음 웹사이트에서 <a href="http://www.dafinga.net/2013/01/how-to-setup-raspberry-pi-with-hidden.html">자세한 정보</a>를 참조한다.</p>
+<pre class="input"><code>auto lo
+ 
+iface lo inet loopback
+iface eth0 inet dhcp
+ 
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+   wpa-scan-ssid 1
+   wpa-ap-scan 1
+   wpa-key-mgmt WPA-PSK
+   wpa-proto RSN WPA
+   wpa-pairwise CCMP TKIP
+   wpa-group CCMP TKIP
+   wpa-ssid &quot;My Secret SSID&quot;
+   wpa-psk &quot;My SSID PSK&quot;
+ 
+iface default inet dhcp</code></pre>
+<h4 id="단계-5">3 단계</h4>
+<p>나노 편집기로 와이파이 환경설정 파일을 열고 변경이 필요한 부분을 수정한다.</p>
+<div class="figure">
+<img src="fig/learn_raspberry_pi_occ_2.png" alt="와이파이 환경설정 파일 편집 열기" /><p class="caption">와이파이 환경설정 파일 편집 열기</p>
+</div>
+<p>변경해야 하는 두 곳은 끝에서 두줄이다. 파일을 변경하면 다음과 같이 보인다.</p>
+<div class="figure">
+<img src="fig/learn_raspberry_pi_occ_3.png" alt="와이파이 환경설정 파일 편집 진행" /><p class="caption">와이파이 환경설정 파일 편집 진행</p>
+</div>
+<p>물론, <strong>본인</strong> 네트워크 SSID와 비밀번호를 적어 넣어야 한다. 무선 네트워크 이름과 비밀번호는 쌍따옴표로 감싸야만 한다.</p>
+<p>이런 유형의 텍스트 편집기에서는 마우스를 사용할 수 없다. 대신에, 커서키를 사용해서 파일내부 여기 저기를 돌아다닌다.</p>
+<h4 id="단계-6">4 단계</h4>
+<p>편집이 완료되면 <code>Ctrl + x</code>를 눌러 빠져나온다. 빠져나올 때 파일에 변경된 부분을 저장할 것인지 묻는다.</p>
+<div class="figure">
+<img src="fig/learn_raspberry_pi_occ_4.png" alt="와이파이 환경설정 파일 편집 완료" /><p class="caption">와이파이 환경설정 파일 편집 완료</p>
+</div>
+<p><code>Y</code>를 누르고 나서 <code>Return</code>을 누르면 동일한 파일에 변경사항이 저장된다.</p>
+<h4 id="단계-7">5 단계</h4>
+<p>라즈베리 파이를 끄고나서, 와이파이 어탭터를 꽂고 다시 시작한다. 라즈베리 파이가 부팅되면서 와이파이 어탭터를 사용해서 인터넷 연결이 된 것을 확인한다.</p>
+<h3 id="wicd-curses-를-사용한-방법">wicd-curses 를 사용한 방법</h3>
+<p>자세한 사항은 <a href="http://www.raspyfi.com/wi-fi-on-raspberry-pi-a-simple-guide/">웹사이트</a>를 참조한다.</p>
+<div id="저작권-관련" class="challenge panel panel-success">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pencil"></span>저작권 관련</h2>
+</div>
+<div class="panel-body">
+<p>라즈베리 파이 재단 웹사이트 내용을 번역하다 연결된 웹사이트 <a href="https://learn.adafruit.com">adafruit</a>내용을 번역하게 되었고, 저작권이 별도로 명시되지 않아 혹시, adafruit 저작권을 아시는 분은 알려주시면 감사하겠습니다. 본 번역 결과는 adafruit 기여할 곳을 못찾아 공개하는 부분도 있으니 관련 부분 알고 계신분은 연락을 주시면 감사하겠습니다.</p>
+</div>
+</div>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/lesson-template">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

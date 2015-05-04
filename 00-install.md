@@ -20,7 +20,7 @@ minutes: 10
 
 ### 필수 아이템
 
-![라즈베리 파이](Raspberry-Pis.jpg)
+![라즈베리 파이](fig/Raspberry-Pis.jpg)
 
 - 라즈베리파이 ([Model B](http://www.raspberrypi.org/product/model-b/), [Model B+](http://www.raspberrypi.org/product/model-b-plus/), [라즈베리 파이2](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/))
 - SD 카드 (SD Card)

@@ -48,6 +48,7 @@ PSK 필드에 비밀번호를 입력하고 추가(`Add`)를 클릭한다. 첫번
 
 ### 명령-라인(Command-Line) 방식을 사용한 방법
 출처: [adafruit](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md) 내용을 한글로 번역한 것으로 저작권에 문제가 있다면 바로 삭제하겠습니다.
+
 > ## 주의 사항 {.callout}
 >
 > 와이파이 설정하는데 라우터가 SSID를 방송(broadcasting)해야 한다. 
@@ -144,5 +145,7 @@ iface default inet dhcp
 
 > ## 저작권 관련 {.challenge}
 > 라즈베리 파이 재단 웹사이트 내용을 번역하다 연결된 
-> 웹사이트 [adafruit](https://learn.adafruit.com)내용을 번역하게 되었고, 저작권이 별도로 명시되지 않아 혹시, adafruit 저작권을 아시는 분은 알려주시면 되고, 본 번역 결과는 adafruit 기여할 곳을 못찾아 공개하는 부분도 있으니 관련 부분 알고 계신분은 연락을 주시면 감사하겠습니다.  
+> 웹사이트 [adafruit](https://learn.adafruit.com)내용을 번역하게 되었고, 저작권이 별도로 명시되지 않아 
+> 혹시, adafruit 저작권을 아시는 분은 알려주시면 감사하겠습니다. 
+> 본 번역 결과는 adafruit 기여할 곳을 못찾아 공개하는 부분도 있으니 관련 부분 알고 계신분은 연락을 주시면 감사하겠습니다.  
 >
