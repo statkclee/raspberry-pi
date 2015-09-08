@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: R 파이썬 소프트레이어 클라우드, xwMOOC</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">R 파이썬 소프트레이어 클라우드, xwMOOC</h1>
+          <h2 class="subtitle">과학기술 파이썬 툴체인</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>과학기술 파이썬 툴체인을 이해한다.</li>
+<li>과학기술 툴체인을 추상화한다.</li>
+</ul>
+</div>
+</section>
+<p><img src="fig/raspberry-pi-programming-science.png" width="100%" /></p>
+<p>참고: <a href="https://www.youtube.com/watch?v=5GlNDD7qbP4&amp;list=PLYx7XA2nY5Gcpabmu61kKcToLz0FapmHu&amp;index=2">Keynote: State of the Tools, SciPy 2015, Jake VanderPlas</a></p>
+<h3 id="파이썬">0. 파이썬</h3>
+<p><a href="https://ko.wikipedia.org/wiki/파이썬">파이썬</a>은 네덜란드 출신 귀도 반 로섬이 1991년 교육용으로 C 언어와 유닉스 셀을 간극을 줄이려고 개발되었다. 파이썬은 과학기술을 위한, 웹 개발을 위한, 이미지 처리를 위한, 언어는 아니다. 파이썬이 주목받고 많이 사용되는 이유는 <strong>실행속도(speed of execution)</strong>가 좋기 때문이 아니라, <strong>개발속도(speed of development)</strong>가 충분히 빠르기 때문이다.</p>
+<p>과거에는 <strong>컴퓨터 시간(machine time)</strong>이 중요했으나, 컴퓨터가 너무 많고 흔해져 버린 지금에 와서는 <strong>개발자 시간(human time)</strong>이 중요하고, 희소한 자원이 되었다. 파이썬은 기존에 개발된 C/포트란 언어로 수십년동안 개발되고 검증된 소프트웨어를 현재 목적에 맞춰 래퍼(wrapper) 언어로 과학기술 컴퓨팅에 지대한 역할을 수행했다.</p>
+<p>파이썬이 과학기술 컴퓨팅의 C/포트란 언어로 개발된 소프트웨어를 래퍼 언어로 기능을 확대함과 동시에 선형대수 행렬 처리를 위해 작은 데이터는 Numeric, 큰 데이터는 Numarray로 각기 개발진행되어 가다 NumPy 팩키지로 통합되어 현재 모습에 이르고 있다.</p>
+<p>매트랩에 영감을 받아 Multipack을 거쳐 SciPy로 행렬기반 매트랩과 같은 통합팩키지로 개발되었고, 매쓰매티카에 영감을 받아 IPython 노트북이 개발되었으며, 시각화를 위해 matplotlib이 개발되고, 행렬에서 처리 못하는 결측값처리 및 통계 R에서 기본 자료구조로 사용되는 데이터프레임을 지원하는 Pandas가 개발되었고, 기계학습에 맞춰 scikit-learn 팩키지가 순차적으로 기존 개발된 것에 덧붙여 개발되었다. 너무 많은 팩키지가 개발되어 개발환경 격리와 팩키지 관리를 위해 conda도 개발되었다.</p>
+<p><img src="fig/raspberry-pi-programming-toolchain-history.png" width="50%" /></p>
+<h3 id="쉘-래퍼-코어-팩키지">1. 쉘, 래퍼, 코어 팩키지</h3>
+<h4 id="쉘-ipython-jupyter">1.1. 쉘: IPython, Jupyter</h4>
+<h4 id="래퍼-팩키지-cython">1.2. 래퍼 팩키지: Cython</h4>
+<h4 id="코어-팩키지-numpy">1.3. 코어 팩키지: NumPy</h4>
+<h3 id="매트랩-매쓰매티카-r-시각화">2. 매트랩, 매쓰매티카, R, 시각화</h3>
+<h4 id="매트랩-scipy-모듈">2.1. 매트랩 : scipy 모듈</h4>
+<p>신호처리, 통계, 최적화, 선형대수 등 범용 과학 팩키지.</p>
+<p><code>import scipy.stats</code> 명령어로 통계 모듈을 가져온다.</p>
+<pre class="input"><code>import scipy.stats
+
+# 평균 μ=0 와 표준편차 σ=1 인 표준정규분포에서 x=2.5 확률밀도를 계산한다.
+scipy.stats.norm.pdf(2.5, 0, 1)</code></pre>
+<pre class="output"><code>0.01752830049356854</code></pre>
+<p><code>import scipy.optimize</code> 명령어로 최적화 모듈을 가져온다.</p>
+<pre class="input"><code>import scipy.optimize
+
+#  (x + 1) ^ 2 2차 함수 최소값을 구한다.
+f = lambda x: (x + 1) ** 2
+scipy.optimize.minimize_scalar(f)</code></pre>
+<pre class="output"><code>nit: 4
+   x: -1.0
+nfev: 5
+ fun: 0.0</code></pre>
+<h4 id="매쓰매티카-sympy">2.2. 매쓰매티카: <a href="http://www.sympy.org/en/index.html">sympy</a></h4>
+<p><a href="http://www.sympy.org/en/index.html">sympy</a>는 기호 수학(Symbolic Mathematics)을 위한 팩키지로 수식의 해답을 구하는데 기호로 표시하도록 한 파이썬 프로그램이다.</p>
+<p>다양한 <a href="https://en.wikipedia.org/wiki/List_of_computer_algebra_systems">컴퓨터 대수 시스템</a>이 존재하지만, 별도 언어를 학습할 필요없이 무료로 기존 파이썬언어로 가볍게 시작할 수 있는 장점이 sympy에 있다.</p>
+<pre class="input"><code>import sympy
+
+# 보기 좋은 출력기능을 활성화한다.
+sympy.init_printing()
+
+# 변수, x를 정의한다.
+x = sympy.symbols(&#39;x&#39;)
+
+# x 대한 적분을 정의한다.
+a = sympy.Integral(sympy.cos(x) * sympy.exp(x), x)
+
+# 적분값을 계산한다.
+sympy.Eq(a, a.doit())</code></pre>
+<p><span class="math">$\int e^{x} \cos{\left (x \right )}\, dx = \frac{e^{x}}{2} \sin{\left (x \right )} + \frac{e^{x}}{2} \cos{\left (x \right )}$</span></p>
+<h3 id="기계학습-빅데이터-베이지언-네트워크-이미지">3. 기계학습, 빅데이터, 베이지언, 네트워크, 이미지</h3>
+<h4 id="기계학습-scikit-learn">3.1. 기계학습: <a href="http://scikit-learn.org/stable/">scikit-learn</a></h4>
+<p>파이썬 기계학습(machine learning) 팩키지로 데이터 마이닝과 자료분석 도구다. NumPy, SciPy, matplotlib 을 기반하여 위에 쌓아올렸다.</p>
+<ul>
+<li>분류: SVM, random forest, nearest neighbors, …</li>
+<li>회귀분석 : SVR, Ridge regression, Lasso, …</li>
+<li>군집분석 : K-Means, spectral clustering, mean-shift, …</li>
+<li>차원축소 : PCA, feature selection, non-negative matrix factorization</li>
+<li>모형선택 : grid search, cross validation, metrics</li>
+<li>전처리 : preprocessing, feature extraction</li>
+<li>…</li>
+</ul>
+<pre class="input"><code>from sklearn import datasets
+from sklearn import svm
+
+# digits 데이서셋을 가져온다.
+digits = datasets.load_digits()
+
+# Create a support vector machine classifier and fit it to the digits data
+clf = svm.SVC(gamma=0.001, C=100.)
+clf.fit(digits.data[:-1], digits.target[:-1])
+
+# Classify one of the digits
+print(&quot;True digit: &quot; + str(digits.target[-1]))
+print(&quot;Prediction: &quot; + str(int(clf.predict(digits.data[-1]))))</code></pre>
+<pre class="output"><code>True digit: 8
+Prediction: 8</code></pre>
+<h4 id="pillow">3.2. <a href="https://python-pillow.github.io/">pillow</a></h4>
+<p>파이썬 이미지 처리 라이브러리로 <strong>이미지 변환(imaging transformation)</strong>에 초점을 맞췄다. 기존 <a href="http://www.pythonware.com/products/pil/">PIL</a>를 포크떠서 파이썬 3 버젼을 지원하고 GitHub을 통해 공개되고 트래비스로 지속적 통합(CI) 방식으로 출시되고 있다.</p>
+<pre class="input"><code>%matplotlib inline
+import matplotlib.pyplot as plt
+import numpy as np
+
+from PIL import Image
+
+im = Image.open(&quot;scipy.png&quot;)
+plt.imshow(np.asarray(im))</code></pre>
+<pre class="output"><code>&lt;matplotlib.image.AxesImage at 0x109f77438&gt;</code></pre>
+<p><img src="fig/raspberry-pi-programming-pillow.png" width="70%" /></p>
+<h4 id="scikit-image">3.3. <a href="http://scikit-image.org/">scikit-image</a></h4>
+<p><a href="http://scikit-image.org/">scikit-image</a>은 이미지 처리(image processing)에 초점을 맞췄다.</p>
+<pre class="input"><code>from skimage import data, io, filters
+
+# Load the data (can be any NumPy array)
+image = data.coins() 
+
+# Find the edges
+edges = filters.sobel(image)
+
+# Display the result
+io.imshow(edges)</code></pre>
+<pre class="output"><code>&lt;matplotlib.image.AxesImage at 0x10b458cc0&gt;</code></pre>
+<p><img src="fig/raspberry-pi-programming-skimage.png" width="70%" /></p>
+<h4 id="bokeh">3.3. <a href="http://bokeh.pydata.org/en/latest/">bokeh</a></h4>
+<p><a href="http://bokeh.pydata.org/en/latest/">bokeh</a>는 웹기반 인터랙티브 시각화 팩키지다.</p>
+<pre class="input"><code>from bokeh.plotting import figure, output_notebook, show
+
+# output to ipython notebook
+output_notebook()
+
+# create a new plot with a title and axis labels
+p = figure(title=&quot;simple line example&quot;, x_axis_label=&#39;x&#39;, y_axis_label=&#39;y&#39;)
+
+# add a line renderer with legend and line thickness
+p.line([1, 2, 3, 4, 5], [6, 7, 2, 4, 5], legend=&quot;Temp.&quot;, line_width=2)
+
+# show the results
+show(p)</code></pre>
+<h4 id="statsmodels">3.4. <a href="http://statsmodels.sourceforge.net/">statsmodels</a></h4>
+<p><a href="http://statsmodels.sourceforge.net/">statsmodels</a>은 통계 팩키지(statistical modeling package)다.</p>
+<pre class="input"><code>import numpy as np
+import statsmodels.api as sm
+
+# 설명변수 2개와 상수항을 갖는 가상 데이터를 생성한다.
+nobs = 100
+X = np.random.random((nobs, 2))
+X = sm.add_constant(X)
+beta = [1, .1, .5]
+e = np.random.random(nobs)
+y = np.dot(X, beta) + e
+
+# 회귀 모형을 적합한다.
+results = sm.OLS(y, X).fit()
+
+# 결과를 검사한다.
+results.summary()</code></pre>
+<p><a href="http://statsmodels.sourceforge.net/">statsmodels</a>에서 지원하는 모형은 대략 다음과 같다. 좀더 자세한 사항은 <a href="http://statsmodels.sourceforge.net/devel/index.html">현재 개발 버젼 0.7.0</a> 사이트를 참조한다.</p>
+<ul>
+<li>Linear regression models</li>
+<li>Generalized linear models</li>
+<li>Discrete choice models</li>
+<li>Robust linear models</li>
+<li>Many models and functions for time series analysis</li>
+<li>Nonparametric estimators</li>
+<li>A wide range of statistical tests</li>
+<li>Many more models and extensions in development</li>
+</ul>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pushpin"></span><a href="https://patsy.readthedocs.org/en/latest/">patsy</a></h4>
+</div>
+<div class="panel-body">
+<p><code>statsmodels</code>과 함께 <code>patsy</code>를 통해서 공식을 모형을 만들 때 사용할 수 있다. R에서 만든 모형을 파이썬에서도 일부 변형이 필요한 경우도 있지만 거의 그대로 사용가능하다.</p>
+</div>
+</aside>
+<pre class="input"><code>import numpy as np
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+
+# 데이터를 적재한다.
+dat = sm.datasets.get_rdataset(&quot;Guerry&quot;, &quot;HistData&quot;).data
+
+# (설명변수 중 하나에 자연로그 변환을 취하고) 회귀모형을 적합시킨다.
+results = smf.ols(&#39;Lottery ~ Literacy + np.log(Pop1831)&#39;, data=dat).fit()
+
+# 결과를 검사한다.
+results.summary()</code></pre>
+<h3 id="유용한-파이썬-팩키지">유용한 파이썬 팩키지</h3>
+<ul>
+<li><a href="http://numba.pydata.org/">numba</a>: 파이썬 프로그램 속도와 성능을 향상하도록 간판방식(JIT, Just-In-Time) 컴퍼일러다.</li>
+<li><a href="http://cython.org/">cython</a>: 파이썬 프로그램을 컴파일해서 C 프로그램으로 만는다.</li>
+<li><a href="http://geopandas.org/">geopandas</a>: PostGIS의 대안으로 파이썬에서 지리정보(GIS) 처리를 지원한다.</li>
+<li><a href="http://www.astropy.org/">astropy</a>: 천문학을 위한 파이썬 도구.</li>
+</ul>
+<h3 id="파이썬이-지원하는-파일형식">파이썬이 지원하는 파일형식</h3>
+<ul>
+<li>CSV
+<ul>
+<li>자체 내장</li>
+</ul></li>
+<li>HDF5
+<ul>
+<li><a href="http://www.pytables.org/">PyTables</a></li>
+<li><a href="http://www.h5py.org/">HDF5 for Python</a></li>
+</ul></li>
+<li>NetCDF
+<ul>
+<li><a href="http://unidata.github.io/netcdf4-python/">netCDF4 module</a><br /></li>
+</ul></li>
+<li>JSON
+<ul>
+<li>자체 내장</li>
+</ul></li>
+<li>XML
+<ul>
+<li><a href="http://lxml.de/">XML and HTML with Python</a><br /></li>
+</ul></li>
+<li>GIS (GeoJSON 등) *<a href="http://toblerity.org/fiona/">Fiona</a></li>
+</ul>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/lesson-template">Source</a>
+        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

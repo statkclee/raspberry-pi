@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: 라즈베리 파이</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">라즈베리 파이</h1>
+          <h2 class="subtitle">아치 리눅스</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>아치 리눅스</li>
+</ul>
+</div>
+</section>
+<h3 id="아치-리눅스란">1. 아치 리눅스란?</h3>
+<p>아치 리눅스 개발팀은 사용자 관점보다는 개발자 관점에서 간결함에 중점을 두며, 우아함, 코드 정확성 및 최소주의를 추구한다. 아치 리눅스는 자체 꾸러미 관리자인 팩맨(pacman)을 사용해 꾸러미를 설치·제거·갱신한다. 롤링 릴리스 모델을 사용하므로 최신 소프트웨어를 설치하려면 시스템 갱신만 하면 된다. 출처: <a href="https://ko.wikipedia.org/wiki/아치_리눅스">위키피디아: 아치 리눅스</a></p>
+<h4 id="팩맨pacman">1.1. 팩맨(Pacman)</h4>
+<p>팩맨(pacman)은 주기적으로 쉽게 관리하기 위해 저드 비넷이 개발한 아치 리눅스의 패키지 관리자로, 팩키지 설치·제거·갱신·다운그레이드를 다루며 의존성을 자동으로 해결해 준다. 명령라인 인터페이스(CLI)만 현재 제공하고 있다.</p>
+<p>팩맨 팩키지 갱신 명령어는 <code>pacman -Syu</code>이다.</p>
+<pre class="shell"><code>$ pacman -Syu</code></pre>
+<h3 id="아치-리눅스-라즈베리-파이-설치">2. 아치 리눅스 라즈베리 파이 설치</h3>
+<p>라즈베리 파이 2에 채택된 브로드콤(Broadcom BCM2836) SoC는 ARMv7 Cortex-A7 쿼드코어를 사용한다.</p>
+<p>반면에 라즈베리 파이에는 브로드콤(Broadcom BCM2835) SoC가 채택되었고, ARM11 코어가 사용된다.</p>
+<ul>
+<li><a href="http://archlinuxarm.org/platforms/armv7/broadcom/raspberry-pi-2">Raspberry Pi 2: 아치리눅스 | ARM 7</a></li>
+<li><a href="https://www.youtube.com/watch?v=OaJjk2NcSM8">설치 동영상 : Install Arch Linux on a Raspberry Pi 2</a></li>
+</ul>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/lesson-template">Source</a>
+        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

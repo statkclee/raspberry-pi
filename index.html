@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>xwMOOC: 컴퓨터적 사고 함양을 위한 라즈베리 파이</title>
+    <title>Software Carpentry: xwMOOC 컴퓨터</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -19,38 +19,55 @@
   <body class="lesson">
     <div class="container card">
       <div class="banner">
-        <a href="http://xwmooc.net" title="xwMOOC">
-          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
         </a>
       </div>
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <h1 class="title">컴퓨터적 사고 함양을 위한 라즈베리 파이</h1>
+          <h1 class="title">xwMOOC 컴퓨터</h1>
           
-<p><a href="https://www.raspberrypi.org/">라즈베리 파이</a>에는 2011년 인디 게임으로 처음 시작된 이래로 많은 사람들의 사랑을 받고 있는 <a href="https://minecraft.net/">마인크래프트</a> 게임이 내장되어 누구나 쉽게 게임을 즐길 수가 있으며, 또한 <a href="https://www.python.org/">파이썬</a>도 함께 있어 바로 파이썬으로 마인크래프트 프로그래밍을 비롯한 다양한 프로그램을 시작할 수 있다. 라즈베리파이 재단 공식 웹사이트 <a href="https://www.raspberrypi.org/guides/teachers/">TEACHERS’ GUIDE TO USING RASPBERRY PI IN THE CLASSROOM</a> 기반으로 학습을 시작한다.</p>
-<div class="figure">
-<img src="fig/cover.png" alt="라즈베리 파이" /><p class="caption">라즈베리 파이</p>
-</div>
+<p><a href="http://www.xwmooc.net/">xwMOOC</a>에서 개발하고 있는 $100 달러 컴퓨터입니다. 누구나 레서피를 따라서 개발해 보세요.</p>
 <blockquote>
 <h2>선수 과목</h2>
-<p><a href="http://www.xwmooc.net/csunplugged/book.html">컴퓨터 과학 언플러그드</a><br /><a href="http://rur-ple.xwmooc.net/">러플</a><br /><a href="http://statkclee.github.io/python-novice-turtles/index-kr.html">파이썬 거북이</a></p>
+<p><a href="http://www.xwmooc.net/csunplugged/book.html">컴퓨터 과학 언플러그드</a><br /><a href="http://www.xwmooc.net/rur-ple">러플</a><br /><a href="http://swcarpentry.github.io/python-novice-turtles/index-kr.html">파이썬 거북이</a><br /><a href="http://www.xwmooc.net/python">정보과학을 위한 파이썬</a><br /><a href="http://www.xwmooc.net/swcarpentry/">소프트웨어 카펜트리</a> <a href="http://r-pkgs.xwmooc.net/">R 팩키지</a></p>
 </blockquote>
 <h2 id="학습주제">학습주제</h2>
 <ol style="list-style-type: decimal">
-<li><a href="00-install.html">라즈베리파이 시작하기</a></li>
-<li><a href="01-noobs.html">NOOBS 운영체제 관리자</a></li>
-<li><a href="02-wifi.html">무선 인터넷 와이파이 사용하기</a></li>
+<li><a href="raspberry-pi-intro.html">라즈베리 파이</a>
+<ul>
+<li><a href="raspberry-pi-os.html">다양한 라즈베리 파이 운영체제(OS)</a></li>
+<li><a href="raspberry-pi-raspbian.html">데비안 라즈비언(Raspbian) 운영체제</a></li>
+<li><a href="raspberry-pi-game.html">라즈베리 파이 게임</a></li>
+<li><a href="raspberry-pi-app.html">라즈베리파이 응용프로그램</a></li>
+<li><a href="raspberry-pi-utility.html">라즈베리파이 응용프로그램 유틸리티</a></li>
+<li><a href="raspberry-pi-server.html">라즈베리파이 서버</a></li>
+</ul></li>
+<li><a href="raspberry-pi-programming.html">라즈베리파이 프로그래밍</a>
+<ul>
+<li><a href="raspberry-pi-programming-science.html">과학기술 파이썬 툴체인</a></li>
+<li><a href="raspberry-pi-programming-env.html">파이썬 개발환경</a></li>
+<li><a href="raspberry-pi-programming-components.html">(파이썬) 프로그래밍 구성요소</a></li>
+<li><a href="raspberry-pi-programming-basics.html">한번 시작으로 파이썬 모듈까지</a><br /></li>
+<li><a href="raspberry-pi-programming-debugging.html">파이썬 디버깅</a><br /></li>
+</ul></li>
+<li><a href="latex.html">한글 LaTeX 설치</a></li>
+<li><a href="raspberry-pi-arch.html">아치 리눅스</a>
+<ul>
+<li><a href="raspberry-pi-swcarpentry.html">소프트웨어 카펜트리 이미지</a><br /></li>
+</ul></li>
+<li><a href="100-computer.html">$100 달러 컴퓨터</a></li>
 </ol>
 <h2 id="번역-라이센스"><a href="license.html">번역 라이센스</a></h2>
-<p>영어 원문과 동일한 라이센스가 <a href="http://xwmooc.net/">xwMOOC</a>에서 작업한 한국어 번역 저작물에도 적용됩니다.</p>
+<p>영어 원문과 동일한 라이센스가 <a href="http://www.xwmooc.net/">xwMOOC</a>에서 작업한 한국어 번역 저작물에도 적용됩니다.</p>
         </div>
       </div>
       </article>
       <div class="footer">
-        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
         <a class="label swc-blue-bg" href="https://github.com/swcarpentry/lesson-template">Source</a>
-        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
         <a class="label swc-blue-bg" href="LICENSE.html">License</a>
       </div>
     </div>

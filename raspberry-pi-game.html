@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: R 파이썬 소프트레이어 클라우드, xwMOOC</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">R 파이썬 소프트레이어 클라우드, xwMOOC</h1>
+          <h2 class="subtitle">라즈베리 파이 게임</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>디지털 콘텐츠로서 게임을 학습한다.</li>
+<li>라즈베리 파이에서 다양한 게임을 즐긴다.</li>
+</ul>
+</div>
+</section>
+<h3 id="디지털-콘텐츠로서-게임">0. 디지털 콘텐츠로서 게임</h3>
+<p>디지컬 콘텐츠로서 게임은 콘솔게임, PC게임, 온라인게임, 모바일게임으로 구분한다. 게임속 광고가 있기는 하지만 여기서는 논외로 하고 게임 자체에만 집중한다.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">구분</th>
+<th align="left">게임 정의</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">콘솔게임</td>
+<td align="left">콘솔 게임기 및 게임 소프트웨어 (다운로드, 부가서비스 결제 포함)</td>
+</tr>
+<tr class="even">
+<td align="left">PC게임</td>
+<td align="left">PC게임 소프트웨어 (다운로드, 부가서비스 결제 포함)</td>
+</tr>
+<tr class="odd">
+<td align="left">온라인게임</td>
+<td align="left">인터넷 연결을 요구하는 PC용 게임 (MMO, 소셜게임 등)</td>
+</tr>
+<tr class="even">
+<td align="left">모바일게임</td>
+<td align="left">태블릿과 스마트폰 등을 이용하는 모바일게임</td>
+</tr>
+</tbody>
+</table>
+<p>세계 게임 시장 규모 및 전망 (2008~2017, 단위: 백만달러)</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">구분</th>
+<th align="left">2008년</th>
+<th align="left">2009년</th>
+<th align="left">2010년</th>
+<th align="left">2011년</th>
+<th align="left">2012년</th>
+<th align="left">2013년</th>
+<th align="left">2014년</th>
+<th align="left">2015년</th>
+<th align="left">2016년</th>
+<th align="left">2017년</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">콘솔게임</td>
+<td align="left">29349</td>
+<td align="left">29198</td>
+<td align="left">28721</td>
+<td align="left">27615</td>
+<td align="left">24928</td>
+<td align="left">25978</td>
+<td align="left">27629</td>
+<td align="left">28898</td>
+<td align="left">30231</td>
+<td align="left">31221</td>
+</tr>
+<tr class="even">
+<td align="left">PC게임</td>
+<td align="left">5255</td>
+<td align="left">5686</td>
+<td align="left">6318</td>
+<td align="left">6745</td>
+<td align="left">7017</td>
+<td align="left">7147</td>
+<td align="left">7183</td>
+<td align="left">7161</td>
+<td align="left">7098</td>
+<td align="left">6995</td>
+</tr>
+<tr class="odd">
+<td align="left">온라인게임</td>
+<td align="left">11109</td>
+<td align="left">13235</td>
+<td align="left">15724</td>
+<td align="left">18188</td>
+<td align="left">20407</td>
+<td align="left">22475</td>
+<td align="left">24522</td>
+<td align="left">26439</td>
+<td align="left">28358</td>
+<td align="left">30270</td>
+</tr>
+<tr class="even">
+<td align="left">모바일게임</td>
+<td align="left">5024</td>
+<td align="left">5660</td>
+<td align="left">6460</td>
+<td align="left">7549</td>
+<td align="left">8757</td>
+<td align="left">9942</td>
+<td align="left">11065</td>
+<td align="left">12157</td>
+<td align="left">13257</td>
+<td align="left">14407</td>
+</tr>
+<tr class="odd">
+<td align="left">합계</td>
+<td align="left">50737</td>
+<td align="left">53779</td>
+<td align="left">57223</td>
+<td align="left">60097</td>
+<td align="left">61109</td>
+<td align="left">65542</td>
+<td align="left">70399</td>
+<td align="left">74655</td>
+<td align="left">78944</td>
+<td align="left">82893</td>
+</tr>
+</tbody>
+</table>
+<p>출처: <a href="http://www.kocca.kr/cop/bbs/view/B0000152/1822101.do?searchCnd=&amp;searchWrd=&amp;cateTp1=&amp;cateTp2=&amp;useAt=&amp;menuNo=201836&amp;categorys=0&amp;subcate=0&amp;cateCode=&amp;type=&amp;instNo=0&amp;questionTp=&amp;uf_Setting=&amp;recovery=&amp;pageIndex=1">2013년 해외콘텐츠시장 동향조사</a>, KOCCA 연구보고서 13-48, PwC(2013)</p>
+<p>설치형 혹은 소유형 게임인 <strong>콘솔게임</strong>과 <strong>PC게임</strong>을 합한 것이 서비스형인 <strong>온라인게임</strong>과 <strong>모바일게임</strong>과 비슷한 비율을 보이고 있다.</p>
+<h3 id="콘솔-게임-에뮬레이터">1. 콘솔 게임 에뮬레이터</h3>
+<h4 id="파이플레이piplay">1.1. <a href="http://piplay.org">파이플레이(PiPLAY)</a></h4>
+<ul>
+<li>아케이드(MAME) - AdvanceMAME &amp; MAME4ALL</li>
+<li>Capcom CPS I/II - Final Burn Alpha</li>
+<li>Neo Geo - GNGeo</li>
+<li>플레이 스테이션 - PCSX-reARMed</li>
+<li>Genesis - DGen</li>
+<li>닌텐도 - SNES9x</li>
+<li>NES - AdvMESS</li>
+<li>Gameboy - Gearboy</li>
+<li>Gameboy Advance - GPSP</li>
+<li>ScummVM</li>
+<li>아타리 2600 - Stella</li>
+<li>Cavestory - NXEngine</li>
+<li>코모도어 64 - VICE</li>
+<li>Mednafen - Game Gear, Neo Geo Pocket Color, Sega Master System, Turbo Grafx 16/PC-Engine</li>
+</ul>
+<p>파이플레이스는 웹인터페이스를 제공해서 <code>ifconfig eth0</code> 명령어를 통해서 IP 주소를 알아내고 웹브라우져 주소창에 IP주소를 입력하면 콘솔 게임 ROM을 설치해서 게임을 즐길 수 있다.</p>
+<h4 id="레트로파이retropie">1.2. <a href="http://blog.petrockblock.com/retropie/">레트로파이(RetroPie)</a></h4>
+<p>아케이드 시스템, 게임 콘솔, 개인용 컴퓨터에 대한 연대기는 다음과 같다. 출처 : <a href="http://blog.petrockblock.com/retropie/arcade-systems-game-consoles-and-home-computers-in-retropie/">Arcade Systems, Game Consoles, and Home Computers in RetroPie</a></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">출시년도</th>
+<th align="left">명칭</th>
+<th align="left">유형</th>
+<th align="left">에뮬레이터</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1977</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Atari_2600">Atari 2600</a></td>
+<td align="left">콘솔</td>
+<td align="left"><a href="http://stella.sourceforge.net/">Stella(RetroArch)</a></td>
+</tr>
+<tr class="even">
+<td align="left">1977</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Apple_II">Apple II</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://linapple.sourceforge.net/">LinApple</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1977</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Commodore_PET">Commodore PET</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://vice-emu.sourceforge.net/">Vice</a></td>
+</tr>
+<tr class="even">
+<td align="left">1979</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Atari_8-bit_family">Atari 800</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://atari800.sourceforge.net/">Atari800</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1979</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Intellivision">Intellivision</a></td>
+<td align="left">콘솔</td>
+<td align="left"><a href="http://spatula-city.org/~im14u2c/intv/">jzintv</a></td>
+</tr>
+<tr class="even">
+<td align="left">1979</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Z-machine">Z-machine</a></td>
+<td align="left">가상 컴퓨터</td>
+<td align="left"><a href="http://frotz.sourceforge.net/">Frotz</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1980</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Commodore_VIC-20">Commodore VIC-20</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://vice-emu.sourceforge.net/">Vice</a></td>
+</tr>
+<tr class="even">
+<td align="left">1981</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/IBM_PC_compatible">IBM PC</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://rpix86.patrickaalto.com/">rpix86</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1982</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Commodore_64">Commodore C 64</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://vice-emu.sourceforge.net/">Vice</a></td>
+</tr>
+<tr class="even">
+<td align="left">1982</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Commodore_CBM-II">Commodore CBM-II</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://vice-emu.sourceforge.net/">Vice</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1982</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Vectrex">Vectrex</a></td>
+<td align="left">콘솔</td>
+<td align="left"><a href="http://www.bannister.org/software/vecx.htm">Vecx(RetroArch)</a></td>
+</tr>
+<tr class="even">
+<td align="left">1982</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/ZX_Spectrum">ZX Spectrum</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://www.rastersoft.com/fbzx.html">Fuse FBZX</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1983</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/MSX">MSX</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://openmsx.sourceforge.net/">OpenMSX</a></td>
+</tr>
+<tr class="even">
+<td align="left">1983</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Nintendo_Entertainment_System">Nintendo Entertainment System</a></td>
+<td align="left">콘솔</td>
+<td align="left"><a href="http://sourceforge.net/projects/fceumm/">FCEUMM(RetroArch)</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1984</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Macintosh">Apple Macintosh</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://basilisk.cebix.net/">Basiliks II</a></td>
+</tr>
+<tr class="even">
+<td align="left">1984</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Amstrad_CPC">Amstrad CPC</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://gaming.capsule-sa.co.za/?gamepress_reviews=cpc4rpi-cpc-6128-emulator-for-raspberry-pi">CPC4Rpi</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1984</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Commodore_Plus/4">Commodore Plus/4</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://vice-emu.sourceforge.net/">Vice</a></td>
+</tr>
+<tr class="even">
+<td align="left">1985</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Commodore_128">Commodoce 128</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://vice-emu.sourceforge.net/">Vice</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1985</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Amiga">Commodore Amiga</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://www.raspberrypi.org/forums/viewtopic.php?f=78&amp;t=80602">UAE4ALL</a></td>
+</tr>
+<tr class="even">
+<td align="left">1985</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Atari_ST">Atari ST</a></td>
+<td align="left">개인용 컴퓨터</td>
+<td align="left"><a href="http://hatari.tuxfamily.org/">Hatari</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1985</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Master_System">Sega Master System</a></td>
+<td align="left">콘솔</td>
+<td align="left"><a href="http://notaz.gp2x.de/pico.php">Picodrive(RetroArch)</a></td>
+</tr>
+<tr class="even">
+<td align="left">1985</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/List_of_Sega_arcade_system_boards">Sega System 16</a></td>
+<td align="left">아케이드</td>
+<td align="left"><a href="http://www.barryharris.me.uk/fba.php">Final Burn Alpha</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1987</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/TurboGrafx-16">TurboGrafx-16</a></td>
+<td align="left">콘솔</td>
+<td align="left"><a href="http://mednafen.sourceforge.net/documentation/pce.html">Mednafen(RetroArch)</a></td>
+</tr>
+<tr class="even">
+<td align="left">1988</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Sega_Genesis">Sega Genesis</a></td>
+<td align="left">콘솔</td>
+<td align="left"><a href="http://notaz.gp2x.de/pico.php">Picodrive(RetroArch)</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1988</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/CP_System">CP System</a></td>
+<td align="left">아케이드</td>
+<td align="left"><a href="http://www.barryharris.me.uk/fba.php">Final Burn Alpha</a></td>
+</tr>
+<tr class="even">
+<td align="left">1989</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Atari_Lynx">Atari Lynx</a></td>
+<td align="left">휴대용게임 콘솔</td>
+<td align="left"><a href="http://handy.sourceforge.net/">Handy(RetroArch)</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1989</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Game_Boy">Game Boy</a></td>
+<td align="left">휴대용게임 콘솔</td>
+<td align="left"><a href="http://sourceforge.net/projects/gambatte/">Gambatte(RetroArch)</a></td>
+</tr>
+<tr class="even">
+<td align="left">1990</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Sega_Game_Gear">Sega Game Gear</a></td>
+<td align="left">휴대용게임 콘솔</td>
+<td align="left"><a href="http://bcz.asterope.fr/">Osmose</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1990</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Neo_Geo_(system)">Neo Geo</a></td>
+<td align="left">아케이드</td>
+<td align="left"><a href="http://www.barryharris.me.uk/fba.php">Final Burn Alpha</a></td>
+</tr>
+<tr class="even">
+<td align="left">1990</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Super_Nintendo_Entertainment_System">Super Nintendo Entertainment System</a></td>
+<td align="left">콘솔</td>
+<td align="left"><a href="http://www.pocketsnes.net/">PocketSNES(RetroArch)SNES9X PiSNES</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1991</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Sega_CD">Sega CD</a></td>
+<td align="left">콘솔</td>
+<td align="left"><a href="http://notaz.gp2x.de/pico.php">Picodrive(RetroArch)</a></td>
+</tr>
+<tr class="even">
+<td align="left">1993</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/CP_System_II">CP System II</a></td>
+<td align="left">아케이드</td>
+<td align="left"><a href="http://www.barryharris.me.uk/fba.php">Final Burn Alpha</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1994</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Sega_32X">Sega 32X</a></td>
+<td align="left">콘솔</td>
+<td align="left"><a href="http://notaz.gp2x.de/pico.php">Picodrive(RetroArch)</a></td>
+</tr>
+<tr class="even">
+<td align="left">1994</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/PlayStation">Sony Playstation</a></td>
+<td align="left">콘솔</td>
+<td align="left"><a href="https://github.com/notaz/pcsx_rearmed">PCSX Rearmed(RetroArch)</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1996</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/CP_System_III">CP System III</a></td>
+<td align="left">아케이드</td>
+<td align="left"><a href="http://www.barryharris.me.uk/fba.php">Final Burn Alpha</a></td>
+</tr>
+<tr class="even">
+<td align="left">1996</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Nintendo_64">Nintendo 64</a></td>
+<td align="left">콘솔</td>
+<td align="left"><a href="https://github.com/ricrpi/mupen64plus">Mupen64plusMupen64plus-libretro</a></td>
+</tr>
+<tr class="odd">
+<td align="left">1998</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Game_Boy_Color">Game Boy Color</a></td>
+<td align="left">휴대용게임 콘솔</td>
+<td align="left"><a href="http://sourceforge.net/projects/gambatte/">Gambatte(RetroArch)</a></td>
+</tr>
+<tr class="even">
+<td align="left">2001</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/Game_Boy_Advance">Game Boy Advance</a></td>
+<td align="left">휴대용게임 콘솔</td>
+<td align="left"><a href="https://github.com/DPRCZ/gpsp">GPSP</a></td>
+</tr>
+<tr class="odd">
+<td align="left">2001</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/ScummVM">ScummVM</a></td>
+<td align="left">가상 컴퓨터</td>
+<td align="left"><a href="http://www.scummvm.org/">ScummVM</a></td>
+</tr>
+<tr class="even">
+<td align="left">2004</td>
+<td align="left"><a href="http://en.wikipedia.org/wiki/C64_Direct-to-TV">C64 Direct-to-TV</a></td>
+<td align="left">콘솔</td>
+<td align="left"><a href="http://vice-emu.sourceforge.net/">Vice</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="라즈베리-파이를-게임-에뮬레이터로-만들기">2. 라즈베리 파이를 게임 에뮬레이터로 만들기</h3>
+<p>과거 추억을 게임을 즐기기 위해서 필요한 것이 게임 하드웨어다. 하지만, 더이상 추억의 게임기를 생산하는 곳은 없다. 동네 오락실도 없어졌고 PC 방으로, 인터넷 카페 진화를 계속하고 있다. 그렇다고 추억의 게임을 즐기 못하는 것은 아니다. 게임 에뮬레이터를 사용하면 된다.</p>
+<p>파이스토어, apt-get, wget을 통한 압축파일 전송 방식 등 다양한 방식으로 다양한 에뮬레이터를 설치한다. 수십개가 넘는 다양한 콘솔, 개인용 컴퓨터 게임등이 다양한 제조업체에 따라 개발되었기 때문에 발생한 자연스러운 현상이다. 하지만 목표는 모두 대동소이하다.</p>
+<p><img src="fig/raspberry-pi-game-emulator.png" width="70%" /></p>
+<p>에뮬레이터별 설치 방식은 다음과 같다. 특히, 라즈베리 파이에는 OpenGL ES 코드를 실행시킬 수 있는 강력한 그래픽칩이 내장되어 있어 PCSX_ReARMed 에뮬레이터를 통해서 플레이스테이션 게임도 실행이 가능하다.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">에뮬레이터명칭</th>
+<th align="left">설치방식</th>
+<th align="left">설치 명령어</th>
+<th align="left">실행명령어</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Mednafen(아타리 외)</td>
+<td align="left">apt-get</td>
+<td align="left">sudo apt-get install mednafen</td>
+<td align="left">mednafen /home/pi/homebrew.zip</td>
+</tr>
+<tr class="even">
+<td align="left">FCEUX (닌텐도)</td>
+<td align="left">압축해제</td>
+<td align="left">wget http://raspberrypigaming.com/files/fceux.zip</td>
+<td align="left">./fceux /home/pi/smb.nes</td>
+</tr>
+<tr class="odd">
+<td align="left">PiSNE (슈퍼닌텐도)</td>
+<td align="left">압축해제</td>
+<td align="left">wget http://raspberrypigaming.com/files/pisnes.zip</td>
+<td align="left">./snes9x.gui</td>
+</tr>
+<tr class="even">
+<td align="left">MAME4ALL (마메)</td>
+<td align="left">압축해제</td>
+<td align="left">wget http://raspberrypigaming.com/files/mame4all_ pi.zip</td>
+<td align="left">./mame</td>
+</tr>
+<tr class="odd">
+<td align="left">FinalBurn Alpha(캡콤)</td>
+<td align="left">압축해제</td>
+<td align="left">http://sourceforge.net/projects/pifba/ 다운로드</td>
+<td align="left">./fbacapex</td>
+</tr>
+<tr class="even">
+<td align="left">PCSX_ReARMed(플레이스테이션)</td>
+<td align="left">파이스토어</td>
+<td align="left">게임 범주 아래서 PCSX_Rearmed 검색</td>
+<td align="left">My Library에서 pcsx_rearmed 클릭</td>
+</tr>
+<tr class="odd">
+<td align="left">PicoDrive(제네시스/메가드라이브)</td>
+<td align="left">압축해제</td>
+<td align="left">wget http://raspberrypigaming.com/files/picodrive.tgz</td>
+<td align="left">./PicoDrive</td>
+</tr>
+<tr class="even">
+<td align="left">Stella(아타리 2600)</td>
+<td align="left">apt-get</td>
+<td align="left">sudo apt-get install stella</td>
+<td align="left">stella</td>
+</tr>
+</tbody>
+</table>
+<h3 id="게임-롬rom-설치">2.1. 게임 롬(Rom) 설치</h3>
+<p>게임 에뮬레이터가 라즈베리 파이에 올라가면 실제로 게임기를 구입한 것과 마찬가지 효과를 가진다. 물론 최신 엑스박스, 플레이스테이션과 같은 최신 사양의 하드웨어는 아니지만 오래된 추억의 게임과 라즈베리 파이 하드웨어가 지원하는 정도의 게임을 돌리는 것은 문제가 되지 않는다. 게임 콘텐츠는 저작권 관련 이슈가 있어서, 저작권이 무료로 풀려서 누구나 무료로 사용할 수 있고, 수정하거나 변형하거나 할 수 있는 것이 있는 반면에 저작권이 게임콘텐츠 개발사나 게임기 개발업체, 게임개발자에 있는 있는 경우 무단으로 사용하게 되는 경우 저작권법에 따라 책임이 따를 수 있다. 구글이나 네이버 검색, 혹은 토렌츠나 이뮬같은 P2P 방식을 통해서 게임 롬을 구해서 사용하는 방법이 있지만, 이렇게 구한 게임 롬이 저작권법에 저촉되는 경우와 그렇지 않은 경우도 있으니 충분히 숙지하고 활용하기 바란다.</p>
+<p>게임롬이 있다고 가정하면 다음 단계는 게임 롬을 라즈베리 파이에 전송하는 것이다. 전송하는 방식은 여러가지 있다.</p>
+<ul>
+<li>FTP(파일전송 프로토콜): <a href="https://filezilla-project.org/">파일지라(Filezilla)</a>, <a href="https://winscp.net/">WinSCP</a> 프로그램을 많이 쓴다.
+<ul>
+<li><code>ifconfig</code> 명령어로 라즈베리 파이 IP주소를 알아내고, FTP 전송 프로그램으로 접속해서 끌어서-떨구기(Drag-and-Drop) 방식으로 게임롬 파일을 에뮬레이터 프로그램 전송한다. <img src="fig/fig/ftp-object-storage-filezilla.png" width="50%" /></li>
+</ul></li>
+<li>SCP (보안 복사): 쉘 유틸리트 중 하나로 <code>cp</code> 명령어를 원격 컴퓨터에 확장한 것으로 게임롬 디렉토리에서 원격 컴퓨터에 복사한다.
+<ul>
+<li><code>scp</code> 복사를 할 경우 원격 컴퓨터와 사용자명, 복사할 디렉토리를 지정하고 비밀번호를 통한 인증과정을 거친다.</li>
+<li><code>scp -r osmc@192.168.103.130:~/snapshot.png winsnapshot.png</code></li>
+</ul></li>
+<li>웹 인터페이스: 파이플레이의 경우 웹인터페이스를 지원하기 때문에 이를 통해서 게임롬을 윈도우 탐색기나 파일관리자에서 끌어서-떨구기(Drag-and-Drop) 기능을 사용해서 라즈베리피 파이에 복사한다.
+<ul>
+<li><ul>
+<li><code>ifconfig</code> 명령어로 파이플레이가 설치된 라즈베리 파이 IP주소를 먼저 알아내야 한다.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="라즈베리-파이로-포팅된-게임-즐기기">3. 라즈베리 파이로 포팅된 게임 즐기기</h3>
+<p>게임을 개발할 때 목표 하드웨어 플랫폼을 설정하여 개발된 후에 순차적으로 다른 플랫폼으로 이식되는 경우가 종종있다. 콘솔이나 아케이드로 즐기던 게임을 개인용컴퓨터로 마이크로소프트 윈도우 시스템 포팅을 하거나 닌텐도나 플레이스테이션으로 포팅되는 경우를 자주 목격할 수 있다.</p>
+<h4 id="동굴-이야기cave-story">3.1. 동굴 이야기(Cave Story)</h4>
+<p><a href="http://www.cavestory.org/">동굴 이야기(Cave Story, 도쿠츠 모노가타리, Doukutsu Monogatari )</a>는 2004년 마이크로소프트 개인용 컴퓨터 플랫폼으로 처음 출시된 이후 닌텐도, 맥, 리눅스로 차례로 포팅되었다.</p>
+<p><a href="http://store.raspberrypi.com/projects/nxengine">NXEngine</a>는 동굴이야기의 공개 소프트웨어 복제품으로 2004년 무료로 공개되었다.</p>
+<p><strong>공개 소프트웨어 다운로드</strong> - <a href="http://nxengine.sourceforge.net/">NXEngine</a> 웹사이트 - <a href="[NXEngine](http://store.raspberrypi.com/projects/nxengine)">파이스토어 NXEngine</a>를 다운로드 한다. - <a href="http://sheasilverman.com/rpi/nxengine.zip">nxengine.zip</a> <a href="http://blog.sheasilverman.com/2012/07/cave-story-nxengine-on-the-raspberry-pi/">Cave Story (nxengine) on the Raspberry Pi</a> 사이트에서 다운로드한 후 설치한다. - <a href="http://raspberrypigaming.com/files/cavestory.zip">cavestory.zip</a> 설치 방법은 다음을 참조한다.</p>
+<pre class="input"><code>pi@raspberrypi ~ $ wget http://raspberrypigaming.com/files/cavestory.zip
+pi@raspberrypi ~ $ unzip cavestory.zip
+pi@raspberrypi ~ $ cd  cavestory_rpi-master
+pi@raspberrypi ~/cavestory_rpi-master $ ./nx</code></pre>
+<h4 id="둠doom-공개-버젼">3.2. 둠(Doom) 공개 버젼</h4>
+<p>울펜슈타인, 둠, 퀘이크, 레이지를 만든 <a href="http://www.idsoftware.com/">이드 소프트웨어(id Software)</a>가 공개 소프트웨어로 제공하지 않았다면, Bernd Kreimeier가 없었다면, 아마도 지금 <a href="">PrBoom</a>은 없었을 것이다. <a href="">PrBoom</a>은 <a href="http://doom.com/age_gate">둠(Doom)</a>의 공개 소프트웨어 버젼이다. 둠에 대한 자세한 사항은 <a href="https://ko.wikipedia.org/wiki/둠">위키</a>를 참조한다.</p>
+<pre class="input"><code>pi@raspberrypi ~ $ sudo apt-get install libsdl1.2debian libsdl-image1.2 libsdl-mixer1.2 libsdl-mixer1.2-dev libsdl-net1.2 libsdl-net1.2-dev timidity
+pi@raspberrypi ~ $ sudo wget http://www.chocolate-doom.org/downloads/2.0.0/chocolate-doom-2.0.0.tar.gz
+pi@raspberrypi ~ $ tar -xvf chocolate-doom-2.0.0.tar.gz
+pi@raspberrypi ~ $ cd chocolate-doom-2.0.0
+pi@raspberrypi ~/chocolate-doom-2.0.0 $ ./configure
+pi@raspberrypi ~/chocolate-doom-2.0.0 $ make
+pi@raspberrypi ~/chocolate-doom-2.0.0 $ sudo make install</code></pre>
+<ul>
+<li>libsdl1.2debian : Simple DirectMedia Layer (SDL)</li>
+<li>libsdl-image1.2 : Image loading for SDL</li>
+<li>libsdl-mixer1.2 : Audio mixer library for SDL</li>
+<li>libsdl-mixer1.2-dev : Audio mixer library development files</li>
+<li>libsdl-net1.2 : Network library for SDL</li>
+<li>libsdl-net1.2-dev : Network library development files</li>
+<li>timidity : MIDI, MOD and other sound file renderer</li>
+</ul>
+<p>둠 커뮤니티에서 둠 프로그램에 상당한 수백가지 캠페인을 생성했다. 이러한 캠페인 파일을 WAD 파일로 부르고 다운로드해서 다양한 캠페인을 즐긴다. WAD 파일은 <a href="http://www.jbserver.com/">James’ Server</a>에서 <a href="http://www.doomarchive.com/">둠 아카이브</a>에서 원하는 데이터 파일을 다운로드 받는다.</p>
+<p>다운로드 받은 WAD 파일을 인자로 두고 <code>chocolate-setup -iwad</code> 명령어로 실행하고 환경설정하면 게임을 즐길 수 있다.</p>
+<pre class="input"><code>pi@raspberrypi ~/chocolate-doom-2.0.0 $  chocolate-setup -iwad DOOM1.WAD</code></pre>
+<p>참고: <a href="https://learn.sparkfun.com/tutorials/setting-up-raspbian-and-doom">Setting up Raspbian (and DOOM!)</a></p>
+<h4 id="퀘이크quake-공개-버젼">3.3. 퀘이크(Quake) 공개 버젼</h4>
+<p>이드 소프트웨어의 <a href="https://namu.wiki/w/퀘이크%201">퀘이크</a>를 공개해 이 엔진 기반으로 리눅스로 포팅한 것이 <a href="">Open Area</a> 다. 라즈베리 파이 설치는 <a href="http://store.raspberrypi.com/projects/openarena?adult">파이스토어</a>를 참조한다. 오픈아레나 사이트에서 <a href="http://www.openarena.ws/download.php">다운로드</a>를 받을 수도 있다.</p>
+<h4 id="마인크래프트-파이-공개-버젼">3.4. 마인크래프트 파이 공개 버젼</h4>
+<h3 id="리눅스-전용-게임">4. 리눅스 전용 게임</h3>
+<p>FreeCiv 문명</p>
+<p>SuperTuX 슈퍼 마리오</p>
+<p>Njam 팩맨</p>
+<p>Galaga: Hyperspace</p>
+<h3 id="컨트롤러-controller">5. 컨트롤러 (Controller)</h3>
+<p>참조: <a href="https://www.packtpub.com/hardware-and-creative/raspberry-pi-gaming-second-edition">Raspberry Pi Gaming: Design, create, and play all kinds of video games on your Raspberry Pi computer</a></p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/lesson-template">Source</a>
+        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
