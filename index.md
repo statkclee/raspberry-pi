@@ -34,6 +34,7 @@ title: xwMOOC 컴퓨터
 1. [아치 리눅스](raspberry-pi-arch.html)    
     - [소프트웨어 카펜트리 이미지](raspberry-pi-swcarpentry.html)    
 1.  [$100 달러 컴퓨터](100-computer.html)
+1.  [아마존 웹 서비스(AWS)](aws.html)
 
 
 ## [번역 라이센스](license.html)
