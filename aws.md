@@ -12,6 +12,18 @@ minutes: 10
 > * GitHub 개발환경 구축
 
 
+### 1. 윈도우에서 아마존 웹서비스 개발환경 구축
+
+#### 1.1. 가상 상자 (버츄얼 박스, Virtual Box)
+
+#### 1.2. 부랑자(Vagrant) 설치
+
+[부랑자(Vagrant)](https://www.vagrantup.com/)는 가상 개발 환경을 생성하고 환경설정을 가능케하는 소프트웨어로, 초기에는 [버츄얼 박스](https://www.virtualbox.org/)만 지원했으나, 1.1버젼 이후에는 VMWare, KVM, LXC(리눅스 컨테이너), 다양한 형상관리 소프트웨어와 함께 사용할 수 있고, 특히 1.6버젼 이후 도커 컨테이너를 지원한다.
+
+[부랑자 다운로드](https://www.vagrantup.com/downloads.html) 웹사이트에서 소프트웨어는 다운로드 받으면 된다. 
+
+
+
 ### 1. 아마존 웹 서비스
 
 
