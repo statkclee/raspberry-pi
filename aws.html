@@ -45,6 +45,77 @@
 <h4 id="부랑자vagrant-설치">1.2. 부랑자(Vagrant) 설치</h4>
 <p><a href="https://www.vagrantup.com/">부랑자(Vagrant)</a>는 가상 개발 환경을 생성하고 환경설정을 가능케하는 소프트웨어로, 초기에는 <a href="https://www.virtualbox.org/">버츄얼 박스</a>만 지원했으나, 1.1버젼 이후에는 VMWare, KVM, LXC(리눅스 컨테이너), 다양한 형상관리 소프트웨어와 함께 사용할 수 있고, 특히 1.6버젼 이후 도커 컨테이너를 지원한다.</p>
 <p><a href="https://www.vagrantup.com/downloads.html">부랑자 다운로드</a> 웹사이트에서 소프트웨어는 다운로드 받으면 된다.</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pushpin"></span>다양한 부랑자 공개 박스</h4>
+</div>
+<div class="panel-body">
+<p><a href="https://atlas.hashicorp.com/boxes/search">Hashicorp Atlas</a> <a href="http://www.vagrantbox.es/">Vagrantbox.es</a></p>
+</div>
+</aside>
+<p>디렉토리를 하나 생성하고 그 디렉토리로 이동해서 원하는 부랑자 박스 명칭을 입력한다. <code>vagrant init ubuntu/trusty64</code> 명령어를 통해서 <code>.vagrant</code> 와 <code>Vagrant</code> 파일이 자동 생성된다. <code>vagrant up</code> 명령어는 <code>Vagrant</code> 설정정보에 맞춰 부랑자 상자를 생성한다. <code>vagrant ssh</code> 명령어로 다운로드받은 가상 우분투 컴퓨터에 접속한다.</p>
+<pre class="shell"><code>$ vagrant init ubuntu/trusty64
+$ vagrant up
+$ vagrant ssh</code></pre>
+<p><a href="http://www.vagrantbox.es/">Vagrantbox.es</a> 사이트를 활용할 경우 원하는 부랑자 박스를 찾아 <code>vagrant box add</code> 명령어로 추가하고 <code>vagrant init</code> 와 <code>vagrant up</code> 명령어로 설치한다.</p>
+<pre class="shell"><code>$ vagrant box add https://atlas.hashicorp.com/ARTACK/boxes/debian-jessie
+==&gt; box: Loading metadata for box &#39;https://atlas.hashicorp.com/ARTACK/boxes/debian-jessie&#39;
+==&gt; box: Adding box &#39;ARTACK/debian-jessie&#39; (v8.1.0) for provider: virtualbox
+    box: Downloading: https://atlas.hashicorp.com/ARTACK/boxes/debian-jessie/versions/8.1.0/providers/virtualb
+    box: Progress: 100% (Rate: 894k/s, Estimated time remaining: --:--:--)
+==&gt; box: Successfully added box &#39;ARTACK/debian-jessie&#39; (v8.1.0) for &#39;virtualbox&#39;!
+$ vagrant init ARTACK/debian-jessie
+$ vagrant up
+$ vagrant ssh</code></pre>
+<h5 id="파이썬-소프트웨어-카펜트리">1.2.1. 파이썬 소프트웨어 카펜트리</h5>
+<p><a href="https://github.com/cfriedline/vagrant-swc">소프트웨어 카펜트리 부랑자 환경설정</a> 사이트에서 <code>git clone</code> 명령어로 복제한다.</p>
+<ul>
+<li>가상상자와 부랑자를 설치한다.</li>
+<li><a href="https://github.com/cfriedline/vagrant-swc">Software Carpentry Vagrant</a> 환경파일을 복제한다.</li>
+<li>복제한 디렉토리로 변경한다.</li>
+<li><code>vagrant up</code> 실행한다.</li>
+<li><code>vagrant ssh</code>를 통해 배쉬쉘 접속한다.</li>
+</ul>
+<h5 id="빅데이터-스파크spark">1.2.2. 빅데이터 스파크(Spark)</h5>
+<h3 id="아마존-웹-서비스를-활용한-정적-웹-서비스">2. 아마존 웹 서비스를 활용한 정적 웹 서비스</h3>
+<h4 id="s3를-활용한-정적-웹-서비스-구축">2.1. S3를 활용한 정적 웹 서비스 구축</h4>
+<p><img src="fig/aws-s3-website.png" width="50%" /></p>
+<ul>
+<li><strong>S3 버킷</strong>: <code>index.html</code> 파일을 포함한 정적 웹사이트 서비스를 위한 원데이터를 업로드한다.
+<ul>
+<li>권한(Permissions): <code>Add bucket policy</code>를 클릭하고 기본 정책을 저장한다.
+<ul>
+<li>S3 버킷 정책에 대한 자주 사용하는 유형을 아마존 웹 서비스에서 잡아놔서 그중 적합한 것을 골라 사용한다. <a href="http://docs.aws.amazon.com/ko_kr/AmazonS3/latest/dev/example-bucket-policies.html">참조: 아마존 웹 서비스 버킷 정책 예제</a></li>
+</ul></li>
+<li>정적 웹사이트 호스팅(Static Website Hosting): <code>Enable website hosting</code>에 <code>index.html</code> 파일을 추가한다.</li>
+</ul></li>
+</ul>
+<pre class="input"><code>{
+  &quot;Version&quot;:&quot;2012-10-17&quot;,
+  &quot;Statement&quot;:[{
+  &quot;Sid&quot;:&quot;PublicReadGetObject&quot;,
+        &quot;Effect&quot;:&quot;Allow&quot;,
+    &quot;Principal&quot;: &quot;*&quot;,
+      &quot;Action&quot;:[&quot;s3:GetObject&quot;],
+      &quot;Resource&quot;:[&quot;arn:aws:s3:::example-bucket/*&quot;
+      ]
+    }
+  ]
+}</code></pre>
+<p><img src="fig/aws-s3-bucket-website.png" width="40%" /></p>
+<h4 id="사용자-지정-도메인으로-정적-웹서비스로-개발된-s3에-정적-웹-사이트-설정">2.2. 사용자 지정 도메인으로 정적 웹서비스로 개발된 S3에 정적 웹 사이트 설정</h4>
+<p>사용자 구매한 지정 도메인으로 정적 웹서비스로 개발된 S3에 정적 웹 사이트 설정하기 위해서 다음 절차를 거친다.</p>
+<ol style="list-style-type: decimal">
+<li>도메인 등록, 만약 도메인이 없다면 다양한 제공업체를 통해서 구입한다.</li>
+<li>S3 버킷 생성과 개발된 정적 웹서비스를 S3 버킷에 올린다.</li>
+<li>아마존 라우트53 호스팅 영역 생성하고 환경설정한다.</li>
+<li>DNS 서비스를 제공하는 아마존 라우트53으로 설정한다.</li>
+</ol>
+<p><img src="fig/aws-route53-s3-static-website.png" width="40%" /></p>
+<p>라우트53 → <code>호스트 존(Hosted Zones)</code> 에서 해당 도메인을 선택하고 <code>Go to Record Sets</code> → <code>Create Record Set</code>에서 도메인 명칭과 S3 버킷 설정된 것을 연결한다.</p>
+<p>S3 버킷 명칭을 <code>rur-ple.xwmooc.org</code> 으로 설정했으면, <code>Name</code>은 <code>rur-ple</code>, <code>Type</code>은 <code>A - IPv4 address</code>, <code>Alias:</code>는 <code>Yes</code>를 선택하고, <code>Alias Target:</code>은 S3 버킷 명칭을 선택하거나, 복사해서 넣는다.</p>
+<p><img src="fig/aws-route53-rur-ple-configuration.png" width="40%" /></p>
+<p><a href="http://docs.aws.amazon.com/ko_kr/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html">참고: 사용자 지정 도메인으로 정적 웹 사이트 설정</a></p>
 <h3 id="아마존-웹-서비스">1. 아마존 웹 서비스</h3>
 <h4 id="아마존-웹-서비스-비용-관리">1.1. 아마존 웹 서비스 비용 관리</h4>
 <p><a href="http://calculator.s3.amazonaws.com/index.html">AWS 간편 월별 요금 계산기</a></p>
@@ -52,29 +123,18 @@
 <p><img src="fig/aws-route53-cloudfront-s3-github-jekyll-architecture.png" width="100%" /></p>
 <p>아마존 웹 서비스를 이용한 정적 웹 사이트 구축 구성요소는 다음과 같다. - <strong>제킬</strong>: - <strong>GitHub</strong>: - <strong>S3 버킷</strong>: - <strong>클라우드 프론트(CloudFront)</strong>: - <strong>라우트 53</strong>:</p>
 <h4 id="정적-웹-사이트-개발">1.3. 정적 웹 사이트 개발</h4>
-<h4 id="정적-웹-사이트-배포">1.4. 정적 웹 사이트 배포</h4>
-<p><img src="fig/aws-route53-cloudfront-s3-architecture.png" width="70%" /></p>
+<h3 id="s3와-클라우드프론트cloudfront-연동">1. S3와 클라우드프론트(Cloudfront) 연동</h3>
+<p>정적 웹 서비스를 개발해서 S3에 저장하고 이를 클라우드프론트(CloudFront)를 통해 배포하는 방식은 다음과 같다.</p>
+<p><img src="fig/aws-s3-cloudfront-website.png" width="100%" /></p>
+<ol style="list-style-type: decimal">
+<li>S3 버킷에 개발된 정적 웹서비스를 업로드 합니다.</li>
+<li>클라우드프론트 배포 서비스로 가서 Web(웹), RTMP(동영상) 중 웹을 선택하고 설정을 합니다.
 <ul>
-<li><strong>S3 버킷</strong>: <code>index.html</code> 파일을 포함한 정적 웹사이트 서비스를 위한 원데이터를 업로드한다.
-<ul>
-<li>권한(Permissions): <code>Add bucket policy</code>를 클릭하고 기본 정책을 저장한다.</li>
-<li>정적 웹사이트 호스팅(Static Website Hosting): <code>Enable website hosting</code>에 <code>index.html</code> 파일을 추가한다.</li>
+<li><code>Origin Settings</code>에 정적 웹 서비스를 올린 S3 버킷을 선택합니다.</li>
 </ul></li>
-</ul>
-<pre class="input"><code>{
-  &quot;Version&quot;:&quot;2012-10-17&quot;,
-  &quot;Statement&quot;:[{
-    &quot;Sid&quot;:&quot;PublicReadGetObject&quot;,
-        &quot;Effect&quot;:&quot;Allow&quot;,
-      &quot;Principal&quot;: &quot;*&quot;,
-      &quot;Action&quot;:[&quot;s3:GetObject&quot;],
-      &quot;Resource&quot;:[&quot;arn:aws:s3:::example-bucket/*&quot;
-      ]
-    }
-  ]
-}</code></pre>
-<p><a href="https://sysadmincasts.com/">참조: Static Sites using AWS S3, CloudFront, and Route 53</a></p>
-<p>S3 버킷에 정적 웹사이트를 자동으로 넣는 방법 <a href="https://github.com/laurilehmijoki/s3_website">참고: GitHub Manage an S3 website</a> <a href="https://github.com/laurilehmijoki/s3_website/blob/master/additional-docs/setting-up-aws-credentials.md">참고: Setting up AWS credentials</a></p>
+<li>배포가 완료되면 <code>Domain Name</code>에 <code>http://dsssmxxsjebsd.cloudfront.net/</code> 와 같이 생성된 것을 확인한다.</li>
+<li>(크롬)웹 브라우져로 접속해서 단축키 F12 혹은 메뉴 → 도구(L) → 개발자 도구(D) 를 통해 <em>개발자 도구</em>를 실행하고 <code>Network</code>에서 <code>Header</code> 패널에서 <code>X-cache: Hit from cloudfront</code>를 확인한다.</li>
+</ol>
 <h3 id="ec2-란">1. EC2 란?</h3>
 <p>아마존 웹서비스 EC2는 가상 컴퓨터로 생각하면 된다.</p>
 <h3 id="접속하기">2. 접속하기</h3>
@@ -91,6 +151,10 @@
 <h3 id="웹-콘텐츠-올리기">4. 웹 콘텐츠 올리기</h3>
 <p>웹서비스 콘텐츠 올리는 권한 부여.</p>
 <pre class="shell"><code>$  chown -R ubuntu /var/www/</code></pre>
+<h3 id="정적-웹-사이트-배포">1.4. 정적 웹 사이트 배포</h3>
+<p><img src="fig/aws-route53-cloudfront-s3-architecture.png" width="70%" /></p>
+<p><a href="https://sysadmincasts.com/">참조: Static Sites using AWS S3, CloudFront, and Route 53</a></p>
+<p>S3 버킷에 정적 웹사이트를 자동으로 넣는 방법 - <a href="https://github.com/laurilehmijoki/s3_website">참고: GitHub Manage an S3 website</a> - <a href="https://github.com/laurilehmijoki/s3_website/blob/master/additional-docs/setting-up-aws-credentials.md">참고: Setting up AWS credentials</a></p>
         </div>
       </div>
       </article>

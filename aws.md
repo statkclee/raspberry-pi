@@ -22,7 +22,93 @@ minutes: 10
 
 [부랑자 다운로드](https://www.vagrantup.com/downloads.html) 웹사이트에서 소프트웨어는 다운로드 받으면 된다. 
 
+> #### 다양한 부랑자 공개 박스 {.callout}
+>
+> [Hashicorp Atlas](https://atlas.hashicorp.com/boxes/search)
+> [Vagrantbox.es](http://www.vagrantbox.es/)
 
+디렉토리를 하나 생성하고 그 디렉토리로 이동해서 원하는 부랑자 박스 명칭을 입력한다.
+`vagrant init ubuntu/trusty64` 명령어를 통해서 `.vagrant` 와 `Vagrant` 파일이 자동 생성된다.
+`vagrant up` 명령어는 `Vagrant` 설정정보에 맞춰 부랑자 상자를 생성한다. `vagrant ssh` 명령어로 다운로드받은 가상 우분투 컴퓨터에 접속한다.
+
+~~~ {.shell}
+$ vagrant init ubuntu/trusty64
+$ vagrant up
+$ vagrant ssh
+~~~
+[Vagrantbox.es](http://www.vagrantbox.es/) 사이트를 활용할 경우 원하는 부랑자 박스를 찾아 `vagrant box add` 명령어로 추가하고 `vagrant init` 와 `vagrant up` 명령어로 설치한다.
+
+~~~ {.shell}
+$ vagrant box add https://atlas.hashicorp.com/ARTACK/boxes/debian-jessie
+==> box: Loading metadata for box 'https://atlas.hashicorp.com/ARTACK/boxes/debian-jessie'
+==> box: Adding box 'ARTACK/debian-jessie' (v8.1.0) for provider: virtualbox
+    box: Downloading: https://atlas.hashicorp.com/ARTACK/boxes/debian-jessie/versions/8.1.0/providers/virtualb
+    box: Progress: 100% (Rate: 894k/s, Estimated time remaining: --:--:--)
+==> box: Successfully added box 'ARTACK/debian-jessie' (v8.1.0) for 'virtualbox'!
+$ vagrant init ARTACK/debian-jessie
+$ vagrant up
+$ vagrant ssh
+~~~
+
+##### 1.2.1. 파이썬 소프트웨어 카펜트리 
+
+[소프트웨어 카펜트리 부랑자 환경설정](https://github.com/cfriedline/vagrant-swc) 사이트에서 `git clone` 명령어로 복제한다.
+
+- 가상상자와 부랑자를 설치한다.
+- [Software Carpentry Vagrant](https://github.com/cfriedline/vagrant-swc) 환경파일을 복제한다.
+- 복제한 디렉토리로 변경한다.
+- `vagrant up` 실행한다.
+- `vagrant ssh`를 통해 배쉬쉘 접속한다.
+
+##### 1.2.2. 빅데이터 스파크(Spark)
+
+
+### 2. 아마존 웹 서비스를 활용한 정적 웹 서비스 
+
+#### 2.1. S3를 활용한 정적 웹 서비스 구축 
+
+<img src="fig/aws-s3-website.png" width="50%" />
+
+- **S3 버킷**: `index.html` 파일을 포함한 정적 웹사이트 서비스를 위한 원데이터를 업로드한다.
+    - 권한(Permissions): `Add bucket policy`를 클릭하고 기본 정책을 저장한다.
+        - S3 버킷 정책에 대한 자주 사용하는 유형을 아마존 웹 서비스에서 잡아놔서 그중 적합한 것을 골라 사용한다. [참조: 아마존 웹 서비스 버킷 정책 예제](http://docs.aws.amazon.com/ko_kr/AmazonS3/latest/dev/example-bucket-policies.html)
+    - 정적 웹사이트 호스팅(Static Website Hosting): `Enable website hosting`에 `index.html` 파일을 추가한다.
+
+~~~ {.input}
+{
+  "Version":"2012-10-17",
+  "Statement":[{
+  "Sid":"PublicReadGetObject",
+        "Effect":"Allow",
+    "Principal": "*",
+      "Action":["s3:GetObject"],
+      "Resource":["arn:aws:s3:::example-bucket/*"
+      ]
+    }
+  ]
+}
+~~~
+<img src="fig/aws-s3-bucket-website.png" width="40%" />
+
+
+#### 2.2. 사용자 지정 도메인으로 정적 웹서비스로 개발된 S3에 정적 웹 사이트 설정
+
+사용자 구매한 지정 도메인으로 정적 웹서비스로 개발된 S3에 정적 웹 사이트 설정하기 위해서 다음 절차를 거친다.
+
+1. 도메인 등록, 만약 도메인이 없다면 다양한 제공업체를 통해서 구입한다.
+1. S3 버킷 생성과 개발된 정적 웹서비스를 S3 버킷에 올린다.
+1. 아마존 라우트53 호스팅 영역 생성하고 환경설정한다.
+1. DNS 서비스를 제공하는 아마존 라우트53으로 설정한다.
+
+<img src="fig/aws-route53-s3-static-website.png" width="40%" />
+
+라우트53 &rarr; `호스트 존(Hosted Zones)` 에서 해당 도메인을 선택하고 `Go to Record Sets` &rarr; `Create Record Set`에서 도메인 명칭과 S3 버킷 설정된 것을 연결한다.
+
+S3 버킷 명칭을 `rur-ple.xwmooc.org` 으로 설정했으면, `Name`은 `rur-ple`, `Type`은 `A - IPv4 address`, `Alias:`는 `Yes`를 선택하고, `Alias Target:`은 S3 버킷 명칭을 선택하거나, 복사해서 넣는다.
+
+<img src="fig/aws-route53-rur-ple-configuration.png" width="40%" />
+
+[참고: 사용자 지정 도메인으로 정적 웹 사이트 설정](http://docs.aws.amazon.com/ko_kr/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html)
 
 ### 1. 아마존 웹 서비스
 
@@ -46,35 +132,19 @@ minutes: 10
 #### 1.3. 정적 웹 사이트 개발
 
 
-#### 1.4. 정적 웹 사이트 배포
 
-<img src="fig/aws-route53-cloudfront-s3-architecture.png" width="70%" />
 
-- **S3 버킷**: `index.html` 파일을 포함한 정적 웹사이트 서비스를 위한 원데이터를 업로드한다.
-    - 권한(Permissions): `Add bucket policy`를 클릭하고 기본 정책을 저장한다.
-    - 정적 웹사이트 호스팅(Static Website Hosting): `Enable website hosting`에 `index.html` 파일을 추가한다.
+### 1. S3와 클라우드프론트(Cloudfront) 연동
 
-~~~ {.input}
-{
-  "Version":"2012-10-17",
-  "Statement":[{
-	"Sid":"PublicReadGetObject",
-        "Effect":"Allow",
-	  "Principal": "*",
-      "Action":["s3:GetObject"],
-      "Resource":["arn:aws:s3:::example-bucket/*"
-      ]
-    }
-  ]
-}
-~~~
+정적 웹 서비스를 개발해서 S3에 저장하고 이를 클라우드프론트(CloudFront)를 통해 배포하는 방식은 다음과 같다.
 
-[참조: Static Sites using AWS S3, CloudFront, and Route 53](https://sysadmincasts.com/)
+<img src="fig/aws-s3-cloudfront-website.png" width="100%" />
 
-S3 버킷에 정적 웹사이트를 자동으로 넣는 방법
-[참고: GitHub Manage an S3 website](https://github.com/laurilehmijoki/s3_website)
-[참고: Setting up AWS credentials](https://github.com/laurilehmijoki/s3_website/blob/master/additional-docs/setting-up-aws-credentials.md)
-
+1. S3 버킷에 개발된 정적 웹서비스를 업로드 합니다.
+1. 클라우드프론트 배포 서비스로 가서 Web(웹), RTMP(동영상) 중 웹을 선택하고 설정을 합니다.
+    - `Origin Settings`에 정적 웹 서비스를 올린 S3 버킷을 선택합니다.
+1. 배포가 완료되면 `Domain Name`에 `http://dsssmxxsjebsd.cloudfront.net/` 와 같이 생성된 것을 확인한다.
+1. (크롬)웹 브라우져로 접속해서 단축키 F12 혹은 메뉴 &rarr; 도구(L) &rarr; 개발자 도구(D) 를 통해 *개발자 도구*를 실행하고 `Network`에서 `Header` 패널에서 `X-cache: Hit from cloudfront`를 확인한다.
 
 ### 1. EC2 란?
 
@@ -106,3 +176,16 @@ $ ssh -i xwmooc-shell.pem ubuntu@ec2-54-52-365-32.ap-northeast-1.compute.amazona
 ~~~ {.shell}
 $  chown -R ubuntu /var/www/
 ~~~
+
+
+
+### 1.4. 정적 웹 사이트 배포
+
+<img src="fig/aws-route53-cloudfront-s3-architecture.png" width="70%" />
+
+
+[참조: Static Sites using AWS S3, CloudFront, and Route 53](https://sysadmincasts.com/)
+
+S3 버킷에 정적 웹사이트를 자동으로 넣는 방법
+- [참고: GitHub Manage an S3 website](https://github.com/laurilehmijoki/s3_website)
+- [참고: Setting up AWS credentials](https://github.com/laurilehmijoki/s3_website/blob/master/additional-docs/setting-up-aws-credentials.md)
