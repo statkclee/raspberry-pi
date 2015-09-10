@@ -14,7 +14,56 @@ minutes: 10
 
 ### 1. 윈도우에서 아마존 웹서비스 개발환경 구축
 
-#### 1.1. 가상 상자 (버츄얼 박스, Virtual Box)
+#### 1.1. 가상상자 (버츄얼박스, VirtualBox)
+
+X86 중앙처리장치가 올라간 개인용 하드웨어 컴퓨터에 윈도우 운영체제가 주인 운영체제(Host Operating Syste)가 일반적으로 설치된다. 하지만, 개인용 PC 운영체제로 우분투 리눅스를 설치하려고 하면 과거에는 윈도우를 삭제하고 설치해야 됐다. 하지만, [가상상자](https://ko.wikipedia.org/wiki/버추얼박스) 같은 가상화 소프트웨어를 설치하면 윈도우 상태에서 우분투 리눅스를 사용할 수도 있다. 반대로 맥이나 리눅스를 사용한 경우에도 가상화 소프트웨어를 설치하고 윈도를 응용프로그램처럼 사용하는 것도 많이 사용된다.
+
+<img src="fig/aws-virtualbox-architecture.png" width="50%" />
+
+
+1. 우분투 14.04 설치 이미지를 다운로드한다. [Ubuntu Server 14.04.3 LTS 다운로드](http://www.ubuntu.com/download/server)
+1. 가상상자를 다운로드 한다. [가상상자 다운로드](https://www.virtualbox.org/wiki/Downloads)
+1. 가상상자에 다운로드 받은 우분투 14.04 버젼을 설치한다.
+    - 가상상자를 실행하고 `새로 만들기(N)`를 클릭한다.
+    - 가상상자 명칭을 `ubuntu`로 정하고 기본설정값을 따라 설정을 완료하면 `ubuntu` 전원 꺼짐 상태로 가상상자 하나가 생성된다.    
+1. `ubuntu` 가상상자를 우클릭 `설정`으로 들어가고 대화상자에서 `어댑터 1` `브리지 어댑터`를 선택하고 저장한다.
+1. 다시 `ubuntu` 가상상자를 우클릭하고 `시작(T)`를 눌러 다운로드 받은 우분투 이미지를 선택한다.
+1. 일반 컴퓨터에 우분투를 설치하는 기분으로 쭉 설치한다.
+    - `root` 사용자 대신 기본 사용자를 정하게 된다. 예를 들어 `xwmooc` 등 임의 사용자를 생성하고, 추후 `ssh` 로그인에 사용한다.
+
+
+#### 1.2. 가상상자 접속하기
+
+1. 터미널을 실행하고, `sudo apt-get install openssh-server` 명령어로 ssh 로그인 가능케 소프트웨어를 설치한다.
+1. 가상상자 우분투 터미널을 실행하고 `ifconfig` 명령어로 IP주소를 확인한다. 통상 **10.0.2.15** 가 된다.
+1. `ssh xwmooc@10.0.2.15`와 유사한 명령어로 가상상자에 접속한다.
+
+~~~ {.shell}
+$ ssh xwmooc@192.168.0.11
+The authenticity of host '192.168.0.11 (192.168.0.11)' can't be established.
+ECDSA key fingerprint is 2d:57:2b:2c:38:31:a3:0e:c3:bc:30:13:05:98:b4:fd.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '192.168.0.11' (ECDSA) to the list of known hosts.
+xwmooc@192.168.0.11's password:
+Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.19.0-25-generic i686)
+
+ * Documentation:  https://help.ubuntu.com/
+
+58 packages can be updated.
+32 updates are security updates.
+
+The programs included with the Ubuntu system are free software; the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law.
+
+xwmooc@xwmooc-VirtualBox:~$
+~~~
+
+[참조: 우분투 14.04 서버 세팅하기 (Virtual Box)](http://rorlab.gitbooks.io/railsguidebook/content/appendices/ubuntu14server.html)
+
+[참조: VirtualBox Ubuntu 기본 환경에서 ssh 접근하기](http://junho85.tistory.com/259)
+
 
 #### 1.2. 부랑자(Vagrant) 설치
 
