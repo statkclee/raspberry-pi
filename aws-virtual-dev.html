@@ -58,6 +58,14 @@
 <li><code>root</code> 사용자 대신 기본 사용자를 정하게 된다. 예를 들어 <code>xwmooc</code> 등 임의 사용자를 생성하고, 추후 <code>ssh</code> 로그인에 사용한다.</li>
 </ul></li>
 </ol>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pushpin"></span>우분투 <code>ssh</code> 원격 로그인</h4>
+</div>
+<div class="panel-body">
+<p>기본 설치된 우분투 이미지에는 <code>ssh</code> 서비스가 제공되지 않아서 필히 <code>sudo apt-get install -y openssh-server</code> 명령어로 설치를 해야 원격작업을 할 수 있게 된다.</p>
+</div>
+</aside>
 <h4 id="가상상자-접속하기">1.2. 가상상자 접속하기</h4>
 <ol style="list-style-type: decimal">
 <li>터미널을 실행하고, <code>sudo apt-get install openssh-server</code> 명령어로 ssh 로그인 가능케 소프트웨어를 설치한다.</li>
