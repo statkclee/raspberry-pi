@@ -30,7 +30,7 @@
           <h2 class="subtitle">가상 개발환경 구축</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -49,7 +49,8 @@
 <li>가상상자에 다운로드 받은 우분투 14.04 버젼을 설치한다.
 <ul>
 <li>가상상자를 실행하고 <code>새로 만들기(N)</code>를 클릭한다.</li>
-<li>가상상자 명칭을 <code>ubuntu</code>로 정하고 기본설정값을 따라 설정을 완료하면 <code>ubuntu</code> 전원 꺼짐 상태로 가상상자 하나가 생성된다.<br /></li>
+<li>가상상자 명칭을 <code>ubuntu</code>로 정하고 기본설정값을 따라 설정을 완료하면 <code>ubuntu</code> 전원 꺼짐 상태로 가상상자 하나가 생성된다.<br />
+</li>
 </ul></li>
 <li><code>ubuntu</code> 가상상자를 우클릭 <code>설정</code>으로 들어가고 대화상자에서 <code>어댑터 1</code> <code>브리지 어댑터</code>를 선택하고 저장한다.</li>
 <li>다시 <code>ubuntu</code> 가상상자를 우클릭하고 <code>시작(T)</code>를 눌러 다운로드 받은 우분투 이미지를 선택한다.</li>
@@ -60,7 +61,7 @@
 </ol>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-pushpin"></span>우분투 <code>ssh</code> 원격 로그인</h4>
+<h4 id="우분투-ssh-원격-로그인"><span class="glyphicon glyphicon-pushpin"></span>우분투 <code>ssh</code> 원격 로그인</h4>
 </div>
 <div class="panel-body">
 <p>기본 설치된 우분투 이미지에는 <code>ssh</code> 서비스가 제공되지 않아서 필히 <code>sudo apt-get install -y openssh-server</code> 명령어로 설치를 해야 원격작업을 할 수 있게 된다.</p>
@@ -70,7 +71,7 @@
 <ol style="list-style-type: decimal">
 <li>터미널을 실행하고, <code>sudo apt-get install openssh-server</code> 명령어로 ssh 로그인 가능케 소프트웨어를 설치한다.</li>
 <li>가상상자 우분투 터미널을 실행하고 <code>ifconfig</code> 명령어로 IP주소를 확인한다. 통상 <strong>10.0.2.15</strong> 가 된다.</li>
-<li>호스트 운영체제(예, 윈도우가 설치되면 호스트 운영체제는 윈도우)의 IP주소는 <code>시작</code> → <code>네트워크 연결</code> → <code>VirtualBox Host-Only Network</code>을 선택하고 우클릭해서 IP주소를 확인한다. 통상 <strong>192.168.56.1</strong>이된다. <img src="fig/aws-virtualbox-ip-address.png" width="50%" /></li>
+<li>호스트 운영체제(예, 윈도우가 설치되면 호스트 운영체제는 윈도우)의 IP주소를 확인하는 절차는 <code>시작</code> → <code>실행(R)</code> 하고 <code>ncpa.cpl</code> 명령어를 입력 혹은, <code>시작</code> → <code>네트워크 연결</code> → <code>VirtualBox Host-Only Network</code>을 선택하고 우클릭해서 IP주소를 확인한다. 통상 <strong>192.168.56.1</strong>이된다. <img src="fig/aws-virtualbox-ip-address.png" width="50%" /></li>
 <li>우분투가 설치된 가상상자에 네트워크 환경설정을 한다. 포트포워딩(port forwarding) 기능을 설정해서 호스트 운영체제 명령라인 인터페이스 쉘을 사용해서 <code>ssh</code> 로그인한다. <img src="fig/aws-virtualbox-port-forwarding.png" width="50%" />
 <ul>
 <li>Host IP는 <code>192.168.56.1</code></li>
@@ -105,7 +106,7 @@ xwmooc@xwmooc-VirtualBox:~$</code></pre>
 <p><a href="https://www.vagrantup.com/downloads.html">부랑자 다운로드</a> 웹사이트에서 소프트웨어는 다운로드 받으면 된다.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-pushpin"></span>다양한 부랑자 공개 박스</h4>
+<h4 id="다양한-부랑자-공개-박스"><span class="glyphicon glyphicon-pushpin"></span>다양한 부랑자 공개 박스</h4>
 </div>
 <div class="panel-body">
 <ul>

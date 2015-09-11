@@ -30,7 +30,7 @@
           <h2 class="subtitle">라즈베리파이 운영체제 (OS)</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -43,14 +43,15 @@
 <p><img src="fig/raspberry-pi-fullstack-toolchain.png" width="70%" /></p>
 <section class="prereq panel panel-warning">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-education"></span>라즈베리 파이 운영체제</h4>
+<h4 id="라즈베리-파이-운영체제"><span class="glyphicon glyphicon-education"></span>라즈베리 파이 운영체제</h4>
 </div>
 <div class="panel-body">
 <ol style="list-style-type: decimal">
 <li>리눅스
 <ul>
 <li>라즈비언(Raspian) : 데비안(Debian) 계열</li>
-<li>피도라(Pidora) : 페도라(Fedora) 기반<br /></li>
+<li>피도라(Pidora) : 페도라(Fedora) 기반<br />
+</li>
 <li>아치리눅스(Archlinux) : DIY 운영체제</li>
 </ul></li>
 <li>미디어센터 : OpenELEC, OSMC</li>
@@ -116,7 +117,8 @@
 <ul>
 <li>일반적으로 <em>Generic 105 key (Intl) PC</em> 를 선택하지만, 슬림 키보드 혹은 파이(노트)북의 경우 _Generic 102 key (Intl) PC_로 키보드 자판을 선택한다.
 <ul>
-<li>Internationalisation Options → Change Keyboard Layout → Generic 105 key (Intl) PC <img src="fig/raspberry-pi-boot-config.png" width="50%" /><br /></li>
+<li>Internationalisation Options → Change Keyboard Layout → Generic 105 key (Intl) PC <img src="fig/raspberry-pi-boot-config.png" width="50%" /><br />
+</li>
 </ul></li>
 <li><code>sudo nano /etc/default/keyboard</code> 명령어를 통해서 한글 키보드로 설정한다. 키보드자판 한영 전환키를 누를 때 한글과 영문으로 전환된다.</li>
 <li><code>XKBLAYOUT=&quot;us&quot;</code> 설정을 <code>XKBLAYOUT=&quot;ko&quot;</code> 로 변환한다.</li>
@@ -124,7 +126,7 @@
 </ol>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-pushpin"></span><strong><a href="http://kwonnam.pe.kr/wiki/linux/inputmethod">한글 입력기</a> 종류</strong></h4>
+<h4 id="한글-입력기-종류"><span class="glyphicon glyphicon-pushpin"></span><strong><a href="http://kwonnam.pe.kr/wiki/linux/inputmethod">한글 입력기</a> 종류</strong></h4>
 </div>
 <div class="panel-body">
 <p>한글입력기는 다양하나 많은 리눅스 배포판이 표준으로 사용하는 iBus를 설치한다.</p>
@@ -144,7 +146,7 @@ pi@raspberrypi ~ $ sudo apt-get install ibus-hangul
 pi@raspberrypi ~ $ sudo nano /etc/default/keyboard</code></pre>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-pushpin"></span>라즈베리 파이 초기 환경 설정</h4>
+<h4 id="라즈베리-파이-초기-환경-설정"><span class="glyphicon glyphicon-pushpin"></span>라즈베리 파이 초기 환경 설정</h4>
 </div>
 <div class="panel-body">
 <p><code>sudo raspi-config</code> 명령어를 통해서 최초 라즈베리 파이 환경을 설정한다. Raspberry Pi Software Configuration Tool (raspi-config) Setup Options에 9가지 선택 옵션이 나와있다. <code>whoami</code> 명령어를 콘솔에서 입력하면 사용자가 <code>root</code> 가 되야 한다. 초기 <code>pi</code> 사용자로 로그인 했고 <code>root</code> 사용자에 대한 비밀번호를 설정하지 않았기 때문에, <code>sudo passwd root</code> 명령어로 <code>root</code> 사용자 비밀번호 설정하고 나서 <code>su root</code> 명령어로 <code>root</code>로 로그인하면 <code>sudo raspi-config</code> 명령어를 사용할 수 있다.</p>
