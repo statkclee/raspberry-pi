@@ -78,6 +78,7 @@ This is free software; see the source for copying conditions.  There is no warra
 `sudo apt-get install zlib1g-dev`도 없으면 오류가 발생하여 설치가 되지 않을 수 있으니 사전에 설치한다.
 
 ~~~ {.input}
+root@std-ubuntu:~# sudo apt-get update
 root@std-ubuntu:~# sudo apt-get install zlib1g-dev 
 root@std-ubuntu:~# sudo apt-get install cabal-install
 root@std-ubuntu:~# cabal update
@@ -178,7 +179,7 @@ ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-linux]
 root@std-ubuntu:~# gem install therubyracer
 root@std-ubuntu:~# gem install jekyll
 root@std-ubuntu:~# gem install kramdown
-root@std-ubuntu:~# apt-get install python-pip
+root@std-ubuntu:~# sudo apt-get install -y python-pip
 root@std-ubuntu:~# pip install pandocfilters
 ~~~
 
@@ -212,6 +213,7 @@ s/javascript.html)" \
 root@std-ubuntu:~/lesson-example# jekyll build -d /var/www/html/
 ~~~
 
+
 ~~~ {.output}
 Configuration file: none
             Source: /root/lesson-example
@@ -221,7 +223,8 @@ Configuration file: none
  Auto-regeneration: disabled. Use --watch to enable.
  ~~~
 
-<img src="fig/aws-jekyll-test-page.png" alt="정적 웹콘텐츠 개발 스택 테스트 웹페이지" width="100%" />
+
+<img src="fig/aws-jekyll-test-page.png" alt="정적 웹콘텐츠 개발 스택 테스트 웹페이지" width="50%" />
 
 
 ### 6. 우분투 경로명 환경 설정
@@ -265,3 +268,27 @@ root@std-ubuntu:~# . ~/.bashrc
 root@std-ubuntu:~# exec bash
 ~~~
 
+### 7. 정적 웹 서비스 개발을 위한 제킬 툴체인 설치 쉘 스크립트
+
+~~~ {.shell}
+# Pandoc 설치
+sudo apt-get update
+sudo apt-get install -y zlib1g-dev 
+sudo apt-get install -y cabal-install
+cabal update
+PATH=$HOME/.cabal/bin:$PATH
+cabal install alex happy
+cabal install pandoc pandoc-citeproc
+# 루비 설치
+sudo apt-get install -y git build-essential curl wget
+echo "[[ -s '${HOME}/.rvm/scripts/rvm' ]] && source '${HOME}/.rvm/scripts/rvm'" >> ~/.bashrc
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | bash -s stable --ruby
+sudo reboot
+# 제킬 설치
+gem install therubyracer
+gem install jekyll
+gem install kramdown
+sudo apt-get install -y python-pip
+pip install pandocfilters
+~~~
