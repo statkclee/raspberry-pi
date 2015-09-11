@@ -180,7 +180,7 @@ root@std-ubuntu:~# gem install therubyracer
 root@std-ubuntu:~# gem install jekyll
 root@std-ubuntu:~# gem install kramdown
 root@std-ubuntu:~# sudo apt-get install -y python-pip
-root@std-ubuntu:~# pip install pandocfilters
+root@std-ubuntu:~# sudo pip install pandocfilters
 ~~~
 
 ### 5. 정적 웹콘텐츠 제작 테스트
@@ -290,5 +290,5 @@ gem install therubyracer
 gem install jekyll
 gem install kramdown
 sudo apt-get install -y python-pip
-pip install pandocfilters
+sudo pip install pandocfilters
 ~~~
