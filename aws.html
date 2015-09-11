@@ -41,7 +41,51 @@
 </div>
 </section>
 <h3 id="윈도우에서-아마존-웹서비스-개발환경-구축">1. 윈도우에서 아마존 웹서비스 개발환경 구축</h3>
-<h4 id="가상-상자-버츄얼-박스-virtual-box">1.1. 가상 상자 (버츄얼 박스, Virtual Box)</h4>
+<h4 id="가상상자-버츄얼박스-virtualbox">1.1. 가상상자 (버츄얼박스, VirtualBox)</h4>
+<p>X86 중앙처리장치가 올라간 개인용 하드웨어 컴퓨터에 윈도우 운영체제가 주인 운영체제(Host Operating Syste)가 일반적으로 설치된다. 하지만, 개인용 PC 운영체제로 우분투 리눅스를 설치하려고 하면 과거에는 윈도우를 삭제하고 설치해야 됐다. 하지만, <a href="https://ko.wikipedia.org/wiki/버추얼박스">가상상자</a> 같은 가상화 소프트웨어를 설치하면 윈도우 상태에서 우분투 리눅스를 사용할 수도 있다. 반대로 맥이나 리눅스를 사용한 경우에도 가상화 소프트웨어를 설치하고 윈도를 응용프로그램처럼 사용하는 것도 많이 사용된다.</p>
+<p><img src="fig/aws-virtualbox-architecture.png" width="50%" /></p>
+<ol style="list-style-type: decimal">
+<li>우분투 14.04 설치 이미지를 다운로드한다. <a href="http://www.ubuntu.com/download/server">Ubuntu Server 14.04.3 LTS 다운로드</a></li>
+<li>가상상자를 다운로드 한다. <a href="https://www.virtualbox.org/wiki/Downloads">가상상자 다운로드</a></li>
+<li>가상상자에 다운로드 받은 우분투 14.04 버젼을 설치한다.
+<ul>
+<li>가상상자를 실행하고 <code>새로 만들기(N)</code>를 클릭한다.</li>
+<li>가상상자 명칭을 <code>ubuntu</code>로 정하고 기본설정값을 따라 설정을 완료하면 <code>ubuntu</code> 전원 꺼짐 상태로 가상상자 하나가 생성된다.<br /></li>
+</ul></li>
+<li><code>ubuntu</code> 가상상자를 우클릭 <code>설정</code>으로 들어가고 대화상자에서 <code>어댑터 1</code> <code>브리지 어댑터</code>를 선택하고 저장한다.</li>
+<li>다시 <code>ubuntu</code> 가상상자를 우클릭하고 <code>시작(T)</code>를 눌러 다운로드 받은 우분투 이미지를 선택한다.</li>
+<li>일반 컴퓨터에 우분투를 설치하는 기분으로 쭉 설치한다.
+<ul>
+<li><code>root</code> 사용자 대신 기본 사용자를 정하게 된다. 예를 들어 <code>xwmooc</code> 등 임의 사용자를 생성하고, 추후 <code>ssh</code> 로그인에 사용한다.</li>
+</ul></li>
+</ol>
+<h4 id="가상상자-접속하기">1.2. 가상상자 접속하기</h4>
+<ol style="list-style-type: decimal">
+<li>터미널을 실행하고, <code>sudo apt-get install openssh-server</code> 명령어로 ssh 로그인 가능케 소프트웨어를 설치한다.</li>
+<li>가상상자 우분투 터미널을 실행하고 <code>ifconfig</code> 명령어로 IP주소를 확인한다. 통상 <strong>10.0.2.15</strong> 가 된다.</li>
+<li><code>ssh xwmooc@10.0.2.15</code>와 유사한 명령어로 가상상자에 접속한다.</li>
+</ol>
+<pre class="shell"><code>$ ssh xwmooc@192.168.0.11
+The authenticity of host &#39;192.168.0.11 (192.168.0.11)&#39; can&#39;t be established.
+ECDSA key fingerprint is 2d:57:2b:2c:38:31:a3:0e:c3:bc:30:13:05:98:b4:fd.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added &#39;192.168.0.11&#39; (ECDSA) to the list of known hosts.
+xwmooc@192.168.0.11&#39;s password:
+Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.19.0-25-generic i686)
+
+ * Documentation:  https://help.ubuntu.com/
+
+58 packages can be updated.
+32 updates are security updates.
+
+The programs included with the Ubuntu system are free software; the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law.
+
+xwmooc@xwmooc-VirtualBox:~$</code></pre>
+<p><a href="http://rorlab.gitbooks.io/railsguidebook/content/appendices/ubuntu14server.html">참조: 우분투 14.04 서버 세팅하기 (Virtual Box)</a></p>
+<p><a href="http://junho85.tistory.com/259">참조: VirtualBox Ubuntu 기본 환경에서 ssh 접근하기</a></p>
 <h4 id="부랑자vagrant-설치">1.2. 부랑자(Vagrant) 설치</h4>
 <p><a href="https://www.vagrantup.com/">부랑자(Vagrant)</a>는 가상 개발 환경을 생성하고 환경설정을 가능케하는 소프트웨어로, 초기에는 <a href="https://www.virtualbox.org/">버츄얼 박스</a>만 지원했으나, 1.1버젼 이후에는 VMWare, KVM, LXC(리눅스 컨테이너), 다양한 형상관리 소프트웨어와 함께 사용할 수 있고, 특히 1.6버젼 이후 도커 컨테이너를 지원한다.</p>
 <p><a href="https://www.vagrantup.com/downloads.html">부랑자 다운로드</a> 웹사이트에서 소프트웨어는 다운로드 받으면 된다.</p>
