@@ -14,7 +14,7 @@ minutes: 10
 
 #### 1.1. 정적 웹 서비스 아키텍쳐 (최종)
 
-<img src="fig/aws-route53-cloudfront-s3-github-jekyll-architecture.png" width="100%" />
+<img src="fig/aws-route53-cloudfront-s3-github-jekyll-architecture.png" width="70%" />
 
 아마존 웹 서비스를 이용한 정적 웹 사이트 구축 구성요소는 다음과 같다.
 - **제킬**: 
@@ -31,7 +31,7 @@ minutes: 10
 이를 위해서는 먼저 개발된 정적 웹 서비스가 있어야 된다.
 
 
-<img src="fig/aws-static-website-s3.png" width="50%" />
+<img src="fig/aws-static-website-s3.png" width="70%" />
 
 
 #### 2.1.1. **S3 버킷**에 `index.html` 파일을 포함한 정적 웹사이트 서비스를 위한 원데이터를 업로드한다.
@@ -76,7 +76,7 @@ minutes: 10
 1. 아마존 라우트53 호스팅 영역 생성하고 환경설정한다.
 1. DNS 서비스를 제공하는 아마존 라우트53으로 설정한다.
 
-<img src="fig/aws-static-website-s3-route53.png" width="30%" />
+<img src="fig/aws-static-website-s3-route53.png" width="70%" />
 
 라우트53 &rarr; `호스트 존(Hosted Zones)` 에서 해당 도메인을 선택하고 `Go to Record Sets` &rarr; `Create Record Set`에서 도메인 명칭과 S3 버킷 설정된 것을 연결한다.
 
@@ -94,7 +94,7 @@ S3 버킷 명칭을 `rur-ple.xwmooc.org` 으로 설정했으면, `Name`은 `rur-
 
 **[s3_website](https://github.com/laurilehmijoki/s3_website)**를 사용하면 파일 업로드하는 것을 개발 완료시점에 `s3_website push` 명령어로 즉시 S3 버킷에 배포할 수 있다.
 
-<img src="fig/aws-static-website-s3-route53-jekyll.png" width="30%" />
+<img src="fig/aws-static-website-s3-route53-jekyll.png" width="70%" />
 
 - `gem install s3_website` 명령어로 `s3_website`를 설치한다.
     - `gem install`을 사용하기 위해서 루비가 사전에 설치되었는지 점검한다.
