@@ -40,12 +40,12 @@
 </section>
 <h3 id="아마존-웹-서비스를-활용한-정적-웹-서비스">1. 아마존 웹 서비스를 활용한 정적 웹 서비스</h3>
 <h4 id="정적-웹-서비스-아키텍쳐-최종">1.1. 정적 웹 서비스 아키텍쳐 (최종)</h4>
-<p><img src="fig/aws-route53-cloudfront-s3-github-jekyll-architecture.png" width="100%" /></p>
+<p><img src="fig/aws-route53-cloudfront-s3-github-jekyll-architecture.png" width="70%" /></p>
 <p>아마존 웹 서비스를 이용한 정적 웹 사이트 구축 구성요소는 다음과 같다. - <strong>제킬</strong>: - <strong>GitHub</strong>: - <strong>S3 버킷</strong>: - <strong>클라우드 프론트(CloudFront)</strong>: - <strong>라우트 53</strong>:</p>
 <h3 id="순차적-아마존-웹-서비스-구축">2. 순차적 아마존 웹 서비스 구축</h3>
 <h4 id="s3를-활용한-정적-웹-서비스-구축">2.1. S3를 활용한 정적 웹 서비스 구축</h4>
 <p>아마존 웹 서비스 중 S3 버킷을 생성해서 환경설정을 바꿔 정적 웹서비스 제공한다. 이를 위해서는 먼저 개발된 정적 웹 서비스가 있어야 된다.</p>
-<p><img src="fig/aws-static-website-s3.png" width="50%" /></p>
+<p><img src="fig/aws-static-website-s3.png" width="70%" /></p>
 <h4 id="s3-버킷에-index.html-파일을-포함한-정적-웹사이트-서비스를-위한-원데이터를-업로드한다.">2.1.1. <strong>S3 버킷</strong>에 <code>index.html</code> 파일을 포함한 정적 웹사이트 서비스를 위한 원데이터를 업로드한다.</h4>
 <h4 id="s3-버킷을-정적-웹서비스-제공을-위한-환경-설정">2.1.2. S3 버킷을 정적 웹서비스 제공을 위한 환경 설정</h4>
 <ul>
@@ -87,7 +87,7 @@
 <li>아마존 라우트53 호스팅 영역 생성하고 환경설정한다.</li>
 <li>DNS 서비스를 제공하는 아마존 라우트53으로 설정한다.</li>
 </ol>
-<p><img src="fig/aws-static-website-s3-route53.png" width="30%" /></p>
+<p><img src="fig/aws-static-website-s3-route53.png" width="70%" /></p>
 <p>라우트53 → <code>호스트 존(Hosted Zones)</code> 에서 해당 도메인을 선택하고 <code>Go to Record Sets</code> → <code>Create Record Set</code>에서 도메인 명칭과 S3 버킷 설정된 것을 연결한다.</p>
 <p>S3 버킷 명칭을 <code>rur-ple.xwmooc.org</code> 으로 설정했으면, <code>Name</code>은 <code>rur-ple</code>, <code>Type</code>은 <code>A - IPv4 address</code>, <code>Alias:</code>는 <code>Yes</code>를 선택하고, <code>Alias Target:</code>은 S3 버킷 명칭을 선택하거나, 복사해서 넣는다.</p>
 <p><img src="fig/aws-route53-rur-ple-configuration.png" width="40%" /></p>
@@ -95,7 +95,7 @@
 <h4 id="정적-웹-사이트-배포-자동화">2.3. 정적 웹 사이트 배포 자동화</h4>
 <p>제킬로 개발한 정적 웹 사이트를 AWS 파일 업로드 기능을 이용해서 S3 버킷에 업로드해서 올렸다. 변경사항이 발생하거나 신규 기능이 추가될 때 매번 파일을 업로드하는 것은 때로는 시간 낭비일 수 있고 효율적이지 못하다.</p>
 <p><strong><a href="https://github.com/laurilehmijoki/s3_website">s3_website</a></strong>를 사용하면 파일 업로드하는 것을 개발 완료시점에 <code>s3_website push</code> 명령어로 즉시 S3 버킷에 배포할 수 있다.</p>
-<p><img src="fig/aws-static-website-s3-route53-jekyll.png" width="30%" /></p>
+<p><img src="fig/aws-static-website-s3-route53-jekyll.png" width="70%" /></p>
 <ul>
 <li><code>gem install s3_website</code> 명령어로 <code>s3_website</code>를 설치한다.
 <ul>
@@ -105,17 +105,16 @@
 <ul>
 <li><code>s3_id</code>, <code>s3_secret</code>, <code>s3_bucket</code>, <code>s3_endpoint</code>를 설정한다.</li>
 <li><code>s3_id</code>, <code>s3_secret</code>, <code>s3_bucket</code> 정보는 IAM에서 별도 생성된 사용자 정보를 사용한다. <a href="https://rbgeek.wordpress.com/2014/07/18/amazon-iam-user-creation-for-single-s3-bucket-access/">Amazon IAM user creation for single S3 bucket access</a>을 참조해서 보안을 강화한다.</li>
-<li><code>s3_endpoint</code>는 S3 버킷이 배포된 지역정보(Region)를 사용한다.</li>
-</ul></li>
-</ul>
-<pre class="shell"><code>s3_id=AKFKSKSDK8DSDSMFJA
-s3_secret=0fsd0fdsf0sd9f0fs0dBKmG6BfOVPYoHs
-s3_bucket=rur-ple.xwmooc.org
-s3_endpoint: us-east-1</code></pre>
-<ul>
+<li><code>s3_endpoint</code>는 S3 버킷이 배포된 지역정보(Region)를 사용한다. &gt; #### <code>s3_website.yml</code> 환경설정 {.callout} &gt; &gt; s3_id=AKFKSKSDK8DSDSMFJA &gt; &gt; s3_secret=0fsd0fdsf0sd9f0fs0dBKmG6BfOVPYoHs &gt; &gt; s3_bucket=rur-ple.xwmooc.org &gt; &gt; s3_endpoint: us-east-1</li>
 <li><code>s3_website push --dry-run</code> 명령어로 설정의 완전성을 사전에 확인한다.</li>
 <li><code>s3_website push</code> 명령어로 AWS S3 버킷에 제킬로 생성된 <code>_site</code> 정적 웹 서비스를 밀어 넣는다.</li>
+</ul></li>
 </ul>
+<pre class="shell"><code>$ gem install s3_website
+$ s3_website cfg create
+$ nano s3_website.yml
+$ s3_website push --dry-run
+$ s3_website push</code></pre>
 <pre class="input"><code>xwmooc@xwmooc-VirtualBox:~/rur-ple$ ls -al
 total 16
 drwxrwxr-x  3 xwmooc xwmooc 4096  9월 12 00:27 .
