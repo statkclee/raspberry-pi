@@ -44,7 +44,7 @@
 <p><a href="http://ko.wikipedia.org/wiki/하이퍼바이저">하이퍼바이저(hypervisor)</a>는 호스트 컴퓨터에서 다수의 운영 체제(operating system)를 동시에 실행하기 위한 논리적 플랫폼(platform)을 말한다. 가상화 머신 모니터(virtual machine monitor, 줄여서 VMM)라고도 부른다.</p>
 <p>하드웨어에서 직접 실행되며 운영 체제는 하드웨어 위의 하이퍼바이저 위에서 2번째 수준으로 실행되는 <strong>Type 1 (베어메탈)</strong>형 하이퍼바이저(hypervisor)가 있고, <strong>Type 2</strong>형 하이퍼바이저는 일반 프로그램과 같이 호스트 운영 체제에서 실행되며 VM 내부에서 동작되는 게스트 운영 체제는 하드웨어에서 3번째 수준으로 실행된다. 개인용 가상화 클라우드 환경으로 사용되는 대표적인 것이 오라클 <a href="https://www.virtualbox.org/">버추얼박스(Virtual Box)</a>다.</p>
 <p>출처: <a href="http://ko.wikipedia.org/wiki/하이퍼바이저">한국 위키피디아</a></p>
-<p><img src="aws-virtualbox-hypervisor.png" width="50%" alt="클라우드 하이퍼바이저와 버츄얼박스(VirtualBox)" /></p>
+<p><img src="fig/aws-virtualbox-hypervisor.png" width="50%" alt="클라우드 하이퍼바이저와 버츄얼박스(VirtualBox)" /></p>
 <p>X86 중앙처리장치가 올라간 개인용 하드웨어 컴퓨터에 윈도우 운영체제가 주인 운영체제(Host Operating Syste)가 일반적으로 설치된다. 하지만, 개인용 PC 운영체제로 우분투 리눅스를 설치하려고 하면 과거에는 윈도우를 삭제하고 설치해야 됐다. 하지만, <a href="https://ko.wikipedia.org/wiki/버추얼박스">가상상자</a> 같은 가상화 소프트웨어를 설치하면 윈도우 상태에서 우분투 리눅스를 사용할 수도 있다. 반대로 맥이나 리눅스를 사용한 경우에도 가상화 소프트웨어를 설치하고 윈도를 응용프로그램처럼 사용하는 것도 많이 사용된다.</p>
 <h3 id="리눅스-환경-가상상자-설치">1. 리눅스 환경 가상상자 설치</h3>
 <h4 id="현-리눅스-시스템-환경-파악">1.1. 현 리눅스 시스템 환경 파악</h4>
@@ -258,7 +258,7 @@ $ vagrant ssh</code></pre>
 ==&gt; sparkvm: Mounting shared folders...
     sparkvm: /vagrant =&gt; /home/statkclee/spark/mooc-setup-master</code></pre>
 <p><code>http://localhost:8001/</code> 혹은 <code>http://127.0.0.1:8001/</code>을 웹브라우저 주소창에 입력하게 되면 스파크를 <em>ipython</em>을 통해 사용할 수 있다.</p>
-<p><img src="aws-virtualbox-hypervisor.png" width="50%" alt="스파크를 가상상자 부랑자(Vagrant)를 통해 실행한 화면" /></p>
+<p><img src="fig/aws-virtualbox-hypervisor.png" width="50%" alt="스파크를 가상상자 부랑자(Vagrant)를 통해 실행한 화면" /></p>
 <p>부랑자(Vagrant)를 정지하는 명령어는 <code>vagrant halt</code>다.</p>
 <pre class="input"><code>[xwmooc:~/spark/mooc-setup-master ] $ vagrant halt</code></pre>
 <pre class="output"><code>==&gt; sparkvm: Attempting graceful shutdown of VM...</code></pre>
