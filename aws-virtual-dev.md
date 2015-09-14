@@ -21,7 +21,7 @@ minutes: 10
 
 출처: [한국 위키피디아](http://ko.wikipedia.org/wiki/하이퍼바이저)
 
-<img src="aws-virtualbox-hypervisor.png" width="50%" alt="클라우드 하이퍼바이저와 버츄얼박스(VirtualBox)" />
+<img src="fig/aws-virtualbox-hypervisor.png" width="50%" alt="클라우드 하이퍼바이저와 버츄얼박스(VirtualBox)" />
 
 X86 중앙처리장치가 올라간 개인용 하드웨어 컴퓨터에 윈도우 운영체제가 주인 운영체제(Host Operating Syste)가 일반적으로 설치된다. 하지만, 개인용 PC 운영체제로 우분투 리눅스를 설치하려고 하면 과거에는 윈도우를 삭제하고 설치해야 됐다. 하지만, [가상상자](https://ko.wikipedia.org/wiki/버추얼박스) 같은 가상화 소프트웨어를 설치하면 윈도우 상태에서 우분투 리눅스를 사용할 수도 있다. 반대로 맥이나 리눅스를 사용한 경우에도 가상화 소프트웨어를 설치하고 윈도를 응용프로그램처럼 사용하는 것도 많이 사용된다.
 
@@ -320,7 +320,7 @@ Bringing machine 'sparkvm' up with 'virtualbox' provider...
 `http://localhost:8001/` 혹은 `http://127.0.0.1:8001/`을 웹브라우저 주소창에 입력하게 되면 스파크를 *ipython*을 통해 사용할 수 있다. 
 
 
-<img src="aws-virtualbox-hypervisor.png" width="50%" alt="스파크를 가상상자 부랑자(Vagrant)를 통해 실행한 화면" />
+<img src="fig/aws-virtualbox-hypervisor.png" width="50%" alt="스파크를 가상상자 부랑자(Vagrant)를 통해 실행한 화면" />
 
 
 부랑자(Vagrant)를 정지하는 명령어는 `vagrant halt`다.
