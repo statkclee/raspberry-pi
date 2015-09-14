@@ -102,16 +102,25 @@ S3 버킷 명칭을 `rur-ple.xwmooc.org` 으로 설정했으면, `Name`은 `rur-
     - `s3_id`, `s3_secret`, `s3_bucket`, `s3_endpoint`를 설정한다.
     - `s3_id`, `s3_secret`, `s3_bucket` 정보는 IAM에서 별도 생성된 사용자 정보를 사용한다. [Amazon IAM user creation for single S3 bucket access](https://rbgeek.wordpress.com/2014/07/18/amazon-iam-user-creation-for-single-s3-bucket-access/)을 참조해서 보안을 강화한다.
     - `s3_endpoint`는 S3 버킷이 배포된 지역정보(Region)를 사용한다.
+> #### `s3_website.yml` 환경설정 {.callout}
+> 
+> s3_id=AKFKSKSDK8DSDSMFJA
+>
+> s3_secret=0fsd0fdsf0sd9f0fs0dBKmG6BfOVPYoHs
+>
+> s3_bucket=rur-ple.xwmooc.org
+>
+> s3_endpoint: us-east-1
+    - `s3_website push --dry-run` 명령어로 설정의 완전성을 사전에 확인한다.
+    - `s3_website push` 명령어로 AWS S3 버킷에 제킬로 생성된 `_site` 정적 웹 서비스를 밀어 넣는다.
 
 ~~~{.shell}
-s3_id=AKFKSKSDK8DSDSMFJA
-s3_secret=0fsd0fdsf0sd9f0fs0dBKmG6BfOVPYoHs
-s3_bucket=rur-ple.xwmooc.org
-s3_endpoint: us-east-1
+$ gem install s3_website
+$ s3_website cfg create
+$ nano s3_website.yml
+$ s3_website push --dry-run
+$ s3_website push
 ~~~
-
-- `s3_website push --dry-run` 명령어로 설정의 완전성을 사전에 확인한다.
-- `s3_website push` 명령어로 AWS S3 버킷에 제킬로 생성된 `_site` 정적 웹 서비스를 밀어 넣는다.
 
 ~~~ {.input}
 xwmooc@xwmooc-VirtualBox:~/rur-ple$ ls -al

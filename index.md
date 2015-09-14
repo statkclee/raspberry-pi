@@ -36,6 +36,7 @@ title: xwMOOC 컴퓨터
 1.  [$100 달러 컴퓨터](100-computer.html)
 1.  [아마존 웹 서비스(AWS)](aws.html)
     - [가상 개발환경 구축](aws-virtual-dev.html)
+    - [AWS 보안(IAM)](aws-iam.html)
     - [정적 웹 사이트 개발 툴체인 (제킬)](aws-jekyll-toolchain.html)
     - [정적 웹 서비스 S3에 올리기](aws-static-web-s3.html)    
     - [AWS 정적 웹 서비스 최적화](aws-static-web-optimization.html)
