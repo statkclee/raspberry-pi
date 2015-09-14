@@ -320,7 +320,7 @@ Bringing machine 'sparkvm' up with 'virtualbox' provider...
 `http://localhost:8001/` 혹은 `http://127.0.0.1:8001/`을 웹브라우저 주소창에 입력하게 되면 스파크를 *ipython*을 통해 사용할 수 있다. 
 
 
-<img src="fig/aws-virtualbox-hypervisor.png" width="50%" alt="스파크를 가상상자 부랑자(Vagrant)를 통해 실행한 화면" />
+<img src="fig/aws-virtual-machine-spark-ipython.png" width="50%" alt="스파크를 가상상자 부랑자(Vagrant)를 통해 실행한 화면" />
 
 
 부랑자(Vagrant)를 정지하는 명령어는 `vagrant halt`다.
