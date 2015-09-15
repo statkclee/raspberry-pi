@@ -352,3 +352,24 @@ VM "sparkvm" has been successfully started.
 ~~~ {.output}
 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
 ~~~
+
+#### 3.3. 웹서버 (아파치)
+
+가상상자에 웹서버를 설치해서 웹인터페이스를 이용하여 접근할 수 있다. 
+`sudo apt-get install apache2` 명령어를 통해서 아파치 웹서비스를 설치한다. 
+필요시 `sudo service apache2 restart` 명령어를 통해서 아파치 웹서비스를 재시작한다.
+
+~~~ {.shell}
+xwmooc@xwmooc-VirtualBox:~$ sudo apt-get install apache2
+xwmooc@xwmooc-VirtualBox:~$ sudo service apache2 restart
+~~~
+
+가상상자를 정지하고 `Settings` &rarr; `Network` &rarr; `Adapter`에서 **Port Forwarding**으로 가서 `80` 포트를 등록하면 웹브라우져를 통해 가상상자에서 제공하는 웹서비스를 받을 수 있다.
+
+<img src="fig/aws-virtualbox-webservice.png" width="70%" alt="가상상자 웹서비스 포트포워딩 설정" />
+
+웹브라우져 주소창에 `http://localhost`를 입력하면 웹서비스가 제공되는 것을 확인할 수 있다.
+
+
+
+

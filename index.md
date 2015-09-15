@@ -6,14 +6,20 @@ title: xwMOOC 컴퓨터
 [xwMOOC](http://www.xwmooc.net/)에서 개발하고 있는 $100 달러 컴퓨터입니다. 누구나 레서피를 따라서 개발해 보세요.
 
 
-> ## 선수 과목
+> ## 준비물 {.getready}
 >
+> [라즈베리 파이 컴퓨터](http://raspberrypi.org/)
+>
+
+> ## 필수 전제조건 {.prereq}
 > [컴퓨터 과학 언플러그드](http://www.xwmooc.net/csunplugged/book.html)  
 > [러플](http://www.xwmooc.net/rur-ple)  
 > [파이썬 거북이](http://swcarpentry.github.io/python-novice-turtles/index-kr.html)  
 > [정보과학을 위한 파이썬](http://www.xwmooc.net/python)  
 > [소프트웨어 카펜트리](http://www.xwmooc.net/swcarpentry/)
 > [R 팩키지](http://r-pkgs.xwmooc.net/)
+
+
 
 ## 학습주제
 		
@@ -35,15 +41,10 @@ title: xwMOOC 컴퓨터
     - [소프트웨어 카펜트리 이미지](raspberry-pi-swcarpentry.html)    
 1.  [$100 달러 컴퓨터](100-computer.html)
 1.  [아마존 웹 서비스(AWS)](aws.html)
-    - [가상 개발환경 구축](aws-virtual-dev.html)
+    - [가상 개발환경 구축](aws-virtual-dev.html)    
+    - [도커](aws-docker.html)
     - [AWS 보안(IAM)](aws-iam.html)
     - [정적 웹 사이트 개발 툴체인 (제킬)](aws-jekyll-toolchain.html)
     - [정적 웹 서비스 S3에 올리기](aws-static-web-s3.html)    
     - [AWS 정적 웹 서비스 최적화](aws-static-web-optimization.html)
-
-
-## [번역 라이센스](license.html)
-
-영어 원문과 동일한 라이센스가 [xwMOOC](http://www.xwmooc.net/)에서 작업한 한국어 번역 저작물에도 적용됩니다.
-
 

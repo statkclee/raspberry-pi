@@ -280,6 +280,12 @@ VM &quot;sparkvm&quot; has been successfully started.</code></pre>
 <p><code>VBoxManage controlvm</code> 명령어를 통해서 <code>sparkvm</code> 가상컴퓨터를 끈다(poweroff).</p>
 <pre class="input"><code>[xwmooc:~/spark/mooc-setup-master ] $ VBoxManage controlvm sparkvm poweroff</code></pre>
 <pre class="output"><code>0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%</code></pre>
+<h4 id="웹서버-아파치">3.3. 웹서버 (아파치)</h4>
+<p>가상상자에 웹서버를 설치해서 웹인터페이스를 이용하여 접근할 수 있다. <code>sudo apt-get install apache2</code> 명령어를 통해서 아파치 웹서비스를 설치한다. 필요시 <code>sudo service apache2 restart</code> 명령어를 통해서 아파치 웹서비스를 재시작한다.</p>
+<pre class="shell"><code>xwmooc@xwmooc-VirtualBox:~$ sudo apt-get install apache2
+xwmooc@xwmooc-VirtualBox:~$ sudo service apache2 restart</code></pre>
+<p>가상상자를 정지하고 <code>Settings</code> → <code>Network</code> → <code>Adapter</code>에서 <strong>Port Forwarding</strong>으로 가서 <code>80</code> 포트를 등록하면 웹브라우져를 통해 가상상자에서 제공하는 웹서비스를 받을 수 있다.</p>
+<p><img src="fig/aws-virtualbox-webservice.png" width="70%" alt="가상상자 웹서비스 포트포워딩 설정" /></p>
         </div>
       </div>
       </article>
