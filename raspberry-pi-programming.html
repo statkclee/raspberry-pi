@@ -15,6 +15,17 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
   </head>
   <body class="lesson">
     <div class="container card">
@@ -30,7 +41,7 @@
           <h2 class="subtitle">라즈베리 파이 파이썬 프로그래밍</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -68,7 +79,7 @@
 </ul>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4 id="파이썬-예약어-34개"><span class="glyphicon glyphicon-pushpin"></span>파이썬 예약어 34개</h4>
+<h4><span class="glyphicon glyphicon-pushpin"></span>파이썬 예약어 34개</h4>
 </div>
 <div class="panel-body">
 <p>파이썬 예약서 34개를 가지고 웹, 로봇, 데이터과학, 그래픽, 게임 등 다양한 프로그램을 개발한다.</p>
@@ -113,7 +124,7 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 <p>파이썬 인터프리터는 <code>&gt;&gt;&gt;</code> 프롬프트를 통해서 여러분에게 요청사항(“다음에 파이썬이 무엇을 실행하기를 원합니까?”)을 접수받는 방식을 취한다. 파이썬은 여러분과 대화를 나눌 준비가 되었다. 이제 남은 것은 파이썬 언어로 어떻게 말하고 어떻게 파이썬과 대화하는지 아는 것이다.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4 id="파이썬-설치된-것-살펴보기"><span class="glyphicon glyphicon-pushpin"></span>파이썬 설치된 것 살펴보기</h4>
+<h4><span class="glyphicon glyphicon-pushpin"></span>파이썬 설치된 것 살펴보기</h4>
 </div>
 <div class="panel-body">
 <p>파이썬이 설치되면 <code>help</code> 도움말을 통해서 주제별, 예약어별, 설치된 모듈 정보를 바로 확인할 수 있다. <sub>~</sub> {.input} &gt;&gt;&gt; help(“topics”) &gt;&gt;&gt; help(“keywords”) &gt;&gt;&gt; help(“modules”) <sub>~</sub></p>
@@ -125,8 +136,7 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 <pre><code>01010001110100100101010000001111
 11100110000011101010010101101101
 ...</code></pre>
-<p>표면적으로 0과 1로만 되어 있기 때문에 기계어가 간단해 보이지만, 구문은 매우 복잡하고 파이썬보다 훨씬 어렵다. 그래서 매우 소수의 프로그래머만이 기계어로 작성할 수 있다. 대신에, 프로그래머가 파이썬과 자바스크립트 같은 하이 레벨 언어로 작성할 수 있게 다양한 번역기(translator)를 만들었다.<br />
-이러한 번역기는 프로그램을 중앙처리장치에 의해서 실제 실행이 가능한 기계어로 변환한다.</p>
+<p>표면적으로 0과 1로만 되어 있기 때문에 기계어가 간단해 보이지만, 구문은 매우 복잡하고 파이썬보다 훨씬 어렵다. 그래서 매우 소수의 프로그래머만이 기계어로 작성할 수 있다. 대신에, 프로그래머가 파이썬과 자바스크립트 같은 하이 레벨 언어로 작성할 수 있게 다양한 번역기(translator)를 만들었다.<br />이러한 번역기는 프로그램을 중앙처리장치에 의해서 실제 실행이 가능한 기계어로 변환한다.</p>
 <p>기계어는 특정 컴퓨터 하드웨어에 묶여있기 때문에 기계어는 다른 형식의 하드웨어에는 <strong>이식(portable)</strong>되지 않는다. 하이 레벨 언어로 작성된 프로그램은 두 가지 방식으로 이기종의 컴퓨터로 이식이 가능하다. 한 방법은 새로운 하드웨어에 맞게 기계어를 재컴파일(recompile)하는 것이고, 다른 방법은 새로운 하드웨어에 맞는 다른 인터프리터를 이용하는 것이다.</p>
 <p>프로그래밍 언어 번역기는 일반적으로 두가지 범주가 있다. 1. <strong>인터프리터(interpreter)</strong> 1. <strong>컴파일러(Compiler)</strong></p>
 <p><strong>인터프리터</strong>는 프로그래머가 코드를 작성할 때 소스 코드를 읽고, 소스코드를 파싱하고, 즉석에서 명령을 해석한다. 파이썬은 인터프리터다. 따라서, 파이썬을 인터렉트브 모드로 실행할 때, 파이썬 명령문(한 문장)을 작성하면, 파이썬이 즉석에서 처리하고, 사용자가 다른 파이썬 명령어를 입력하도록 준비를 한다.</p>
@@ -233,7 +243,7 @@ SyntaxError: invalid syntax
 <p>파이썬과 다퉈봐야 얻을 것은 없어요. 파이썬은 도구고 감정이 없다. 여러분이 필요로 할 때마다 여러분에게 봉사하고 기쁨을 주기 위해서 존재할 뿐이다. 오류 메세지가 심하게 들릴지는 모르지만 단지 파이썬이 도와달라는 요청일 뿐이다. 입력한 것을 쭉 읽어 보고 여러분이 입력한 것을 이해할 수 없다고만 말할 뿐이다.</p>
 <p>파이썬은 어떤 면에서 강아지와 닮았다. 맹목적으로 여러분을 사랑하고, 강아지와 마찬가지로 몇몇 단어만 이해하며, 웃는 표정(<code>&gt;&gt;&gt;</code> 명령 프롬프트)으로 여러분이 파이썬이 이해하는 무언가를 말하기만을 기다린다. 파이썬이 <code>SyntaxError: invalid syntax</code>을 뱉어낼 때는, 마치 강아지가 꼬리를 흔들면서 ‘’뭔가 말씀하시는 것 같은데요… 주인님 말씀을 이해하지 못하겠어요, 다시 말씀해 주세요 (<code>&gt;&gt;&gt;</code>)’’ 말하는 것과 같다.</p>
 <blockquote>
-<h3 id="파이썬의-선-the-zen-of-python"><a href="https://www.python.org/dev/peps/pep-0020/">파이썬의 선 (The Zen of Python)</a></h3>
+<h3><a href="https://www.python.org/dev/peps/pep-0020/">파이썬의 선 (The Zen of Python)</a></h3>
 <p>파이썬의 철학(PEP 20)이라고 불리기도 하고 <code>import this</code> 명령어를 실행하면 나오는 부활절 달걀.</p>
 <pre class="input"><code>import this</code></pre>
 <ol style="list-style-type: decimal">

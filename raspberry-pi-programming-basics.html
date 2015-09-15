@@ -15,6 +15,17 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
   </head>
   <body class="lesson">
     <div class="container card">
@@ -30,7 +41,7 @@
           <h2 class="subtitle">한번 시작으로 파이썬 모듈까지</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -51,75 +62,75 @@
 <p>파이썬에서 가장 흔한 기본 “사물”은 정수, 부동소수점수, 문자열, 부울, 다양한 자료형의 특수 객체가 포함된다. 이번 학습을 진행하면서 이들 모두를 만나볼 것이다.</p>
 <p><strong>비법:</strong> 신속히 셀에 있는 코드를 실행하려면, Ctrl-Enter 키를 누른다.</p>
 <p><strong>비법:</strong> 기존 셀 아래 신규 셀을 신속히 생성하려면, Ctrl-m 그리고 나서 b 를 타이핑한다. 셀을 생성, 삭제, 이동하는 단축키는 화면 상단 메뉴바(menuba)에 있다.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 사물(thing)</span>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 사물(thing)</span>
     <span class="dv">2</span>
     <span class="dv">3</span>
     <span class="dv">4</span>
     <span class="dv">5</span>
     <span class="dv">6</span>
-    <span class="dv">7</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># print를 사용해서 동일한 셀에 사물 다수를 출력한다.</span>
+    <span class="dv">7</span></code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># print를 사용해서 동일한 셀에 사물 다수를 출력한다.</span>
     <span class="co"># 문자열에는 단일 인용부호 혹은 쌍 인용부호를 모두 사용함에 유의힌다.</span>
-    <span class="bu">print</span>(<span class="dv">2</span>)
-    <span class="bu">print</span>(<span class="st">&#39;hello&#39;</span>)</code></pre></div>
+    <span class="dt">print</span>(<span class="dv">2</span>)
+    <span class="dt">print</span>(<span class="st">&#39;hello&#39;</span>)</code></pre>
 <pre class="output"><code>    2
     hello</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 사물을 변수로 저장할 수 있다.</span>
-    a <span class="op">=</span> <span class="dv">2</span>
-    b <span class="op">=</span> <span class="st">&#39;hello&#39;</span>
-    c <span class="op">=</span> <span class="va">True</span>  <span class="co"># 부울의 경우 대소문자 구별한다.</span>
-    <span class="bu">print</span>(a, b, c)</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 사물을 변수로 저장할 수 있다.</span>
+    a = <span class="dv">2</span>
+    b = <span class="st">&#39;hello&#39;</span>
+    c = <span class="ot">True</span>  <span class="co"># 부울의 경우 대소문자 구별한다.</span>
+    <span class="dt">print</span>(a, b, c)</code></pre>
 <pre class="output"><code>    (2, &#39;hello&#39;, True)</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># type 함수를 사용해서 사물의 유형(type)을 확인한다.</span>
-    <span class="bu">print</span>(<span class="bu">type</span>(a))
-    <span class="bu">print</span>(<span class="bu">int</span>)
-    <span class="bu">print</span>(<span class="bu">type</span>(b))
-    <span class="bu">print</span>(<span class="bu">str</span>)
-    <span class="bu">print</span>(<span class="bu">type</span>(c))
-    <span class="bu">print</span>(<span class="bu">bool</span>)</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># type 함수를 사용해서 사물의 유형(type)을 확인한다.</span>
+    <span class="dt">print</span>(<span class="dt">type</span>(a))
+    <span class="dt">print</span>(<span class="dt">int</span>)
+    <span class="dt">print</span>(<span class="dt">type</span>(b))
+    <span class="dt">print</span>(<span class="dt">str</span>)
+    <span class="dt">print</span>(<span class="dt">type</span>(c))
+    <span class="dt">print</span>(<span class="dt">bool</span>)</code></pre>
 <pre class="output"><code>    &lt;type &#39;int&#39;&gt;
     &lt;type &#39;int&#39;&gt;
     &lt;type &#39;str&#39;&gt;
     &lt;type &#39;str&#39;&gt;
     &lt;type &#39;bool&#39;&gt;
     &lt;type &#39;bool&#39;&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 신규 변수가 이전 변수를 지칭하면 어떻게 될까?</span>
-    a <span class="op">=</span> <span class="dv">1</span>
-    b <span class="op">=</span> a
-    a <span class="op">=</span> <span class="dv">2</span>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 신규 변수가 이전 변수를 지칭하면 어떻게 될까?</span>
+    a = <span class="dv">1</span>
+    b = a
+    a = <span class="dv">2</span>
     <span class="co">## b 값은?</span>
-    <span class="bu">print</span> b</code></pre></div>
+    <span class="dt">print</span> b</code></pre>
 <pre class="output"><code>    1</code></pre>
 <h3 id="사물을-조작하는-명령어">2. 사물을 조작하는 명령어</h3>
 <p>변수로 데이터를 저정하는 것만으로 그다지 유용성이 크지 않다. 즉시, 데이터와 변수 연산과 조작을 시작해보자.</p>
 <p>사물에 연산을 가하는 매우 일반적인 방법이 세가지 있다.</p>
 <h4 id="연산자operator-사용">2.1 연산자(operator) 사용</h4>
 <p>모든 기본 수학 연산자는 숫자에 대해 동작한다. 문자열같은 다른 사물에도 일부 유용한 연산을 수행한다. 양을 비교해서 결과로 <code>bool</code> 변수를 돌려주는 부울 연산자도 있다.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 표준 수학 연산자는 기대한대로 숫자에 작동한다.</span>
-    a <span class="op">=</span> <span class="dv">2</span>
-    b <span class="op">=</span> <span class="dv">3</span>
-    <span class="bu">print</span>(a <span class="op">+</span> b)
-    <span class="bu">print</span>(a <span class="op">*</span> b)
-    <span class="bu">print</span>(a <span class="op">**</span> b)  <span class="co"># a 에 대한 b 거듭제곱(멱승) (a^b 연산은 완전히 다른 연산(비트 xor)이다!)</span>
-    <span class="bu">print</span>(a <span class="op">/</span> b)   <span class="co"># 만약 파이썬 2를 사용한다면 정수 나눗셈에 주의한다.</span></code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 표준 수학 연산자는 기대한대로 숫자에 작동한다.</span>
+    a = <span class="dv">2</span>
+    b = <span class="dv">3</span>
+    <span class="dt">print</span>(a + b)
+    <span class="dt">print</span>(a * b)
+    <span class="dt">print</span>(a ** b)  <span class="co"># a 에 대한 b 거듭제곱(멱승) (a^b 연산은 완전히 다른 연산(비트 xor)이다!)</span>
+    <span class="dt">print</span>(a / b)   <span class="co"># 만약 파이썬 2를 사용한다면 정수 나눗셈에 주의한다.</span></code></pre>
 <pre class="output"><code>    5
     6
     8
     0</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 문자열에 대한 연산자도 있다.</span>
-    <span class="bu">print</span>(<span class="st">&#39;hello&#39;</span> <span class="op">+</span> <span class="st">&#39;world&#39;</span>)
-    <span class="bu">print</span>(<span class="st">&#39;hello&#39;</span> <span class="op">*</span> <span class="dv">3</span>)
-    <span class="co">#print(&#39;hello&#39; / 3)  # 이렇게는 할 수 없다!</span></code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 문자열에 대한 연산자도 있다.</span>
+    <span class="dt">print</span>(<span class="st">&#39;hello&#39;</span> + <span class="st">&#39;world&#39;</span>)
+    <span class="dt">print</span>(<span class="st">&#39;hello&#39;</span> * <span class="dv">3</span>)
+    <span class="co">#print(&#39;hello&#39; / 3)  # 이렇게는 할 수 없다!</span></code></pre>
 <pre class="output"><code>    helloworld
     hellohellohello</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 부울 연산자는 두 사물을 비교한다.</span>
-    a <span class="op">=</span> (<span class="dv">1</span> <span class="op">==</span> <span class="dv">1</span>)
-    b <span class="op">=</span> (<span class="dv">3</span> <span class="op">==</span> <span class="dv">3</span>)
-    <span class="bu">print</span>(a)
-    <span class="bu">print</span>(b)
-    <span class="bu">print</span>(a <span class="op">or</span> b)
-    <span class="bu">print</span>(a <span class="op">and</span> b)
-    <span class="bu">print</span>(a <span class="op">is</span> b)</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 부울 연산자는 두 사물을 비교한다.</span>
+    a = (<span class="dv">1</span> == <span class="dv">1</span>)
+    b = (<span class="dv">3</span> == <span class="dv">3</span>)
+    <span class="dt">print</span>(a)
+    <span class="dt">print</span>(b)
+    <span class="dt">print</span>(a or b)
+    <span class="dt">print</span>(a and b)
+    <span class="dt">print</span>(a is b)</code></pre>
 <pre class="output"><code>    True
     True
     True
@@ -127,30 +138,30 @@
     True</code></pre>
 <h4 id="함수-사용">2.2 함수 사용</h4>
 <p>어떤 언어로도 프로그래밍을 해본 사람이면 매우 친근할 것이다. 예상한대로 작동한다.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 사물을 조작하는 수천가지 함수가 있다.</span>
-    <span class="bu">print</span>(<span class="bu">type</span>(<span class="dv">3</span>))
-    <span class="bu">print</span>(<span class="bu">len</span>(<span class="st">&#39;hello&#39;</span>))
-    <span class="bu">print</span>(<span class="bu">round</span>(<span class="fl">3.3</span>))</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 사물을 조작하는 수천가지 함수가 있다.</span>
+    <span class="dt">print</span>(<span class="dt">type</span>(<span class="dv">3</span>))
+    <span class="dt">print</span>(<span class="dt">len</span>(<span class="st">&#39;hello&#39;</span>))
+    <span class="dt">print</span>(<span class="dt">round</span>(<span class="fl">3.3</span>))</code></pre>
 <pre class="output"><code>    &lt;type &#39;int&#39;&gt;
     5
     3.0</code></pre>
 <p><strong>비법:</strong> 함수가 무엇을 수행하는지 알아내려면, 함수 명칭치고 나서 물음표를 타이핑하면 도움말 윈도우가 짠하고 나타난다. 혹은 함수에 무슨 인자를 받아들이는지 알아내려면, 함수명을 입력하고, 여는 괄호를 하고 탭을 친다.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="bu">round</span>?
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="dt">round</span>?
     <span class="co">#round(</span>
-    <span class="bu">round</span>(<span class="fl">3.14159</span>, <span class="dv">3</span>)</code></pre></div>
+    <span class="dt">round</span>(<span class="fl">3.14159</span>, <span class="dv">3</span>)</code></pre>
 <pre class="output"><code>    3.142</code></pre>
 <p><strong>비법:</strong> 유용한 함수 다수가 파이썬 내장 라이브러리에 있지 않고 외부 과학 팩키지에 존재한다. 사용하려면 파이썬 노트북 (혹은 프로그램)으로 가져와야 한다. 아마도 가장 중요한 라이브러리가 <code>numpy</code> 와 <code>matplotlib</code> 이다.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 유용한 함수 다수가 외부 팩키지에 존재한다.</span>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 유용한 함수 다수가 외부 팩키지에 존재한다.</span>
     <span class="co"># numpy를 만나보자.</span>
-    <span class="im">import</span> numpy <span class="im">as</span> np</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 팩키지에 무엇이 있는지 살펴보려면, 명칭과 점을 타이핑하고 탭을 친다.</span>
+    <span class="ch">import</span> numpy <span class="ch">as</span> np</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 팩키지에 무엇이 있는지 살펴보려면, 명칭과 점을 타이핑하고 탭을 친다.</span>
     <span class="co">#np?</span>
-    np.isfortran?</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># numpy 함수와 &quot;사물&quot; 예제가 몇개 있다.</span>
-    <span class="bu">print</span>(np.sqrt(<span class="dv">4</span>))
-    <span class="bu">print</span>(np.pi)  <span class="co"># 함수가 아니고, 단지 변수다.</span>
-    <span class="bu">print</span>(np.sin(np.pi))
-    <span class="bu">print</span>(np.cos(np.pi))</code></pre></div>
+    np.isfortran?</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># numpy 함수와 &quot;사물&quot; 예제가 몇개 있다.</span>
+    <span class="dt">print</span>(np.sqrt(<span class="dv">4</span>))
+    <span class="dt">print</span>(np.pi)  <span class="co"># 함수가 아니고, 단지 변수다.</span>
+    <span class="dt">print</span>(np.sin(np.pi))
+    <span class="dt">print</span>(np.cos(np.pi))</code></pre>
 <pre class="output"><code>    2.0
     3.14159265359
     1.22464679915e-16
@@ -159,25 +170,25 @@
 <p>파이썬 언어로 좀더 깊이 들어가기 전에, “객체(object)”에 관해서 살펴보자. 이번 워크샵에서 객체지향 프로그래밍(object oriented programming, OOP)을 가르치지 않지만 파이썬을 학습하면서 객체와 마주치게 된다 (사실, 정수(ints)와 문자열(strings) 같은 단순해 보이는 사물도 실제로 파이썬에서는 객체다).</p>
 <p>가장 단순한 용어로, 객체를 데이터 그 자체와 해당 데이터를 조작하는 함수를 담고 있는 작은 “사물” 묶음으로 볼 수 있다. 예를 들어, 파이썬 문자열은 문자 집합과 문자집합을 조작하는 다양한 함수를 담고 있는 객체다. 객체로 묶여질 때, 이러한 함수를 “메쏘드(method)”라고 부른다.</p>
 <p>“일반적인” <code>함수(인자)</code>(function(arguments)) 구문 대신에, <code>변수.메쏘드(인자)</code>(variable.method(arguments)) 구문을 사용해서 메쏘드를 호출한다.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 문자열은 사실 객체다.</span>
-    a <span class="op">=</span> <span class="st">&#39;hello, world&#39;</span>
-    <span class="bu">print</span>(<span class="bu">type</span>(a))</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 문자열은 사실 객체다.</span>
+    a = <span class="st">&#39;hello, world&#39;</span>
+    <span class="dt">print</span>(<span class="dt">type</span>(a))</code></pre>
 <pre class="output"><code>    &lt;type &#39;str&#39;&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 객체는 메쏘드 묶음을 갖고 있다.</span>
-    <span class="bu">print</span>(a.find(<span class="st">&#39;o&#39;</span>))
-    <span class="bu">print</span>(a.capitalize())
-    <span class="bu">print</span>(a.replace(<span class="st">&#39;l&#39;</span>, <span class="st">&#39;X&#39;</span>))</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 객체는 메쏘드 묶음을 갖고 있다.</span>
+    <span class="dt">print</span>(a.find(<span class="st">&#39;o&#39;</span>))
+    <span class="dt">print</span>(a.capitalize())
+    <span class="dt">print</span>(a.replace(<span class="st">&#39;l&#39;</span>, <span class="st">&#39;X&#39;</span>))</code></pre>
 <pre class="output"><code>    4
     Hello, world
     heXXo, worXd</code></pre>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h4 id="연습-1---변환conversion"><span class="glyphicon glyphicon-pencil"></span>연습 1 - 변환(Conversion)</h4>
+<h4><span class="glyphicon glyphicon-pencil"></span>연습 1 - 변환(Conversion)</h4>
 </div>
 <div class="panel-body">
 <p>이번 학습에서, 측정값의 분산을 계산하는 프로그램을 연속해서 만들어 나간다. 이번에는 <code>미터단위 신장</code>. 첫번째 수행할 작업은 구식 측정 &gt; 시스템에서 나온 신장을 변환하는 것이다.</p>
 <p>인치를 미터로 바꾸려면, 다음 수식을 사용한다 (변환율은 반올림했다)</p>
-<h2 id="metre-inches-div-39"><span class="math inline"><em>m</em><em>e</em><em>t</em><em>r</em><em>e</em> = <em>i</em><em>n</em><em>c</em><em>h</em><em>e</em><em>s</em> ÷ 39</span></h2>
+<h2><span class="math"><em>m</em><em>e</em><em>t</em><em>r</em><em>e</em> = <em>i</em><em>n</em><em>c</em><em>h</em><em>e</em><em>s</em> ÷ 39</span></h2>
 <ol style="list-style-type: decimal">
 <li><code>inches_in_metre</code>로 변환율에 해당되는 변수를 생성한다.</li>
 <li>원하는만큼 정확하지 않게, 본인 신장을 인치단위 변수(<code>inches</code>)를 생성한다.</li>
@@ -193,10 +204,10 @@
 </ol>
 </div>
 </section>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    inches_in_metre <span class="op">=</span> <span class="dv">39</span>
-    inches <span class="op">=</span> <span class="dv">5</span><span class="op">*</span><span class="dv">12</span> <span class="op">+</span> <span class="fl">9.5</span> <span class="co"># 5 피트 9.5인치</span>
-    metre <span class="op">=</span> inches <span class="op">/</span> inches_in_metre
-    <span class="bu">print</span>(metre)</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    inches_in_metre = <span class="dv">39</span>
+    inches = <span class="dv">5</span>*<span class="dv">12</span> + <span class="fl">9.5</span> <span class="co"># 5 피트 9.5인치</span>
+    metre = inches / inches_in_metre
+    <span class="dt">print</span>(metre)</code></pre>
 <pre class="output"><code>    1.78205128205</code></pre>
 <h3 id="사물-모음-collections-of-things">3. 사물 모음 (Collections of things)</h3>
 <p>본인 신장을 탐색하는 것도 흥미롭지만, 과학에서는 좀더 복잡한 데이터셋을 갖고 작업한다. 이번 예제에서, 신장의 특징과 분포에 관심있다. 파이썬에는 사물 집합을 다룰 수 있는 객체 다수가 제공된다.</p>
@@ -205,45 +216,45 @@
 <p>리스트는 아마도 가장 다루기 쉽고 가장 유연하게 자료를 담을 수 있는 용기다.</p>
 <p>리스트는 꺾쇠 괄호 <code>[]</code> 로 선언한다.</p>
 <p>리스트의 각 요소를 <code>a[ind]</code> 구문으로 선택한다.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 리스트를 꺾쇠 괄호 구문으로 생성한다.</span>
-    a <span class="op">=</span> [<span class="st">&#39;blueberry&#39;</span>, <span class="st">&#39;strawberry&#39;</span>, <span class="st">&#39;pineapple&#39;</span>]
-    <span class="bu">print</span>(a, <span class="bu">type</span>(a))</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 리스트를 꺾쇠 괄호 구문으로 생성한다.</span>
+    a = [<span class="st">&#39;blueberry&#39;</span>, <span class="st">&#39;strawberry&#39;</span>, <span class="st">&#39;pineapple&#39;</span>]
+    <span class="dt">print</span>(a, <span class="dt">type</span>(a))</code></pre>
 <pre class="output"><code>    ([&#39;blueberry&#39;, &#39;strawberry&#39;, &#39;pineapple&#39;], &lt;type &#39;list&#39;&gt;)</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 리스트 (그리고 모든 모음) 는 또한 꺾쇠 괄호로 색인된다.</span>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 리스트 (그리고 모든 모음) 는 또한 꺾쇠 괄호로 색인된다.</span>
     <span class="co"># 유의사항: 첫번째 색인값은 1이 아니고 0이다.</span>
-    <span class="bu">print</span>(a[<span class="dv">0</span>])
-    <span class="bu">print</span>(a[<span class="dv">1</span>])</code></pre></div>
+    <span class="dt">print</span>(a[<span class="dv">0</span>])
+    <span class="dt">print</span>(a[<span class="dv">1</span>])</code></pre>
 <pre class="output"><code>    blueberry
     strawberry</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co">## 리스트 끝에서부터 계수할 수도 있다.</span>
-    <span class="bu">print</span>(<span class="st">&#39;last item is:&#39;</span>, a[<span class="op">-</span><span class="dv">1</span>])
-    <span class="bu">print</span>(<span class="st">&#39;second to last item is:&#39;</span>, a[<span class="op">-</span><span class="dv">2</span>])</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co">## 리스트 끝에서부터 계수할 수도 있다.</span>
+    <span class="dt">print</span>(<span class="st">&#39;last item is:&#39;</span>, a[-<span class="dv">1</span>])
+    <span class="dt">print</span>(<span class="st">&#39;second to last item is:&#39;</span>, a[-<span class="dv">2</span>])</code></pre>
 <pre class="output"><code>    (&#39;last item is:&#39;, &#39;pineapple&#39;)
     (&#39;second to last item is:&#39;, &#39;strawberry&#39;)</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 색인 사이에 콜론을 사용해서 슬라이싱(slicing)해서 리스트에서 다수 항목에 접근한다.</span>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 색인 사이에 콜론을 사용해서 슬라이싱(slicing)해서 리스트에서 다수 항목에 접근한다.</span>
     <span class="co"># 유의사항: 끝 값은 포함되지 않는다 [0,2)</span>
-    <span class="bu">print</span>(<span class="st">&#39;a =&#39;</span>, a)
-    <span class="bu">print</span>(<span class="st">&#39;get first two:&#39;</span>, a[<span class="dv">0</span>:<span class="dv">2</span>])</code></pre></div>
+    <span class="dt">print</span>(<span class="st">&#39;a =&#39;</span>, a)
+    <span class="dt">print</span>(<span class="st">&#39;get first two:&#39;</span>, a[<span class="dv">0</span>:<span class="dv">2</span>])</code></pre>
 <pre class="output"><code>    (&#39;a =&#39;, [&#39;blueberry&#39;, &#39;strawberry&#39;, &#39;pineapple&#39;])
     (&#39;get first two:&#39;, [&#39;blueberry&#39;, &#39;strawberry&#39;])</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 만약 필요하면 시작과 끝 색인값을 제외할 수도 있다.</span>
-    <span class="bu">print</span>(a[:<span class="dv">2</span>])
-    <span class="bu">print</span>(a[<span class="dv">2</span>:])
-    <span class="bu">print</span>(a[:])
-    <span class="bu">print</span>(a[:<span class="op">-</span><span class="dv">1</span>])</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 만약 필요하면 시작과 끝 색인값을 제외할 수도 있다.</span>
+    <span class="dt">print</span>(a[:<span class="dv">2</span>])
+    <span class="dt">print</span>(a[<span class="dv">2</span>:])
+    <span class="dt">print</span>(a[:])
+    <span class="dt">print</span>(a[:-<span class="dv">1</span>])</code></pre>
 <pre class="output"><code>    [&#39;blueberry&#39;, &#39;strawberry&#39;]
     [&#39;pineapple&#39;]
     [&#39;blueberry&#39;, &#39;strawberry&#39;, &#39;pineapple&#39;]
     [&#39;blueberry&#39;, &#39;strawberry&#39;]</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 리스트는 다른 것과 마찬가지로 객체로 `append` 같은 메쏘드를 갖는다.</span>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 리스트는 다른 것과 마찬가지로 객체로 `append` 같은 메쏘드를 갖는다.</span>
     a.append(<span class="st">&#39;banana&#39;</span>)
-    <span class="bu">print</span>(a)
+    <span class="dt">print</span>(a)
 
     a.append([<span class="dv">1</span>,<span class="dv">2</span>])
-    <span class="bu">print</span>(a)
+    <span class="dt">print</span>(a)
     
     a.pop()
-    <span class="bu">print</span>(a)</code></pre></div>
+    <span class="dt">print</span>(a)</code></pre>
 <pre class="output"><code>    [&#39;blueberry&#39;, &#39;strawberry&#39;, &#39;pineapple&#39;, &#39;banana&#39;]
     [&#39;blueberry&#39;, &#39;strawberry&#39;, &#39;pineapple&#39;, &#39;banana&#39;, [1, 2]]
     [&#39;blueberry&#39;, &#39;strawberry&#39;, &#39;pineapple&#39;, &#39;banana&#39;]</code></pre>
@@ -251,24 +262,24 @@
 <p><code>b=a</code>로 설정하고 나서 <code>a</code>를 변경한 것을 기억하라?</p>
 <p>리스트에 이 작업을 실행하면 어떻게 될까?</p>
 <p><strong>도움말:</strong> <code>copy</code> 모듈을 살펴보라.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    a <span class="op">=</span> <span class="dv">1</span>
-    b <span class="op">=</span> a
-    a <span class="op">=</span> <span class="dv">2</span>
+<pre class="sourceCode python"><code class="sourceCode python">    a = <span class="dv">1</span>
+    b = a
+    a = <span class="dv">2</span>
     <span class="co">## b 값은 무얼까?</span>
-    <span class="bu">print</span>(<span class="st">&#39;What is b?&#39;</span>, b)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]
-    b <span class="op">=</span> a
-    <span class="bu">print</span>(<span class="st">&#39;original b&#39;</span>, b)
-    a[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">42</span>
-    <span class="bu">print</span>(<span class="st">&#39;What is b after we change a ?&#39;</span>, b)
-    <span class="bu">print</span>(a)</code></pre></div>
+    <span class="dt">print</span>(<span class="st">&#39;What is b?&#39;</span>, b)</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python">    a = [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]
+    b = a
+    <span class="dt">print</span>(<span class="st">&#39;original b&#39;</span>, b)
+    a[<span class="dv">0</span>] = <span class="dv">42</span>
+    <span class="dt">print</span>(<span class="st">&#39;What is b after we change a ?&#39;</span>, b)
+    <span class="dt">print</span>(a)</code></pre>
 <pre class="output"><code>    (&#39;What is b?&#39;, 1)
     (&#39;original b&#39;, [1, 2, 3])
     (&#39;What is b after we change a ?&#39;, [42, 2, 3])
     [42, 2, 3]</code></pre>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h4 id="연습-2---리스트에-미터-단위로-다수의-신장정보를-저장한다."><span class="glyphicon glyphicon-pencil"></span>연습 2 - 리스트에 (미터 단위로) 다수의 신장정보를 저장한다.</h4>
+<h4><span class="glyphicon glyphicon-pencil"></span>연습 2 - 리스트에 (미터 단위로) 다수의 신장정보를 저장한다.</h4>
 </div>
 <div class="panel-body">
 <ol style="list-style-type: decimal">
@@ -282,11 +293,11 @@
 <li>두가지 다른 방식으로 마지막 값을 추출한다: 첫번째, 리스트에 마지막 항목에 색인을 사용한다. 둘째로, 리스트가 얼마나 긴지 알지 못한다고 &gt; 가정하고 마지막 항목을 추출한다.</li>
 </ol>
 <p><strong>힌트:</strong> <strong>len()</strong> 함수를 사용해서 모임(collection)의 길이를 찾을 수 있다.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    heights <span class="op">=</span> [<span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">210</span>, <span class="dv">165</span>, <span class="dv">185</span>]
+<pre class="sourceCode python"><code class="sourceCode python">    heights = [<span class="dv">170</span>, <span class="dv">180</span>, <span class="dv">210</span>, <span class="dv">165</span>, <span class="dv">185</span>]
     heights.append(metre)
-    <span class="bu">print</span>(heights[<span class="dv">0</span>])
-    <span class="bu">print</span>(<span class="st">&#39;last value:&#39;</span>, heights[<span class="op">-</span><span class="dv">1</span>])
-    <span class="bu">print</span>(<span class="st">&#39;last value 2 : &#39;</span>, heights[<span class="bu">len</span>(heights)<span class="op">-</span><span class="dv">1</span>])</code></pre></div>
+    <span class="dt">print</span>(heights[<span class="dv">0</span>])
+    <span class="dt">print</span>(<span class="st">&#39;last value:&#39;</span>, heights[-<span class="dv">1</span>])
+    <span class="dt">print</span>(<span class="st">&#39;last value 2 : &#39;</span>, heights[<span class="dt">len</span>(heights)-<span class="dv">1</span>])</code></pre>
 <pre class="output"><code>    170
     (&#39;last value:&#39;, 1.7820512820512822)
     (&#39;last value 2 : &#39;, 1.7820512820512822)</code></pre>
@@ -304,9 +315,9 @@
 <li>coord = (x,y) 처럼 모임(collection)에 위치정보가 극도로 중요할 때 항목을 무리지을 때.</li>
 <li>예를 들어 shape = (12,23) 처럼, 항목 정보를 우연히 혹은 실수로 변경하지 못하게 만들 때.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    xy <span class="op">=</span> (<span class="dv">23</span>, <span class="dv">45</span>)
-    <span class="bu">print</span>(xy[<span class="dv">0</span>])
-    xy[<span class="dv">0</span>] <span class="op">=</span> <span class="st">&quot;this won&#39;t work with a tuple&quot;</span></code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    xy = (<span class="dv">23</span>, <span class="dv">45</span>)
+    <span class="dt">print</span>(xy[<span class="dv">0</span>])
+    xy[<span class="dv">0</span>] = <span class="st">&quot;this won&#39;t work with a tuple&quot;</span></code></pre>
 <pre class="output"><code>    23
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
@@ -319,7 +330,7 @@
     TypeError: &#39;tuple&#39; object does not support item assignment</code></pre>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4 id="역추적traceback-오류-해부"><span class="glyphicon glyphicon-pushpin"></span>역추적(traceback) 오류 해부</h4>
+<h4><span class="glyphicon glyphicon-pushpin"></span>역추적(traceback) 오류 해부</h4>
 </div>
 <div class="panel-body">
 <p>코드로 의도하지 않은 무언가를 실행할 때 역추적 오류가 <code>발생(raised)</code>한다. 도움이 되는 정보를 제공할 때도 있지만, 다른 많은 것처럼 항상 &gt; 개발자가 원하는만큼 도움되는 정보를 주지는 못한다.</p>
@@ -340,22 +351,22 @@
 </aside>
 <h4 id="딕셔너리-dictionaries">3.3 딕셔너리 (Dictionaries)</h4>
 <p>모임(collection)에 위치정보 대신에 명칭(혹은 다른 유형의 키)으로 사물을 저장하고 불려올 때 딕셔너리를 사용한다. 좋은 예제가 모형 매개변수 집합으로 각각은 명칭과 값이 있다. 딕셔너리는 {}을 사용해서 선언한다.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 모형 매개변수 딕셔너리 생성</span>
-    convertors <span class="op">=</span> {<span class="st">&#39;inches_in_feet&#39;</span> : <span class="dv">12</span>,
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 모형 매개변수 딕셔너리 생성</span>
+    convertors = {<span class="st">&#39;inches_in_feet&#39;</span> : <span class="dv">12</span>,
                   <span class="co">&#39;inches_in_metre&#39;</span> : <span class="dv">39</span>}
     
-    <span class="bu">print</span>(convertors)
-    <span class="bu">print</span>(convertors[<span class="st">&#39;inches_in_feet&#39;</span>])
-    <span class="bu">print</span>(convertors[<span class="st">&#39;inches_in_metre&#39;</span>])</code></pre></div>
+    <span class="dt">print</span>(convertors)
+    <span class="dt">print</span>(convertors[<span class="st">&#39;inches_in_feet&#39;</span>])
+    <span class="dt">print</span>(convertors[<span class="st">&#39;inches_in_metre&#39;</span>])</code></pre>
 <pre class="output"><code>    {&#39;inches_in_metre&#39;: 39, &#39;inches_in_feet&#39;: 12}
     12
     39</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co">## 신규 키:값(key:value) 짝을 추가한다.</span>
-    convertors[<span class="st">&#39;metres_in_mile&#39;</span>] <span class="op">=</span> <span class="fl">1609.34</span>
-    <span class="bu">print</span>(convertors)</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co">## 신규 키:값(key:value) 짝을 추가한다.</span>
+    convertors[<span class="st">&#39;metres_in_mile&#39;</span>] = <span class="fl">1609.34</span>
+    <span class="dt">print</span>(convertors)</code></pre>
 <pre class="output"><code>    {&#39;inches_in_metre&#39;: 39, &#39;inches_in_feet&#39;: 12, &#39;metres_in_mile&#39;: 1609.34}</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 키(KEY) 오류 발생</span>
-    <span class="bu">print</span>(convertors[<span class="st">&#39;blueberry&#39;</span>])</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 키(KEY) 오류 발생</span>
+    <span class="dt">print</span>(convertors[<span class="st">&#39;blueberry&#39;</span>])</code></pre>
 <pre class="output"><code>    ---------------------------------------------------------------------------
 
     KeyError                                  Traceback (most recent call last)
@@ -375,39 +386,39 @@
 </ol>
 <p>배열은 리스크같은 기존 모임(collections)에서 생성할 수 있다. 혹은 몇가지 방식으로 맨땅에서 인스턴스화(instantiation)할 수 있다.</p>
 <p>과학 파이썬을 시작할 때, 아마도 언제든 가능하게 ndarrays 배열을 사용하고, 다른 자료형 모임은 특별히 사용할 이유가 있을 때 저장했다가 사용한다.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># numpy 라이브러리를 가져와서 접근한다.</span>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># numpy 라이브러리를 가져와서 접근한다.</span>
     <span class="co"># 라이브러리에 별명(alias)를 생성한다. numpy 에서 흔히 보게 된다.</span>
-    <span class="im">import</span> numpy <span class="im">as</span> np
+    <span class="ch">import</span> numpy <span class="ch">as</span> np
 
 
     <span class="co"># 리스트에서 배열을 생성한다.</span>
-    alist <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]
-    blist <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>]
-    a <span class="op">=</span> np.array(alist)
-    b <span class="op">=</span> np.array(blist)
-    <span class="bu">print</span>(a, <span class="bu">type</span>(a))
-    <span class="bu">print</span>(b, <span class="bu">type</span>(b))</code></pre></div>
+    alist = [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]
+    blist = [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>]
+    a = np.array(alist)
+    b = np.array(blist)
+    <span class="dt">print</span>(a, <span class="dt">type</span>(a))
+    <span class="dt">print</span>(b, <span class="dt">type</span>(b))</code></pre>
 <pre class="output"><code>    (array([2, 3, 4]), &lt;type &#39;numpy.ndarray&#39;&gt;)
     (array([5, 6, 7]), &lt;type &#39;numpy.ndarray&#39;&gt;)</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 배열에 산술 연산한다.</span>
-    <span class="bu">print</span>(a<span class="op">**</span><span class="dv">2</span>)
-    <span class="bu">print</span>(np.sin(a))
-    <span class="bu">print</span>(a <span class="op">*</span> b)
-    <span class="bu">print</span>(a.dot(b), np.dot(a, b))</code></pre></div>
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 배열에 산술 연산한다.</span>
+    <span class="dt">print</span>(a**<span class="dv">2</span>)
+    <span class="dt">print</span>(np.sin(a))
+    <span class="dt">print</span>(a * b)
+    <span class="dt">print</span>(a.dot(b), np.dot(a, b))</code></pre>
 <pre class="output"><code>    [ 4  9 16]
     [ 0.90929743  0.14112001 -0.7568025 ]
     [10 18 28]
     (56, 56)</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 부울 연산자는 배열에도 작동하고, 부울 배열을 반환한다.</span>
-    <span class="bu">print</span>(a)
-    <span class="bu">print</span>(b)
-    <span class="bu">print</span>(a <span class="op">&gt;</span> <span class="dv">2</span>)
-    <span class="bu">print</span>(b <span class="op">==</span> <span class="dv">6</span>)
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 부울 연산자는 배열에도 작동하고, 부울 배열을 반환한다.</span>
+    <span class="dt">print</span>(a)
+    <span class="dt">print</span>(b)
+    <span class="dt">print</span>(a &gt; <span class="dv">2</span>)
+    <span class="dt">print</span>(b == <span class="dv">6</span>)
     
-    c <span class="op">=</span> a <span class="op">&gt;</span> <span class="dv">2</span>
-    <span class="bu">print</span>(c)
-    <span class="bu">print</span>(<span class="bu">type</span>(c))
-    <span class="bu">print</span>(c.dtype)</code></pre></div>
+    c = a &gt; <span class="dv">2</span>
+    <span class="dt">print</span>(c)
+    <span class="dt">print</span>(<span class="dt">type</span>(c))
+    <span class="dt">print</span>(c.dtype)</code></pre>
 <pre class="output"><code>    [2 3 4]
     [5 6 7]
     [False  True  True]
@@ -415,17 +426,17 @@
     [False  True  True]
     &lt;type &#39;numpy.ndarray&#39;&gt;
     bool</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 배열 색인</span>
-    <span class="bu">print</span>(a[<span class="dv">0</span>:<span class="dv">2</span>])
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 배열 색인</span>
+    <span class="dt">print</span>(a[<span class="dv">0</span>:<span class="dv">2</span>])
     
-    c <span class="op">=</span> np.random.rand(<span class="dv">3</span>,<span class="dv">3</span>)
-    <span class="bu">print</span>(c)
-    <span class="bu">print</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)
-    <span class="bu">print</span>(c[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">0</span>:<span class="dv">2</span>])
+    c = np.random.rand(<span class="dv">3</span>,<span class="dv">3</span>)
+    <span class="dt">print</span>(c)
+    <span class="dt">print</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)
+    <span class="dt">print</span>(c[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">0</span>:<span class="dv">2</span>])
     
-    c[<span class="dv">0</span>,:] <span class="op">=</span> a
-    <span class="bu">print</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)
-    <span class="bu">print</span>(c)</code></pre></div>
+    c[<span class="dv">0</span>,:] = a
+    <span class="dt">print</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)
+    <span class="dt">print</span>(c)</code></pre>
 <pre class="output"><code>    [2 3]
     [[ 0.59077018  0.31458423  0.13680323]
      [ 0.13291322  0.40832062  0.67107557]
@@ -437,15 +448,15 @@
     [[ 2.          3.          4.        ]
      [ 0.13291322  0.40832062  0.67107557]
      [ 0.70846039  0.86910307  0.24621972]]</code></pre>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 배열을 다른 부울 배열로 색인할 수도 있다.</span>
-    <span class="bu">print</span>(a)
-    <span class="bu">print</span>(b)
-    <span class="bu">print</span>(a <span class="op">&gt;</span> <span class="dv">2</span>)
-    <span class="bu">print</span>(a[a <span class="op">&gt;</span> <span class="dv">2</span>])
-    <span class="bu">print</span>(b[a <span class="op">&gt;</span> <span class="dv">2</span>])
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="co"># 배열을 다른 부울 배열로 색인할 수도 있다.</span>
+    <span class="dt">print</span>(a)
+    <span class="dt">print</span>(b)
+    <span class="dt">print</span>(a &gt; <span class="dv">2</span>)
+    <span class="dt">print</span>(a[a &gt; <span class="dv">2</span>])
+    <span class="dt">print</span>(b[a &gt; <span class="dv">2</span>])
 
-    b[a <span class="op">==</span> <span class="dv">3</span>] <span class="op">=</span> <span class="dv">77</span>
-    <span class="bu">print</span>(b)</code></pre></div>
+    b[a == <span class="dv">3</span>] = <span class="dv">77</span>
+    <span class="dt">print</span>(b)</code></pre>
 <pre class="output"><code>    [2 3 4]
     [5 6 7]
     [False  True  True]
@@ -477,7 +488,7 @@
 <pre class="output"><code>    [0 2 4 6 8]</code></pre>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h3 id="연습-3---간단한-분석에-배열-사용하기"><span class="glyphicon glyphicon-pencil"></span>연습 3 - 간단한 분석에 배열 사용하기</h3>
+<h3><span class="glyphicon glyphicon-pencil"></span>연습 3 - 간단한 분석에 배열 사용하기</h3>
 </div>
 <div class="panel-body">
 <p>위에서 작성한 신장 배열을 다시 들여다보자.</p>
@@ -564,12 +575,12 @@
 <p><img src="fig/raspberry-pi-programming-basics-plot.png" width="50%" /></p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h4 id="예제-4---분산variance"><span class="glyphicon glyphicon-pencil"></span>예제 4 - 분산(Variance)</h4>
+<h4><span class="glyphicon glyphicon-pencil"></span>예제 4 - 분산(Variance)</h4>
 </div>
 <div class="panel-body">
 <p>이전에 수집한 신장의 분산을 계산한다.</p>
 <p>상기시키면, <strong>표본 분산</strong>은 평균에서 각 관측점 차이 제곱의 합으로 계산된다:</p>
-<h4 id="variance-sigma-x-평균2-div-n-1"><span class="math inline"><em>v</em><em>a</em><em>r</em><em>i</em><em>a</em><em>n</em><em>c</em><em>e</em> = <em>Σ</em>(<em>x</em> − <em>평</em><em>균</em>)<sup>2</sup> ÷ (<em>n</em> − 1)</span></h4>
+<h4><span class="math"><em>v</em><em>a</em><em>r</em><em>i</em><em>a</em><em>n</em><em>c</em><em>e</em> = Σ(<em>x</em> − <em>평</em><em>균</em>)<sup>2</sup> ÷ (<em>n</em> − 1)</span></h4>
 <p><strong>평균</strong>은 관측점의 평균이고, <strong>x</strong>는 각 관측점, <strong>n</strong>은 관측점 개수다.</p>
 <p>먼저, 평균을 계산한다:</p>
 <ol style="list-style-type: decimal">
@@ -683,7 +694,7 @@
 <pre class="output"><code>    &#39;Good afternoon, students&#39;</code></pre>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h4 id="예제-5---분산-함수-생성하기"><span class="glyphicon glyphicon-pencil"></span>예제 5 - 분산 함수 생성하기</h4>
+<h4><span class="glyphicon glyphicon-pencil"></span>예제 5 - 분산 함수 생성하기</h4>
 </div>
 <div class="panel-body">
 <p>마지막으로, 분산 계산을 함수로 바꿔서 반복해서 오래오래 사용하자. 예제 4 코드를 복사한 다음에 다음을 작성한다:</p>
@@ -698,7 +709,7 @@
 <li>모든 데이터가 정수형일 때도 정상적으로 동작하도록 확실히 하세요.</li>
 <li>빈 리스트가 전달될 때, 더 나은 오류 메시지를 주게 만드시오. 웹을 사용해서 파이썬에서 예외처리하는 방법을 알아내시오.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    heights <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>]
+<pre class="sourceCode python"><code class="sourceCode python">    heights = [-<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>]
     
     <span class="kw">def</span> calculate_variance(heights):
         <span class="co">&#39;&#39;&#39;</span>
@@ -706,36 +717,36 @@
 <span class="co">        sample --&gt; list, result --&gt; variance</span>
 <span class="co">        &#39;&#39;&#39;</span>
     
-        mean <span class="op">=</span> calculate_mean(heights)
+        mean = calculate_mean(heights)
         
-        sum_diffsq <span class="op">=</span> <span class="dv">0</span>
-        <span class="cf">for</span> idx <span class="op">in</span> heights:
-            diff <span class="op">=</span> idx <span class="op">-</span> mean
-            diffsq <span class="op">=</span> diff <span class="op">**</span> <span class="dv">2</span>
-            sum_diffsq <span class="op">=</span> sum_diffsq <span class="op">+</span> diffsq 
-        variance <span class="op">=</span> sum_diffsq <span class="op">/</span> (<span class="bu">len</span>(heights)<span class="op">-</span><span class="dv">1</span>)    
+        sum_diffsq = <span class="dv">0</span>
+        <span class="kw">for</span> idx in heights:
+            diff = idx - mean
+            diffsq = diff ** <span class="dv">2</span>
+            sum_diffsq = sum_diffsq + diffsq 
+        variance = sum_diffsq / (<span class="dt">len</span>(heights)-<span class="dv">1</span>)    
     <span class="co">#    print(&quot;Variance : &quot;, variance)</span>
-        <span class="cf">return</span> variance
+        <span class="kw">return</span> variance
     
     <span class="kw">def</span> calculate_mean(heights):
         <span class="co">&#39;&#39;&#39;</span>
 <span class="co">        Calculate Sample Mean</span>
 <span class="co">        input : list --&gt; mean</span>
 <span class="co">        &#39;&#39;&#39;</span>
-        total <span class="op">=</span> <span class="dv">0</span>
-        <span class="cf">for</span> idx <span class="op">in</span> heights:
-            total <span class="op">=</span> total <span class="op">+</span> idx
-        mean <span class="op">=</span> total<span class="op">/</span><span class="bu">len</span>(heights)    
+        total = <span class="dv">0</span>
+        <span class="kw">for</span> idx in heights:
+            total = total + idx
+        mean = total/<span class="dt">len</span>(heights)    
     <span class="co">#    print(&quot;Mean : &quot;, total/len(heights))</span>
-        <span class="cf">return</span> mean
+        <span class="kw">return</span> mean
         
-    <span class="bu">print</span>(<span class="st">&quot;Variances from Function: &quot;</span>, calculate_variance(heights))</code></pre></div>
+    <span class="dt">print</span>(<span class="st">&quot;Variances from Function: &quot;</span>, calculate_variance(heights))</code></pre>
 <pre class="output"><code>    (&#39;Variances from Function: &#39;, 1)</code></pre>
 </div>
 </section>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h4 id="예제-6---모듈에-calculate_mean-과-calculate_variance-를-넣으세요."><span class="glyphicon glyphicon-pencil"></span>예제 6 - 모듈에 <code>calculate_mean</code> 과 <code>calculate_variance</code> 를 넣으세요.</h4>
+<h4><span class="glyphicon glyphicon-pencil"></span>예제 6 - 모듈에 <code>calculate_mean</code> 과 <code>calculate_variance</code> 를 넣으세요.</h4>
 </div>
 <div class="panel-body">
 <p><code>numpy</code>를 가지고 했던 것과 동일한 방식으로, 함수를 가져올 수 있는 모듈에 넣어서 좀더 쉽게 재사용하게 함수를 만들 수 있다. 모듈을 만드는 것은 매우 간단하다.</p>
@@ -743,9 +754,9 @@
 <li>함수를 새 텍스트 파일로 복사한다. 단, 노트북(notebook)과 동일한 디렉토리여야 한다. 그리고 <code>stats.py</code>라고 이름 붙인다.</li>
 <li>모듈을 가져오려면, <code>import stats</code>을 타이핑한다. <code>stats.</code>을 입력하고 탭을 치면 모듈에 이용가능한 함수가 나타난다. 가져온 모듈을 사용해서 신장 표본(혹은 다른 난수)의 &gt; 분산을 계산해본다.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">    <span class="im">import</span> stats
+<pre class="sourceCode python"><code class="sourceCode python">    <span class="ch">import</span> stats
     <span class="co">#stats.</span>
-    stats.calculate_variance(heights)</code></pre></div>
+    stats.calculate_variance(heights)</code></pre>
 <pre class="output"><code>    1</code></pre>
 </div>
 </section>

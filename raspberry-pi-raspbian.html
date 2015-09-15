@@ -15,6 +15,17 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
   </head>
   <body class="lesson">
     <div class="container card">
@@ -30,7 +41,7 @@
           <h2 class="subtitle">라즈비언 운영체제 (데비안, Debian)</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -135,8 +146,7 @@
 <li>1~3 단계는 SoC 제조사인 브로드컴이 소스코드를 공개하지 않고 칩에 넣거나 컴파일한 바이너리 파일을 배포한다.</li>
 </ul></li>
 <li><strong>리눅스 커널(Linux Kernel)</strong> : 리눅스 커널을 키보드에서 올라온 정보를 화면에 출력하는 역할처럼 라즈베리 파이 하드웨어와 응용프로그램을 연결하는데 모두 관여한다. 새로운 하드웨어가 나오면 리눅스 커널이 존재를 인지하고 사용하는 방법을 알아야 응용프로그램에서 사용할 수 있게 지원한다. USB, HDMI, 이더넷 포트 모두 꽂으면 동작할 수 있게 하는 것도 리눅스 커널의 역할이다. 커널 적재가 끝나면 자동으로 <code>init</code> 프로그램을 호출해서 라즈베리 하드웨어 초기화를 종료하고 나서, 나머지 프로그램 (데몬, 그래픽사용자 인터페이스)을 순차적으로 올리게 한다.</li>
-<li><strong>데몬(Daemons)</strong> : 데몬은 서로 다른 기능을 담당하는 소프트웨어로 조용히 뒤에 떠있다. <code>cron</code>, <code>autofs</code> 를 예로 들 수 있는데, <code>crontab</code> 은 조용히 떠있다 정해진 시간이 되면 자동으로 소프트웨어를 실행하는 역할을 담당하고, <code>autofs</code>는 USB 같은 이동식 디스크 장비를 마운트시키는 역할을 한다.<br />
-</li>
+<li><strong>데몬(Daemons)</strong> : 데몬은 서로 다른 기능을 담당하는 소프트웨어로 조용히 뒤에 떠있다. <code>cron</code>, <code>autofs</code> 를 예로 들 수 있는데, <code>crontab</code> 은 조용히 떠있다 정해진 시간이 되면 자동으로 소프트웨어를 실행하는 역할을 담당하고, <code>autofs</code>는 USB 같은 이동식 디스크 장비를 마운트시키는 역할을 한다.<br /></li>
 <li><strong>쉘(Shell)/쉘 유틸리티(Shell Utility)</strong> : 라지비언은 배쉬(bash) 쉘을 사용하는데, 스트립트를 사용해서 작업 자동화를 쉽게 해준다. 예를 들어, 프로그램을 실행, 키보드 입력 받고, 출력 내보내기 등이 여기에 포함된다. 쉘 유틸리티는 파일 복사, 디렉토리 생성, 팩키지 관리(APT, Advanced Packaging Tool) 등 좀더 큰 단위 작업을 지원한다.</li>
 <li><strong>X.Org 그래픽 서버</strong> : X.Org 역할은 마우스 포인터 이동을 포함한 모든 그래픽 사용자 인터페이스에 대한 구성요소를 제공한다.</li>
 <li><strong>데스크톱 환경(Desktop Environment)</strong> : X.Org 가 적재되면, 마이크로소프트 윈도우 환경과 마찬가지로 데스크톱 환경에서 인터넷 검색, 동영상 감상 등 다양한 작업을 직관적이고 쉽게할 수 있도록 지원한다. 라즈베리 파이에 특화된 데스크톱 환경이 LXDE (Lightweight X11 Desktop Environment)다.</li>
@@ -286,7 +296,7 @@ iface wlan0 inet dhcp
 <p>이외에도 소스 파일을 받아서 컴파일해서 설치하는 방식도 있고, Aptitude, RPM, dpkg 등 다양한 방식이 있다.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4 id="팩키지-crud"><span class="glyphicon glyphicon-pushpin"></span>팩키지 CRUD</h4>
+<h4><span class="glyphicon glyphicon-pushpin"></span>팩키지 CRUD</h4>
 </div>
 <div class="panel-body">
 <p>팩키지는 설치, 사용(읽기), 갱신, 삭제의 생애주기를 갖는다. - Create: 설치 및 생성 - Read: 읽기 및 사용 - Update: 갱신 - Delete: 제거 및 삭제</p>

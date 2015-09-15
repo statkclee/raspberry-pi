@@ -15,6 +15,17 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
   </head>
   <body class="lesson">
     <div class="container card">
@@ -30,7 +41,7 @@
           <h2 class="subtitle">파이썬 디버깅(debugging)</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -65,7 +76,7 @@
 </ul>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4 id="만일-프로그램에-오류가-생기면"><span class="glyphicon glyphicon-pushpin"></span>만일 프로그램에 오류가 생기면?</h4>
+<h4><span class="glyphicon glyphicon-pushpin"></span>만일 프로그램에 오류가 생기면?</h4>
 </div>
 <div class="panel-body">
 <p>소프트웨어 버그와 관련된 사건 사고 중 일부 인명과 금전적으로 관련된 사례가 다음에 나와 있다.</p>
@@ -74,7 +85,7 @@
 </aside>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4 id="오류-유형"><span class="glyphicon glyphicon-pushpin"></span>오류 유형</h4>
+<h4><span class="glyphicon glyphicon-pushpin"></span>오류 유형</h4>
 </div>
 <div class="panel-body">
 <p><strong>구문 오류(Syntax Error)</strong>: 첫번째 마주치는 오류로 고치기 가장 쉽습니다. 구문 오류는 파이썬 문법에 맞지 않는다는 것을 의미한다. 파이썬은 구문오류가 발생한 줄을 찾아 정확한 위치를 알려준다. 하지만, 파이썬이 제시하는 오류가 그 이전 프로그램 부문에서 발생했을 수도 있기 때문에 파이썬 이 제시하는 곳 뿐만 아니라 그 앞쪽도 살펴볼 필요가 있다. 따라서 구문 오류로 파이썬이 지칭하는 행과 문자는 오류를 고치기 위한 시작점으로 의미가 있다.</p>
@@ -92,9 +103,9 @@
 &gt;&gt;&gt; interest = principle * rate</code></pre>
 <pre class="output"><code>NameError: name &#39;principle&#39; is not defined</code></pre>
 <p>변수명은 대소문자를 구분한다. 그래서, <em>LaTeX</em>는 <em>latex</em>은 같지 않다.</p>
-<p>이 지점에서 여러분이 범하기 쉬운 의미론적 오류는 연산자 우선 순위일 것이다. 예를 들어 1 / {2 * <span class="math inline"><em>π</em></span>} 를 계산하기 위해서 다음과 같이 프로그램을 작성하게 되면 …</p>
+<p>이 지점에서 여러분이 범하기 쉬운 의미론적 오류는 연산자 우선 순위일 것이다. 예를 들어 1 / {2 * <span class="math"><em>π</em></span>} 를 계산하기 위해서 다음과 같이 프로그램을 작성하게 되면 …</p>
 <pre class="input"><code>&gt;&gt;&gt; 1.0 / 2.0 * pi</code></pre>
-<p>나눗셈이 먼저 일어나서 <span class="math inline"><em>π</em>/2</span>이 되는데 의도한 것과 같지 않다. 그래서 이런 경우 오류 메세지는 없지만, 여러분은 잘못된 답을 얻게 된다.</p>
+<p>나눗셈이 먼저 일어나서 <span class="math"><em>π</em>/2</span>이 되는데 의도한 것과 같지 않다. 그래서 이런 경우 오류 메세지는 없지만, 여러분은 잘못된 답을 얻게 된다.</p>
 <h4 id="역추적traceback">1.2. 역추적(traceback)</h4>
 <p>오류가 발생했을 때, 파이썬 화면에 출력되는 <strong>역추적(traceback)</strong>에는 상당한 정보가 담겨있다. 하지만,특히 스택에 많은 프레임이 있는 경우 엄청나게 보여 엄두가 나지 않을 수도 있다. 대체로 가장 유용한 정보는 다음과 같은 것이 있다.</p>
 <ul>
@@ -109,7 +120,7 @@
     ^
 SyntaxError: invalid syntax</code></pre>
 <p>상기 예제 문제는 두 번째 줄에 한 칸 공백이 들여써서 발생하는 것이다. 하지만, <code>y</code>에 오류 메시지가 있는데 프로그래머를 잘못된 곳으로 인도한다. 대체로 오류 메시지는 문제가 어디에서 발견되었는지를 지칭하지만, 실제 오류는 코드 앞에 종종 선행하는 줄에 있을 수 있다.</p>
-<p>동일한 문제가 실행 오류에도 있다. 데시벨(decibels)로 신호 대비 잡음비를 계산한다고 가정하자. 공식은 <span class="math inline"><em>S</em><em>N</em><em>R</em><sub><em>d</em><em>b</em></sub> = 10log<sub>10</sub>(<em>P</em><sub><em>s</em><em>i</em><em>g</em><em>n</em><em>a</em><em>l</em></sub>/<em>P</em><sub><em>n</em><em>o</em><em>i</em><em>s</em><em>e</em></sub>)</span> 이다. 파이썬에서 아래와 같이 작성할 수 있다.</p>
+<p>동일한 문제가 실행 오류에도 있다. 데시벨(decibels)로 신호 대비 잡음비를 계산한다고 가정하자. 공식은 <span class="math"><em>S</em><em>N</em><em>R</em><sub><em>d</em><em>b</em></sub> = 10log<sub>10</sub>(<em>P</em><sub><em>s</em><em>i</em><em>g</em><em>n</em><em>a</em><em>l</em></sub>/<em>P</em><sub><em>n</em><em>o</em><em>i</em><em>s</em><em>e</em></sub>)</span> 이다. 파이썬에서 아래와 같이 작성할 수 있다.</p>
 <pre class="input"><code>import math
 signal_power = 9
 noise_power = 10

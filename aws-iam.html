@@ -15,6 +15,17 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
   </head>
   <body class="lesson">
     <div class="container card">
@@ -30,7 +41,7 @@
           <h2 class="subtitle">AWS 보안(IAM)</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -119,7 +130,7 @@ Last login: Wed Jun  3 21:22:22 2015 from 112.XXX.XXX.XXX</code></pre>
 <p><img src="fig/aws-multi-factor-authentification.png" alt="AWS 다중 인증" width="70%" /></p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2 id="이중-인증two-factor-authentification과-다중-인증multi-factor-authentification"><span class="glyphicon glyphicon-pushpin"></span>이중 인증(Two-factor Authentification)과 다중 인증(Multi-Factor Authentification)</h2>
+<h2><span class="glyphicon glyphicon-pushpin"></span>이중 인증(Two-factor Authentification)과 다중 인증(Multi-Factor Authentification)</h2>
 </div>
 <div class="panel-body">
 <p>2가지 인증 방법을 조합 적용하는 안전성을 향상시키는 인증. 인증은 다음과 같은 3가지 요소로 구분할 수 있다. 바로 자신이 알고 있는 것(what you know : 패스워드, PIN 등), 자신이 소유한 것(what you have : 스마트 카드, 토큰, 키 등), 본인 자체(what you are : 지문 등 생체 정보)이다. 이들 중 하나의 요소만 이용하는 단일 인증은 보안에 매우 취약한 편이다. 패스워드 등 자신이 아는 정보만을 사용할 경우 분실 여부를 인지하기 어려우며, 토큰, 키 등 자신이 소유한 것만을 사용할 경우 분실 시 습득자의 즉각적인 사용이 가능하다. 따라서 이러한 단일 인증의 보안 취약성을 보강하기 위하여 이들 중 서로 다른 2개의 인증을 조합하여 채택한 방식이 이중 인증이다. 예를 들어 은행의 현금 자동 인출기(ATM)처럼 카드와 개인 식별 번호(PIN)를 조합하여 사용함으로써 보안성을 높일 수 있다. <a href="https://en.wikipedia.org/wiki/Multi-factor_authentication">다중 인증</a>도 이중 인증과 마찬가지로 지식 요인(Knowledge factors), 소유 요인(Possesion factors), 천부상속 요인(Inherence factors)을 사용해서 보안을 강화한다. 출처 : <a href="http://terms.naver.com/entry.nhn?docId=859932&amp;cid=42346&amp;categoryId=42346">네이버 지식백과, 이중 인증 (two-factor authentication), IT용어사전, 한국정보통신기술협회</a></p>

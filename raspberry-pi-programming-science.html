@@ -15,6 +15,17 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
   </head>
   <body class="lesson">
     <div class="container card">
@@ -30,7 +41,7 @@
           <h2 class="subtitle">과학기술 파이썬 툴체인</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -86,7 +97,7 @@ a = sympy.Integral(sympy.cos(x) * sympy.exp(x), x)
 
 # 적분값을 계산한다.
 sympy.Eq(a, a.doit())</code></pre>
-<p><span class="math inline">$\int e^{x} \cos{\left (x \right )}\, dx = \frac{e^{x}}{2} \sin{\left (x \right )} + \frac{e^{x}}{2} \cos{\left (x \right )}$</span></p>
+<p><span class="math">$\int e^{x} \cos{\left (x \right )}\, dx = \frac{e^{x}}{2} \sin{\left (x \right )} + \frac{e^{x}}{2} \cos{\left (x \right )}$</span></p>
 <h3 id="기계학습-빅데이터-베이지언-네트워크-이미지">3. 기계학습, 빅데이터, 베이지언, 네트워크, 이미지</h3>
 <h4 id="기계학습-scikit-learn">3.1. 기계학습: <a href="http://scikit-learn.org/stable/">scikit-learn</a></h4>
 <p>파이썬 기계학습(machine learning) 팩키지로 데이터 마이닝과 자료분석 도구다. NumPy, SciPy, matplotlib 을 기반하여 위에 쌓아올렸다.</p>
@@ -186,7 +197,7 @@ results.summary()</code></pre>
 </ul>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4 id="patsy"><span class="glyphicon glyphicon-pushpin"></span><a href="https://patsy.readthedocs.org/en/latest/">patsy</a></h4>
+<h4><span class="glyphicon glyphicon-pushpin"></span><a href="https://patsy.readthedocs.org/en/latest/">patsy</a></h4>
 </div>
 <div class="panel-body">
 <p><code>statsmodels</code>과 함께 <code>patsy</code>를 통해서 공식을 모형을 만들 때 사용할 수 있다. R에서 만든 모형을 파이썬에서도 일부 변형이 필요한 경우도 있지만 거의 그대로 사용가능하다.</p>
@@ -224,8 +235,7 @@ results.summary()</code></pre>
 </ul></li>
 <li>NetCDF
 <ul>
-<li><a href="http://unidata.github.io/netcdf4-python/">netCDF4 module</a><br />
-</li>
+<li><a href="http://unidata.github.io/netcdf4-python/">netCDF4 module</a><br /></li>
 </ul></li>
 <li>JSON
 <ul>
@@ -233,8 +243,7 @@ results.summary()</code></pre>
 </ul></li>
 <li>XML
 <ul>
-<li><a href="http://lxml.de/">XML and HTML with Python</a><br />
-</li>
+<li><a href="http://lxml.de/">XML and HTML with Python</a><br /></li>
 </ul></li>
 <li>GIS (GeoJSON 등) *<a href="http://toblerity.org/fiona/">Fiona</a></li>
 </ul>
