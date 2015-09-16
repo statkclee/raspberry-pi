@@ -292,3 +292,34 @@ gem install kramdown
 sudo apt-get install -y python-pip
 sudo pip install pandocfilters
 ~~~
+
+### 8. 개인용 컴퓨터 기반 개발환경 구축
+
+노트북이나 개인용 컴퓨터에 상용서비스 개발을 할 수 있지만, 여러가지 환경 설정 등 문제가 있어 속도가 일부 빠르기는 하지만, 여타 개발에 소요되는 시간도 무시하지 못하게 많다. 이 시간을 줄여보자.
+
+먼저 가상상자(VirtualBox)를 개인 컴퓨터에 설치해서 가상화기반을 구축한다. 그리고 리눅스 이미지를 가상상자에 설치하고 부팅한 뒤 정적 웹서비스 개발에 필요한 개발 툴체인을 설치한다. 이렇게 구축된 이미지는 향후 여러 곳에 가지고 다니면서 동일한 개발환경으로 이용가능하다.
+
+<img src="fig/aws-jekyll-desktop-env.png" width="70%" alt="개인용 컴퓨터 기반 개발환경 구축" />
+
+#### 8.1. 아파치 웹서버 설치
+
+`sudo apt-get install apache2` 명령어로 아파치 웹서버를 설치하고 `chmod 755 /var/www/` 제킬에서 개발된 정적웹서비스를 바로 올릴 수 있도록 권한을 설정한다. 그리고 `sudo service apache2 restart` 명령어로 서비스를 다시 시작한다.
+
+~~~ {.shell}
+$ sudo apt-get install apache2
+$ sudo chmod 755 /var/www/
+$ sudo service apache2 restart
+~~~
+
+#### 8.2. 웹사이트 디렉토리 권한 설정
+
+`webadmin` 관리그룹을 생성하고 사용자를 `webadmin`에 할당하고 /var/www/html/ 디렉토리 소유자를 root에서 `webadmin`으로 변경하고 `chmod 2775 -R` 권한을 소유자와 관리그룹은 변경할 수 있지만 그밖의 사람은 읽기만 하도록 한다.
+
+~~~ {.shell}
+$ sudo groupadd webadmin
+$ sudo usermod -a -G webadmin xwmooc # 사용자명, xwmooc
+$ sudo chown root:webadmin /var/www/html/
+$ sudo chmod 2775 -R /var/www/html/
+~~~
+
+[참고: Best permissions/ownership for apache document root](http://serverfault.com/questions/224560/best-permissions-ownership-for-apache-document-root)
