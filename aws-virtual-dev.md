@@ -370,6 +370,60 @@ xwmooc@xwmooc-VirtualBox:~$ sudo service apache2 restart
 
 웹브라우져 주소창에 `http://localhost`를 입력하면 웹서비스가 제공되는 것을 확인할 수 있다.
 
+### 4. 가상상자 용량 크게 늘리기
 
+가상상자를 사용하다보면 초기 4G, 8G로 설정한 것이 어느 순간 부족함을 느낄 때가 있다. 이런 경우 이미지 크기재조정(image resize) 기능을 사용해서 저장공간을 늘리거나 필요가 없을 경우 줄일 수 있다.
 
+가상상자 명령어는 `vboxmanage`로 윈도우의 경우 `c:\Program Files\Oracle\VirtualBox` 디렉토리에 프로그램이 저장되어 있고, 이미지는 `C:\Users\admin\VirtualBox VMs` 디렉토리에 저장된다.
 
+1. 최신 가상상자 이미지가 돌고 있는 `.vmdk` 확장자 파일을 `.vdi` 확장자 파일로 변환한다.
+
+~~~ {.shell}
+$ "c:\Program Files\Oracle\VirtualBox\vboxmanage" clonehd "C:\Users\admin\VirtualBox VMs\ubuntu\ubuntu-disk1.vmdk" "C:\ubuntu.vdi" --format VDI
+~~~
+~~~ {.output}
+0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+Clone medium created in format 'VDI'. UUID: 4eca716c-8c73-42da-97fd-cfd34d266d4d
+~~~
+
+2. `vboxmanage modifyhd` 명령어로 `--resize 20000` 인자를 줘서 이미지 크기를 기존 8G에서 20GB로 변경한다.
+
+~~~ {.shell}
+ $ "c:\Program Files\oracle\VirtualBox\VBoxManage.exe" modifyhd ubuntu.vdi --re
+size 20000
+~~~
+~~~ {.output}
+0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+~~~
+
+3. 정상적으로 생성되었는지는 `vboxmanage list hdds` 명령어로 확인한다.
+
+~~~ {.shell}
+$ "c:\Program Files\oracle\VirtualBox\VBoxManage.exe" list hdds
+~~~
+
+~~~ {.output}
+UUID:           4eca716c-8c73-42da-97fd-cfd34d266d4d
+Parent UUID:    base
+State:          inaccessible
+Type:           normal (base)
+Location:       c:\Program Files\Oracle\VirtualBox\ubuntu.vdi
+Storage format: VDI
+Capacity:       8192 MBytes
+Encryption:     disabled
+
+UUID:           e4368f6f-30d6-42a6-9191-94e588b3f572
+Parent UUID:    base
+State:          created
+Type:           normal (base)
+Location:       c:\ubuntu.vdi
+Storage format: VDI
+Capacity:       20000 MBytes
+Encryption:     disabled
+~~~
+
+4. `.vdi` 파일을 가상상자로 다른 일반 이미지와 마찬가지로 불러온다.
+5. 가상으로 이미지 공간이 잡힌 것이기 때문에 우부투의 경우 `gparted` 를 통해서 운영체제에서 파티션을 재정하는 작업을 하면 증가시킨 공간을 활용가능하다.
+
+- [참고:VirtualBox 디스크 용량 변경하기(resize)](http://idchowto.com/index.php/virtualbox-디스크-용량-변경하기resize/)
+- [참고: VirtualBox 저장소(VDI) 용량 늘리기](http://leechwin.tistory.com/17)

@@ -286,6 +286,51 @@ VM &quot;sparkvm&quot; has been successfully started.</code></pre>
 xwmooc@xwmooc-VirtualBox:~$ sudo service apache2 restart</code></pre>
 <p>가상상자를 정지하고 <code>Settings</code> → <code>Network</code> → <code>Adapter</code>에서 <strong>Port Forwarding</strong>으로 가서 <code>80</code> 포트를 등록하면 웹브라우져를 통해 가상상자에서 제공하는 웹서비스를 받을 수 있다.</p>
 <p><img src="fig/aws-virtualbox-webservice.png" width="70%" alt="가상상자 웹서비스 포트포워딩 설정" /></p>
+<p>웹브라우져 주소창에 <code>http://localhost</code>를 입력하면 웹서비스가 제공되는 것을 확인할 수 있다.</p>
+<h3 id="가상상자-용량-크게-늘리기">4. 가상상자 용량 크게 늘리기</h3>
+<p>가상상자를 사용하다보면 초기 4G, 8G로 설정한 것이 어느 순간 부족함을 느낄 때가 있다. 이런 경우 이미지 크기재조정(image resize) 기능을 사용해서 저장공간을 늘리거나 필요가 없을 경우 줄일 수 있다.</p>
+<p>가상상자 명령어는 <code>vboxmanage</code>로 윈도우의 경우 <code>c:\Program Files\Oracle\VirtualBox</code> 디렉토리에 프로그램이 저장되어 있고, 이미지는 <code>C:\Users\admin\VirtualBox VMs</code> 디렉토리에 저장된다.</p>
+<ol style="list-style-type: decimal">
+<li>최신 가상상자 이미지가 돌고 있는 <code>.vmdk</code> 확장자 파일을 <code>.vdi</code> 확장자 파일로 변환한다.</li>
+</ol>
+<pre class="shell"><code>$ &quot;c:\Program Files\Oracle\VirtualBox\vboxmanage&quot; clonehd &quot;C:\Users\admin\VirtualBox VMs\ubuntu\ubuntu-disk1.vmdk&quot; &quot;C:\ubuntu.vdi&quot; --format VDI</code></pre>
+<pre class="output"><code>0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+Clone medium created in format &#39;VDI&#39;. UUID: 4eca716c-8c73-42da-97fd-cfd34d266d4d</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><code>vboxmanage modifyhd</code> 명령어로 <code>--resize 20000</code> 인자를 줘서 이미지 크기를 기존 8G에서 20GB로 변경한다.</li>
+</ol>
+<pre class="shell"><code> $ &quot;c:\Program Files\oracle\VirtualBox\VBoxManage.exe&quot; modifyhd ubuntu.vdi --re
+size 20000</code></pre>
+<pre class="output"><code>0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>정상적으로 생성되었는지는 <code>vboxmanage list hdds</code> 명령어로 확인한다.</li>
+</ol>
+<pre class="shell"><code>$ &quot;c:\Program Files\oracle\VirtualBox\VBoxManage.exe&quot; list hdds</code></pre>
+<pre class="output"><code>UUID:           4eca716c-8c73-42da-97fd-cfd34d266d4d
+Parent UUID:    base
+State:          inaccessible
+Type:           normal (base)
+Location:       c:\Program Files\Oracle\VirtualBox\ubuntu.vdi
+Storage format: VDI
+Capacity:       8192 MBytes
+Encryption:     disabled
+
+UUID:           e4368f6f-30d6-42a6-9191-94e588b3f572
+Parent UUID:    base
+State:          created
+Type:           normal (base)
+Location:       c:\ubuntu.vdi
+Storage format: VDI
+Capacity:       20000 MBytes
+Encryption:     disabled</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><code>.vdi</code> 파일을 가상상자로 다른 일반 이미지와 마찬가지로 불러온다.</li>
+<li>가상으로 이미지 공간이 잡힌 것이기 때문에 우부투의 경우 <code>gparted</code> 를 통해서 운영체제에서 파티션을 재정하는 작업을 하면 증가시킨 공간을 활용가능하다.</li>
+</ol>
+<ul>
+<li><a href="http://idchowto.com/index.php/virtualbox-디스크-용량-변경하기resize/">참고:VirtualBox 디스크 용량 변경하기(resize)</a></li>
+<li><a href="http://leechwin.tistory.com/17">참고: VirtualBox 저장소(VDI) 용량 늘리기</a></li>
+</ul>
         </div>
       </div>
       </article>
