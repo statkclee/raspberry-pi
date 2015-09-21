@@ -32,6 +32,7 @@ title: xwMOOC 컴퓨터
     - [라즈베리파이 서버](raspberry-pi-server.html)
 1.  [라즈베리파이 프로그래밍](raspberry-pi-programming.html)    
     - [과학기술 파이썬 툴체인](raspberry-pi-programming-science.html)
+    - [과학기술 파이썬 툴체인 가상화(Docker)](raspberry-pi-programming-science-docker.html)
     - [파이썬 개발환경](raspberry-pi-programming-env.html)
     - [ (파이썬) 프로그래밍 구성요소](raspberry-pi-programming-components.html)
     - [한번 시작으로 파이썬 모듈까지](raspberry-pi-programming-basics.html)    
