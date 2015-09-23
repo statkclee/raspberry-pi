@@ -648,4 +648,75 @@ $ unzip DBDA2Eprograms.zip
 > 1. MCMC를 사용해서 모수의 사후분포를 계산한다.
 
 
+### 5. 라즈베리 파이 도커
+
+x86 아키텍쳐를 가진 중앙처리장치에 비해서 ARM은 저전력 설계로 인해서 사물인터넷 IoT 제품에 좋은 궁합을 보여주고 있다. 하지만, 도커는 x86 아키텍쳐 기반으로 돌아가기 때문에 ARM 위에 도커를 올리기 위해서는 별도 작업이 필요한데 [Hypriot](http://blog.hypriot.com/)에서 ARM 기반 도커를 라즈베리 파이 하드웨어 위에서 돌릴 수 있도록 만들었다.
+
+#### 5.1. 라즈베리 파이 도커 설치
+
+도커는 복잡한 응용프로그램 팩키징, 배포, 설치, 실행을 단순화해서 최근 몇년동안 가장 인기있는 소프트웨가 되었다. 그 면에는 많이 사용되는 [워드프레스](https://wordpress.com/) 같은 블로깅 플랫폼도 많은 소프트웨어가 필요하고 환경에 따라 설정이 되는 등 폭잡한 과정이 필요하기 때문에 블로그 본연에 집중하기 보다 더 많은 시간은 다른 곳에 보내는 문제점이 심화되고 있다.
+
+> ####  설치 준비물 {.getready}
+> 
+> 1.[Nmap](https://ko.wikipedia.org/wiki/Nmap)
+>    - 컴퓨터와 서버를 찾을 주로 사용. 라즈베리 파이 접속 IP 식별을 위해 사용되는 소프트웨어
+> 1. [7-Zip](http://www.7-zip.de/)
+>    - 다운로드 받은 압축을 풀 때 사용. 꼭 [7-Zip](http://www.7-zip.de/)일 필요는 없고 압축을 풀 수만 있으면 된다.
+> 1. [Win32 Disk Imager](http://sourceforge.net/projects/win32diskimager/)
+>    - 이미지를 마이크로SD 카드에 쓸 때 사용한다.
+> 1. [Putty](http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe)
+>    - 라즈베리 파이에 `ssh` 연결할 때 사용한다.
+
+윈도우 환경에서 라즈베리 파이 도커를 사용하려면 최소 4GB 마이크로 SD카드가 필요하다.
+
+1. [라즈베리 파이 도커 이미지](http://blog.hypriot.com/downloads/)를  다운로드한다.
+1. 다운로드한 압축파일을 푼다. 대략 `hypriot-rpi-20150909-070022.img` 파일처럼 보인다.
+1. **Win32 Disk Imager** 프로그램으로 이미지를 준비한 마이크로 SD 카드에 넣는다.
+1. Hypriot 라즈베리 파이 도커 이미지가 설치된 마이크로 SD카드를 라즈베리 파이에 장착하여 부팅한다.
+1. [Nmap](https://ko.wikipedia.org/wiki/Nmap) 프로그램을 실행해서 라즈베리 파이 IP주소를 알아낸다.
+   - 본인 컴퓨터 IP주소를 넣고 뒤에 `/24`을 추가한다. 예를 들어, `192.168.103.125/24`.
+1. [Putty](http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe)난 [Git Bash](http://git-for-windows.github.io/)를 사용해서 라즈베리 파이에 접속한다.  
+
+   <img src="fig/docker-nmap.png" alt="nmap을 사용 라즈베리 파이 IP주소 확인" width="50%" />
+
+다양한 플랫폼에서 라즈베리 파이에 도커를 설치하는 것은 [설치 안내](http://blog.hypriot.com/getting-started-with-docker-on-your-arm-device/)를 참고한다.
+
+~~~ {.shell}
+$ docker run -d -p 80:80 hypriot/rpi-busybox-httpd
+~~~
+
+~~~ {.output}
+Unable to find image 'hypriot/rpi-busybox-httpd:latest' locally
+latest: Pulling from hypriot/rpi-busybox-httpd
+
+9cc8764d12a6: Pull complete
+bd3d8cb843a9: Pull complete
+2a8d86d0efa6: Pull complete
+2133eee1fabe: Already exists
+Digest: sha256:6456379f0754b0208662b9f5779ffe0d873b50d176b28e5961256569b4fd3fc2
+Status: Downloaded newer image for hypriot/rpi-busybox-httpd:latest
+d4ce57bbf911c974f1544aef9d9683335fb0a6c383f269806596c7cc363011ed
+~~~
+
+   <img src="fig/docker-hypriot.png" alt="라즈베리 파이 도커 설치화면" width="50%" />
+
+
+#### 5.2. 과학 컴퓨팅(Scientific Computing) 개발 툴체인
+
+[Dockerized Notebook + SciPy Stack](https://hub.docker.com/r/ipython/scipyserver/)를 [도커허브](https://hub.docker.com/)에서 가져온다.
+`docker pull ipython/scipyserver` 명령어를 사용하고 나서 가져오기가 모두 끝나면, `docker run -d -p 443:8888 ipython/scipyserver` 명령어를 실행해서 컨테이너를 띄운다. 웹브라우져 주소창에 `https://localhost/`를 입력하여 후속작업을 실행한다.
+
+~~~ {.shell}
+$ docker pull ipython/scipyserver
+$ docker run -d -p 443:8888 ipython/scipyserver
+~~~
+
+#### 5.2. 과학 컴퓨팅(Scientific Computing) 개발 툴체인
+
+~~~ {.shell}
+$ wget http://downloads.hypriot.com/docker-hypriot_1.8.2-1_armhf.deb
+$ dpkg -i docker-hypriot_1.8.2-1_armhf.deb
+~~~
+
+
 

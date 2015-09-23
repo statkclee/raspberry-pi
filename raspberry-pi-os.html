@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Software Carpentry: R 파이썬 소프트레이어 클라우드, xwMOOC</title>
+    <title>Software Carpentry: xwMOOC 컴퓨터</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -37,7 +37,7 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <h1 class="title">R 파이썬 소프트레이어 클라우드, xwMOOC</h1>
+          <h1 class="title">xwMOOC 컴퓨터</h1>
           <h2 class="subtitle">라즈베리파이 운영체제 (OS)</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
@@ -75,6 +75,54 @@
 <p>XBOX 같은 ROM 기반 가족용 게임기를 생각한다면 RetroPi나 PiPlay를 통해서 활용가능하다. <a href="http://blog.petrockblock.com/">RetroPie</a>는 Retro-Gaming 콘솔을 라즈베리 파이에 이식하는 것으로 시작되었으나 이제는 글로벌 공개 소프트웨어 프로젝트로 다양한 방면으로 영역을 확장하고 있다. <a href="http://piplay.org/">PiPlay</a>는 과거 PiMAME로도 잘 알려져 있다.</p>
 <p><a href="http://thenaran.blogspot.kr/2015/01/prota-new-class-of-operating-system-for.html">프로타 파이 (Prota Pi)</a> 는 웹인터페이스를 통해 클릭만으로 다양한 IoT 기기를 제어할 수 있다.</p>
 <p>참고: <a href="http://www.makeuseof.com/tag/7-operating-systems-you-can-run-with-raspberry-pi/">7 Operating Systems You Can Run With Raspberry Pi</a></p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pushpin"></span>다양한 리눅스 배포판</h4>
+</div>
+<div class="panel-body">
+<table>
+<thead>
+<tr class="header">
+<th align="center">리눅스 배포판</th>
+<th align="left">명 칭</th>
+<th align="left">활용분야</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><img src="fig/linux-ubuntu-logo.png" width="20%" /></td>
+<td align="left">우분투</td>
+<td align="left">사용하기 편한 개인용 컴퓨터(데스크톱, 노트북) 및 서버</td>
+</tr>
+<tr class="even">
+<td align="center"><img src="fig/linux-redhat-logo.png" width="10%" /></td>
+<td align="left">레드햇</td>
+<td align="left">금융 등 기업 대상 상업용</td>
+</tr>
+<tr class="odd">
+<td align="center"><img src="fig/linux-coreos-logo.png" width="10%" /></td>
+<td align="left">코어OS</td>
+<td align="left">클라우드 분산 컴퓨팅 환경 컨테이너 배포</td>
+</tr>
+<tr class="even">
+<td align="center"><img src="fig/linux-mintos-logo.png" width="15%" /></td>
+<td align="left">민트OS</td>
+<td align="left">우분투를 기반으로 좀더 사용하기 쉽고 시각적으로 보기 좋은 환경</td>
+</tr>
+<tr class="odd">
+<td align="center"><img src="fig/linux-lubuntu-logo.png" width="15%" /></td>
+<td align="left">루부투</td>
+<td align="left">LXDE와 Ubuntu 합성어로 우분투 기반 유니티 대신 LXDE를 사용하고 &gt; 저성능 컴퓨터용으로 설계</td>
+</tr>
+<tr class="even">
+<td align="center"><img src="fig/linux-debian-logo.png" width="15%" /></td>
+<td align="left">데비안</td>
+<td align="left">안정성과 높은 신뢰성을 갖지만 출시 주기가 길다</td>
+</tr>
+</tbody>
+</table>
+</div>
+</aside>
 <h3 id="라즈베리-파이-운영체제-1">1. 라즈베리 파이 운영체제</h3>
 <p>처음 컴퓨터를 접하는 분들은 <a href="http://swag.raspberrypi.org/collections/frontpage/products/noobs-8gb-sd-card">사전 NOOBS 설치</a>된 SD 카드를 구매해서 라즈베리 파이를 시작하는 것이 좋다. 마치 노트북이나 데스트톱 컴퓨터를 처음 구매할 때, 제조판매업체에서 운영체제와 오피스등 관련된 소프트웨어를 미리 설치해줘서 전원만 꼽아 사용하는 것과 유사하다.</p>
 <p><img src="fig/raspberry-pi-NOOBS.png" width="37%" /></p>
@@ -125,7 +173,7 @@
 </ul></li>
 <li>한글 키보드 설정
 <ul>
-<li>일반적으로 <em>Generic 105 key (Intl) PC</em> 를 선택하지만, 슬림 키보드 혹은 파이(노트)북의 경우 <em>Generic 102 key (Intl) PC</em>로 키보드 자판을 선택한다.
+<li>일반적으로 <em>Generic 105 key (Intl) PC</em> 를 선택하지만, 슬림 키보드 혹은 파이(노트)북의 경우 _Generic 102 key (Intl) PC_로 키보드 자판을 선택한다.
 <ul>
 <li>Internationalisation Options → Change Keyboard Layout → Generic 105 key (Intl) PC <img src="fig/raspberry-pi-boot-config.png" width="50%" /><br /></li>
 </ul></li>

@@ -35,14 +35,14 @@ XBOX 같은 ROM 기반 가족용 게임기를 생각한다면 RetroPi나 PiPlay�
 
 > #### 다양한 리눅스 배포판 {.callout}
 > 
-> |  리눅스 배포판 | 명칭 | 활용분야 |
-> |---|:--------:|:--------:|-----------------|
-> | <img src="fig/linux-ubuntu-logo.png" width="30%" />    |  우분투 | 사용하기 편한 개인용 컴퓨터(데스크톱, 노트북) 및 서버 |
-> | <img src="fig/linux-redhat-logo.png" width="30%" />    |  레드햇 | 금융 등 기업 대상 상업용 |
-> | <img src="fig/linux-coreos-logo.png" width="30%" />    |  코어OS | 클라우드 분산 컴퓨팅 환경 컨테이너 배포  |
-> | <img src="fig/linux-mintos-logo.png" width="30%" />    |  민트OS | 우분투를 기반으로 좀더 사용하기 쉽고 시각적으로 보기 좋은 환경  |
-> | <img src="fig/linux-lubuntu-logo.png" width="30%" />   |  루부투 | LXDE와 Ubuntu 합성어로 우분투 기반 유니티 대신 LXDE를 사용하고 > 저성능 컴퓨터용으로 설계 |
-> | <img src="fig/linux-debian-logo.png" width="30%" />   |  데비안 | 안정성과 높은 신뢰성을 갖지만 출시 주기가 길다 |
+> |  리눅스 배포판 | 명   칭 | 활용분야 |
+> |:--------:|--------|-----------------|
+> | <img src="fig/linux-ubuntu-logo.png" width="20%" />    |  우분투 | 사용하기 편한 개인용 컴퓨터(데스크톱, 노트북) 및 서버 |
+> | <img src="fig/linux-redhat-logo.png" width="10%" />    |  레드햇 | 금융 등 기업 대상 상업용 |
+> | <img src="fig/linux-coreos-logo.png" width="10%" />    |  코어OS | 클라우드 분산 컴퓨팅 환경 컨테이너 배포  |
+> | <img src="fig/linux-mintos-logo.png" width="15%" />    |  민트OS | 우분투를 기반으로 좀더 사용하기 쉽고 시각적으로 보기 좋은 환경  |
+> | <img src="fig/linux-lubuntu-logo.png" width="15%" />   |  루부투 | LXDE와 Ubuntu 합성어로 우분투 기반 유니티 대신 LXDE를 사용하고 > 저성능 컴퓨터용으로 설계 |
+> | <img src="fig/linux-debian-logo.png" width="15%" />   |  데비안 | 안정성과 높은 신뢰성을 갖지만 출시 주기가 길다 |
 
 ### 1. 라즈베리 파이 운영체제 
 
