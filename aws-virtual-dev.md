@@ -69,6 +69,26 @@ root@dev-hangul:~# VBoxManage --version
 
 특히, 우분투/데비안 사용자는 `dkms` 팩키지를 설치해서 다음번 `apt-get upgrade`에 리눅스 커널 변경에 맞춰 버추얼박스 커널 모듈 3종 세트(vboxdrv, vboxnetflt, vboxnetadp)가 자동으로 갱신되게 한다. `VBoxManage --version` 명령어로 정상적으로 버츄얼박스가 설치된 것을 확인한다.
 
+**가상상자 `.deb` 팩키지 설치**
+
+가상상자가 오래되어 새로운 버젼이 올라가면, 가상상자를 실행하면 새로운 버젼이 나왔다고 안내가 나오고 다운로드 안내를 한다. 만약 이전 가상상자가 설치되어 있으면 충돌이 나기 때문에 `sudo dpkg -r virtualbox-4.3` 명령어로 제거하고 신규로 설치한다.
+
+~~~ {.shell}
+$ sudo dpkg -r virtualbox-4.3
+$ wget http://download.virtualbox.org/virtualbox/5.0.4/virtualbox-5.0_5.0.4-102546~Ubuntu~trusty_i386.deb
+$ sudo dpkg -i  virtualbox-5.0_5.0.4-102546~Ubuntu~trusty_i386.deb
+~~~
+
+> #### 리눅스 팩키지 설치 명령어 비교 {.callout}
+>
+> `dpkg`는 **수작업**으로 데비안 팩키지 관리 시스템(Debian Package Management System) 기능을 수행했고, 이는 CLI의 경우 `apt-get`, `aptitude`, GUI의 경우 `Synaptic` 혹은 `Software Center`로 진화해 나갔다. 
+> 
+> - CLI: dpkg &rarr; apt-get, aptitude
+> - GUI: dpkg &rarr; Synaptic, Software Center  
+>
+> dpkg를 통한 팩키지 설치는 `dpkg -i`, 팩키지 삭제는 `dpkg -r` 이다.
+
+
 #### 1.3. 부랑자(Vagrant) 설치 
 
 부랑자(Vagrant) 가장 최신버젼을 설치한다. 먼저 [부랑자(Vagrant)](https://www.vagrantup.com/) 사이트에 접속해서 [다운로드 사이트](https://www.vagrantup.com/download-archive/v1.7.1.html)로 들어간다. 리눅스 버전을 골라 우클릭하고 `링크주소복사` 해서 `wget` 명령어로 다운로드해서 설치한다.
