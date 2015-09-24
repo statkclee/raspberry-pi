@@ -49,9 +49,253 @@
 </ul>
 </div>
 </section>
-<h3 id="section">1.</h3>
+<h3 id="베이지안-r과-jags">1. 베이지안 R과 Jags</h3>
+<h4 id="r-기반-베이지안-분석을-위한-툴체인-구축">1.1. R 기반 베이지안 분석을 위한 툴체인 구축</h4>
+<p><a href="http://mcmc-jags.sourceforge.net/">JAGS</a>는 <em>Just Another Gibbs Sampler</em>의 약어로 마코프 체인 몬테 카를로(Markov Chain Monte Carlo, MCMC) 모의실험을 사용해서 계층적 베이지안 모형 분석하는 프로그램이다.</p>
+<ol style="list-style-type: decimal">
+<li>쉘 환경에서 별도 팩키지로 <code>jags</code>를 설치한다.</li>
+</ol>
 <pre class="shell"><code>$ sudo apt-cache search jags
 $ sudo apt-get install jags</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>R 환경에서 <code>R2jags</code> 팩키지를 설치한다.</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>version
+               _                           
+platform       x86_64-pc-linux-gnu         
+arch           x86_64                      
+os             linux-gnu                   
+system         x86_64, linux-gnu           
+status                                     
+major          <span class="dv">3</span>                           
+minor          <span class="fl">2.0</span>                         
+year           <span class="dv">2015</span>                        
+month          <span class="dv">04</span>                          
+day            <span class="dv">16</span>                          
+svn rev        <span class="dv">68180</span>                       
+language       R                           
+version.string R version <span class="fl">3.2.0</span> (<span class="dv">2015-04-16</span>)
+nickname       Full of Ingredients         
+&gt;<span class="st"> </span><span class="kw">install.packages</span>(<span class="st">&quot;rjags&quot;</span>) </code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>베이지안 자료분석을 위한 프로그램과 데이터를 다운로드 받는다.
+<ul>
+<li><a href="https://sites.google.com/site/doingbayesiandataanalysis/software-installation">Doing Bayesian Data Analysis: A Tutorial with R, JAGS, and Stan. 2nd Edition.</a></li>
+</ul></li>
+</ol>
+<pre class="shell"><code>$ wget https://sites.google.com/site/doingbayesiandataanalysis/software-installation/DBDA2Eprograms.zip
+$ unzip DBDA2Eprograms.zip</code></pre>
+<h4 id="파이썬-기반-베이지안-분석을-위한-툴체인-구축">1.2. 파이썬 기반 베이지안 분석을 위한 툴체인 구축</h4>
+<p>PyMC 및 베이지안 분석 결과 그래픽 산출물을 활용할 수 있는 도구가 일부 파이썬2 환경에서 구축되어 파이썬2를 기본으로 설치한다.</p>
+<p><a href="http://continuum.io/">아나콘다(Anaconda)</a>는 파이썬 언어를 기반으로 과학 컴퓨팅을 지원하는 통합개발환경(IDE)로 개발시간을 획기적으로 단축시킬 수 있다.</p>
+<ol style="list-style-type: decimal">
+<li>아나콘다 <a href="http://continuum.io/downloads">다운로드 웹페이지</a>에서 설치 컴퓨터 사양에 맞는 아나콘다를 다운로드 한다.
+<ul>
+<li>리눅스 우분투 64 Bit, 파이썬 2.7를 다운로드했다. 웹에서 직적 다운로드하거나, <code>wget</code> 명령어를 사용해서 링크를 터미널에 붙여넣고 다운로드 받아도 된다.</li>
+</ul></li>
+<li><code>bash</code> 명령어로 쉘스크립트를 실행하면 자동으로 설치된다.
+<ul>
+<li>루트 권한이 필요없으며 사용자 홈디렉토리 밑에 <code>~/anaconda</code>가 기본 디렉토리가 된다.</li>
+<li>삭제를 원한다면 <code>rm -rf ~/anaconda</code> 명령어를 사용한다.</li>
+<li><code>conda</code>명령어를 즉시 사용할 수 있도록 <code>source .bashrc</code> 명령어를 실행한다.</li>
+</ul></li>
+<li>그래픽 관련 PyMC 팩키지를 설치한다.
+<ul>
+<li><code>matplotlib</code>가 의존성을 갖는 그래픽 소프트웨어 <code>qt4</code>를 설치한다. 명령어는 <code>apt-get install python-qt4</code> 이다.</li>
+<li>PyMC가 의존성을 갖는 <code>graphviz</code>와 <code>pydot</code>을 설치한다. 명령어는 <code>apt-get install graphviz</code> 과 <code>conda install pydot</code>이다.</li>
+</ul></li>
+</ol>
+<h4 id="아나콘다-설치-파이썬-2.7-및-주피터">1.2.1. 아나콘다 설치 : 파이썬 2.7 및 주피터</h4>
+<pre class="shell"><code>$  wget https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda-2.3.0-Linux-x86_64.sh
+$ bash Anaconda3-2.3.0-Linux-x86_64.sh 
+$ source .bashrc</code></pre>
+<p><a href="http://askubuntu.com/questions/505919/installing-anaconda-python-on-ubuntu">참고: Installing Anaconda python on ubuntu</a></p>
+<h4 id="그래픽-관련-팩키지-설치-qt4-pydot-graphviz">1.2.2. 그래픽 관련 팩키지 설치: qt4, pydot, graphviz</h4>
+<pre class="shell"><code>$ sudo apt-get install python-qt4 
+$ sudo apt-get install graphviz</code></pre>
+<h4 id="파이썬-가상환경-구축">1.2.3. 파이썬 가상환경 구축</h4>
+<p>파이썬 격리된 가상 개발환경을 구축해주는 팩키지는 <code>python-virtualenv</code>이다. 팩키지를 설치한 후에 <code>virtualenv</code>를 통해서 격리된 가상의 개발환경을 구축한다. <code>virtualenv -p /usr/bin/python venv</code> 명령어로 <code>venv</code> 명칭을 갖는 격리된 가상환경을 생성하고 <code>source venv/bin/activate</code> 명령어를 통해서 가상환경에 진입해서 <code>conda install pymc</code>명령어로 PyMC를 설치한다. 마지막으로 <code>deactivate</code>명령어로 가상환경을 빠져나온다.</p>
+<pre class="shell"><code>$ sudo apt-get install python-virtualenv
+$ which python</code></pre>
+<pre class="output"><code>/usr/bin/python</code></pre>
+<pre class="shell"><code>$ which python3</code></pre>
+<pre class="output"><code>/usr/bin/python3</code></pre>
+<pre class="shell"><code>$ virtualenv -p /usr/bin/python venv</code></pre>
+<pre class="output"><code>Already using interpreter /usr/bin/python
+New python executable in venv/bin/python
+Installing setuptools, pip...done.</code></pre>
+<pre class="shell"><code>$ source venv/bin/activate
+(venv)[xwmooc:~ ] $ conda install pymc
+(venv)[xwmooc:~ ] $ deactivate</code></pre>
+<h4 id="주피터-통합개발환경-설치">1.2.4. 주피터 통합개발환경 설치</h4>
+<p><code>ipython notebook</code>명령어를 통해서 IPython 노트북을 실행하여 통합개발환경을 구축할 수도 있다. 또 다른 대안으로 주피터(Jupyter)를 설치해서 좀더 확장성 있는 통합개발환경을 동일하게 구축할 수도 있다. <code>conda install jupyter</code>를 통해서 설치한 후에 <code>jupyter notebook</code>명령어를 통해서 노트북을 실행한다.</p>
+<pre class="shell"><code>$ conda install jupyter</code></pre>
+<pre class="shell"><code>$ jupyter notebook</code></pre>
+<p><img src="fig/bayesian-pymc-jupyter.png" alt="정적 웹콘텐츠 개발 툴체인" width="50%" /></p>
+<h3 id="베이지안-데이터-분석-일반절차">2. 베이지안 데이터 분석 일반절차</h3>
+<p><a href="http://doingbayesiandataanalysis.blogspot.kr/2013/10/diagrams-for-hierarchical-models-new.html">Kruschke 스타일</a> 베이지안 모형 시각화 템플릿으로 <a href="http://www.libreoffice.org/features/draw/">리브레 오피스 Draw</a>를 사용한다. 만약 LaTeX으로 동일한 작업을 하고자 한다면 Tinu Schneider의 <a href="(https://github.com/tinu-schneider/DBDA_hierach_diagram)">GitHub 저장소</a>를 참고한다.</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pushpin"></span>베이지안 데이터 분석 절차</h4>
+</div>
+<div class="panel-body">
+<ol style="list-style-type: decimal">
+<li>데이터를 기술하는 모형을 정의한다.</li>
+<li>사전확률(Prior)을 지정한다.</li>
+<li>데이터를 수집한다.</li>
+<li>MCMC를 사용해서 모수의 사후분포를 계산한다.</li>
+</ol>
+</div>
+</aside>
+<h3 id="베이지안-자료분석">3. 베이지안 자료분석</h3>
+<p><a href="https://sites.google.com/site/doingbayesiandataanalysis/">Doing Bayesian data analysis</a> 책을 기반으로 <a href="https://www.facebook.com/groups/psygrammer/">사이그래머</a> 베이지안 발표자료.</p>
+<h3 id="베이지안-이항회귀-모형">3.1. 베이지안 이항회귀 모형</h3>
+<p><span class="math"><em>μ</em></span>는 종속변수로 이산형으로 예를 들어, 0 혹은 1 값을 갖고, 설명변수는 연속형 값을 갖는 것을 기준으로 베이지안 이행회귀 모형을 전개해 나간다.</p>
+<p><span class="math"><em>μ</em> = <em>l</em><em>o</em><em>g</em><em>i</em><em>s</em><em>t</em><em>i</em><em>c</em>(<em>β</em><sub>0</sub> + <em>β</em><sub>1</sub><em>x</em><sub>1</sub> + <em>β</em><sub>2</sub><em>x</em><sub>2</sub>)</span><br /><span class="math"><em>λ</em> = <em>B</em><em>e</em><em>r</em><em>n</em><em>o</em><em>u</em><em>l</em><em>l</em><em>i</em>(<em>μ</em>)</span></p>
+<p>여기서 <span class="math"><em>l</em><em>o</em><em>g</em><em>i</em><em>s</em><em>t</em><em>i</em><em>c</em>(<em>x</em>) = 1/(1 + <em>e</em><em>x</em><em>p</em>( − <em>x</em>))</span></p>
+<h3 id="데이터-및-jags-코드">3.2. 데이터 및 Jags 코드</h3>
+<p>베이지안 이항회귀 모형에 사용되는 데이터는 <code>HtWtData110.csv</code> 파일로 설명변수 키와 몸무게 정보를 가지고 종속변수 여성(0)과 남성(1)에 대한 확률모형을 구축하는 것이다.</p>
+<p>관련된 베이지안 이항모형 코드는 R, Jags로 두가지 소스코드에 작성되어 있다. <code>Jags-Ydich-XmetMulti-Mlogistic-Example.R</code>, <code>Jags-Ydich-XmetMulti-Mlogistic</code></p>
+<h4 id="데이터">3.2.1 데이터</h4>
+<pre class="shell"><code>&quot;male&quot;,&quot;height&quot;,&quot;weight&quot;
+0,63.2,168.7
+0,68.7,169.8
+0,64.8,176.6
+0,67.9,246.8
+1,68.9,151.6
+1,67.8,158
+1,68.2,168.6
+0,64.8,137.2
+1,64.3,177
+0,64.7,128</code></pre>
+<h4 id="r-jags-코드">3.2.2. R, Jags 코드</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#------------------------------------------------------------------------------- </span>
+<span class="co"># Optional generic preliminaries:</span>
+<span class="kw">graphics.off</span>() <span class="co"># This closes all of R&#39;s graphics windows.</span>
+<span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())  <span class="co"># Careful! This clears all of R&#39;s memory!</span>
+<span class="co">#------------------------------------------------------------------------------- </span>
+<span class="co"># #.............................................................................</span>
+<span class="co"># # Two predictors:</span>
+<span class="co"># myData = read.csv( file=&quot;HtWtData110.csv&quot; )</span>
+<span class="co"># yName = &quot;male&quot; ; xName = c(&quot;weight&quot;,&quot;height&quot;)</span>
+<span class="co"># fileNameRoot = &quot;HtWtData110-&quot; </span>
+<span class="co"># numSavedSteps=15000 ; thinSteps=2</span>
+<span class="co"># #.............................................................................</span>
+<span class="co"># Only one predictor:</span>
+myData =<span class="st"> </span><span class="kw">read.csv</span>( <span class="dt">file=</span><span class="st">&quot;HtWtData110.csv&quot;</span> )
+yName =<span class="st"> &quot;male&quot;</span> ; xName =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;weight&quot;</span>)
+fileNameRoot =<span class="st"> &quot;HtWtData110-weightOnly-&quot;</span> 
+numSavedSteps=<span class="dv">15000</span> ; thinSteps=<span class="dv">2</span>
+<span class="co"># #.............................................................................</span>
+<span class="co"># # Add some outliers:</span>
+<span class="co"># outlierMat = matrix( c(</span>
+<span class="co">#   190,74,0,</span>
+<span class="co">#   230,73,0,</span>
+<span class="co">#   120,59,1,</span>
+<span class="co">#   150,58,1 ) , ncol=3 , byrow=TRUE , </span>
+<span class="co">#   dimnames= list( NULL , c(&quot;weight&quot;,&quot;height&quot;,&quot;male&quot;) ) )</span>
+<span class="co"># myData = rbind( myData , outlierMat )</span>
+<span class="co">#.............................................................................</span>
+graphFileType =<span class="st"> &quot;eps&quot;</span> 
+<span class="co">#------------------------------------------------------------------------------- </span>
+<span class="co"># Load the relevant model into R&#39;s working memory:</span>
+<span class="kw">source</span>(<span class="st">&quot;Jags-Ydich-XmetMulti-Mlogistic.R&quot;</span>)
+<span class="co">#------------------------------------------------------------------------------- </span>
+<span class="co"># Generate the MCMC chain:</span>
+<span class="co">#startTime = proc.time()</span>
+mcmcCoda =<span class="st"> </span><span class="kw">genMCMC</span>( <span class="dt">data=</span>myData , <span class="dt">xName=</span>xName , <span class="dt">yName=</span>yName , 
+                    <span class="dt">numSavedSteps=</span>numSavedSteps , <span class="dt">thinSteps=</span>thinSteps , 
+                    <span class="dt">saveName=</span>fileNameRoot )
+<span class="co">#stopTime = proc.time()</span>
+<span class="co">#duration = stopTime - startTime</span>
+<span class="co">#show(duration)</span>
+<span class="co">#------------------------------------------------------------------------------- </span>
+<span class="co"># Display diagnostics of chain, for specified parameters:</span>
+parameterNames =<span class="st"> </span><span class="kw">varnames</span>(mcmcCoda) <span class="co"># get all parameter names</span>
+for ( parName in parameterNames ) {
+  <span class="kw">diagMCMC</span>( <span class="dt">codaObject=</span>mcmcCoda , <span class="dt">parName=</span>parName , 
+            <span class="dt">saveName=</span>fileNameRoot , <span class="dt">saveType=</span>graphFileType )
+}
+<span class="co">#------------------------------------------------------------------------------- </span>
+<span class="co"># Get summary statistics of chain:</span>
+summaryInfo =<span class="st"> </span><span class="kw">smryMCMC</span>( mcmcCoda , 
+                        <span class="dt">saveName=</span>fileNameRoot )
+<span class="kw">show</span>(summaryInfo)
+<span class="co"># Display posterior information:</span>
+<span class="kw">plotMCMC</span>( mcmcCoda , <span class="dt">data=</span>myData , <span class="dt">xName=</span>xName , <span class="dt">yName=</span>yName , 
+          <span class="dt">pairsPlot=</span><span class="ot">TRUE</span> , <span class="dt">showCurve=</span><span class="ot">FALSE</span> ,
+          <span class="dt">saveName=</span>fileNameRoot , <span class="dt">saveType=</span>graphFileType )
+<span class="co">#------------------------------------------------------------------------------- </span></code></pre>
+<h3 id="베이지안-로지스틱-모형-적합-및-해석">3.3. 베이지안 로지스틱 모형 적합 및 해석</h3>
+<p>회귀계수는 정규분포를 모두 따르는 것으로 사전 분포를 두고 로지스틱 변환을 통한 결과 값은 베르누이 분포를 따라 종속변수 성별이 결정되는 베이지안 로지스틱 모형이다.</p>
+<p><img src="fig/bayesian-logistic-model.png" alt="베이지안 이항회귀 모형 시각화" width="30%" /></p>
+<p>상기 모형을 Jags 코드로 작성하면 다음과 같다.</p>
+<pre class="shell"><code>  #-----------------------------------------------------------------------------
+  # THE MODEL.
+  modelString = &quot;
+  # Standardize the data:
+  data {
+    for ( j in 1:Nx ) {
+      xm[j]  &lt;- mean(x[,j])
+      xsd[j] &lt;-   sd(x[,j])
+      for ( i in 1:Ntotal ) {
+        zx[i,j] &lt;- ( x[i,j] - xm[j] ) / xsd[j]
+      }
+    }
+  }
+  # Specify the model for standardized data:
+  model {
+    for ( i in 1:Ntotal ) {
+      # In JAGS, ilogit is logistic:
+      y[i] ~ dbern( mu[i] )
+      mu[i] &lt;- ( guess*(1/2) 
+                 + (1.0-guess)*ilogit(zbeta0+sum(zbeta[1:Nx]*zx[i,1:Nx])) )
+    }
+    # Priors vague on standardized scale:
+    zbeta0 ~ dnorm( 0 , 1/2^2 )  
+    for ( j in 1:Nx ) {
+      zbeta[j] ~ dnorm( 0 , 1/2^2 )
+    }
+    guess ~ dbeta(1,9)
+    # Transform to original scale:
+    beta[1:Nx] &lt;- zbeta[1:Nx] / xsd[1:Nx] 
+    beta0 &lt;- zbeta0 - sum( zbeta[1:Nx] * xm[1:Nx] / xsd[1:Nx] )
+  }</code></pre>
+<p>체중에 따른 성별예측(남성:1, 여성:0) 모형으로 베이지안 로지스틱 회귀모형을 적합했으며, 각각의 이항 회귀모형 곡선은 MCMC 사후분포에서 나온 확률표본이다. 아래로 내려가는 점선으로 표현된 화살표는 남성 확률이 50% 지점을 나타낸다.</p>
+<p><img src="fig/bayesian-logistic-weight.png" alt="체중과 남성 확률 시각화" width="40%" /></p>
+<h4 id="오즈비odds-ratio">3.3.1. 오즈비(Odds Ratio)</h4>
+<p>오즈비는 성공확률이 실패확률에 비해 몇배 더 높은가를 나타낸다.</p>
+<p><span class="math"><em>p</em>(<em>y</em> = 1∣<em>x</em>)/(1 − <em>p</em>(<em>y</em> = 1∣<em>x</em>))</span></p>
+<p>함수 입력값이 <span class="math">[ − inf,  + inf]</span>일 때 오즈비를 취하면 함수 출력값은 <span class="math">[0, 1]</span>로 조정된다.</p>
+<p><span class="math"><em>l</em><em>o</em><em>g</em><em>i</em><em>t</em>(<em>μ</em>) = <em>l</em><em>o</em><em>g</em>(<em>μ</em>/(1 − <em>μ</em>))</span></p>
+<p>로지스틱 함수는 로짓 변환을 통해 다음과 같이 도출된다.</p>
+<p><span class="math"><em>l</em><em>o</em><em>g</em><em>i</em><em>s</em><em>t</em><em>i</em><em>c</em>(<em>x</em>) = 1/(1 + <em>e</em><em>x</em><em>p</em>( − <em>x</em>))</span></p>
+<p><strong>사례:</strong> 체중이 160 파운드, 신장이 67 인치 정보를 갖는 사람의 성별 모형</p>
+<p><span class="math"><em>l</em><em>o</em><em>g</em><em>i</em><em>s</em><em>t</em><em>i</em><em>c</em>(<em>β</em><sub>0</sub> + <em>β</em><sub>1</sub><em>x</em><sub>1</sub> + <em>β</em><sub>2</sub><em>x</em><sub>2</sub>)</span><br /><span class="math"> = <em>l</em><em>o</em><em>g</em><em>i</em><em>s</em><em>t</em><em>i</em><em>c</em>( − 50.0 + 0.02 * 160 + 0.70 * 67) = 0.525</span></p>
+<p>로그 오즈비는 <span class="math">0.525/(1 − 0.525) = 0.10</span>가 된다.</p>
+<p>만약 신장이 1 단위 증가(67 → 68)하게 되면,</p>
+<ul>
+<li>확률: 0.525 → 0.690 (증감 +0.165)</li>
+<li>로그 오즈비: 0.10 &amp; rarr; 0.80 (증감 +0.70), <strong>주목: <span class="math"><em>β</em><sub>2</sub></span> = 0.70</strong></li>
+</ul>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pushpin"></span>상대위험도(Relative Risk) vs. 오즈비(Odds Ratio)</h4>
+</div>
+<div class="panel-body">
+<p>관심있는 집단과 그렇지 않은 집단의 모집단 정보를 아는 경우 상대위험도를 사용하고, 그렇지 않은 경우 오즈비를 사용한다. 참고: <a href="http://tip.daum.net/openknow/65887671">왜 오즈비(odds ratio) vs 상대 위험도(relative risk) 를 만들었을까?</a></p>
+</div>
+</aside>
+<h4 id="종속변수-사례간-심각한-불균형">3.3.2. 종속변수 사례간 심각한 불균형</h4>
+<p>많은 경우 이항회귀모형을 구축할 경우 종속변수 사례간 심각한 불균형이 발생한다. 즉, 이항회귀모형을 사용하여 사기탐지모형(Fraud Detection Model), 부도예측모형(Default Prediction Model), 공장기계고장예측 모형 등을 예측하는데 대부분의 경우 정상 사례가 90% 이상이고 관심있는 사례가 1%가 되지 않는 경우도 많다.</p>
+<p>정상 사례와 비정상 사례가 과도하게 불균형인 경우 이항회귀모형을 적합하게 되면 다음과 같은 문제점이 발생된다.</p>
+<p><img src="fig/bayesian-logitstic-unbalanced-sample.png" alt="이항회귀모형 종속변수 사례 불균형" width="50%" /></p>
+<h4 id="설명변수간에-상관관계가-존재">3.3.3. 설명변수간에 상관관계가 존재</h4>
+<p>설명변수간에 다공선선이 발생하게 되면 모형의 안정성이 심히 저하되어 신뢰성이 많이 떨어지게 된다.</p>
+<p><img src="fig/bayesian-logistic-collinearity.png" alt="이항회귀모형 종속변수 사례 불균형" width="50%" /></p>
+<h4 id="설명변수간에-상호작용interaction이-존재">3.3.4. 설명변수간에 상호작용(interaction)이 존재</h4>
+<p>설명변수간에 상호작용이 존재할 경우 회귀계수를 설명에 특별한 주의가 요구된다.</p>
+<p><img src="fig/bayesian-logistic-interaction.png" alt="이항회귀모형 종속변수 사례 불균형" width="40%" /></p>
         </div>
       </div>
       </article>
