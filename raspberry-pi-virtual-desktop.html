@@ -57,6 +57,96 @@
 <li><code>run.bat</code> 파일을 실행하면 윈도우 환경에서 라즈비언을 실행할 수 있다.</li>
 </ol>
 <p><a href="https://www.youtube.com/watch?v=rj1QCSJjysM">참고: Install and Run QEMU (Raspbian Emulator) on Windows</a></p>
+<h3 id="부랑자vagrant-가상-컴퓨터-접속">2. 부랑자(Vagrant) 가상 컴퓨터 접속</h3>
+<ol style="list-style-type: decimal">
+<li>작업 디렉토리를 생성하고 해당 디렉토리로 이동한다. <code>mkdir vagrant-directory</code>, <code>cd vagrant-directory</code>가 명령어가 된다.</li>
+<li>원하는 가상상자 이미지를 다운로드한다. 많이 검색하는 사이트는 다음과 같다.
+<ul>
+<li>(Vagrantbox.es)[http://www.vagrantbox.es/]</li>
+<li>(http://atlas.hashicorp.com)[https://atlas.hashicorp.com/boxes/search]</li>
+</ul></li>
+<li><code>vagrant init ARTACK/debian-jessie</code> 으로 초기화한다.</li>
+<li><code>vagrant box add ARTACK/debian-jessie</code> + URL을 조합하여 다운로드 한다.</li>
+<li><code>vagrant up</code> 명령어로 데비안 제시 버젼 리눅스 가상상자를 실행한다.</li>
+<li><code>vagrant ssh</code> 명령어로 로그인한다.</li>
+</ol>
+<pre class="shell"><code>[xwmooc:~ ] $ mkdir vagrant-directory
+[xwmooc:~ ] $ cd vagrant-directory/
+[xwmooc:~/vagrant-directory ] $ vagrant init ARTACK/debian-jessie</code></pre>
+<pre class="output"><code>A `Vagrantfile` has been placed in this directory. You are now
+ready to `vagrant up` your first virtual environment! Please read
+the comments in the Vagrantfile as well as documentation on
+`vagrantup.com` for more information on using Vagrant.</code></pre>
+<pre class="shell"><code>[xwmooc:~/vagrant-directory ] $ vagrant box add ARTACK/debian-jessie https://atlas.hashicorp.com/ARTACK/boxes/debian-jessie</code></pre>
+<pre class="shell"><code>[xwmooc:~/vagrant-directory ] $ vagrant up
+[xwmooc:~/vagrant-directory ] $ vagrant ssh</code></pre>
+<pre class="outpu"><code>The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Fri Jul  3 11:17:55 2015 from 10.80.50.110
+vagrant@debian:~$</code></pre>
+<pre class="shell"><code>[xwmooc:~/vagrant-directory ] $ sudo apt-get update
+[xwmooc:~/vagrant-directory ] $ sudo apt-get install apache2</code></pre>
+<p><code>Vagrantfile</code>을 열어 사설 네트워크 주석을 해제하고 저장한다. 웹브라우져를 열고 주소창에 <code>192.168.33.10</code> 주소를 입력하면 웹서비스가 정상 작동하는 것을 확인할 수 있다.</p>
+<pre class="shell"><code>config.vm.network &quot;private_network&quot;, ip: &quot;192.168.33.10&quot;</code></pre>
+<p><img src="fig/virtual-vagrant-apache.png" width="50%" /></p>
+<p><a href="https://www.youtube.com/watch?v=ZGUEjZckijA">참고: Vagrant Beginner (Part 1)</a></p>
+<h3 id="소프트웨어-카페트리-워크샵-툴체인-설치">2. 소프트웨어 카페트리 워크샵 툴체인 설치</h3>
+<h4 id="루분투-소프트웨어-카펜트리-가상상자-설치-방법">2.1. 루분투 소프트웨어 카펜트리 가상상자 설치 방법</h4>
+<ol style="list-style-type: decimal">
+<li>가상상자를 설치한다.</li>
+<li>소프트웨어 카펜트리 가상 파일을 <a href="https://docs.google.com/uc?id=0B4Kr6DYkzkQtd05FekRId05DLXM&amp;export=download">다운로드</a>한다. 다운로드 파일 명칭은 <code>swc_lubuntu.ova</code>이다.</li>
+<li><code>파일</code> → <code>가상 시스템 가져오기</code>(Import Appliance)를 선택하고 VM을 가져와서 적재한다.
+<ul>
+<li>다운로드한 파일은 <strong>OVF(열린 가상화 형식)</strong> 확장자를 갖는다.</li>
+</ul></li>
+</ol>
+<p><a href="http://software-carpentry.org/workshops/setup.html">참조: 소프트웨어 카펜트리 워크샵 환경설정</a></p>
+<h4 id="부랑자-소프트웨어-카펜트리-설치-방법">2.2. 부랑자 소프트웨어 카펜트리 설치 방법</h4>
+<ol style="list-style-type: decimal">
+<li>가상상자와 부랑자를 설치한다.
+<ul>
+<li><code>sudo apt-get install virtualbox vagrant</code></li>
+</ul></li>
+<li><a href="https://github.com/cfriedline/vagrant-swc">vagrant-swc</a>에 접속해서 <code>Vagrantfile</code>을 복제한다.
+<ul>
+<li><code>git clone git@github.com:cfriedline/vagrant-swc.git</code></li>
+</ul></li>
+<li>Git 복제한 디렉토리로 이동한다.
+<ul>
+<li><code>cd vagrant-swc</code></li>
+</ul></li>
+<li><code>vagrant up</code> 명령어를 실행한다.</li>
+<li><code>vagrant ssh</code> 명령어로 접속한다.</li>
+</ol>
+<p>소프트웨어 카펜트리 워크샵을 위한 툴체인 구축 쉘스크립트(<code>setup.sh</code>)는 다음과 같다.</p>
+<pre class="shell"><code>#!/bin/bash
+
+# Update the OS and install Software Carpentry requirements
+sudo apt-get update -y
+sudo apt-get dist-upgrade -y 
+sudo apt-get install -y git sqlite3 zsh r-base 
+
+# Install/update Anaconda and adjust environment
+ANACONDA_HOME=$HOME/anaconda
+wget http://repo.continuum.io/archive/Anaconda-2.0.1-Linux-x86_64.sh
+bash Anaconda-2.0.1-Linux-x86_64.sh -b -p $ANACONDA_HOME
+echo &quot;PATH=$ANACONDA_HOME/bin:$PATH&quot; &gt;&gt; ~/.bashrc
+echo &quot;export PATH&quot; &gt;&gt; ~/.bashrc
+$ANACONDA_HOME/bin/conda update --yes conda
+$ANACONDA_HOME/bin/conda update --yes anaconda
+
+# Make IPython notebook start at boot
+sudo sh -c &quot;echo &#39;cd /vagrant &amp;&amp; $ANACONDA_HOME/bin/ipython notebook --ip=* --no-browser &amp;&#39; &gt; /etc/rc.local&quot;
+sudo sh -c &quot;echo &#39;exit 0&#39; &gt;&gt; /etc/rc.local&quot;
+
+# Restart
+sudo reboot</code></pre>
+<p><img src="fig/virtual-vagrant-swc.png" width="50%" /></p>
+<p><a href="https://github.com/cfriedline/vagrant-swc">참고: vagrant-swc GitHub</a></p>
         </div>
       </div>
       </article>

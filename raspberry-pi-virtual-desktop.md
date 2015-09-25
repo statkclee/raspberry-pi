@@ -19,3 +19,129 @@ minutes: 10
 1. `run.bat` 파일을 실행하면 윈도우 환경에서 라즈비언을 실행할 수 있다.
 
 [참고: Install and Run QEMU (Raspbian Emulator) on Windows](https://www.youtube.com/watch?v=rj1QCSJjysM)
+
+### 2. 부랑자(Vagrant) 가상 컴퓨터 접속
+
+1. 작업 디렉토리를 생성하고 해당 디렉토리로 이동한다. `mkdir vagrant-directory`, `cd vagrant-directory`가 명령어가 된다.
+1. 원하는 가상상자 이미지를 다운로드한다. 많이 검색하는 사이트는 다음과 같다.
+    - (Vagrantbox.es)[http://www.vagrantbox.es/] 
+    - (http://atlas.hashicorp.com)[https://atlas.hashicorp.com/boxes/search]
+1. `vagrant init ARTACK/debian-jessie` 으로 초기화한다.
+1. `vagrant box add ARTACK/debian-jessie` + URL을 조합하여 다운로드 한다.
+1. `vagrant up` 명령어로 데비안 제시 버젼 리눅스 가상상자를 실행한다.
+1. `vagrant ssh` 명령어로 로그인한다.
+
+~~~ {.shell}
+[xwmooc:~ ] $ mkdir vagrant-directory
+[xwmooc:~ ] $ cd vagrant-directory/
+[xwmooc:~/vagrant-directory ] $ vagrant init ARTACK/debian-jessie
+~~~
+
+~~~ {.output}
+A `Vagrantfile` has been placed in this directory. You are now
+ready to `vagrant up` your first virtual environment! Please read
+the comments in the Vagrantfile as well as documentation on
+`vagrantup.com` for more information on using Vagrant.
+~~~
+
+~~~ {.shell}
+[xwmooc:~/vagrant-directory ] $ vagrant box add ARTACK/debian-jessie https://atlas.hashicorp.com/ARTACK/boxes/debian-jessie
+~~~
+
+~~~{.shell}
+[xwmooc:~/vagrant-directory ] $ vagrant up
+[xwmooc:~/vagrant-directory ] $ vagrant ssh
+~~~
+
+~~~ {.outpu}
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Fri Jul  3 11:17:55 2015 from 10.80.50.110
+vagrant@debian:~$
+~~~
+
+~~~ {.shell}
+[xwmooc:~/vagrant-directory ] $ sudo apt-get update
+[xwmooc:~/vagrant-directory ] $ sudo apt-get install apache2
+~~~
+
+`Vagrantfile`을 열어 사설 네트워크 주석을 해제하고 저장한다. 웹브라우져를 열고 주소창에 `192.168.33.10` 주소를 입력하면 웹서비스가 정상 작동하는 것을 확인할 수 있다.
+
+~~~ {.shell}
+config.vm.network "private_network", ip: "192.168.33.10"
+~~~
+
+<img src="fig/virtual-vagrant-apache.png" width="50%" />
+
+[참고: Vagrant Beginner (Part 1)](https://www.youtube.com/watch?v=ZGUEjZckijA)
+
+### 2. 소프트웨어 카페트리 워크샵 툴체인 설치
+
+#### 2.1. 루분투 소프트웨어 카펜트리 가상상자 설치 방법
+
+1. 가상상자를 설치한다.
+1. 소프트웨어 카펜트리 가상 파일을 [다운로드](https://docs.google.com/uc?id=0B4Kr6DYkzkQtd05FekRId05DLXM&export=download)한다. 다운로드 파일 명칭은 `swc_lubuntu.ova`이다.
+1. `파일` &rarr; `가상 시스템 가져오기`(Import Appliance)를 선택하고 VM을 가져와서 적재한다.
+    - 다운로드한 파일은 **OVF(열린 가상화 형식)** 확장자를 갖는다.
+
+[참조: 소프트웨어 카펜트리 워크샵 환경설정](http://software-carpentry.org/workshops/setup.html)
+
+#### 2.2. 부랑자 소프트웨어 카펜트리 설치 방법
+
+1. 가상상자와 부랑자를 설치한다.
+    - `sudo apt-get install virtualbox vagrant`
+1. [vagrant-swc](https://github.com/cfriedline/vagrant-swc)에 접속해서 `Vagrantfile`을 복제한다.
+    - `git clone git@github.com:cfriedline/vagrant-swc.git`
+1. Git 복제한 디렉토리로 이동한다.
+    - `cd vagrant-swc`
+1. `vagrant up` 명령어를 실행한다.
+1. `vagrant ssh` 명령어로 접속한다.
+
+소프트웨어 카펜트리 워크샵을 위한 툴체인 구축 쉘스크립트(`setup.sh`)는 다음과 같다.
+
+~~~ {.shell}
+#!/bin/bash
+
+# Update the OS and install Software Carpentry requirements
+sudo apt-get update -y
+sudo apt-get dist-upgrade -y 
+sudo apt-get install -y git sqlite3 zsh r-base 
+
+# Install/update Anaconda and adjust environment
+ANACONDA_HOME=$HOME/anaconda
+wget http://repo.continuum.io/archive/Anaconda-2.0.1-Linux-x86_64.sh
+bash Anaconda-2.0.1-Linux-x86_64.sh -b -p $ANACONDA_HOME
+echo "PATH=$ANACONDA_HOME/bin:$PATH" >> ~/.bashrc
+echo "export PATH" >> ~/.bashrc
+$ANACONDA_HOME/bin/conda update --yes conda
+$ANACONDA_HOME/bin/conda update --yes anaconda
+
+# Make IPython notebook start at boot
+sudo sh -c "echo 'cd /vagrant && $ANACONDA_HOME/bin/ipython notebook --ip=* --no-browser &' > /etc/rc.local"
+sudo sh -c "echo 'exit 0' >> /etc/rc.local"
+
+# Restart
+sudo reboot
+~~~
+
+<img src="fig/virtual-vagrant-swc.png" width="50%" />
+
+[참고: vagrant-swc GitHub](https://github.com/cfriedline/vagrant-swc)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
