@@ -79,59 +79,6 @@ config.vm.network "private_network", ip: "192.168.33.10"
 
 [참고: Vagrant Beginner (Part 1)](https://www.youtube.com/watch?v=ZGUEjZckijA)
 
-### 2. 소프트웨어 카페트리 워크샵 툴체인 설치
-
-#### 2.1. 루분투 소프트웨어 카펜트리 가상상자 설치 방법
-
-1. 가상상자를 설치한다.
-1. 소프트웨어 카펜트리 가상 파일을 [다운로드](https://docs.google.com/uc?id=0B4Kr6DYkzkQtd05FekRId05DLXM&export=download)한다. 다운로드 파일 명칭은 `swc_lubuntu.ova`이다.
-1. `파일` &rarr; `가상 시스템 가져오기`(Import Appliance)를 선택하고 VM을 가져와서 적재한다.
-    - 다운로드한 파일은 **OVF(열린 가상화 형식)** 확장자를 갖는다.
-
-[참조: 소프트웨어 카펜트리 워크샵 환경설정](http://software-carpentry.org/workshops/setup.html)
-
-#### 2.2. 부랑자 소프트웨어 카펜트리 설치 방법
-
-1. 가상상자와 부랑자를 설치한다.
-    - `sudo apt-get install virtualbox vagrant`
-1. [vagrant-swc](https://github.com/cfriedline/vagrant-swc)에 접속해서 `Vagrantfile`을 복제한다.
-    - `git clone git@github.com:cfriedline/vagrant-swc.git`
-1. Git 복제한 디렉토리로 이동한다.
-    - `cd vagrant-swc`
-1. `vagrant up` 명령어를 실행한다.
-1. `vagrant ssh` 명령어로 접속한다.
-
-소프트웨어 카펜트리 워크샵을 위한 툴체인 구축 쉘스크립트(`setup.sh`)는 다음과 같다.
-
-~~~ {.shell}
-#!/bin/bash
-
-# Update the OS and install Software Carpentry requirements
-sudo apt-get update -y
-sudo apt-get dist-upgrade -y 
-sudo apt-get install -y git sqlite3 zsh r-base 
-
-# Install/update Anaconda and adjust environment
-ANACONDA_HOME=$HOME/anaconda
-wget http://repo.continuum.io/archive/Anaconda-2.0.1-Linux-x86_64.sh
-bash Anaconda-2.0.1-Linux-x86_64.sh -b -p $ANACONDA_HOME
-echo "PATH=$ANACONDA_HOME/bin:$PATH" >> ~/.bashrc
-echo "export PATH" >> ~/.bashrc
-$ANACONDA_HOME/bin/conda update --yes conda
-$ANACONDA_HOME/bin/conda update --yes anaconda
-
-# Make IPython notebook start at boot
-sudo sh -c "echo 'cd /vagrant && $ANACONDA_HOME/bin/ipython notebook --ip=* --no-browser &' > /etc/rc.local"
-sudo sh -c "echo 'exit 0' >> /etc/rc.local"
-
-# Restart
-sudo reboot
-~~~
-
-<img src="fig/virtual-vagrant-swc.png" width="50%" />
-
-[참고: vagrant-swc GitHub](https://github.com/cfriedline/vagrant-swc)
-
 
 
 

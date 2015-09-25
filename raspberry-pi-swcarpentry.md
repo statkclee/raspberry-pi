@@ -1,28 +1,28 @@
 ---
 layout: page
-title: 라즈베리 파이
-subtitle: 소프트웨어 카펜트리 이미지
+title:  xwMOOC 컴퓨터
+subtitle: 소프트웨어 카펜트리 가상 개발환경
 minutes: 10
 ---
 
 > ### 학습 목표 {.objectives}
 >
+> *  소프트웨어 카펜트리 툴체인 소개
+> *  소프트웨어 카펜트리 가상 개발환경 가상상자 및 부랑자 설치
 > *  라즈베리 파이를 소프트웨어 카펜트리 교육에 사용할 이미지 생성
 
 ### 1. 소프트웨어 카펜트리란?
 
-#### 1.1. Ideas
+#### 1.1. 소프트웨어 카펜트리 소개 원문
 
 *  [Introducing Software Carpentry](http://swcarpentry.github.io/slideshows/introducing-software-carpentry/index.html)
 *  [Software Carpentry: Lessons Learned](http://swcarpentry.github.io/slideshows/lessons-learned/index.html)
 *  [Best Practices for Scientific Computing](http://swcarpentry.github.io/slideshows/best-practices/index.html)
 
-#### 1.2. Tutorials
+- 소프트웨어 카펜트리 MOOC (2010)
+    *  [SW Carpentry Version 4](http://software-carpentry.org/lessons.html)
 
-*  [Creating a Workshop Website](http://swcarpentry.github.io/slideshows/creating-website/index.html)
-*  [Creating a Lesson](http://swcarpentry.github.io/slideshows/creating-lesson/index.html)
-
-#### 1.3. 대한민국 소프트웨어 카펜트리 
+#### 1.2. 대한민국 소프트웨어 카펜트리 
 
 - [파이콘 2015 라이트닝 토크](http://www.pycon.kr/2015/program/77)
     * [한국에서 소프트웨어 카펜트리 1년...](./korea/index.html)  
@@ -35,19 +35,11 @@ minutes: 10
     *  [연세대학교](http://statkclee.github.io/2015-06-29-yonsei/)
     *  [나노종합기술원 대전창조경제혁신센터](http://statkclee.github.io/2015-08-20-daejeon/)
 
-#### 1.4.  DIY 소프트웨어 카펜터 과정
-
-- 소프트웨어 카펜트리 MOOC (2010)
-    *  [SW Carpentry Version 4](http://software-carpentry.org/lessons.html)
-
 ### 2. 소프트웨어 카펜트리 툴체인(Tool chain)
 
-소프트웨어 카펜트리 워크샵에는 소프트웨어 전반적인 교육을 위해서 유닉스 기반 다양한 소프트웨어가 사용된다. 이를 라즈베리 파이 라즈비언 위에 구현한다. 
+소프트웨어 카펜트리 워크샵에는 소프트웨어 전반적인 교육을 위해서 리눅스 기반 다양한 소프트웨어가 사용되고 툴체인을 구성한다.
 
-> #### [라즈비언](https://www.raspberrypi.org/downloads/noobs/) NOOBS {.callout}
-> NOOBS에 포함된 라즈비언 데비언 위지(Debian Wheezy), 커널 버젼 3.18 기준.
-> - 버젼: 1.4.1.
-> - 출시일: 2015-05-11
+#### 2.1. 작업 자동화와 프로그래밍을 위한 주요 소프트웨어 
 
 - 유닉스 쉘 &nbsp;&rArr; 작업자동화
     - 윈도우에서 유닉스 쉘 대용으로 사용되는 [Git Bash](https://git-for-windows.github.io/)가 라즈비언에는 배쉬 쉘(Bash Shell)이 기본으로 장착되어 있다.
@@ -64,12 +56,12 @@ minutes: 10
     - 효과적인 과학기술 컴퓨팅을 위해 아나콘다(Anaconda)를 설치한다.
         - [Continuum Analytics](http://continuum.io/downloads) 웹사이트에서 리눅스 펭귄 턱스를 클릭하여 파이썬 2, 파이썬 3 버젼에 맞춰 다운로드 한후 `bash` 명령어로 설치한다.
         - 라즈베리 파이 2는 32비트 컴퓨터로 가능하면 32비트 버젼을 다운로드 받는다.
-        - 디렉토리를 지정하야 하는데 디폴트 기본설정으로 `/home/pi/anaconda3/` 디렉토리가 지정된다. 만약 파이썬 2 아나콘다를 다운로드하면 기본 디렉토리가 `/home/pi/anaconda/`로 된다. 하지만, 설치가 안된다.
+        - 디렉토리를 지정하야 하는데 디폴트 기본설정으로 `/home/pi/anaconda3/` 디렉토리가 지정된다. 만약 파이썬 2 아나콘다를 다운로드하면 기본 디렉토리가 `/home/pi/anaconda/`로 된다. 
 - SQL &nbsp;&rArr; 데이터 관리
     - `sudo apt-get install sqlite3` 명령어를 통해서 간단히 sqlite3 데이터베이스를 설치한다.
     - `sqlite3 --version` 명령어를 타이핑하면 `3.7.13 2012-06-11 02:05:22 f5b5a13f7394dc143aa136f1d4faba6839eaa6dc` 결과 출력된다.
 
-#### 2.1. 한글화 및 웹서버 관련 소프트웨어
+#### 2.2. 한글화 및 웹서버 관련 소프트웨어
 
 라즈베리 파이 기반 소프트웨어 카펜트리 교육을 위해서 한글 설정과 웹서버 및 자주 사용하는 웹브라우져를 설치한다.
 
@@ -95,9 +87,75 @@ pi@raspberrypi ~ $ sudo apt-get -y install \
                                 python-nose
 ~~~
 
-### 3. 소프트웨어 카펜트리 이미지 및 배포
 
-#### 3.1. 소프트웨어 카펜트리 이미지 생성(굽기)
+### 3. 가상 개발환경을 사용한 소프트웨어 카페트리 워크샵 툴체인 설치
+
+ARM 계열 라즈베리 파이나 x86 인텔 계열 하드웨어 상에 기본 운영체제를 두고 소프트웨어 카펜트리 툴체인을 구축하는 것도 가능하지만, 하드웨어가 바뀔 때마다 매번 동일한 작업을 반복하는 것도 좋은 접근방법이 아니고, 특정 하드웨어에 맞춰 설치를 하게 되면 일반화가 어렵고, 귀중한 시간을 낭비하는 좋지 못한 경험을 할 수도 있다. 이와 같이 소프트웨어를 설치한다고 하더라도 반듯이 과학 컴퓨팅을 위한 **모든 소프트웨어를 설치한다는 보장도 없다**.
+
+#### 3.1. 루분투 소프트웨어 카펜트리 가상상자 설치 방법
+
+[소프트웨어 카펜트리](http://software-carpentry.org/)에서 워크샵을 위해서 만들어 놓은 가상상자 이미지를 가져와서 툴체인을 설치한다.
+
+1. 가상상자를 설치한다.
+    - 윈도우 가상상자 설치방법 : [버추얼박스(VirtualBox) 완벽 설치](http://niceit.tistory.com/187)
+    - 리눅스 계열 가상상자 설치방법 : `sudo apt-get install virtualbox`
+1. 소프트웨어 카펜트리 가상 파일을 [다운로드](https://docs.google.com/uc?id=0B4Kr6DYkzkQtd05FekRId05DLXM&export=download)한다. 다운로드 파일 명칭은 `swc_lubuntu.ova`이다.
+1. `파일` &rarr; `가상 시스템 가져오기`(Import Appliance)를 선택하고 VM을 가져와서 적재한다.
+    - 다운로드한 파일은 **OVF(열린 가상화 형식)** 확장자를 갖는다.
+
+[참조: 소프트웨어 카펜트리 워크샵 환경설정](http://software-carpentry.org/workshops/setup.html)
+
+#### 2.2. 부랑자 소프트웨어 카펜트리 설치 방법
+
+루분투 소프트웨어 카펜트리 이미지는 주어진 것이 때문에 한번 생성된 뒤 매번 복사한다는 느낌이다. 반면에 부랑자는 동일한 리눅스 계열 이미지라고 하더라도 설치 시점의 최신 버젼 리눅스를 가져오고 이를 기반으로 해서 소프트웨어 카펜트리 워크샵 툴체인을 위한 소프트웨어를 설치하는 유연성이 있다. 
+
+설치되는 소프트웨어와 환경은 `Vagrantfile` 파일에 담겨 있어서 본인의 환경에 맞춰 유연하게 구성할 수 있는 장점이 있는 반면 추가로 시간을 들여 관련 내용을 학습할 필요가 있다.
+
+1. 가상상자와 부랑자를 설치한다.
+    - 윈도우 : [윈도에서 Vagrant-VirtualBox 설치하기](https://www.youtube.com/watch?v=1lgUtcu-03Y)
+    - 리눅스 : `sudo apt-get install virtualbox vagrant`
+1. [vagrant-swc](https://github.com/cfriedline/vagrant-swc)에 접속해서 `Vagrantfile`을 복제한다.
+    - `git clone git@github.com:cfriedline/vagrant-swc.git`
+1. Git 복제한 디렉토리로 이동한다.
+    - `cd vagrant-swc`
+1. `vagrant up` 명령어를 실행한다.
+1. `vagrant ssh` 명령어로 접속한다.
+
+소프트웨어 카펜트리 워크샵을 위한 툴체인 구축 쉘스크립트(`setup.sh`)는 다음과 같다.
+
+~~~ {.shell}
+#!/bin/bash
+
+# Update the OS and install Software Carpentry requirements
+sudo apt-get update -y
+sudo apt-get dist-upgrade -y 
+sudo apt-get install -y git sqlite3 zsh r-base 
+
+# Install/update Anaconda and adjust environment
+ANACONDA_HOME=$HOME/anaconda
+wget http://repo.continuum.io/archive/Anaconda-2.0.1-Linux-x86_64.sh
+bash Anaconda-2.0.1-Linux-x86_64.sh -b -p $ANACONDA_HOME
+echo "PATH=$ANACONDA_HOME/bin:$PATH" >> ~/.bashrc
+echo "export PATH" >> ~/.bashrc
+$ANACONDA_HOME/bin/conda update --yes conda
+$ANACONDA_HOME/bin/conda update --yes anaconda
+
+# Make IPython notebook start at boot
+sudo sh -c "echo 'cd /vagrant && $ANACONDA_HOME/bin/ipython notebook --ip=* --no-browser &' > /etc/rc.local"
+sudo sh -c "echo 'exit 0' >> /etc/rc.local"
+
+# Restart
+sudo reboot
+~~~
+
+<img src="fig/virtual-vagrant-swc.png" width="50%" />
+
+[참고: vagrant-swc GitHub](https://github.com/cfriedline/vagrant-swc)
+
+
+### 4. 소프트웨어 카펜트리 이미지 및 배포
+
+#### 4.1. 소프트웨어 카펜트리 이미지 생성(굽기)
 
 라즈베리 파이를 이용한 소프트웨어 카펜트리 워크샵 소프트웨어 교육 환경을 구축했으면 이를 이미지로 만들어서 동일한 교육환경을 배포한다.
 
@@ -109,14 +167,18 @@ pi@raspberrypi ~ $ sudo apt-get -y install \
 
 <img src="fig/raspberry-pi-swcarpentry-img.png" width="50%" />
 
+> #### [라즈비언](https://www.raspberrypi.org/downloads/noobs/) NOOBS {.callout}
+> NOOBS에 포함된 라즈비언 데비언 위지(Debian Wheezy), 커널 버젼 3.18 기준.
+> - 버젼: 1.4.1.
+> - 출시일: 2015-05-11
 참조: [라즈베리파이 기초 강좌 : SD메모리카드 이미지 백업하기](http://www.rasplay.org/?p=1630)
 
 > #### 소프트웨어 카펜트리 워크샵 소프트웨어 이미지 다운로드 {.callout}
-> 제작된 소프트웨어 카펜트리 워크샵 소프트웨어 교육을 위한 이미지는 구글 드라이브에 공유되어 있습니다.
+> 제작된 소프트웨어 카펜트리 워크샵 소프트웨어 교육을 위한 이미지는 구글 드라이브에 공유 예정입니다.
 >
-> [다운로드: SWCarpentry 버젼 5.2. 파이썬 2 기준]() 
+> [다운로드: SWCarpentry 버젼 5.2. 파이썬 2 기준 (공유 예정)]() 
 
-#### 3.2. 소프트웨어 카펜트리 이미지 넣기
+#### 4.2. 소프트웨어 카펜트리 이미지 넣기
 
 1. [Win32 Disk Imager](http://sourceforge.net/projects/win32diskimager/)를 실행한다.
     - 이미지를 생성하고 생성된 이미지를 마이크로 SD카드에 넣는 역할을 윈도우에서 수행하는 프로그램이다.
@@ -130,11 +192,7 @@ pi@raspberrypi ~ $ sudo apt-get -y install \
 > 라즈베리 파이 하드웨어는 ARM 계열이라 인텔계열 소프트웨어가 설치가 되지 않는다.
 > 따라서, 아나콘다를 바로 라즈베리 파이에 설치가 되지 않아 다른 방법을 모색한다.
 
-준비 중.... 
-~~~ {.shell}
-pi@raspberrypi ~ $ sudo rpi-update
-pi@raspberrypi ~ $ wget https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda3-2.3.0-Linux-x86.sh
-pi@raspberrypi ~ $ bash Anaconda3-2.3.0-Linux-x86.sh
-~~~
-
 참조: [Remote IPython notebook with Raspberry Pi](https://arundurvasula.wordpress.com/2014/04/01/remote-ipython-notebook-with-raspberry-pi/)
+
+
+
