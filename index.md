@@ -19,8 +19,6 @@ title: xwMOOC 컴퓨터
 > [소프트웨어 카펜트리](http://www.xwmooc.net/swcarpentry/)
 > [R 팩키지](http://r-pkgs.xwmooc.net/)
 
-
-
 ## 학습주제
 		
 1.  [라즈베리 파이](raspberry-pi-intro.html)
@@ -52,4 +50,5 @@ title: xwMOOC 컴퓨터
     - [AWS 정적 웹 서비스 최적화](aws-static-web-optimization.html)
     - [도커](aws-docker.html)
 1.  [베이즈안 R](bayesian-r.html)
+1.  [스타트업](startup.html)
 
