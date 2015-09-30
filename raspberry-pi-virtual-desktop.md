@@ -9,6 +9,10 @@ minutes: 10
 >
 > * 라즈베리 파이를 가상화한다.
 
+### 1. 라즈베리 파이 과학 컴퓨팅 툴체인 구축
+
+
+[참고: 라즈베리 파이에 Python Anaconda, IPython-notebook, PIP 설치 방법](http://gongnorina.tistory.com/42)
 
 ### 1. 라즈비언 데스트톱 가상화
 

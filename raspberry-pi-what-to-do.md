@@ -1,6 +1,6 @@
 ---
 layout: page
-title: R 파이썬 소프트레이어 클라우드, xwMOOC
+title: xwMOOC 컴퓨터
 subtitle: 라즈베리파이로 할 수 있는 것들
 minutes: 10
 ---

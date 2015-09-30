@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 컴퓨터</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 컴퓨터</h1>
+          <h2 class="subtitle">라즈베리 파이 가상화 환경</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>라즈베리 파이 가상화 환경에 대해 이해한다.</li>
+</ul>
+</div>
+</section>
+<p><img src="fig/raspberry-pi-virtualization-stack.png" width="77%" alt="가상화 툴체인" /></p>
+<h3 id="라즈비언-가상화-설치">1. 라즈비언 가상화 설치</h3>
+<p>라즈베리 파이 하드웨어가 아닌 노트북이나 개인용 컴퓨터에 가상상자와 부랑자를 사용해서 라즈비언을 설치하는 것이 필요한 이유가 있다. 라즈베리 파이 하드웨어에서 리눅스 커널을 컴파일 작업을 할 경우 상대적으로 부족한 컴퓨팅 자원으로 인해서 시간이 매우 많이 소요되고 관심있는 실험을 추진하는 것이 비용과 시간이 많이 들 수 있다.</p>
+<p>가상컴퓨터에 라즈비언 운영체제를 설치하고 간단한 실험을 마친 후에 라즈베리 파이 하드웨어에 최종 작업 결과물을 넣는 것도 한가지 좋은 대안이 될 수 있다.</p>
+<p><img src="fig/raspberry-pi-virtualization-raspbian.png" width="77%" alt="가상화 툴체인" /></p>
+<h4 id="gemu-에뮬레이터-사용-라즈비언-설치">1.1. GEMU 에뮬레이터 사용 라즈비언 설치</h4>
+<p><a href="http://www.pcsteps.com/1199-raspberry-pi-emulation-for-windows-qemu/">참고: Raspberry Pi Emulation for Windows with QEMU</a></p>
+<h4 id="가상상자에-라즈비언-설치-2013년-01월">1.2. 가상상자에 라즈비언 설치 (2013년 01월)</h4>
+<ol style="list-style-type: decimal">
+<li>라즈베리 파이 가상상자 <code>.ova</code> 파일을 찾는다.
+<ul>
+<li><a href="http://www.utorrent.com/">utorrent</a> 같은 P2P 다운로드 프로그램이 필요할 수 있다.</li>
+<li><a href="http://ediy.com.my/index.php/blog/item/52-virtualbox-raspberry-pi-emulator">토렌트 다운로드</a> 파일 참조</li>
+<li>엘리먼트14 <a href="http://downloads.element14.com/downloads/RaspberryPi-Development-VM-v0.8.ova?COM=RaspberryPi">RaspberryPi-Development-VM-v0.8.ova</a> 파일을 다운로드한다.</li>
+</ul></li>
+<li><code>File</code> → <code>Import Appliance</code> 명령어로 다운로드 받은 <code>.ova</code> 이미지를 가져온다.
+<ul>
+<li>토렌트에서 받은 것은 라즈비언 이미지 보다는 오래된 리눅스 이미지로 보면 된다.</li>
+<li>엘리먼트14 <code>.ova</code> 파일은 거의 9 GB로 크다.</li>
+</ul></li>
+</ol>
+<ul>
+<li><a href="http://ediy.com.my/index.php/blog/item/52-virtualbox-raspberry-pi-emulator">참고: Virtualbox Raspberry Pi Emulator</a></li>
+<li><a href="https://thecustomizewindows.com/2015/03/raspberry-pi-virtual-appliance-emulation-on-os-x/">참고: Raspberry Pi Virtual Appliance on OS X</a></li>
+</ul>
+<h4 id="adafruit-라즈베리-파이-kernel-o-matic">1.3. Adafruit 라즈베리 파이 Kernel-o-Matic</h4>
+<p><a href="https://github.com/adafruit/Adafruit-Pi-Kernel-o-Matic">Raspberry Pi Kernel-o-Matic</a>을 사용해서 맞춤형 커널을 신속하게 생성할 수 있다.</p>
+<ol style="list-style-type: decimal">
+<li>의존성 설치</li>
+<li>가상상자 시작</li>
+<li>커널 만들기</li>
+<li>커널 라즈베리 파이 설치</li>
+</ol>
+<p><a href="https://learn.adafruit.com/raspberry-pi-kernel-o-matic">참고: Raspberry Pi Kernel-o-Matic</a></p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
