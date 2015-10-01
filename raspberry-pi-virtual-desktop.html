@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Software Carpentry: </title>
+    <title>Software Carpentry: xwMOOC 컴퓨터</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -37,18 +37,176 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <h1 class="title"></h1>
-          
+          <h1 class="title">xwMOOC 컴퓨터</h1>
+          <h2 class="subtitle">라즈베리 파이 가상화 - 데스크톱</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
 <h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
-<li>라즈베리 파이를 가상화한다.</li>
+<li>가상화 라즈베리 파이 과학 컴퓨팅 환경을 실물 라즈베리 파이 하드웨어에 설치한다.</li>
+<li>최소 라즈비언 운영체제 기반 주피터를 통합개발환경으로 설정한다.</li>
+<li><code>Pandoc</code>, <code>LaTeX</code>, 파이썬으로 과학 컴퓨팅 핵심 툴체인을 구축한다.</li>
+<li>기계학습, 데이터 과학 등 최신 과학 컴퓨팅 최신 팩키지도 함께 설치한다.</li>
 </ul>
 </div>
 </section>
+<p><img src="fig/raspberry-pi-desktop-toolchain.png" width="70%" /></p>
+<section class="getready panel panel-warning">
+<div class="panel-heading">
+<h3><span class="glyphicon glyphicon-check"></span>라즈베리 파이 과학 툴체인 구축 준비물</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li><a href="https://github.com/debian-pi/raspbian-ua-netinst">Raspbian (minimal) unattended netinstaller</a></li>
+<li><a href="https://www.python.org/">파이썬(Python)</a></li>
+<li><a href="https://www.latex-project.org/">레이텍(LaTeX)</a></li>
+<li><a href="http://pandoc.org/">팬독(Pandoc)</a></li>
+<li><a href="https://www.continuum.io/">아나콘다(Anaconda)</a></li>
+<li><a href="https://github.com/kleinee/jns">Jupyter notebook server on Raspberry Pi</a></li>
+</ul>
+</div>
+</section>
+<h3 id="최소사양-라즈비안-설치">1. 최소사양 라즈비안 설치</h3>
+<p><a href="https://github.com/debian-pi/raspbian-ua-netinst">Raspbian (minimal) unattended netinstaller</a>을 다운로드 한다. (최소) 무인 네트워크를 통해서 라즈비언을 설치할 수 있다.<br />다운로드 받은 <a href="https://github.com/debian-pi/raspbian-ua-netinst/releases/download/v1.0.7/raspbian-ua-netinst-v1.0.7.zip">raspbian-ua-netinst-v1.0.7.zip</a> 파일 크기가 17MB에 불과하다.</p>
+<h3 id="라즈베리-파이를-주피터-서버로-만들기">2. 라즈베리 파이를 주피터 서버로 만들기</h3>
+<h4 id="최소사양-라즈비언을-설치한다.">2.1. 최소사양 라즈비언을 설치한다.</h4>
+<ul>
+<li>최소사양 라즈비언을 다운로드 붇아 SD카드에 넣는다.
+<ul>
+<li><a href="https://www.sdcard.org/downloads/formatter_4/">SD카드 포맷터</a>를 사용해서 포맷한다.</li>
+<li><a href="https://github.com/debian-pi/raspbian-ua-netinst/releases/tag/v1.0.7">최소사양 GitHub 사이트</a>에서 환경에 맞는 파일을 다운로드 한다.</li>
+<li>압축을 풀어 SD카드에 복사하여 붙여넣는다.</li>
+</ul></li>
+<li>SD카드에서 신규로 <code>installer-config.txt</code> 파일을 생성하고 필요한 설정을 한다.</li>
+</ul>
+<pre class="shell"><code>packages=nano,sudo,git,pandoc
+release=jessie</code></pre>
+<h4 id="최소사양-라즈비언-설치-및-환경설정">2.2. 최소사양 라즈비언 설치 및 환경설정</h4>
+<h5 id="기본설정">2.2.1. 기본설정</h5>
+<ul>
+<li>SD카드를 라즈베리 파이에 끼워넣고 부팅하고 필요한 설정을 한다.
+<ul>
+<li>기본설정 사용자명과 비밀번호 : <strong>root</strong>, <strong>raspbian</strong></li>
+</ul></li>
+</ul>
+<pre class="shell"><code># root 비밀번호 변경
+passwd
+
+# 시간대 설정: 아시아 서울
+dpkg-reconfigure tzdata
+
+# 기본 언어 설정
+dpkg-reconfigure locales
+
+# 신규 사용자 xwmooc 추가 및 그룹에 추가 (주피터 노트북 서버)
+adduser xwmooc
+usermod -aG sudo,ssh xwmooc</code></pre>
+<h5 id="선택-설정">2.2.2. 선택 설정</h5>
+<p>기본 설정을 통해서도 충분하지만, 최신 커널과 펌웨어 설치가 필요하다고 판단되면 쉘스크립트를 실행한다.</p>
+<ul>
+<li><code>configure_disk_image.sh</code> 쉘스크립트를 생성해서 가장 최근 커널과 펌웨어 팩키지를 설정할 수 있다. <em>Raspbian (minimal) unattended netinstaller</em>에서 권장하는 내용을 <em>Eckhard Kleine</em>이 쉘스크립트를 만들었다. <code>bash configure_disk_image.sh</code> 실행한다.</li>
+</ul>
+<pre class="shell"><code>#!/bin/bash
+# configure_disk_image.sh
+# purpose: configure disk image
+# last modified: 2015/09/30
+
+if ! [ $(id -u) = 0 ]; then
+   echo &quot;to be run with sudo&quot;
+   exit 1
+fi
+
+# set up wap partition 
+target=/etc/fstab
+if ! grep -Fxq /swap $target; then
+    dd if=/dev/zero of=/swap bs=1M count=512
+    mkswap /swap
+    echo &#39;/swap none swap sw 0 0&#39; &gt;&gt; $target
+else
+    echo swap partition already configured
+fi
+
+# speed things up
+
+#------------------------------------------------------
+apt-get install -y raspi-copies-and-fills
+apt-get install -y rng-tools
+#------------------------------------------------------
+
+target=/etc/modules
+if ! grep -Fxq bcm2708-rng $target; then
+    echo bcm2708-rng &gt;&gt; $target
+else
+    echo bcm2708-rng already present
+fi</code></pre>
+<h4 id="주피터-노트북-서버-설치">2.3. 주피터 노트북 서버 설치</h4>
+<p><code>ssh</code>를 통해서 라즈베리 파이에 신규로 추가한 사용자 계정(예를 들어, <code>xwmooc</code>)으로 로그인한다.</p>
+<pre class="shell"><code>cd /home/xwmooc
+git clone https://github.com/kleinee/jns.git
+cd jns
+chmod +x *.sh
+sudo ./install_jns.sh
+### 추가 문제해결 
+sudo apt-get install python3-dev python3-pip build-essential libzmq3-dev
+sudo pip install markupsafe
+sudo apt-get install python-zmq
+sudo pip install jsonschema</code></pre>
+<p><code>install_jns.sh</code> 파일을 열어 사용자 계정(예를 들어, <code>xwmooc</code>)을 일치시킨다.</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pushpin"></span>과학 컴퓨팅 툴체인 설치 목록</h4>
+</div>
+<div class="panel-body">
+<ul>
+<li>파이썬(Python)</li>
+<li>주피터(jupyter) 및 환경 설정</li>
+<li>LaTeX</li>
+<li>과학 컴퓨팅 파이썬 팩키지
+<ul>
+<li>numpy</li>
+<li>matplotlib</li>
+<li>sympy</li>
+<li>pandas</li>
+<li>numexpr</li>
+<li>bottleneck</li>
+<li>SQLAlchemy</li>
+<li>openpyxl</li>
+<li>xlrd</li>
+<li>xlwt</li>
+<li>XlsxWriter</li>
+<li>beautifulsoup4</li>
+<li>html5lib</li>
+<li>xml</li>
+<li>requests</li>
+<li>networkx</li>
+<li>SciPy</li>
+<li>statsmodels</li>
+<li>scikit-learn</li>
+<li>seaborn</li>
+</ul></li>
+</ul>
+</div>
+</aside>
+<pre class="shell"><code># script name:     install_jns.sh
+
+if ! [ $(id -u) = 0 ]; then
+   echo &quot;to be run with sudo&quot;
+   exit 1
+fi
+
+# run scripts
+./install_python.sh
+./install_jupyter.sh
+sudo -u xwmooc ./configure_jupyter.sh
+./install_tex.sh
+./install_stack.sh</code></pre>
+<h4 id="주피터-노트북-실행">2.4. 주피터 노트북 실행</h4>
+<p>라즈베리 파이 하드웨어에 라즈비언 운영체제가 올라가고 과학컴퓨팅을 위한 주피터 노트북이 준비되었다. 라즈베리 파이에 사용자 계정(예를 들어, <code>xwmooc</code>)으로 로그인하고 <code>jupyter notebook</code> 명령어를 실행하거나, 외부 컴퓨터에서 IP 주소를 통해 외부로 접속한다. <sub>~</sub> {.shell} $ jupyter notebook <sub>~</sub></p>
+====================================================================
+<hr>
+<p>====================================================================</p>
 <h3 id="라즈베리-파이-과학-컴퓨팅-툴체인-구축">1. 라즈베리 파이 과학 컴퓨팅 툴체인 구축</h3>
 <p><a href="http://gongnorina.tistory.com/42">참고: 라즈베리 파이에 Python Anaconda, IPython-notebook, PIP 설치 방법</a></p>
 <h3 id="라즈비언-데스트톱-가상화">1. 라즈비언 데스트톱 가상화</h3>
