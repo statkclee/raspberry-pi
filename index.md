@@ -43,6 +43,7 @@ title: xwMOOC 컴퓨터
 1.  [한글 LaTeX 설치](latex.html)
 1.  [아치 리눅스](raspberry-pi-arch.html)    
 1.  [$100 달러 컴퓨터](100-computer.html)
+    - [하드웨어 설계(CAD)](100-cad.html)    
 1.  [아마존 웹 서비스(AWS)](aws.html)
     - [AWS 보안(IAM)](aws-iam.html)
     - [정적 웹 사이트 개발 툴체인 (제킬)](aws-jekyll-toolchain.html)
