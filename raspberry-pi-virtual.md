@@ -38,7 +38,7 @@ http://downloads.element14.com/downloads/RaspberryPi-Development-VM-v0.8.ova?COM
 > #### "No space left on device" 오류 발생 문제해결 {.callout}
 >
 > 중상: USB, 마이크로SD 카드에 4GB 이상 되는 단일 파일을 저장할 경우 저장공간이 충분이 있음에도 불구하고 저장이 되지 않음, `RaspberryPi-Development-VM-v0.8.ova` 파일의 경우 8.2GB 크기를 갖는 `.ova` 파일을 마이크로SD카드에 복사하거나 저장할 때 오류가 발생.  
-> 원인: FAT 파일형식에서는 단일 파일 크기가 최대 4GB만 저장가능함.  
+> 원인: FAT32 파일형식에서는 단일 파일 크기가 최대 4GB만 저장가능함.  
 > 해결 방법: **NTFS, exFAT 파일형식**으로 포맷하고 복사하거나 다운로드 받는다.  
 
 - [참고: Virtualbox Raspberry Pi Emulator](http://ediy.com.my/index.php/blog/item/52-virtualbox-raspberry-pi-emulator)
