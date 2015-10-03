@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 컴퓨터</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 컴퓨터</h1>
+          <h2 class="subtitle">컴퓨터 지원 설계(CAD) 활용 하드웨어 설계</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>$100 달러 컴퓨터 하드웨어를 CAD로 설계</li>
+</ul>
+</div>
+</section>
+<p><img src="fig/100-dollar-computer-cad-toolchain.png" width="70%" /></p>
+<p>컴퓨터 지원 설계(Computer-Aided Design, 캐드, CAD) 공학자, 건축가, 설계 활동에서 전문적인 설계를 지원하는 컴퓨터 기반 도구의 다양한 영역에서 사용되는데 최근에는 일반인도 3D프린터 보급과 함께 많이 활발히 사용되고 있다.</p>
+<h3 id="캐드-소프트웨어-툴체인-설치">1. 캐드 소프트웨어 툴체인 설치</h3>
+<p>$100 달러 컴퓨터 하드웨어 설계를 위해 필요한 캐드 소프트웨어는 다음과 같다.</p>
+<ul>
+<li>2D 캐드 설계 : <a href="http://librecad.org/">리브레캐드(LibreCAD)</a></li>
+<li>3D 캐드 설계 : <a href="http://www.blender.org/">블렌더(Blender)</a></li>
+<li>3D 프린터 출력 매쉬작업 : <a href="http://meshlab.sourceforge.net/">메쉬랩(MeashLab)</a></li>
+</ul>
+<p>우부투 기반으로 <code>apt-get</code> 팩키지 설치 관리자를 통해서 설치를 간단히 할 수 있다.</p>
+<pre class="shell"><code>$ sudo apt-get update
+$ sudo apt-get install meshlab
+$ sudo apt-get install librecad
+$ sudo apt-get install blender</code></pre>
+<section class="prereq panel panel-warning">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-education"></span>컴퓨터 설계 소프트웨어</h4>
+</div>
+<div class="panel-body">
+<ul>
+<li>공개 캐드 소프트웨어
+<ul>
+<li><a href="http://www.blender.org/">블렌더(Blender)</a></li>
+<li><a href="http://librecad.org/">리브레캐드(LibreCAD)</a></li>
+</ul></li>
+<li>상용 캐드 소프트웨어
+<ul>
+<li><a href="http://www.solidworks.com/default.htm">SolidWorks</a></li>
+<li><a href="http://www.autodesk.com/products/autocad/overview">AutoCAD</a></li>
+<li><a href="http://www.autodesk.com/products/maya/overview">Maya</a></li>
+<li><a href="http://www.autodesk.com/products/inventor/overview">Inventor</a></li>
+<li><a href="http://www.sketchup.com/">Google SketchUp</a></li>
+</ul></li>
+<li>자동차 분야
+<ul>
+<li><a href="http://www.3ds.com/">카디아(CATIA, Computer Aided Three dimensional Interactive Application</a> 다쏘시스템</li>
+<li><a href="http://www.ptc.com">PTC 크레오(Creo)</a></li>
+<li><a href="http;//www.plm.automation.siemens.com">지멘스 NX(NX Unigraphics)</a></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<h3 id="라즈베리-파이-2-3d-모델-검색">2. 라즈베리 파이 2 3D 모델 검색</h3>
+<ul>
+<li></li>
+</ul>
+<h3 id="d-프린터로-라즈베리-파이-2-케이스-출력">3. 3D 프린터로 라즈베리 파이 2 케이스 출력</h3>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

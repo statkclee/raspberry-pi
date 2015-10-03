@@ -42,7 +42,7 @@ title: xwMOOC 컴퓨터
     - [라즈비언 데스크톱 환경 가상화 (주피터)](raspberry-pi-virtual-desktop.html)    
 1.  [한글 LaTeX 설치](latex.html)
 1.  [아치 리눅스](raspberry-pi-arch.html)    
-1.  [$100 달러 컴퓨터](100-computer.html)
+1.  [$100 달러 컴퓨터](100-computer.html)  
     - [하드웨어 설계(CAD)](100-cad.html)    
 1.  [아마존 웹 서비스(AWS)](aws.html)
     - [AWS 보안(IAM)](aws-iam.html)
