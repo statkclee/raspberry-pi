@@ -49,9 +49,26 @@
 </ul>
 </div>
 </section>
-<p><img src="fig/100-dollar-computer-cad-toolchain.png" width="70%" /></p>
+<h3 id="d-프린팅-생태계">1. 3D 프린팅 생태계</h3>
+<p>3D 프린터를 사용해서 원하는 설계한 것을 3D 객체로 출력하려고 한다면 설계 구상에서부터 3D 출력까지 여러 단계를 거치게 된다.</p>
+<p><img src="fig/100-dollar-computer-3d-printer-ecosystem.png" width="70%" /></p>
+<ol style="list-style-type: decimal">
+<li><strong>콘텐츠(Contents)</strong>: 무료, CC 라이선스 혹은 유료로 3D 프린터를 통해 다양한 3D 콘텐츠를 얻을 수 있다.</li>
+<li><strong>소프트웨어(Software)</strong>: 원, 실린더, 직육면체 등 기본 3D 객체로부터 3D 캐드 소프트웨어를 활용하여 출력하고자 하는 3D 객체를 제작해 나가거나 <code>Thingiverse</code>나 <code>Shapeways</code> 등에서 얻은 파일을 본인의 목적에 맞춰 변경한다.</li>
+<li><strong>3D프린터(Hardware)</strong>: 디자인과 설계를 맞춘 3D 객체를 얻기 위해서 3D 프린터가 필요하다.</li>
+<li><strong>재료(Material)</strong>: 3D 프린터에 다양한 재료를 넣어 동일한 3D 객체를 다양한 모양과 특징을 갖는 물건을 출력하는 소재.</li>
+</ol>
+<h3 id="달러-컴퓨터-기구물-제작">2. $100 달러 컴퓨터 기구물 제작</h3>
+<p>$100 달러 컴퓨터 본체 기구물 제작 과정은 다음과 같다. $100 달러 컴퓨터는 라즈베리 파이 2 플랫폼을 사용한다.</p>
+<ol style="list-style-type: decimal">
+<li>3D 캐드 소프트웨어를 설치한다.</li>
+<li>라즈베리 파이 2 본체 기구물 설계파일을 검색한다.</li>
+<li>다운로드 받은 설계파일을 목적에 맞게 수정하여 저장한다.</li>
+<li>3D 프린터로 출력한다.</li>
+</ol>
+<h4 id="캐드-소프트웨어-툴체인-설치">2.1. 캐드 소프트웨어 툴체인 설치</h4>
 <p>컴퓨터 지원 설계(Computer-Aided Design, 캐드, CAD) 공학자, 건축가, 설계 활동에서 전문적인 설계를 지원하는 컴퓨터 기반 도구의 다양한 영역에서 사용되는데 최근에는 일반인도 3D프린터 보급과 함께 많이 활발히 사용되고 있다.</p>
-<h3 id="캐드-소프트웨어-툴체인-설치">1. 캐드 소프트웨어 툴체인 설치</h3>
+<p><img src="fig/100-dollar-computer-cad-toolchain.png" width="70%" /></p>
 <p>$100 달러 컴퓨터 하드웨어 설계를 위해 필요한 캐드 소프트웨어는 다음과 같다.</p>
 <ul>
 <li>2D 캐드 설계 : <a href="http://librecad.org/">리브레캐드(LibreCAD)</a></li>
@@ -84,18 +101,85 @@ $ sudo apt-get install blender</code></pre>
 </ul></li>
 <li>자동차 분야
 <ul>
-<li><a href="http://www.3ds.com/">카디아(CATIA, Computer Aided Three dimensional Interactive Application</a> 다쏘시스템</li>
+<li><a href="http://www.3ds.com/">카티아(CATIA, Computer Aided Three dimensional Interactive Application</a> 다쏘시스템</li>
 <li><a href="http://www.ptc.com">PTC 크레오(Creo)</a></li>
 <li><a href="http;//www.plm.automation.siemens.com">지멘스 NX(NX Unigraphics)</a></li>
 </ul></li>
 </ul>
 </div>
 </section>
-<h3 id="라즈베리-파이-2-3d-모델-검색">2. 라즈베리 파이 2 3D 모델 검색</h3>
+<h4 id="라즈베리-파이-2-본체-기구물-설계파일-검색">2.2. 라즈베리 파이 2 본체 기구물 설계파일 검색</h4>
+<p>3D 설계파일 공유가능한 웹사이트는 기본적으로 마켓플레이스 속성도 가지고 있다. 3D 설계작업을 한 엔지니어, 설계자, 디자이너가 웹사이트를 통해서 상업으로 혹은 공유 목적으로 다양한 웹사이트에 올리고 있으며, 많은 사용자가 이를 검색하고 다운로드 받아 활용하고 있다.</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pushpin"></span>3D 설계파일 공유가능한 웹사이트, 마켓플레이스</h4>
+</div>
+<div class="panel-body">
 <ul>
-<li></li>
+<li><a href="http://www.shapeways.com/">Thingiverse</a></li>
+<li><a href="http://www.shapeways.com/">Shapeways</a></li>
+<li><a href="http://i.materialise.com/">i.materialise</a></li>
+<li><a href="http://www.ponoko.com">Ponoko</a></li>
 </ul>
-<h3 id="d-프린터로-라즈베리-파이-2-케이스-출력">3. 3D 프린터로 라즈베리 파이 2 케이스 출력</h3>
+</div>
+</aside>
+<p><a href="www.adafruit.com">아다프루트(Adafruit)</a>에 라즈베리 파이 본체 기구물을 3D 프린터로 출력할 수 있는 방법을 ’15년 5월 인터넷에 공개했다. 라즈베리 파이 본체 기구물을 3D 프린터로 찍는 방법은 다음과 같다.</p>
+<section class="getready panel panel-warning">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-check"></span>준비물</h4>
+</div>
+<div class="panel-body">
+<ul>
+<li>3D 프린터 및 PLA/ABS 필라멘트</li>
+<li>라즈베리 파이 2 (모델 B+)</li>
+<li>4-40 x 1/2 IN Flat Phillips</li>
+</ul>
+</div>
+</section>
+<h5 id="라즈베리-파이-본체-3d-설계">2.2.1. 라즈베리 파이 본체 3D 설계</h5>
+<ul>
+<li><strong>라즈베리 파이 2 모델 B+ 설계 도면</strong></li>
+</ul>
+<p>라즈베리 파이 재단 웹사이트에 <a href="https://www.raspberrypi.org/blog/introducing-raspberry-pi-model-b-plus/">NEW PRODUCT LAUNCH! INTRODUCING RASPBERRY PI MODEL B+</a> 라즈베리 파이 2 모델 B+ 설계도면 및 GPIO 다이어그램이 공개되어 있다.</p>
+<ul>
+<li><strong>라즈베리 파이 2 모델 B+ STEP 및 STL 파일</strong></li>
+</ul>
+<p>라즈베리 파이 2 모델 B+ 자체 3D 설계 STEP 및 STL 파일이 Thingiverse <a href="http://www.thingiverse.com/thing:412639">Raspberry Pi Model B+ PCB Assembly with major components</a> 웹사이트에 공개되어 있다. CC 라이선스는 CC:BY-SA다.</p>
+<ul>
+<li><strong>라즈베리 파이 2 본체 기구물 3D 설계 파일</strong> STL 파일 뿐만 아니라 <code>.123dx</code>확장자를 갖는 오토데스크 123D 파일도 Thingiverse <a href="http://www.thingiverse.com/thing:417507">Raspberry Pi B+ Face Case</a> 웹사이트에 공개되어 있다. 오토데스크 캐드 소프트웨어로 원하면 변경도 가능하다. 단, CC 라이선스가 CC:BY-SA라서 동일조건으로 공개해야만 된다.</li>
+</ul>
+<h5 id="라즈베리-파이-본체-3d-프린터-출력">2.2.2. 라즈베리 파이 본체 3D 프린터 출력</h5>
+<ol style="list-style-type: decimal">
+<li>3D 프린터 출력소재
+<ul>
+<li>PLA를 추천하지만, ABS도 좋다.</li>
+</ul></li>
+<li>출력대상 파일 : (윗면)piplus-top.stl, (바닥면)piplus-bottom.stl, (치아)piplus-teeth.stl</li>
+<li>3D 프린터 출력 환경설정
+<ul>
+<li>@230 PLA</li>
+<li>15% Infill</li>
+<li>0.2 Layer Height</li>
+<li>2 Shells</li>
+<li>90/120 Speeds</li>
+</ul></li>
+<li>출력시간: 약 2 시간</li>
+</ol>
+<h5 id="라즈베리-파이-본체-조립">2.2.3. 라즈베리 파이 본체 조립</h5>
+<ol style="list-style-type: decimal">
+<li>치아부품(piplus-teeth.stl)을 윗면부품(piplus-top.stl)에 본드를 사용해서 붙인다.</li>
+<li>바닥면부품(piplus-bottom.stl)에 라즈베리 파이 2를 넣는다.</li>
+<li>바닥면부품(piplus-bottom.stl)에 4-40 평평한 필립스 나사못을 박는다.</li>
+<li>바닥면과 윗면을 붙이고 나사를 조인다.</li>
+</ol>
+<ul>
+<li><a href="https://learn.adafruit.com/3d-printed-raspberry-pi-b-plus-enclosure">참고: 3D Printed Raspberry Pi B+ Enclosure</a></li>
+<li><a href="https://www.youtube.com/watch?v=LAGcv7MiHr0">참고: (동영상) RasPi B+ 3D Printed Enclosure</a></li>
+</ul>
+<h4 id="라즈베리-파이-2-본체-기구물-3d-설계">2.3. 라즈베리 파이 2 본체 기구물 3D 설계</h4>
+<h4 id="d-프린터로-출력">2.4. 3D 프린터로 출력</h4>
+<h4 id="x.x.-오토데스크-123d">X.X. 오토데스크 123D</h4>
+<p><a href="http://www.sketchup.com/">구글 스케치업</a>과 함께 오토데스크 제품도 캐드 디자인에 많이 사용되고 있는데 <a href="http://www.123dapp.com/design">오토데스크 123D (AutoDesk 123D Design)</a>로 설계하고, <a href="http://www.meshmixer.com/">오토데스크 메쉬믹서(Meshmixer)</a> 프로그램도 함께 설치하여 3D 프린터로 출력한다. 웹기반으로 3D 캐드 디자인을 할 수 있는 소프트웨어도 있다. <a href="http://www.tinkercad.com">오토데스크 팅커캐드(AutoDesk TinkerCAD)</a>를 사용해서 웹브라우져에서 쉽게 3D 설계작업을 수행할 수 있다.</p>
         </div>
       </div>
       </article>
