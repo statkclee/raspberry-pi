@@ -33,6 +33,13 @@ http://downloads.element14.com/downloads/RaspberryPi-Development-VM-v0.8.ova?COM
 1. `File` &rarr; `Import Appliance` 명령어로 다운로드 받은 `.ova` 이미지를 가져온다.
     - 토렌트에서 받은 것은 라즈비언 이미지 보다는 오래된 리눅스 이미지로 보면 된다.
     - 엘리먼트14 `.ova` 파일은 거의 9 GB로 크다. 
+ 
+<img src="fig/virtual-raspbian-element14.png" width="77%" alt="라즈비언 가상상자" />
+**주의:** 가상상자 라즈비언 이미지는 상대적으로 오래전에 만들어지고 갱신되지 않아 최신 버젼으로 갱신이 필요하다.   
+
+`ssh` 로그인을 할 경우 계정이 두개가 준비되어 있다.
+- 계정ID: `root`, 비밀번호: `toor`
+- 계정ID: `raspberrypi`, 비밀번호: `password`
 
 > #### "No space left on device" 오류 발생 문제해결 {.callout}
 >
