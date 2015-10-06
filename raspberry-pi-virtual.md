@@ -50,6 +50,32 @@ http://downloads.element14.com/downloads/RaspberryPi-Development-VM-v0.8.ova?COM
 - [참고: Virtualbox Raspberry Pi Emulator](http://ediy.com.my/index.php/blog/item/52-virtualbox-raspberry-pi-emulator)
 - [참고: Raspberry Pi Virtual Appliance on OS X](https://thecustomizewindows.com/2015/03/raspberry-pi-virtual-appliance-emulation-on-os-x/)
 
+#### 1.3. 라즈베리 파이 재단에서 데비안 이미지를 가상상자로 변환
+
+1. 라즈베리 파이 재단에서 데비안 라즈비언 압축파일 다운로드 
+1. 압축을 풀어 `.zip` 파일 `.img` 파일로 변환
+    - `VBoxManage.exe convertdd 2015-09-24-raspbian-jessie.img 2015-09-24-raspbian-jessie.vdi`
+    - [Convert the IMG files to VirtualBox VDI format](http://www.silicongadget.com/operative-systems/virtualization/convert-img-files-virtualbox-vdi-format/2674/)
+1. 가상상자에 읽을 올 수 있도록 `.img` 파일을 `.vdi` 파일로 변환
+1. 가상상자에서 기존 가상상자 이미지로 불러와서 신규 VM 생성
+
+~~~ {.shell}
+C:\Windows\System32>cd "c:\Program Files\Oracle\VirtualBox"
+
+c:\Program Files\Oracle\VirtualBox>VBoxManage.exe convertdd c:\_RASPBERRY_PI\201
+5-09-24-raspbian-jessie\2015-09-24-raspbian-jessie.img c:\_RASPBERRY_PI\2015-09-
+24-raspbian-jessie\raspbian-jessie.vdi
+Converting from raw image file="c:\_RASPBERRY_PI\2015-09-24-raspbian-jessie\2015
+-09-24-raspbian-jessie.img" to file="c:\_RASPBERRY_PI\2015-09-24-raspbian-jessie
+\raspbian-jessie.vdi"...
+Creating dynamic image with size 4325376000 bytes (4125MB)...
+
+c:\Program Files\Oracle\VirtualBox>cd c:\_RASPBERRY_PI\2015-09-24-raspbian-jessie
+
+c:\_RASPBERRY_PI\2015-09-24-raspbian-jessie>ls
+2015-09-24-raspbian-jessie.img  raspbian-jessie.vdi
+~~~
+
 #### 1.3. Adafruit 라즈베리 파이 Kernel-o-Matic 
 
 [Raspberry Pi Kernel-o-Matic](https://github.com/adafruit/Adafruit-Pi-Kernel-o-Matic)을 사용해서 맞춤형 커널을 신속하게 생성할 수 있다.
