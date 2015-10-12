@@ -133,3 +133,16 @@ $ipython notebook --no-browser --ip=192.168.103.135 --port=8889
 
 - [유튜브 동영상](https://youtu.be/ftY7wh11oH8)
 - [참고: Run ipython notebook from a remote server](http://stackoverflow.com/questions/24490278/run-ipython-notebook-from-a-remote-server)
+
+
+### 3. xwMOOC $100 달러 컴퓨터 실행
+
+컴퓨터 교육을 공개 5종 콘텐츠가 설치된 xwMOOC $100 달러 컴퓨터 
+
+*   [컴퓨터과학 언플러그드](http://unplugged.xwmooc.org)
+*   [러플(Rur-ple)](http://rur-ple.xwmooc.org/)
+*   [정보교육을 위한 파이썬](http://python.xwmooc.org/)
+*   [라즈베리 파이](http://raspberry-pi.xwmooc.org/)
+*   [소프트웨어 카펜트리](http://swcarpentry.xwmooc.org)
+
+- [유튜브 동영상](https://youtu.be/KZrivRz0D1c)
