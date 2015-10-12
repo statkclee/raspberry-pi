@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 컴퓨터</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 컴퓨터</h1>
+          <h2 class="subtitle">$100 달러 컴퓨터 실습</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>라즈베리 파이 <code>ssh</code>, <code>VNC</code> 로그인 접속한다.</li>
+<li>ipython과 ipython notebook을 설치하고 웹 인터페이스를 통해 접속한다.</li>
+</ul>
+</div>
+</section>
+<h3 id="라즈베리-파이-접속">1. 라즈베리 파이 접속</h3>
+<ol style="list-style-type: decimal">
+<li>라즈베리 파이 컴퓨터에 <code>ssh</code> 명령어를 통해서 명령라인 인터페이스(CLI) 접속한다.
+<ul>
+<li><a href="https://youtu.be/fMsSFypP6Cs">유튜브 동영상</a></li>
+</ul></li>
+<li>라즈베리 파이 컴퓨터에 <strong>VNC(Virtual Network Computing)</strong>을 설치하고 그래픽 사용자 인터페이스(GUI) 방식으로 접속한다.
+<ul>
+<li><code>ssh</code>로 라즈베리 파이 접속하고 <code>sudo apt-get install tightvncserver</code> 명령어로 서버를 설치한다.</li>
+<li><code>tightvncserver</code> 명령어로 서버에 접속할 비밀번호를 설정한다.</li>
+<li><code>vncserver :0 -geometry 1920x1080 -depth 24</code> 명령어로 서버를 실행한다.</li>
+<li>참고: <a href="https://www.raspberrypi.org/documentation/remote-access/vnc/">VNC (VIRTUAL NETWORK COMPUTING)</a></li>
+<li><a href="https://youtu.be/VjQaijI8fgo">유튜브 동영상</a></li>
+</ul></li>
+</ol>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h3><span class="glyphicon glyphicon-pushpin"></span>VNC를 자동화 하는 방법</h3>
+</div>
+<div class="panel-body">
+<ol style="list-style-type: decimal">
+<li>쉘스크립트를 사용해서 필요시 실행하는 방법</li>
+</ol>
+<pre class="shell"><code>#!/bin/sh
+vncserver :0 -geometry 1920x1080 -depth 24 -dpi 96</code></pre>
+<p><code>nano vnc.sh</code> 파일을 생성하고 상기 내용을 저장한다.</p>
+<pre class="shell"><code>$ chmod +x vnc.sh</code></pre>
+<p>저장한 쉘스크립트 파일을 실행파일로 변경한다.</p>
+<pre class="shell"><code>$ ./vnc.sh</code></pre>
+<p><code>./vnc.sh</code> 명령어로를 통해서 VNC 서버를 실행하고 <code>tightvncviewer</code>를 통해 라즈베리 파이 GUI 방식으로 사용한다.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>자동으로 부팅하여 VNC 서버를 띄워 사용하는 방법</li>
+</ol>
+<p>루트 권한으로 로그인하고 <code>/etc/init.d/</code> 디렉토리로 이동해서 <code>vncboot</code> 파일을 생성하고 아래 아래 파일 내용을 복사해서 붙여넣는다. <code>chmod 755 &gt; vncboot</code> 명령어로 텍스트를 실행파일로 만들고, <code>update-rc.d /etc/init.d/vncboot defaults</code> 혹은 <code>update-rc.d vncboot defaults</code> 명령어로 &gt; 갱신한다. 그리고 다시 부팅하면 쉘스크립트를 실행하거나 타이핑하지 않고 VNC 서버를 띄울 수 있다.</p>
+<pre class="shell"><code>$ sudo su
+$ cd /etc/init.d/
+$ nano vncboot
+$ chmod 755 vncboot
+$ update-rc.d /etc/init.d/vncboot defaults
+$ update-rc.d vncboot defaults
+$ sudo reboot</code></pre>
+<p><strong><code>vncboot</code> 파일 입력 사항</strong></p>
+<pre class="shell"><code>### BEGIN INIT INFO
+# Provides: vncboot
+# Required-Start: $remote_fs $syslog
+# Required-Stop: $remote_fs $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start VNC Server at boot time
+# Description: Start VNC Server at boot time.
+### END INIT INFO
+
+#! /bin/sh
+# /etc/init.d/vncboot
+
+USER=pi
+HOME=/home/pi
+
+export USER HOME
+
+case &quot;$1&quot; in
+start)
+ echo &quot;Starting VNC Server&quot;
+ #Insert your favoured settings for a VNC session
+ su - pi -c &quot;/usr/bin/vncserver :0 -geometry 1280x800 -depth 16 -pixelformat rgb565&quot;
+ ;;
+
+stop)
+ echo &quot;Stopping VNC Server&quot;
+ /usr/bin/vncserver -kill :0
+ ;;
+
+*)
+ echo &quot;Usage: /etc/init.d/vncboot {start|stop}&quot;
+ exit 1
+ ;;
+esac
+
+exit 0</code></pre>
+</div>
+</aside>
+<h3 id="ipython과-ipython-notebook을-통한-웹인터페이스-접속">2. ipython과 ipython notebook을 통한 웹인터페이스 접속</h3>
+<h4 id="ipython-설치-및-접속">2.1. ipython 설치 및 접속</h4>
+<p><code>sudo apt-get install ipython</code> 명령어로 설치하고, <code>ipython</code> 명령어를 통해서 실행한다. <code>len?</code>을 입력하고 엔터를 치면 도움말을 확인할 수 있다.</p>
+<pre class="shell"><code>$ sudo apt-get install ipython</code></pre>
+<ul>
+<li><a href="https://youtu.be/hUNM4gKcT80">유튜브 동영상</a></li>
+<li><a href="https://www.raspberrypi.org/documentation/usage/python/more.md">참고: MORE ON PYTHON</a></li>
+</ul>
+<h4 id="ipython-노트북-설치-및-접속">2.2. ipython 노트북 설치 및 접속</h4>
+<p>ipython notebook을 설치하기 전에 의존성을 갖는 <code>python-pip</code> 파이썬 팩키지 관리자와 <code>simplejson</code>을 설치한다. 그리고 <code>sudo apt-get install ipython-notebook</code> 명령어로 아이파이썬 노트북을 설치한다. 과학 컴퓨팅을 위해 많이 사용되는 <code>python-matplotlib python-scipy python-pandas python-sympy python-nose</code> 팩키지를 일괄 설치한다. <code>ipython notebook</code> 명령어로 실행한다.</p>
+<pre class="shell"><code>$ sudo apt-get install python-pip
+$ sudo pip install simplejson
+$ sudo apt-get install ipython-notebook
+$ sudo apt-get install python-matplotlib python-scipy python-pandas python-sympy python-nose
+$ ipython notebook</code></pre>
+<ul>
+<li><a href="https://youtu.be/BWcWBh5cJsg">유튜브 동영상</a></li>
+</ul>
+<h4 id="ipython-노트북-원격-접속">2.3. ipython 노트북 원격 접속</h4>
+<p>ipython 노트북을 원격 웹브라우져에서 접속하기 위해서는 해당 라즈베리 파이 IP주소를 확인하고 열어줄 포트를 설정하여 실행한다.</p>
+<pre class="shell"><code>$ ifconfig eth0
+$ipython notebook --no-browser --ip=192.168.103.135 --port=8889</code></pre>
+<ul>
+<li><a href="https://youtu.be/ftY7wh11oH8">유튜브 동영상</a></li>
+<li><a href="http://stackoverflow.com/questions/24490278/run-ipython-notebook-from-a-remote-server">참고: Run ipython notebook from a remote server</a></li>
+</ul>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
