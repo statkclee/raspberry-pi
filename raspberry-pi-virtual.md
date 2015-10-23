@@ -7,7 +7,7 @@ minutes: 10
 
 > ### 학습 목표 {.objectives}
 >
-> *  라즈베리 파이 가상화 환경에 대해 이해한다.
+> *  라즈베리 파이 가상화 환경에 대해 이해한다. 
 
 <img src="fig/raspberry-pi-virtualization-stack.png" width="77%" alt="가상화 툴체인" />
 
