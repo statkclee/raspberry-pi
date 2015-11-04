@@ -1,12 +1,13 @@
 ---
 layout: page
 title: xwMOOC 컴퓨터
-subtitle: $100 달러 컴퓨터 실습
+subtitle: $100 달러 오픈 컴퓨터 과학 컴퓨팅 툴체인
 minutes: 10
 ---
 
 > ### 학습 목표 {.objectives}
 >
+> * $100 달러 오픈 컴퓨터 과학 컴퓨팅 툴체인을 구축한다.
 > * 라즈베리 파이 `ssh`, `VNC` 로그인 접속한다.
 > * ipython과 ipython notebook을 설치하고 웹 인터페이스를 통해 접속한다.
 
