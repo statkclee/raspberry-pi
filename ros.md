@@ -14,6 +14,7 @@ minutes: 10
 오로카 로보틱스 커뮤니티에 오른 ROS 준비한 스크립트를 사용한다.
 
 [ROS 설치 이보다 편할순 없다! (오픈소스 소프트웨어 & 하드웨어: 로봇 기술 공유 카페 (오로카)), 표윤석](http://oroca.org/)
+
 ~~~ {.python}
 wget https://raw.githubusercontent.com/oroca/oroca-ros-pkg/master/ros_install.sh && chmod 755 ./ros_install.sh && ./ros_install.sh catkin_ws indigo
 ~~~
