@@ -45,3 +45,4 @@ title: xwMOOC 컴퓨터
 1.  [$100 달러 오픈 컴퓨터](100-computer.html)  
     - [$100 오픈 컴퓨터 설계(CAD) 및 3D 프린팅](100-cad.html)    
     - [$100 오픈 컴퓨터 과학 컴퓨팅 툴체인](100-computer-scientifc-computing.html)  
+    - [로봇 운영체제(ROS)](ros.html)

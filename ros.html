@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: $100 달러 오픈 컴퓨터</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">$100 달러 오픈 컴퓨터</h1>
+          <h2 class="subtitle">로봇 운영체제(ROS)</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3><span class="glyphicon glyphicon-certificate"></span>로봇 운영체제(ROS)</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>로봇 운영체제를 설치한다.</li>
+</ul>
+</div>
+</section>
+<h3 id="로봇-운영체제-설치">로봇 운영체제 설치</h3>
+<p>오로카 로보틱스 커뮤니티에 오른 ROS 준비한 스크립트를 사용한다.</p>
+<p><a href="http://oroca.org/">ROS 설치 이보다 편할순 없다! (오픈소스 소프트웨어 &amp; 하드웨어: 로봇 기술 공유 카페 (오로카)), 표윤석</a> <sub>~</sub> {.python} wget https://raw.githubusercontent.com/oroca/oroca-ros-pkg/master/ros_install.sh &amp;&amp; chmod 755 ./ros_install.sh &amp;&amp; ./ros_install.sh catkin_ws indigo <sub>~</sub></p>
+<p><a href="http://wiki.ros.org/indigo/Installation/Ubuntu">Ubuntu install of ROS Indigo</a></p>
+<h3 id="catkin">catkin</h3>
+<p><a href="https://github.com/ros/catkin">catkin</a>은 ROS 환경에서 개발된 응용프로그램의 빌드를 용이하기 위해서 개발된 파이썬 빌드도구다.</p>
+<pre class="sourceCode python"><code class="sourceCode python">sudo apt-get install python-catkin-tools</code></pre>
+<p><a href="http://jihoonl.github.io/slides/how_to_ros/">참고: 오로카 ROS 튜토리얼</a></p>
+<p>rqt_graph</p>
+<h3 id="거북이-실행">거북이 실행</h3>
+<blockquote>
+<p>roscore # 새창을 열어서 rosrun turtlesim turtlesim_node # 또 다른 창을 열어서 rostopic list /rosout /rosout_agg /turtle1/cmd_vel /turtle1/color_sensor /turtle1/pose rosrun turtlesim turtle_teleop_key</p>
+</blockquote>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
