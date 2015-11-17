@@ -57,6 +57,20 @@
 <p><em><a href="https://www.packer.io/downloads.html">Packer</a><br /> - Control panel -&gt; System -&gt; Advanced System settings -&gt; Environment Variables -&gt; System variables : PATH 추가 </em><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a><br /><em><a href="https://www.vagrantup.com/downloads.html">Vagrant</a><br /></em><a href="https://git-for-windows.github.io/">Git</a></p>
 </div>
 </section>
+<h4 id="우분투-packer-설치-1">우분투 Packer 설치 <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></h4>
+<p><code>packer</code>를 다운로드한 후에 압축을 풀고 경로를 지정해 주어 어디에서든지 <code>packer</code> 명령어를 사용할 수 있는 것이 핵심이다.</p>
+<ol style="list-style-type: decimal">
+<li>임의 명칭 디렉토리 생성한다. <code>packer</code>도 좋다.</li>
+<li><code>packer</code> 디렉토리로 이동한다.</li>
+<li><code>wget</code> 명령어로</li>
+</ol>
+<pre class="shell"><code>$ mkdir packer
+$ cd packer
+$ wget https://releases.hashicorp.com/packer/0.8.6/packer_0.8.6_linux_amd64.zip
+$ sudo unzip packer_0.8.6_linux_amd64.zip
+$ nano ~/.bashrc
+$ export PATH=$PATH:~/packer/
+$ reboot # 혹은 source ~/.bashrc</code></pre>
 <h3 id="packer를-사용한-virtualbox-구축">Packer를 사용한 VirtualBox 구축</h3>
 <ol style="list-style-type: decimal">
 <li><code>packer build -only=virtualbox-iso application-server.json</code> 실행</li>
@@ -67,6 +81,13 @@
 </ol>
 <p><a href="https://www.udacity.com/wiki/ud611">참고자료:Udacity Intro to DevOps교육과정</a></p>
 <!-- <img src="fig/latex-overview.png" width="70%" /> -->
+
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-get-started-with-packer-on-an-ubuntu-12-04-vps">우분투 Packer 설치</a><a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
         </div>
       </div>
       </article>
