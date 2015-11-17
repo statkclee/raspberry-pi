@@ -41,6 +41,7 @@ title: xwMOOC 오픈 컴퓨터
     - [소프트웨어 카펜트리 가상 개발환경](raspberry-pi-swcarpentry.html)      
     - [라즈비언 데스크톱 환경 가상화 (주피터)](raspberry-pi-virtual-desktop.html)    
 1.  [한글 LaTeX 설치](latex.html)
+    - [한글 LaTeX 설치환경 가상화](latex-virtual.html)
     - [우분투/데비안 LaTeX 설치](latex-ubuntu.html)
 1.  [아치 리눅스](raspberry-pi-arch.html)    
 1.  [$100 달러 오픈 컴퓨터](100-computer.html)  
