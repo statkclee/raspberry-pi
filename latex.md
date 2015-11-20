@@ -1,14 +1,14 @@
 ---
 layout: page
-title: R 파이썬 소프트레이어 클라우드, xwMOOC
-subtitle: 한글 LaTeX
+title: xwMOOC 오픈 컴퓨터
+subtitle: 유닉스 환경 한글 LaTeX 사전준비
 minutes: 10
 ---
 
 > ### 학습 목표 {.objectives}
 >
->  *  원격 데스크톱 연결을 통해 클라우드에서 한글 LaTeX 작업 설정한다..
->  *  클라우드 환경에서 한글 LaTeX을 설정 차이점을 살펴본다.
+>  *  원격 데스크톱 연결을 통해 클라우드에서 한글 LaTeX 작업 설정한다.
+>  *  클라우드 환경에서 한글 LaTeX 설정을 위한 사전준비를 한다. 
 
 <img src="fig/latex-overview.png" width="70%" />
 

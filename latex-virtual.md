@@ -70,10 +70,46 @@ Welcome to LaTeX Hello World!
 \end{document}
 ~~~
 
+###2. 한글 LaTeX 툴 체인 설치
 
-###3. 우분투/데비안 계열 리눅스 LaTeX 설치
+한글 LaTeX 툴 체인을 가상환경에서 구축하기 위해서는 [Packer](https://www.packer.io/downloads.html)(패커), [VirtualBox](https://www.virtualbox.org/wiki/Downloads)(가상상자),  [Vagrant](https://www.vagrantup.com/downloads.html)(부랑자), [Git](https://git-for-windows.github.io/)(깃)과 필요에 따라서는 [Jenkins](https://jenkins-ci.org/)(젠키스)를 설치해야 된다.
 
-#### 3.1. texlive 전체 엔진 설치
+만약 리눅스기반 운영체제를 사용한다면, [Docker](https://www.docker.com/)(도커)를 기반으로 해서 한글 LaTeX  툴체인을 구축하는 것도 가능하다.
+
+> ### 한글 LaTeX 가상환경 구축 도구 {.getready}
+>
+>*[Packer](https://www.packer.io/downloads.html)  
+>     - Control panel -> System -> Advanced System settings -> Environment Variables -> System variables : PATH  추가 
+>*[VirtualBox](https://www.virtualbox.org/wiki/Downloads)  
+>*[Vagrant](https://www.vagrantup.com/downloads.html)  
+>*[Git](https://git-for-windows.github.io/)
+>*[Jenkins](https://jenkins-ci.org/)
+
+<img src="fig/latex-vagrant-git.png" width="70%" />
+
+#### 2.2. 부랑자(Vagrant) 환경 설정
+
+기본적으로 부랑자(Vagrant)는 가상상자(VirtualBox)를 가정하고 시작된다. 따라서 가상상자와 함께 부랑자를 함께 먼저 본인이 사용할 컴퓨터 운영체제에 맞춰 설치한다.
+
+~~~ {.shell}
+$ vagrant init
+$ ls
+Vagrantfile
+$ vagrant up
+$ vagrant ssh
+~~~
+
+1. `vagrant init`  명령어는 boilerplate 혹은 skeleton  으로 불리는 `Vagrantfile`을 생성한다.
+1. `nano Vagrantfile` 파일에 한글 LaTeX 설치 쉘스크립트를 복사하여 붙여넣는다.
+1. `vagrant up` 명령어를 실행하면 기본 운영체제 `최신 우분투 64비트`와 함께 `LaTeX`(TexLive) 엔진과 함께 한글 설정, 그리고 HTML 생성을 위한 `hevea`도 함께 설치한다. 만약 운영체제나 기타 다른 부분에서 사용자정의가 필요한 부분은 자유로이 편집해서 **한글 LaTeX 작업용 가상 컴퓨터**를 설치하면된다.
+1. `vagrant ssh` 명령어를 통해서 한글  LaTeX이 설치된 가상컴퓨터에 접속한다.
+1. `git clone https://github.com/statkclee/ThinkStats2.git` 명령어를 입력하면 작업 프로젝트 파일을 가상컴퓨터 내부로 가져온다.
+1. `cd ThinkStats2\book & make all` 명령어를 실행하면 `.tex` 파일을 컴파일 해서 `.pdf` 파일을 자동 생성한다.
+
+#### 2.2. 한글 LaTeX 가상 컴퓨터 설치 설명
+
+##### 2.2.1. texlive 전체 엔진 설치
+
 LaTeX 전체 엔진 및 전체 팩키지를 설치한다. `sudo apt-get -y install texlive-full`, 
 `sudo apt-get -y install  texlive-xetex, texlive-luatex, texlive-lang-cjk` 명령어를 통해서 한글을 처리하도록 관련 팩키지를 설치한다.
 
@@ -87,14 +123,16 @@ $ sudo tlmgr pinning add ktug "*"
 ~~~
 [KTUG 위키 설치하기Linux/usermode](http://wiki.ktug.org/wiki/wiki.php/설치하기Linux/usermode)
 
-#### 3.2. 통계적 사고(Think Stats2) 의존성 설치
+##### 2.2.2. 통계적 사고(Think Stats2) 의존성 설치
 
 ~~~ {.shell}
 sudo apt-get -y install hevea
 sudo apt-get -y install evince
 ~~~
 
-**한글 LaTeX 출판을 위한 `Vagrantfile`**
+#### 2.3. 한글 LaTeX 출판을 위한 `Vagrantfile` 
+
+아무것도 설치되지 않은 깨끗한 리눅스 새로운 가상 컴퓨터에 LaTeX 관련 팩키지를 설치하고 테스트하면서 마지막으로 살아남은 쉘명령어를 쉘스크립트 형태로 정리하고 이를  `Vagrantfile` 파일에 복사해서 적어 넣고 향후 반복해서 재사용한다. 이를 Git 같은 버젼제어시스템에 넣고 관리를 하게되면 특히 효과를 극대화할 수 있다.
 
 ~~~ {.output}
 $install_mss = <<INSTALL
@@ -109,13 +147,13 @@ sudo apt-get -i install build-essential fakeroot lintian devscripts debhelper ub
 #install LaTeX Full version
 sudo apt-get -y install texlive-full
 #install Korean LaTeX Dependencies
-sudo apt-get -y install collection-kotex
+# sudo apt-get -y install collection-kotex
 # sudo apt-get -y install  texlive-xetex, texlive-luatex, texlive-lang-cjk
 # 
 sudo tlmgr update --all --self
 tlmgr --usermode init-usertree
 # tlmgr repository add http://ftp.ktug.org/KTUG/texlive/tlnet ktug
-# tlmgr repository add http://ftp.ktug.or.kr/KTUG/texlive/2014 ktug
+tlmgr repository add http://ftp.ktug.or.kr/KTUG/texlive/2014 ktug
 sudo tlmgr install collection-kotex
 sudo apt-get -y install xzdec
 sudo tlmgr pinning add ktug "*"
@@ -130,16 +168,8 @@ Vagrant.configure(2) do |config|
 end
 ~~~
 
-> ### 한글 LaTeX 가상환경 구축 도구 {.getready}
->
->*[Packer](https://www.packer.io/downloads.html)  
->     - Control panel -> System -> Advanced System settings -> Environment Variables -> System variables : PATH  추가 
->*[VirtualBox](https://www.virtualbox.org/wiki/Downloads)  
->*[Vagrant](https://www.vagrantup.com/downloads.html)  
->*[Git](https://git-for-windows.github.io/)
 
-
-### 4. 실리콘(하드웨어) 위에 운영체제 설치 - 우분투 Packer 설치 [^10]
+### 3. 실리콘(하드웨어) 위에 운영체제 설치 - 우분투 Packer 설치 [^1]
 
 `packer`를 다운로드한 후에 압축을 풀고 경로를 지정해 주어 어디에서든지 `packer` 명령어를 사용할 수 있는 것이 핵심이다.
 
@@ -157,7 +187,9 @@ $ export PATH=$PATH:~/packer/
 $ reboot # 혹은 source ~/.bashrc
 ~~~
 
-### Packer를 사용한 VirtualBox 구축
+#### 3.1. Packer를 사용한 VirtualBox 구축
+
+실리콘 위에 바로 Packer 를 사용해서 가상 컴퓨터를 생성하고 그 위에 한글 LaTeX 및 Git을 사용해서 응용프로그램을 개발하고 Jenkins를 사용해서 이를 바로 배포할 수 있다.
 
 1. `packer build -only=virtualbox-iso application-server.json` 실행 
 1. `cd virtualbox` 실행
@@ -167,10 +199,4 @@ $ reboot # 혹은 source ~/.bashrc
 
 [참고자료:Udacity Intro to DevOps교육과정](https://www.udacity.com/wiki/ud611)
 
-<!-- <img src="fig/latex-overview.png" width="70%" /> -->
-
-[^1]: [Modern LaTeX](http://wiki.ktug.org/wiki/wiki.php/ModernLaTeX)
-[^2]: [What is TeX and Metafont all about?](http://www.ntg.nl/maps/11/18.pdf)
-[^3]: [공주대학교 LaTeX 워크샵](http://wiki.ktug.org/wiki/wiki.php/LaTeXWorkshop)
-
-[^10]: [우분투 Packer 설치](https://www.digitalocean.com/community/tutorials/how-to-install-and-get-started-with-packer-on-an-ubuntu-12-04-vps)
+[^1]: [우분투 Packer 설치](https://www.digitalocean.com/community/tutorials/how-to-install-and-get-started-with-packer-on-an-ubuntu-12-04-vps)
