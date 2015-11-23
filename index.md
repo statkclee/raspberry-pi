@@ -40,6 +40,7 @@ title: xwMOOC 오픈 컴퓨터
     - [윈도우 가상 개발환경 구축](raspberry-pi-virtual-window.html)    
     - [소프트웨어 카펜트리 가상 개발환경](raspberry-pi-swcarpentry.html)      
     - [라즈비언 데스크톱 환경 가상화 (주피터)](raspberry-pi-virtual-desktop.html)    
+    - [부랑자(Vagrant) 아나콘다](vagrant-anaconda.html)        
 1.  [문서 프로그래밍 - 한글 LaTeX](latex.html)
     - [한글 LaTeX 소개](latex-intro.html)
     - [한글 LaTeX 설치환경 가상화](latex-virtual.html)
