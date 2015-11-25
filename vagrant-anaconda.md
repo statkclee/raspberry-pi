@@ -97,4 +97,13 @@ vagrant@vagrant-ubuntu-trusty-32:~$ ipython notebook --ip=0.0.0.0 --no-browser
 <img src="fig/vagrant-anaconda-localhost.png" width="70%" />
 
 
+### 4. 부랑자 가상컴퓨터 끄기
+
+부랑자 가상컴퓨터 사용을 마쳤으면, 이제 모든 것을 꺼서 다른 작업에 컴퓨터의 자원을 환원할 필요가 있다. 다양한 방법이 존재한다. 자세한 내용은 구글링을 하거나 인터넷 질의응답 사이트를 참조한다.
+
+~~~ {.shell}
+$ vagrant global-status | awk '/running/{print $1}' | xargs -r -d '\n' -n 1 -- vagrant suspend
+~~~
+[Shutting down all VirtualBox (vagrant) VMs in one easy to use bash command (that can be put into a bash file)](http://askubuntu.com/questions/457329/shutting-down-all-virtualbox-vagrant-vms-in-one-easy-to-use-bash-command-that)
+
 [참조-Data Science Toolbox](http://datasciencetoolbox.org/): Start doing data science in minutes
