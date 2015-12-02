@@ -68,7 +68,34 @@
 </div>
 </section>
 <p><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>와 <a href="https://www.vagrantup.com/downloads.html">Vagrant</a>를 설치한 후에 <strong>Vagrantfile</strong>에 파이썬과 LaTeX 설치 및 환경설정을 담은 정보를 실행한다.</p>
-<h3 id="통계적-사고-작업-파일">3. 통계적 사고 작업 파일</h3>
+<h3 id="통계적-사고2think-stats2-작업을-위한-파이썬과-latex-가상컴퓨터">3. 통계적 사고2(Think Stats2) 작업을 위한 파이썬과 LaTeX 가상컴퓨터</h3>
+<pre class="shell"><code>
+$install_latex = &lt;&lt;INSTALL
+### 한글 LaTeX 설치 쉘스크립트
+INSTALL
+
+$install_python = &lt;&lt;INSTALL
+### 파이썬 설치 쉘스크립트
+INSTALL
+
+Vagrant.configure(2) do |config|
+  config.vm.box = &quot;ubuntu/trusty32&quot;
+
+  config.vm.network &quot;forwarded_port&quot;, guest: 8000, host: 8000, auto_correct: true
+  config.vm.network &quot;forwarded_port&quot;, guest: 8888, host: 8888, auto_correct: true
+
+  config.vm.provider :virtualbox do |v|
+    v.memory = 2048
+    v.cpus = 2
+  end
+
+  ## 파이썬   
+  config.vm.provision :shell, inline: $install_python
+  config.vm.provision :shell, inline: $install_latex
+  config.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/think-stat&quot;
+
+end</code></pre>
+<h3 id="통계적-사고-작업-파일">4. 통계적 사고 작업 파일</h3>
 <p>파이썬과 LaTeX 설치 <strong>Vagrantfile</strong>에 공용폴더를 지정하여 그곳에 <code>git clone</code>을 통해 <a href="https://github.com/statkclee/ThinkStats2">GitHub:한글 통계적 사고</a>, <a href="https://github.com/AllenDowney/ThinkStats2">GitHub: 영문 ThinkStat2</a>를 복제하여 작업한다.</p>
 <div class="footnotes">
 <hr />

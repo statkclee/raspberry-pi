@@ -27,7 +27,39 @@ minutes: 10
 
 [VirtualBox](https://www.virtualbox.org/wiki/Downloads)와 [Vagrant](https://www.vagrantup.com/downloads.html)를 설치한 후에 **Vagrantfile**에 파이썬과 LaTeX 설치 및 환경설정을 담은 정보를 실행한다.
 
-### 3. 통계적 사고 작업 파일
+### 3. 통계적 사고2(Think Stats2) 작업을 위한 파이썬과 LaTeX 가상컴퓨터
+
+~~~ {.shell}
+
+$install_latex = <<INSTALL
+### 한글 LaTeX 설치 쉘스크립트
+INSTALL
+
+$install_python = <<INSTALL
+### 파이썬 설치 쉘스크립트
+INSTALL
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty32"
+
+  config.vm.network "forwarded_port", guest: 8000, host: 8000, auto_correct: true
+  config.vm.network "forwarded_port", guest: 8888, host: 8888, auto_correct: true
+
+  config.vm.provider :virtualbox do |v|
+    v.memory = 2048
+    v.cpus = 2
+  end
+
+  ## 파이썬   
+  config.vm.provision :shell, inline: $install_python
+  config.vm.provision :shell, inline: $install_latex
+  config.vm.synced_folder ".", "/home/vagrant/think-stat"
+
+end
+~~~
+
+
+### 4. 통계적 사고 작업 파일
 
 파이썬과 LaTeX 설치 **Vagrantfile**에 공용폴더를 지정하여 그곳에 `git clone`을 통해 [GitHub:한글 통계적 사고](https://github.com/statkclee/ThinkStats2), [GitHub: 영문 ThinkStat2](https://github.com/AllenDowney/ThinkStats2)를 복제하여 작업한다.
 

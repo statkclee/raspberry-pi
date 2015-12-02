@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 컴퓨터</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 컴퓨터</h1>
+          <h2 class="subtitle">(로봇) 센서</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>센서가 무엇이고, 원리가 어떤지 살펴본다.</li>
+<li>지상 이동 로봇을 위한 초음파, 적외선, 시야, 청각 센서를 알아본다.</li>
+<li>무인 항공기, 드론을 위한 지자계, 가속도, 자이로스코프 센서를 알아본다.</li>
+</ul>
+</div>
+</section>
+<h3 id="다양한-센서">1. 다양한 센서</h3>
+<p>로봇에 장착되는 센서의 목적은 장애물을 탐지하고 이를 회피하여 충돌을 방지하는데 있따. 지상에서 이동한 로봇과 무인항공기에 이용되는 센서는 다르다.</p>
+<h4 id="지상-로봇에-적용되는-센서">1.1. 지상 로봇에 적용되는 센서</h4>
+<ul>
+<li>초음파 거리 센서(Ultrasonic distance sensor): <a href="http://www.instructables.com/id/Easy-ultrasonic-4-pin-sensor-monitoring-hc-sr04/">HC-SR04</a></li>
+<li>IR 근접 센서(IR proximity sensor): <a href="http://www.robotshop.com/en/sharp-gp2y0a21yk0f-ir-range-sensor.html">Sharp GP2D12</a></li>
+<li>시야 센서(Vision sensor): <a href="https://ko.wikipedia.org/wiki/키넥트">키넥트(Kinect)</a></li>
+<li>청각 센서(Audio sensor): 마이크와 스피커</li>
+</ul>
+<h4 id="무인-항공-로봇에-적용되는-센서">1.2. 무인 항공 로봇에 적용되는 센서</h4>
+<p>관성측정장비(Inertial Measurement Unit)는 다음을 측정하는 전자장치다. IMU를 통해서 관성공간에서 상대적인 가속도와 방향을 파악할 수 있다.</p>
+<ul>
+<li>속도(velocity)</li>
+<li>(목표하는) 방향(orientation)</li>
+<li>중력(gravitational forces)</li>
+</ul>
+<p>속도, 방향, 중력을 측정하는데 다음과 같은 센서를 사용한다. <a href="http://playground.arduino.cc/Main/MPU-6050">MPU 6050</a></p>
+<ul>
+<li>가속도 센서(accelerometers)</li>
+<li>자이로스코프 센서(gyroscopes)</li>
+<li>자기계 센서(magnetometers)</li>
+</ul>
+<p>만약 드론의 초기 위치, 속도, 방향을 알고 있다면, 감지된 가속도를 적분해서 속도를 계산할 수 있고, 두번 적분하면 위치를 알 수 있다. 드론의 정확한 방향을 알고자 한다면, 로봇 방향정보가 필요하다; 자이로스코프에서 감지된 각속도를 적분해서 얻는다.</p>
+<p>IMU에서 수집된 정보는 운항방정식과 칼만필터같은 추정필터를 사용해서 운항정보로 변환된다. <a href="https://ko.wikipedia.org/wiki/칼만_필터">칼만 필터(Kalman Fliter)</a>는 측정된 데이터로부터 시스템 상태를 추정하는 알고리즘이다. 전체 알고리즘은 예측과 업데이트의 두 가지로 나눌 수 있다. 예측은 현재 상태의 예측을 말하며, 업데이트는 현재 상태에서 관측된 측정까지 포함한 값을 통해서 더 정확한 예측을 할 수 있는 것을 말한다.</p>
+<p><img src="fig/sensor-kalman-filter.png" width="50%" /> 출처: Lentin Joseph (2015), <a href="https://www.packtpub.com/application-development/learning-robotics-using-python">Learning Robotics Using Python</a>, PACKT Publishing, pp 148.</p>
+<h3 id="로봇에-센서-적용">2. 로봇에 센서 적용</h3>
+<p>로봇에 <code>HC-SR04</code> 초음파 거리 센서를 장착하면, 송신자(Sender)를 통해서 음파를 발사하고 만약 장애물이 있다면 음파가 반사되어 수신자(Receiver)에 아날로그 정보 형태로 수집이 된다. 이를 아날로그 디지털 신호 변환을 통해 디지털 정보를 변환을 하면 프로그램 언어를 통해 목적하고 있는 거리를 계산해내고 이를 활용하여 미로탈출 같은 문제를 로봇에게 해결하도록 제어를 할 수 있다.</p>
+<p><strong><a href="http://pyserial.sourceforge.net/pyserial.html">PySerial</a></strong>을 사용해서도 거리 정보를 확인할 수 있다.</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h3><span class="glyphicon glyphicon-pushpin"></span>소리를 이용한 거리 측정 공식</h3>
+</div>
+<div class="panel-body">
+<p>소리가 이동하는 거리 = 공기중 음속 (343.6 (미터/초))* 소리가 이동한 시간 <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+</div>
+</aside>
+<p><img src="fig/sensor-ultrasnoic.png" width="77%" /></p>
+<p><code>Sharp GP2D12</code> 센서는 적외선 IR 광선과 삼각법을 사용한다는 점에서 차이가 있다. 또한 <code>GP2D12</code>는 감지 범위가 10cm 에서 최대 80cm까지 제약이 있다. 적외선 IR센서 좌측에서 적외선이 방출되고 이를 IR 수신기가 받아들이게 된다. 거리 공식은 <span class="math"><em>사</em><em>정</em><em>거</em><em>리</em> = (6787/(<em>전</em><em>압</em> − 3)) − 4</span>, 여기서 전압(Volt)는 ADC에서 나온 아날로그 전압이다.</p>
+<pre class="sourceCode python"><code class="sourceCode python">
+<span class="dt">int</span> IR_SENSOR = <span class="dv">18</span>; // Sensor is connected to the analog A3
+<span class="dt">int</span> intSensorResult = <span class="dv">0</span>; //Sensor result
+<span class="dt">float</span> fltSensorCalc = <span class="dv">0</span>; //Calculated value
+
+void setup(){
+Serial.begin(<span class="dv">115200</span>); // Setup communication <span class="kw">with</span> computer to present results serial monitor
+}
+
+void loop(){
+// read the value <span class="ch">from</span> the ir sensor
+intSensorResult = analogRead(IR_SENSOR); //Get sensor value
+fltSensorCalc = (<span class="fl">6787.0</span> / (intSensorResult - <span class="fl">3.0</span>)) - <span class="fl">4.0</span>; //Calculate distance in cm
+
+Serial.<span class="dt">print</span>(fltSensorCalc); //Send distance to computer
+Serial.println(<span class="st">&quot; cm&quot;</span>); //Add cm to result
+delay(<span class="dv">200</span>); //Wait
+}</code></pre>
+<p>적외선 센서를 사용할 경우 몇가지 제약이 있다.</p>
+<ul>
+<li>햇빛에 영향을 받아 야외에서 사용하기 쉽지 않다.</li>
+<li>객체가 반사하는 특성이 있는 경우 동작이 잘 되지 않는다.</li>
+<li>사정거리 방정식이 일정 거리 내에서만 동작한다.</li>
+</ul>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://www.teachengineering.org/view_activity.php?url=collection/nyu_/activities/nyu_soundwaves/nyu_soundwaves_activity1.xml">Hands-on Activity: Measuring Distance with Sound Waves</a><a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

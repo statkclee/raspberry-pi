@@ -51,3 +51,5 @@ title: xwMOOC 오픈 컴퓨터
     - [$100 오픈 컴퓨터 과학 컴퓨팅 툴체인](100-computer-scientifc-computing.html)  
     - [로봇 운영체제(ROS)](ros.html)
     - [통계적 사고 개발환경](think-stat.html)    
+    - [IPython 노트북](ipython-notebook.html)        
+    - [센서(Sensor)](sensor.html)            
