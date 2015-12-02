@@ -45,6 +45,7 @@ title: xwMOOC 오픈 컴퓨터
     - [한글 LaTeX 소개](latex-intro.html)
     - [한글 LaTeX 설치환경 가상화](latex-virtual.html)
     - [한글 LaTeX 편집기](latex-utils.html)
+    - [파이썬 스핑크스](latex-sphinx.html)
 1.  [아치 리눅스](raspberry-pi-arch.html)    
 1.  [$100 달러 오픈 컴퓨터](100-computer.html)  
     - [$100 오픈 컴퓨터 설계(CAD) 및 3D 프린팅](100-cad.html)    
@@ -53,3 +54,4 @@ title: xwMOOC 오픈 컴퓨터
     - [통계적 사고 개발환경](think-stat.html)    
     - [IPython 노트북](ipython-notebook.html)        
     - [센서(Sensor)](sensor.html)            
+        - [IoT 세계](iot-pi-cam.html)
