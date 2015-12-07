@@ -55,4 +55,5 @@ title: xwMOOC 오픈 컴퓨터
     - [IPython 노트북](ipython-notebook.html)
     - [러플, 리보그, Karel 봇](reeborg.html)            
     - [센서(Sensor)](sensor.html)            
-        - [IoT 세계](iot-pi-cam.html)
+        - [초음파센서와 파이캠](iot-pi-cam.html)
+        - [데이터 수집기와 로거(logger)](iot-fluentd.html)
