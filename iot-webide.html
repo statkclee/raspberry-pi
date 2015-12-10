@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 컴퓨터</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 컴퓨터</h1>
+          <h2 class="subtitle">IoT 웹통합개발환경(IDE)</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>라즈베리 파이 IoT 웹통합개발환경을 구축한다.</li>
+<li>웹기반 IDE 활용 개발 생산성과 품질을 높인다.
+<ul>
+<li>코드 이력관리: 비트버킷</li>
+<li>디버깅</li>
+<li>시각화</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<h3 id="라즈베리-파이-웹통합개발환경webide">1. 라즈베리 파이 웹통합개발환경(WebIDE)</h3>
+<p>Adafruit에서 라즈베리 파이에서 실행되는 웹통합개발환경(WebIDE)를 제공하여 있어 이를 활용하여 IoT 개발을 빠르고 쉽게 추진할 수 있다.</p>
+<p>설치 방법은 <a href="https://learn.adafruit.com/webide/">Adafruit WebIDE</a>를 참조한다.</p>
+<pre class="shell"><code>$ curl https://raw.githubusercontent.com/adafruit/Adafruit-WebIDE/alpha/scripts/install.sh | sudo sh
+$ sudo dpkg --configure -a</code></pre>
+<p>라즈베리 파이 WebIDE는 <a href="https://bitbucket.org/">비트버킷(Bitbucket)</a>과 연결되어 자동으로 코드관리를 해주는 장점이 있으니 순서에 맞춰 동영상<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>을 보고 설정한다.</p>
+<p><img src="fig/iot-webide.png" width="70%" /></p>
+<h3 id="라즈베리-파이-찾기">2. 라즈베리 파이 찾기</h3>
+<p>라즈베리 파이를 찾기가 때로 까다로울 수 있다. 이를 위해서 아이디어를 낸 사람이 있다. <a href="http://ivanx.com/raspberrypi/">Pi Finder</a>가 그것이고 이를 <a href="https://www.adafruit.com/">Adafruit</a>에서 GitHub에 공개<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>를 하였다. 사용방법은 <a href="https://github.com/adafruit/Adafruit-Pi-Finder/releases">Adafruit Pi Finder 다운로드</a>에서 본인 로컬 컴퓨터 환경에 맞춰 다운로드닫고 압축을 풀어 실행하면 윈도의 경우 <code>PiFinder.exe</code>을 더블클릭하고 화면이 나오면 <code>Find My Pi!</code>를 클릭하면 쉽게 주변 라즈베리 파이를 찾아 준다.</p>
+<p>전제 조건은 라즈베리파이를 이더넷 인터넷에 연결해 놔야 된다는 것이다.</p>
+<p><img src="fig/iot-pi-finder.png" width="70%" /></p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://www.youtube.com/watch?v=8NoiBBgaKCI">Raspberry Pi WebIDE Installation &amp; Setup</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a href="https://github.com/adafruit/Adafruit-Pi-Finder">Adafruit Raspberry Pi Finder</a><a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
