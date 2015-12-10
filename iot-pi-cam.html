@@ -142,31 +142,6 @@ f = <span class="dt">open</span>(<span class="st">&#39;/home/pi/sensor_log.txt&#
 
 f.close()</code></pre>
 <p><img src="fig/iot-demo.png" width="70%" /></p>
-<h3 id="라즈베리-파이-디렉토리폴더-공유하기">4. 라즈베리 파이 디렉토리(폴더) 공유하기</h3>
-<p>라즈베리 파이와 개발용 노트북/데스크톱 컴퓨터의 디렉토리(폴더)를 공유하면 작업하기 한결 수월하다. 설치에 대한 자세한 설명과 내용은 Raspberry Pi HQ <a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> 웹사이트를 참조한다.</p>
-<h4 id="라즈베리-파이-설정">4.1 라즈베리 파이 설정</h4>
-<p>먼저 라즈베리 파이에 로그인해서 <a href="https://www.samba.org/">삼바(Samba)</a> 소프트웨어를 설치하고 환경설정을 한다. <code>sudo apt-get install samba samba-common-bin</code>명령어를 통해서 삼바를 설치한다. <code>sudo nano /etc/samba/smb.conf</code> 명령어를 통해 작업공유 그룹설정과 윈도우 지원을 활성화한다.</p>
-<pre class="shell"><code>$ sudo apt-get install samba samba-common-bin
-$ sudo nano /etc/samba/smb.conf</code></pre>
-<pre class="output"><code>workgroup = WORKGROUP
-wins support = yes</code></pre>
-<p>라즈베리 파이 홈 디렉토리 <code>\home\pi</code> 를 공유 폴더로 정하고, <code>sudo nano /etc/samba/smb.conf</code> 명령어로 공유 디렉토리를 지정한다.</p>
-<pre class="shell"><code>$ mkdir ~/share
-$ sudo nano /etc/samba/smb.conf</code></pre>
-<pre class="output"><code>[PiShare]
- comment=Raspberry Pi Share
- path=/home/pi
- browseable=Yes
- writeable=Yes
- only guest=no
- create mask=0777
- directory mask=0777
- public=no</code></pre>
-<p><code>sudo smbpasswd -a pi</code> 명령어를 통해서 윈도우에서 라즈베리 파이 공유폴더 접속할 때 인증을 위한 사용자와 비밀번호를 설정한다. 비밀번호는 임의로 가능하지만, <code>raspberry</code>로 일치하는 것도 좋다.</p>
-<pre class="shell"><code>$ sudo smbpasswd -a pi</code></pre>
-<h4 id="윈도우즈-설정">4.2 윈도우즈 설정</h4>
-<p>윈도우즈 <code>네트워크</code>에서 라즈베리 파이 공유 디렉토리가 보이면 등록한 ID(<code>pi</code>)와 비밀번호(<code>raspberry</code>)를 사용해서 로그인한다.</p>
-<p><img src="fig/iot-samba.png" width="50%" /></p>
 <div class="footnotes">
 <hr />
 <ol>
@@ -174,7 +149,6 @@ $ sudo nano /etc/samba/smb.conf</code></pre>
 <li id="fn2"><p><a href="https://electrosome.com/hc-sr04-ultrasonic-sensor-raspberry-pi/">electroSome</a><a href="#fnref2">↩</a></p></li>
 <li id="fn3"><p><a href="http://kocoafab.cc/tutorial/view/334">라즈베리 파이 시작하기_PI Camera 사용하기</a><a href="#fnref3">↩</a></p></li>
 <li id="fn4"><p><a href="https://electrosome.com/hc-sr04-ultrasonic-sensor-raspberry-pi/">electroSome</a><a href="#fnref4">↩</a></p></li>
-<li id="fn5"><p><a href="http://raspberrypihq.com/how-to-share-a-folder-with-a-windows-computer-from-a-raspberry-pi/">How-To: Share a folder with a Windows computer from a Raspberry Pi</a><a href="#fnref5">↩</a></p></li>
 </ol>
 </div>
         </div>
