@@ -57,3 +57,4 @@ title: xwMOOC 오픈 컴퓨터
     - [센서(Sensor)](sensor.html)            
         - [초음파센서와 파이캠](iot-pi-cam.html)
         - [데이터 수집기와 로거(logger)](iot-fluentd.html)
+        - [Node-Red](iot-node-red.html)
