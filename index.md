@@ -60,3 +60,5 @@ title: xwMOOC 오픈 컴퓨터
     - [초음파센서와 파이캠](iot-pi-cam.html)
     - [데이터 수집기와 로거(logger)](iot-fluentd.html)
     - [노드-레드(Node-RED)](iot-node-red.html)
+1. 슈퍼 컴퓨터 
+    - [RPi 슈퍼 컴퓨터](rpi-super-computer.html)
