@@ -78,7 +78,7 @@ $ sudo nano /etc/samba/smb.conf
 $ sudo smbpasswd -a pi
 ~~~
 
-#### 4.3 윈도우즈 설정
+#### 3.2 윈도우즈 설정
 
 윈도우즈 `네트워크`에서 라즈베리 파이 공유 디렉토리가 보이면 등록한 ID(`pi`)와 비밀번호(`raspberry`)를 사용해서 로그인한다. 
 

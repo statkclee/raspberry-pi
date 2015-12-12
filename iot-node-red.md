@@ -1,40 +1,18 @@
 ---
 layout: page
 title: xwMOOC 컴퓨터
-subtitle: 라즈베리 파이 Node-RED
+subtitle: 라즈베리 파이 노드-레드(Node-RED)
 minutes: 10
 ---
 
 > ### 학습 목표 {.objectives}
 >
 
-### 1. 라즈베리 파이 웹통합개발환경(WebIDE)
-
-Adafruit에서 라즈베리 파이에서 실행되는 웹통합개발환경(WebIDE)를 제공하여 있어 이를 활용하여 IoT 개발을 빠르고 쉽게 추진할 수 있다.
-
-설치 방법은 [Adafruit WebIDE](https://learn.adafruit.com/webide/)를 참조한다.
-
-~~~ {.shell}
-$ curl https://raw.githubusercontent.com/adafruit/Adafruit-WebIDE/alpha/scripts/install.sh | sudo sh
-$ sudo dpkg --configure -a
-~~~
-
-라즈베리 파이 WebIDE는 [비트버킷(Bitbucket)](https://bitbucket.org/)과 연결되어 자동으로 코드관리를 해주는 장점이 있으니 순서에 맞춰 동영상[^1]을 보고 설정한다.
-
-<img src="fig/iot-webide" width="70%" />
+### 1. 노드-레드(Node-RED)
 
 
-### 2. 라즈베리 파이 찾기
-
-라즈베리 파이를 찾기가 때로 까다로울 수 있다. 이를 위해서 아이디어를 낸 사람이 있다. [Pi Finder](http://ivanx.com/raspberrypi/)가 그것이고 이를 [Adafruit](https://www.adafruit.com/)에서 GitHub에 공개[^2]를 하였다. 사용방법은 [Adafruit Pi Finder 다운로드](https://github.com/adafruit/Adafruit-Pi-Finder/releases)에서 본인 로컬 컴퓨터 환경에 맞춰 다운로드닫고 압축을 풀어 실행하면 윈도의 경우 `PiFinder.exe`을 더블클릭하고 화면이 나오면 `Find My Pi!`를 클릭하면 쉽게 주변 라즈베리 파이를 찾아 준다.
-
-전제 조건은 라즈베리파이를 이더넷 인터넷에 연결해 놔야 된다는 것이다.
-
-<img src="fig/iot-pi-finder.png" width="70%" />
+[노드-레드(Node-RED)](http://nodered.org/)는 하드웨어 장치, API, 온라인 서비스를 전선으로 묶어주는 흥미로운 서비스다. '15년 11월 출시된 라즈비언 제씨 버젼에 노드-레드가 탑재되어 별도 설치하지 않고도 IoT 프로그래밍을 손쉽게 할 수 있게 되었다. [^1]
 
 
-[^1]: [Raspberry Pi WebIDE Installation & Setup](https://www.youtube.com/watch?v=8NoiBBgaKCI)
 
-[^2]: [Adafruit Raspberry Pi Finder](https://github.com/adafruit/Adafruit-Pi-Finder)
-
-[Raspberry Pi Node-RED](http://nodered.org/docs/hardware/raspberrypi.html)
+[^1]: [Node-RED now included in Raspbian Jessie](http://blog.nodered.org/2015/11/25/node-red-included-in-raspian-jessie/)
