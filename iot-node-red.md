@@ -16,3 +16,5 @@ minutes: 10
 
 
 [^1]: [Node-RED now included in Raspbian Jessie](http://blog.nodered.org/2015/11/25/node-red-included-in-raspian-jessie/)
+
+[^2]: [Mr.Nukoon Phimsen Slideshare](http://www.slideshare.net/s0013254?utm_campaign=profiletracking&utm_medium=sssite&utm_source=ssslideview)

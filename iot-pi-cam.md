@@ -121,4 +121,6 @@ f.close()
 <img src="fig/iot-demo.png" width="70%" />
 
 
+### 4. 온도 센서 [^3]
 
+[^3]: [DS18B20 Temperature Sensor with Raspberry Pi](http://www.reuk.co.uk/DS18B20-Temperature-Sensor-with-Raspberry-Pi.htm)

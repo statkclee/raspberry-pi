@@ -61,5 +61,7 @@ title: xwMOOC 오픈 컴퓨터
     - [데이터 수집기와 로거(logger)](iot-fluentd.html)
     - [노드-레드(Node-RED](iot-node-red.html)
     - [드론 개발(아두이노)](iot-drone-arduino.html)
+    - [웹서비스](iot-webservice.html)
+    - [R 개발 및 배포 환경](iot-rstudio-shiny.html)
 1. 슈퍼 컴퓨터 
     - [RPi 슈퍼 컴퓨터](rpi-super-computer.html)
