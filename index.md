@@ -50,7 +50,6 @@ title: xwMOOC 오픈 컴퓨터
 1.  [$100 달러 오픈 컴퓨터](100-computer.html)  
     - [$100 오픈 컴퓨터 설계(CAD) 및 3D 프린팅](100-cad.html)    
     - [$100 오픈 컴퓨터 과학 컴퓨팅 툴체인](100-computer-scientifc-computing.html)  
-    - [로봇 운영체제(ROS)](ros.html)
     - [통계적 사고 개발환경](think-stat.html)    
     - [IPython 노트북](ipython-notebook.html)
     - [러플, 리보그, Karel 봇](reeborg.html)            
@@ -58,10 +57,13 @@ title: xwMOOC 오픈 컴퓨터
     - [개발환경 WebIDE](iot-webide.html)
     - [센서(Sensor)](sensor.html)            
     - [초음파센서와 파이캠](iot-pi-cam.html)
+    - [웹서비스](iot-webservice.html)
+    - [R 개발 및 배포 환경](iot-rstudio-shiny.html)
+    - [API 데이터 분석](http://statkclee.github.io/web-data-python/)
+1. 슈퍼 컴퓨터 
+    - [RPi 슈퍼 컴퓨터](rpi-super-computer.html)
+    - [로봇 운영체제(ROS)](ros.html)
     - [데이터 수집기와 로거(logger)](iot-fluentd.html)
     - [노드-레드(Node-RED](iot-node-red.html)
     - [드론 개발(아두이노)](iot-drone-arduino.html)
-    - [웹서비스](iot-webservice.html)
-    - [R 개발 및 배포 환경](iot-rstudio-shiny.html)
-1. 슈퍼 컴퓨터 
-    - [RPi 슈퍼 컴퓨터](rpi-super-computer.html)
+    
