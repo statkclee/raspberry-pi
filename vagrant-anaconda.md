@@ -42,7 +42,7 @@ $ vagrant ssh
 
 $install_python = <<SCRIPT
 # ANACONDA
-anaconda=Anaconda3-2.4.1-Linux-x86_64.sh
+anaconda=Anaconda2-2.4.1-Linux-x86_64.sh
 if [[ ! -f $anaconda ]]; then
   wget --quiet https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/$anaconda
 fi
