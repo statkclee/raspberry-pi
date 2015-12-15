@@ -205,5 +205,77 @@ $ docker pull rocker/shiny
 
 클라우드 서비스 제공업체 중 하나인 [IBM 소프트레이어(SoftLayer)](http://www.ibm.com/cloud-computing/kr/ko/softlayer/) 위에 R 툴체인 구축하는 사례를 [RStudio IDE와 Shiny 서버 설치](http://statkclee.github.io/pyr-cloudlayer/06-install-shiny-rstudio.html) 참조한다.
 
+### 8. 최신버젼 R 코어 엔진 탑재
+
+`sudo apt-get install r-base` 명령어를 통해서 R 코어 엔진을 설치할 경우 심하면 2013년 버젼이 설치될 수도 있다.
+`version` 명령어를 통해서 3.0.2 버젼임을 알 수 있다.
+
+~~~ {.r}
+> version
+~~~
+
+~~~ {.output}
+platform       x86_64-pc-linux-gnu         
+arch           x86_64                      
+os             linux-gnu                   
+system         x86_64, linux-gnu           
+status                                     
+major          3                           
+minor          0.2                         
+year           2013                        
+month          09                          
+day            25                          
+svn rev        63987                       
+language       R                           
+version.string R version 3.0.2 (2013-09-25)
+nickname       Frisbee Sailing             
+~~~
+
+최신 R 코어로 교체하는 방법은 다음과 같다.
+
+1. R을 제거한다.
+2. `/etc/apt/sources.list` 목록에 rstudio 저장소 목록을 추가한다.
+    - `deb http://cran.rstudio.com/bin/linux/ubuntu trusty/`
+
+~~~ {.shell}
+$ sudo apt-get remove r-base-core
+$ sudo nano /etc/apt/sources.list
+~~~
+
+3. 공개키를 추가한다.
+
+~~~ {.shell}
+$ gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
+$ gpg -a --export E084DAB9 | sudo apt-key add -
+~~~
+
+4. 목록을 갱신하고 R 코어 엔진을 재설치한다.
+
+~~~ {.shell}
+$ sudo apt-get update && upgrade
+$ sudo apt-get install r-base
+~~~
+
+~~~ {.r}
+> version
+~~~
+~~~ {.output}
+platform       x86_64-pc-linux-gnu         
+arch           x86_64                      
+os             linux-gnu                   
+system         x86_64, linux-gnu           
+status                                     
+major          3                           
+minor          2.3                         
+year           2015                        
+month          12                          
+day            10                          
+svn rev        69752                       
+language       R                           
+version.string R version 3.2.3 (2015-12-10)
+nickname       Wooden Christmas-Tree   
+~~~
+
 [^1]: [WindowsでvagantにRStudio Serverを立てる](http://notchained.hatenablog.com/entry/2014/04/27/141927)
 [^2]: [Installing Shiny Server Open Source](https://www.rstudio.com/products/shiny/download-server/)
+[^3]: [Install R-base 3.1.0 in Ubuntu 14.04](http://sysads.co.uk/2014/06/install-r-base-3-1-0-ubuntu-14-04/)
