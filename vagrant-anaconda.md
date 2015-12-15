@@ -40,15 +40,9 @@ $ vagrant ssh
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-$script = <<SCRIPT
-# GIT
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install -y git
-# Think Stats2 Clone
-git clone 
+$install_python = <<SCRIPT
 # ANACONDA
-anaconda=Anaconda2-2.4.0-Linux-x86.sh
+anaconda=Anaconda3-2.4.1-Linux-x86_64.sh
 if [[ ! -f $anaconda ]]; then
   wget --quiet https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/$anaconda
 fi
@@ -59,23 +53,21 @@ export PATH=/home/vagrant/anaconda/bin:$PATH
 END
 rm $anaconda
 # Start ipython notebook
-sed -i "17i su vagrant -c 'cd /home/vagrant && /home/vagrant/anaconda/bin/ipython notebook --ip=\\"*\\"'" /etc/rc.local
+sed -i "17i su vagrant -c 'cd /home/vagrant && /home/vagrant/anaconda/bin/ipython notebook --no-browser --ip=0.0.0.0'" /etc/rc.local
 SCRIPT
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/trusty32"
+  config.vm.box = "ubuntu/trusty64"
 
   config.vm.network "forwarded_port", guest: 8000, host: 8000, auto_correct: true
-  config.vm.network "forwarded_port", guest: 8888, host: 8888, auto_correct: true
 
   config.vm.provider :virtualbox do |v|
     v.memory = 2048
     v.cpus = 2
   end
   
-  config.vm.provision :shell, inline: $script
-  config.vm.synced_folder ".", "/home/vagrant/think-stat"
-
+  config.vm.provision :shell, inline: $install_python
+  config.vm.synced_folder ".", "/home/vagrant/"
 end
 ~~~
 
