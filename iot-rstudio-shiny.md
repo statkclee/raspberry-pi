@@ -148,11 +148,35 @@ iot-shiny-shinyapp-io.png
 
 <img src="fig/iot-shiny-shinyapp-io.png" width="47%" />
 
-### 5. `Vagrant` 부랑자 R 툴체인 설치
+### 5. `Vagrant` 부랑자 R 툴체인 설치 
 
 [RStudio GitHub](https://github.com/rstudio/rstudio)
 
 ~~~ {.shell}
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$rstudio_script = <<RSTUDIO
+    sudo apt-get update
+    sudo apt-get install -y r-base-core
+    sudo apt-get install -y gdebi-core
+    wget https://download2.rstudio.org/rstudio-server-0.99.489-amd64.deb
+    sudo gdebi -n rstudio-server-0.99.489-amd64.deb
+RSTUDIO
+
+$shiny_script = <<SHINY
+    sudo apt-get update
+    sudo apt-get install -y r-base-core
+    sudo apt-get install -y gdebi-core
+    sudo R -e "install.packages('shiny', repos = 'http://cran.rstudio.com/', dep = TRUE)"
+    sudo R -e "install.packages('rmarkdown', repos = 'http://cran.rstudio.com/', dep = TRUE)"
+    sudo R -e "install.packages('dplyr', repos = 'http://cran.rstudio.com/', dep = TRUE)"
+    sudo R -e "install.packages('pastecs', repos = 'http://cran.rstudio.com/', dep = TRUE)"
+    sudo R -e "source('http://bioconductor.org/biocLite.R'); biocLite('GenomicRanges')"
+    wget https://download3.rstudio.org/ubuntu-12.04/x86_64/shiny-server-1.4.1.759-amd64.deb
+    sudo gdebi -n shiny-server-1.4.1.759-amd64.deb
+SHINY
+
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
 
@@ -163,25 +187,8 @@ Vagrant.configure(2) do |config|
     vb.memory = "2048"
   end
 
-  $rstudio-script <<-SHELL
-    sudo apt-get update
-    sudo apt-get install -y r-base-core
-    sudo apt-get install -y gdebi-core
-    wget https://download2.rstudio.org/rstudio-server-0.99.489-amd64.deb
-    sudo gdebi -n rstudio-server-0.99.489-amd64.deb
-  SHELL
-
-  $shiny-script <<-SHELL
-    sudo apt-get update
-    sudo apt-get install -y r-base-core
-    sudo apt-get install -y gdebi-core
-    sudo su - -c "R -e \"install.packages('shiny', repos='http://cran.rstudio.com/')\""
-    wget https://download3.rstudio.org/ubuntu-12.04/x86_64/shiny-server-1.4.1.759-amd64.deb
-    sudo gdebi -n shiny-server-1.4.1.759-amd64.deb
-  SHELL
-
-  config.vm.provision "shell", inline: $rstudio-script
-  config.vm.provision "shell", inline: $shiny-script
+  config.vm.provision "shell", inline: $rstudio_script
+  config.vm.provision "shell", inline: $shiny_script
 end
 ~~~
 

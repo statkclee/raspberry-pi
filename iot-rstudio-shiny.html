@@ -62,57 +62,68 @@
 <li><a href="https://www.shinyapps.io/">Shiny 클라우드 서비스</a> : R 배포 클라우드 웹서비스</li>
 </ul>
 </blockquote>
+<h4 id="리눅스-가상-컴퓨터-준비">1.1 리눅스 가상 컴퓨터 준비</h4>
+<p><code>vagrant init ubuntu/trusty64</code> 명령어를 통해서 리눅스 가상 컴퓨터를 준비한다.</p>
+<pre class="shell"><code>$ vagrant init ubuntu/trusty64
+$ vagrant up --provider virtualbox
+$ vagrant ssh</code></pre>
 <h3 id="rstudio-통합개발환경-서버-설치">2. <code>RStudio</code> 통합개발환경 서버 설치</h3>
-<p><code>Shiny 서버</code>를 설치한 다음에 <code>RStudio</code> 개발환경을 설치한다. <code>gdebi</code>는 <code>Shiny 서버</code> 소프트웨어를 설치할 때 설치했기 때문에 바로 최신 버전을 <code>wget</code>을 통해 다운로드하고 나서 설치한다.</p>
-<pre class="input"><code>root@shiny-sl:~# wget http://download2.rstudio.org/rstudio-server-0.98.1103-amd64.deb</code></pre>
-<pre class="output"><code>--2015-05-22 03:42:29--  http://download2.rstudio.org/rstudio-server-0.98.1103-amd64.deb
-Resolving download2.rstudio.org (download2.rstudio.org)... 54.192.7.233, 54.230.4.176, 54.230.5.20,
-...
-Connecting to download2.rstudio.org (download2.rstudio.org)|54.192.7.233|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 36304754 (35M) [application/x-deb]
-Saving to: &#39;rstudio-server-0.98.1103-amd64.deb&#39;
-
-100%[==========================================================&gt;] 36,304,754  19.5MB/s   in 1.8s
-
-2015-05-22 03:42:31 (19.5 MB/s) - &#39;rstudio-server-0.98.1103-amd64.deb&#39; saved [36304754/36304754]</code></pre>
-<pre class="input"><code>root@shiny-sl:~# sudo gdebi rstudio-server-0.98.1103-amd64.deb</code></pre>
+<p><code>r-base</code>와 <code>gdebi-core</code>를 설치한 다음에 <code>RStudio</code> 개발환경을 설치한다. 최신 버전을 <a href="https://www.rstudio.com/products/rstudio/download-server/">RStudio 다운로드 웹사이트</a>에서 <code>wget</code>을 통해 다운로드하고 나서 설치한다.</p>
+<pre class="input"><code>vagrant@vagrant-ubuntu-trusty-64:~$ sudo apt-get install -y r-base-core
+vagrant@vagrant-ubuntu-trusty-64:~$ sudo apt-get install -y gdebi-core
+vagrant@vagrant-ubuntu-trusty-64:~$ wget https://download2.rstudio.org/rstudio-server-0.99.489-amd64.deb
+vagrant@vagrant-ubuntu-trusty-64:~$ sudo gdebi rstudio-server-0.99.489-amd64.deb</code></pre>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pushpin"></span>포트 설정 8787</h4>
+</div>
+<div class="panel-body">
+<p><code>Vagrantfile</code>을 편집기로 열고 포트를 추가하여 <code>config.vm.network &quot;forwarded_port&quot;, guest:8787, host:8787</code> 와 같이 설정한다. <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> <code>vagrant reload</code> 명령어로 다시 가상 컴퓨터를 재부팅한다.</p>
+</div>
+</aside>
 <h3 id="rstudio-ide-접속">2.1 <code>RStudio</code> IDE 접속</h3>
-<p>이제 웹브라우져를 열고 <strong>포트번호(port, 8787)</strong>를 뒤에 <code>:8787</code>을 붙여 <code>http://169.53.232.11:8787/</code>와 같이 입력하면 <code>Sign in to RStudio</code> 화면에 사용자명(<code>username:</code>)과 비밀번호(<code>Password:</code>)를 넣고 <code>Sign In</code>하라고 한다. 절대 <code>root</code>권한을 가지고 로그인하면 들어가지 않는다. <code>root</code>권한을 가지고 사용자를 추가한 후에 추가된 사용자명을 가지고 로그인한다. <a href="http://linux.die.net/man/8/useradd">useradd</a>를 통해서 사용자 추가를 추가하고, <a href="http://linux.die.net/man/8/userdel">userdel</a>을 통해서 사용자를 삭제한다. <code>adduser</code> 혹은 <code>useradd</code> 동일한 명령어다. <code>xwmooc</code> 사용자를 <code>sudo useradd -m xwmooc</code> 혹은 <code>sudo adduser -m xwmooc</code> 명령어로 설정했으니, 다음올 비밀번호를 설정한다. <code>sudo passwd xwmooc</code> 비밀번호를 두번 입력하게 되면 설정이 완료되었다.</p>
+<p>이제 웹브라우져를 열고 <strong>포트번호(port, 8787)</strong>를 뒤에 <code>:8787</code>을 붙여 <code>http://localhost:8787/</code> 혹은 만약 외부 컴퓨터에 설치한 경우 해당 IP를 <code>http://169.53.232.11:8787/</code>와 같이 입력하면 <code>Sign in to RStudio</code> 화면에 사용자명(<code>username:</code>)과 비밀번호(<code>Password:</code>)를 넣고 <code>Sign In</code>하라고 한다. 절대 <code>root</code>권한을 가지고 로그인하면 들어가지 않는다. <code>root</code>권한을 가지고 사용자를 추가한 후에 추가된 사용자명을 가지고 로그인한다. <a href="http://linux.die.net/man/8/useradd">useradd</a>를 통해서 사용자 추가를 추가하고, <a href="http://linux.die.net/man/8/userdel">userdel</a>을 통해서 사용자를 삭제한다. <code>adduser</code> 혹은 <code>useradd</code> 동일한 명령어다. <code>xwmooc</code> 사용자를 <code>sudo useradd -m xwmooc</code> 혹은 <code>sudo adduser -m xwmooc</code> 명령어로 설정했으니, 다음올 비밀번호를 설정한다. <code>sudo passwd xwmooc</code> 비밀번호를 두번 입력하게 되면 설정이 완료되었다.</p>
+<p>부랑자를 설치한 경우 ID: <code>vagrant</code>, 비밀번호 <code>vagrant</code>를 사용해서 로그인하면 된다.</p>
 <p><strong>주의</strong>: <code>sudo useradd -m xwmooc</code> 명령어에서 <code>-m</code> 옵션 플래그는 홈디렉토리를 생성하게 만든다. 그래야지만 정상적으로 <code>RStudio</code> 작업이 가능하다.</p>
-<pre class="input"><code>root@shiny-sl:~# sudo useradd -m xwmooc
-root@shiny-sl:~# sudo adduser -m xwmooc
+<pre class="input"><code>vagrant@vagrant-ubuntu-trusty-64:~$ sudo useradd -m xwmooc
+vagrant@vagrant-ubuntu-trusty-64:~$ sudo adduser -m xwmooc
 adduser: The user `xwmooc&#39; already exists.
-root@shiny-sl:~# sudo passwd xwmooc
+vagrant@vagrant-ubuntu-trusty-64:~$ sudo passwd xwmooc
 Enter new UNIX password:
 Retype new UNIX password:
-passwd: password updated successfully
-root@shiny-sl:~#</code></pre>
-<p>이제 <code>RStudio</code>를 사용하기 위해서 <code>http://169.53.232.11:8787/</code> 사이트에서 사용자명 <code>xwmooc</code>를 넣고 비밀번호를 입력하게 되면 <code>RStudio</code>를 사용할 수 있게 된다.</p>
+passwd: password updated successfully</code></pre>
+<p>이제 <code>RStudio</code>를 사용하기 위해서 <code>http://localhost:8787/</code> 혹은 <code>http://169.53.232.11:8787/</code> 사이트에서 사용자명 <code>xwmooc</code>를 넣고 비밀번호를 입력하게 되면 <code>RStudio</code>를 사용할 수 있게 된다.</p>
 <p><img src="fig/iot-shiny-rstudio-install.png" width="47%" /></p>
-<h3 id="shiny-서버-설치">3. <code>Shiny</code> 서버 설치</h3>
-<p>기본적으로 <code>R</code> 라이선스가 <code>GPL</code>을 따르기 때문에 <code>Shiny</code> 서버도 동일한 라이선스를 따르니 리눅스를 이용하는 기분으로 소프트웨어를 사용한다. 이제 Shiny 서버를 클라우드에 구축하기 위해서 Shiny 서버를 다운로드하여 설치한다. 우분투 기준 <code>Shiny Server v1.3.0.403</code> 버젼 기준으로 설치해 나간다. 자세한 내용은 영어 설치페이지<a href="http://www.rstudio.com/products/shiny/download-server/" class="uri">http://www.rstudio.com/products/shiny/download-server/</a>를 참조한다.</p>
+<h3 id="shiny-서버-설치-2">3. <code>Shiny</code> 서버 설치 <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></h3>
+<p>기본적으로 <code>R</code> 라이선스가 <code>GPL</code>을 따르기 때문에 <code>Shiny</code> 서버도 동일한 라이선스를 따르니 리눅스를 이용하는 기분으로 소프트웨어를 사용한다. 이제 Shiny 서버를 클라우드에 구축하기 위해서 Shiny 서버를 다운로드하여 설치한다. 우분투 기준 <code>Shiny Server v1.3.0.403</code> 버젼 기준으로 설치해 나간다. 자세한 내용은 영어 설치페이지<a href="http://www.rstudio.com/products/shiny/download-server/">http://www.rstudio.com/products/shiny/download-server/</a>를 참조한다.</p>
 <p>운영체제 버젼 확인 결과 우분투 14.04 버젼으로 Rstudio 에서 설치시 권장하는 우분투 12.04보다 상위버젼으로 바로 <code>R</code>부터 설치를 진행해 나갈 수 있다. <code>r-base</code>를 설치하고 난 다음에는 <code>Shiny 서버</code>를 설치하기 전에 <code>Shiny R</code> 팩키지를 설치해야한다. 물론 <code>R</code>로 들어가서 <code>install.packages('shiny', repos='http://cran.rstudio.com/')</code>를 해서 <code>shiny</code> 팩키지를 설치해도 된다.</p>
-<pre class="input"><code>root@shiny-sl:~# sudo apt-get install r-base
-root@shiny-sl:~# $ sudo su - -c &quot;R -e \&quot;install.packages(&#39;shiny&#39;, repos=&#39;http://cran.rstudio.com/&#39;)\&quot;&quot;</code></pre>
+<pre class="input"><code>vagrant@vagrant-ubuntu-trusty-64:~$ sudo su - -c &quot;R -e \&quot;install.packages(&#39;shiny&#39;, repos=&#39;http://cran.rstudio.com/&#39;)\&quot;&quot;</code></pre>
 <p><code>R</code>과 <code>Shiny</code> 패키지를 설치한 다음에 <strong>gdebi</strong>를 다음에 설치해야 한다. 그리고 나서 <code>gdebi</code>를 통해서 <code>Shiny 서버</code>를 설치할 수 있다.</p>
 <p><code>wget</code>을 통해서 <code>Shiny 서버</code> 설치 파일을 다운로드받고, <code>gdebi</code>를 통해서 <code>Shiny 서버</code>를 설치한다.</p>
-<pre class="input"><code>root@shiny-sl:~# sudo apt-get install gdebi-core
-root@shiny-sl:~# wget http://download3.rstudio.org/ubuntu-12.04/x86_64/shiny-server-1.3.0.403-amd64.deb
-root@shiny-sl:~# sudo gdebi shiny-server-1.3.0.403-amd64.deb</code></pre>
+<pre class="input"><code>vagrant@vagrant-ubuntu-trusty-64:~$ sudo apt-get install gdebi-core
+vagrant@vagrant-ubuntu-trusty-64:~$ wget https://download3.rstudio.org/ubuntu-12.04/x86_64/shiny-server-1.4.1.759-amd64.deb
+vagrant@vagrant-ubuntu-trusty-64:~$ sudo gdebi shiny-server-1.4.1.759-amd64.deb</code></pre>
 <p><code>Shiny 서버</code>가 잘 실행되고 있는지 <code>status shiny-server</code> 명령어를 통해서 확인해보고, 만약 서비스가 시작되지 않았다면, <code>sudo start shiny-server</code> 명령어로 실행시킨다.</p>
-<pre class="input"><code>root@shiny-sl:~# status shiny-server
+<pre class="input"><code>vagrant@vagrant-ubuntu-trusty-64:~$ status shiny-server
 shiny-server start/running, process 14553
 
-root@shiny-sl:~# sudo start shiny-server
+vagrant@vagrant-ubuntu-trusty-64:~$ sudo start shiny-server
 start: Job is already running: shiny-server</code></pre>
-<p>이제 웹브라우져를 열고 <strong>포트번호(port, 3838)</strong>를 뒤에 <code>:3838</code>을 붙여 <code>http://169.53.232.11:3838/</code>와 같이 입력하면 브라우져 상단에 다음과 같은 메시지가 출력되면 설치가 완료되고 사용준비가 완료된 것이다.</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h4><span class="glyphicon glyphicon-pushpin"></span>포트 설정 3838</h4>
+</div>
+<div class="panel-body">
+<p><code>Vagrantfile</code>을 편집기로 열고 포트를 추가하여 <code>config.vm.network &quot;forwarded_port&quot;, guest:3838, host:3838</code> 와 같이 설정한다. <code>vagrant reload</code> 명령어로 다시 가상 컴퓨터를 재부팅한다.</p>
+</div>
+</aside>
+<p>이제 웹브라우져를 열고 <strong>포트번호(port, 3838)</strong>를 뒤에 <code>:3838</code>을 붙여 <code>http://localhost:3838/</code> 혹은 <code>http://169.53.232.11:3838/</code>와 같이 입력하면 브라우져 상단에 다음과 같은 메시지가 출력되면 설치가 완료되고 사용준비가 완료된 것이다.</p>
 <p><img src="fig/iot-shiny-install.png" width="47%" /></p>
 <p>첫 설치 페이지 우측 하단에 <code>rmarkdown</code> 설치가 되지 않아 생기는 오류사항은 <code>R</code>에서 <code>install.packages(&quot;rmarkdown&quot;)</code>를 통해서 <code>rmarkdown</code> 팩키지를 설치해서 해결할 수 있고 다음과 같은 메시지가 보이면 설치가 모두 완료된 것이다.</p>
 <pre class="output"><code>With Shiny and `rmarkdown` installed, you should see a Shiny doc above.</code></pre>
 <h3 id="shinyapp.io-공용-shiny-서버-설정">4. <code>shinyapp.io</code> 공용 Shiny 서버 설정</h3>
-<p><code>Tools</code> –&gt; <code>ShinyApps</code> –&gt; <code>Manage Accounts...</code>를 통해 RStudio에서 바로 <a href="https://www.shinyapps.io/" class="uri">https://www.shinyapps.io/</a> 공용 Shiny 서버로 응용프로그램을 배포할 수 있다. 먼저 <a href="https://www.shinyapps.io/" class="uri">https://www.shinyapps.io/</a> 웹사이트에 접속해서 계정을 생성한다.</p>
-<p><a href="https://www.shinyapps.io/" class="uri">https://www.shinyapps.io/</a> 웹사이트에 로그인한 뒤에 사용자명(우측상단)을 클릭하고 <strong>Tokens</strong>를 클릭하면 토큰과 비밀키 정보가 함께 볼 수 있다.</p>
+<p><code>Tools</code> –&gt; <code>ShinyApps</code> –&gt; <code>Manage Accounts...</code>를 통해 RStudio에서 바로 <a href="https://www.shinyapps.io/">https://www.shinyapps.io/</a> 공용 Shiny 서버로 응용프로그램을 배포할 수 있다. 먼저 <a href="https://www.shinyapps.io/">https://www.shinyapps.io/</a> 웹사이트에 접속해서 계정을 생성한다.</p>
+<p><a href="https://www.shinyapps.io/">https://www.shinyapps.io/</a> 웹사이트에 로그인한 뒤에 사용자명(우측상단)을 클릭하고 <strong>Tokens</strong>를 클릭하면 토큰과 비밀키 정보가 함께 볼 수 있다.</p>
 <pre class="output"><code>shinyapps::setAccountInfo(name=&#39;xwmooc&#39;,
         token=&#39;C9CXXXXXXXXXXXXXXXXXXXXX&#39;,
         secret=&#39;&lt;SECRET&gt;&#39;)</code></pre>
@@ -122,6 +133,57 @@ start: Job is already running: shiny-server</code></pre>
 <p>iot-shiny-shinyapp-io.png</p>
 <p><img src="fig/iot-shiny-shinyapp-io.png" width="47%" /></p>
 <h3 id="vagrant-부랑자-r-툴체인-설치">5. <code>Vagrant</code> 부랑자 R 툴체인 설치</h3>
+<p><a href="https://github.com/rstudio/rstudio">RStudio GitHub</a></p>
+<pre class="shell"><code># -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$rstudio_script = &lt;&lt;RSTUDIO
+    sudo apt-get update
+    sudo apt-get install -y r-base-core
+    sudo apt-get install -y gdebi-core
+    wget https://download2.rstudio.org/rstudio-server-0.99.489-amd64.deb
+    sudo gdebi -n rstudio-server-0.99.489-amd64.deb
+RSTUDIO
+
+$shiny_script = &lt;&lt;SHINY
+    sudo apt-get update
+    sudo apt-get install -y r-base-core
+    sudo apt-get install -y gdebi-core
+    sudo R -e &quot;install.packages(&#39;shiny&#39;, repos = &#39;http://cran.rstudio.com/&#39;, dep = TRUE)&quot;
+    sudo R -e &quot;install.packages(&#39;rmarkdown&#39;, repos = &#39;http://cran.rstudio.com/&#39;, dep = TRUE)&quot;
+    sudo R -e &quot;install.packages(&#39;dplyr&#39;, repos = &#39;http://cran.rstudio.com/&#39;, dep = TRUE)&quot;
+    sudo R -e &quot;install.packages(&#39;pastecs&#39;, repos = &#39;http://cran.rstudio.com/&#39;, dep = TRUE)&quot;
+    sudo R -e &quot;source(&#39;http://bioconductor.org/biocLite.R&#39;); biocLite(&#39;GenomicRanges&#39;)&quot;
+    wget https://download3.rstudio.org/ubuntu-12.04/x86_64/shiny-server-1.4.1.759-amd64.deb
+    sudo gdebi -n shiny-server-1.4.1.759-amd64.deb
+SHINY
+
+Vagrant.configure(2) do |config|
+  config.vm.box = &quot;ubuntu/trusty64&quot;
+
+  config.vm.network &quot;forwarded_port&quot;, guest:8787, host:8787
+  config.vm.network &quot;forwarded_port&quot;, guest:3838, host:3838
+
+  config.vm.provider &quot;virtualbox&quot; do |vb|
+    vb.memory = &quot;2048&quot;
+  end
+
+  config.vm.provision &quot;shell&quot;, inline: $rstudio_script
+  config.vm.provision &quot;shell&quot;, inline: $shiny_script
+end</code></pre>
+<h3 id="도커docker-r-툴체인-설치">6. 도커(Docker) R 툴체인 설치</h3>
+<p><a href="https://docs.docker.com/v1.8/installation/windows/">boot2docker</a>를 사용해서 윈도우 환경에 도커를 설치하거나 리눅스 환경에서 도커를 설치하고 <a href="https://hub.docker.com/">도커 허브</a>에서 <code>docker pull</code> 명령어를 통해서 도커 이미지를 받아 컨테이너를 생성한다.</p>
+<pre class="shell"><code>$ docker pull rocker/rstudio
+$ docker pull rocker/shiny</code></pre>
+<h3 id="클라우드-서비스-r-개발-툴체인-구축">7. 클라우드 서비스 R 개발 툴체인 구축</h3>
+<p>클라우드 서비스 제공업체 중 하나인 <a href="http://www.ibm.com/cloud-computing/kr/ko/softlayer/">IBM 소프트레이어(SoftLayer)</a> 위에 R 툴체인 구축하는 사례를 <a href="http://statkclee.github.io/pyr-cloudlayer/06-install-shiny-rstudio.html">RStudio IDE와 Shiny 서버 설치</a> 참조한다.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="http://notchained.hatenablog.com/entry/2014/04/27/141927">WindowsでvagantにRStudio Serverを立てる</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a href="https://www.rstudio.com/products/shiny/download-server/">Installing Shiny Server Open Source</a><a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
         </div>
       </div>
       </article>
