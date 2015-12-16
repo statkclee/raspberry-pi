@@ -67,3 +67,4 @@ title: xwMOOC 오픈 컴퓨터
     - [노드-레드(Node-RED](iot-node-red.html)
     - [드론 개발(아두이노)](iot-drone-arduino.html)
     - [아치 리눅스](raspberry-pi-arch.html)        
+    - [수학의 역사](math-history.html)
