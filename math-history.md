@@ -29,7 +29,7 @@ minutes: 10
 
 ### 3. 세상을 바꾼 5개의 수 - ‘넘버스’(5부작)
 
-EBS에서 세상을 바꾼 숫자 5개를 정해서 다큐멘터리를 만들었다. **[세상을 바꾼 5개의 수-넘버스(5부작)](http://home.ebs.co.kr/docuprime/newReleaseView/297?c.page=1)**로 π, ∞, x, 0, i 를 한국인이 알아먹기 쉽게 만들었다.
+EBS에서 세상을 바꾼 숫자 5개를 정해서 다큐멘터리를 만들었다. **[세상을 바꾼 5개의 수-넘버스(5부작)](http://home.ebs.co.kr/docuprime/newReleaseView/297?c.page=1)**로 π, ∞, x, 0, i 를 한국어로 나름 이해하기 쉽게 만들었다.
 
 1. [넘버스 - 1부 하늘의 수, π](http://www.ebs.co.kr/tv/show?prodId=348&lectId=10400921)
 1. [넘버스 - 2부 천국의 사다리, ∞](http://www.ebs.co.kr/tv/show?prodId=348&lectId=10401181)
