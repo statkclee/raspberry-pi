@@ -4,35 +4,35 @@
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
     <title>Software Carpentry: xwMOOC 컴퓨터</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
-    <link rel="stylesheet" type="text/css" href="css/swc.css" />
-    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
-    <meta charset="UTF-8" />
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-59802572-7', 'auto');
-      ga('send', 'pageview');
-    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
     </script>
   </head>
   <body class="lesson">
     <div class="container card">
-      <div class="banner">
-        <a href="http://xwmooc.net" title="xwMOOC">
-          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
-        </a>
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
       </div>
       <article>
       <div class="row">
@@ -41,7 +41,7 @@
           <h2 class="subtitle">라즈베리파이 운영체제 (OS)</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -54,14 +54,15 @@
 <p><img src="fig/raspberry-pi-fullstack-toolchain.png" width="70%" /></p>
 <section class="prereq panel panel-warning">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-education"></span>라즈베리 파이 운영체제</h4>
+<h4 id="라즈베리-파이-운영체제"><span class="glyphicon glyphicon-education"></span>라즈베리 파이 운영체제</h4>
 </div>
 <div class="panel-body">
 <ol style="list-style-type: decimal">
 <li>리눅스
 <ul>
 <li>라즈비언(Raspian) : 데비안(Debian) 계열</li>
-<li>피도라(Pidora) : 페도라(Fedora) 기반<br /></li>
+<li>피도라(Pidora) : 페도라(Fedora) 기반<br />
+</li>
 <li>아치리눅스(Archlinux) : DIY 운영체제</li>
 </ul></li>
 <li>미디어센터 : OpenELEC, OSMC</li>
@@ -77,10 +78,15 @@
 <p>참고: <a href="http://www.makeuseof.com/tag/7-operating-systems-you-can-run-with-raspberry-pi/">7 Operating Systems You Can Run With Raspberry Pi</a></p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-pushpin"></span>다양한 리눅스 배포판</h4>
+<h4 id="다양한-리눅스-배포판"><span class="glyphicon glyphicon-pushpin"></span>다양한 리눅스 배포판</h4>
 </div>
 <div class="panel-body">
-<table>
+<table style="width:53%;">
+<colgroup>
+<col width="15%" />
+<col width="12%" />
+<col width="25%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="center">리눅스 배포판</th>
@@ -175,7 +181,8 @@
 <ul>
 <li>일반적으로 <em>Generic 105 key (Intl) PC</em> 를 선택하지만, 슬림 키보드 혹은 파이(노트)북의 경우 _Generic 102 key (Intl) PC_로 키보드 자판을 선택한다.
 <ul>
-<li>Internationalisation Options → Change Keyboard Layout → Generic 105 key (Intl) PC <img src="fig/raspberry-pi-boot-config.png" width="50%" /><br /></li>
+<li>Internationalisation Options → Change Keyboard Layout → Generic 105 key (Intl) PC <img src="fig/raspberry-pi-boot-config.png" width="50%" /><br />
+</li>
 </ul></li>
 <li><code>sudo nano /etc/default/keyboard</code> 명령어를 통해서 한글 키보드로 설정한다. 키보드자판 한영 전환키를 누를 때 한글과 영문으로 전환된다.</li>
 <li><code>XKBLAYOUT=&quot;us&quot;</code> 설정을 <code>XKBLAYOUT=&quot;ko&quot;</code> 로 변환한다.</li>
@@ -183,7 +190,7 @@
 </ol>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-pushpin"></span><strong><a href="http://kwonnam.pe.kr/wiki/linux/inputmethod">한글 입력기</a> 종류</strong></h4>
+<h4 id="한글-입력기-종류"><span class="glyphicon glyphicon-pushpin"></span><strong><a href="http://kwonnam.pe.kr/wiki/linux/inputmethod">한글 입력기</a> 종류</strong></h4>
 </div>
 <div class="panel-body">
 <p>한글입력기는 다양하나 많은 리눅스 배포판이 표준으로 사용하는 iBus를 설치한다.</p>
@@ -203,7 +210,7 @@ pi@raspberrypi ~ $ sudo apt-get install ibus-hangul
 pi@raspberrypi ~ $ sudo nano /etc/default/keyboard</code></pre>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-pushpin"></span>라즈베리 파이 초기 환경 설정</h4>
+<h4 id="라즈베리-파이-초기-환경-설정"><span class="glyphicon glyphicon-pushpin"></span>라즈베리 파이 초기 환경 설정</h4>
 </div>
 <div class="panel-body">
 <p><code>sudo raspi-config</code> 명령어를 통해서 최초 라즈베리 파이 환경을 설정한다. Raspberry Pi Software Configuration Tool (raspi-config) Setup Options에 9가지 선택 옵션이 나와있다. <code>whoami</code> 명령어를 콘솔에서 입력하면 사용자가 <code>root</code> 가 되야 한다. 초기 <code>pi</code> 사용자로 로그인 했고 <code>root</code> 사용자에 대한 비밀번호를 설정하지 않았기 때문에, <code>sudo passwd root</code> 명령어로 <code>root</code> 사용자 비밀번호 설정하고 나서 <code>su root</code> 명령어로 <code>root</code>로 로그인하면 <code>sudo raspi-config</code> 명령어를 사용할 수 있다.</p>
@@ -217,7 +224,11 @@ pi@raspberrypi ~ $ sudo nano /etc/default/keyboard</code></pre>
 <h4 id="osmc">2.1. OSMC</h4>
 <p><a href="https://osmc.tv/">OSMC, 이전 RaspBMC</a>는 라즈베리파이 NOOBS에 포함된 (네트워크 설치) 미디어센터로 <a href="http://kodi.tv/">Kodi, 이전 XBMC로 불림</a> 다양한 미디어 콘텐츠를 라즈베리 파이에 경험할 수 있다. OSMC를 설치하는 방법은 크게 인터넷에 연결된 NOOBS에서 설치하는 방법과 <a href="https://osmc.tv/">OSMC</a> 웹사이트에서 포맷된 USB(마이크로SD)에 설치하는 방법으로 크게 나눌 수 있다.</p>
 <h5 id="osmc-두가지-설치방법">2.1.1. OSMC 두가지 설치방법</h5>
-<table>
+<table style="width:71%;">
+<colgroup>
+<col width="19%" />
+<col width="51%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">NOOBS</th>
@@ -267,7 +278,11 @@ root@osmc:~# sudo apt-get install -y fonts-nanum fonts-nanum-coding fonts-nanum-
 root@osmc:~# nano /usr/share/kodi/addons/skin.osmc/16x9/Font.xml
 root@osmc:~# reboot</code></pre>
 <p>다시 재부팅하고 나서, OSMC 초기화면에서 <code>Settings</code> → <code>Appearance</code> → <code>Language</code> 에서 <code>Korean</code>을 선택하면 모든 설정이 끝난다. 그러면 OSMC 영문을 OSMC 한글로 볼 수 있게 된다.</p>
-<table>
+<table style="width:71%;">
+<colgroup>
+<col width="19%" />
+<col width="51%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">OSMC 영문</th>
@@ -413,7 +428,11 @@ OpenELEC:~ #</code></pre>
 <li>라즈베리파이에 SD카드를 끼워넣고 설치 작업을 완료한다.</li>
 </ol>
 <p>참조: <a href="http://blog.petrockblock.com/retropie/retropie-downloads/retropie-sd-card-image-for-raspberry-pi-2/">RetroPie SD-card Image for Raspberry Pi 2 Version 2.6</a></p>
-<table>
+<table style="width:38%;">
+<colgroup>
+<col width="5%" />
+<col width="31%" />
+</colgroup>
 <tbody>
 <tr class="odd">
 <td align="left"><img src="fig/raspberry-pi-retro-menu.png" width="70%" /></td>
@@ -438,7 +457,11 @@ OpenELEC:~ #</code></pre>
 </ul></li>
 <li>라즈베리파이에 SD카드를 끼워넣고 설치 작업을 완료한다.</li>
 </ol>
-<table>
+<table style="width:38%;">
+<colgroup>
+<col width="5%" />
+<col width="31%" />
+</colgroup>
 <tbody>
 <tr class="odd">
 <td align="left"><img src="fig/raspberry-pi-piplay-menu.png" width="70%" /></td>
@@ -453,15 +476,15 @@ OpenELEC:~ #</code></pre>
         </div>
       </div>
       </article>
-      <div class="footer">
-        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
-        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
-        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
-        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
       </div>
     </div>
-    <!-- Javascript placed at the end of the document so the pages load faster -->
-    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
   </body>
 </html>

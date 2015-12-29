@@ -4,35 +4,35 @@
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
     <title>Software Carpentry: xwMOOC 컴퓨터</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
-    <link rel="stylesheet" type="text/css" href="css/swc.css" />
-    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
-    <meta charset="UTF-8" />
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-59802572-7', 'auto');
-      ga('send', 'pageview');
-    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
     </script>
   </head>
   <body class="lesson">
     <div class="container card">
-      <div class="banner">
-        <a href="http://xwmooc.net" title="xwMOOC">
-          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
-        </a>
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
       </div>
       <article>
       <div class="row">
@@ -41,7 +41,7 @@
           <h2 class="subtitle">데이터 수집기와 로거(logger), Fluentd</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -55,11 +55,14 @@
 <p><img src="fig/iot-logging.png" width="70%" /></p>
 <section class="getready panel panel-warning">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-check"></span>IoT 데이터 수집 자재명세서(BOM)</h4>
+<h4 id="iot-데이터-수집-자재명세서bom"><span class="glyphicon glyphicon-check"></span>IoT 데이터 수집 자재명세서(BOM)</h4>
 </div>
 <div class="panel-body">
 <p>라즈베리 파이 게이트웨어에 연결된 각종 센서에서 수집된 정보를 파이썬으로 프로그래밍하고 이를 Fluentd 수집기를 통해 클라우드로 쏜다.</p>
-<p><a href="https://www.raspberrypi.org/">라즈베리 파이(Raspberry Pi)</a>: 센서 게이트웨이<br /><a href="http://www.fluentd.org/">Fluentd</a>: 로그 수집 통합 소프트웨어<br /><a href="https://www.python.org/">파이썬(Python)</a>: 파이썬 프로그래밍 언어<br /><a href="https://www.treasuredata.com/">TreasureData</a>: 클라우드 IoT 센서 데이터 저장소 각종 센서(Sensor): 초음파센서, 적외선센서, 온도센서, 습도센서 등</p>
+<p><a href="https://www.raspberrypi.org/">라즈베리 파이(Raspberry Pi)</a>: 센서 게이트웨이<br />
+<a href="http://www.fluentd.org/">Fluentd</a>: 로그 수집 통합 소프트웨어<br />
+<a href="https://www.python.org/">파이썬(Python)</a>: 파이썬 프로그래밍 언어<br />
+<a href="https://www.treasuredata.com/">TreasureData</a>: 클라우드 IoT 센서 데이터 저장소 각종 센서(Sensor): 초음파센서, 적외선센서, 온도센서, 습도센서 등</p>
 </div>
 </section>
 <h3 id="iot-데이터-수집-절차">2. IoT 데이터 수집 절차</h3>
@@ -107,14 +110,14 @@ $ sudo fluent-gem install fluent-plugin-td</code></pre>
 <h4 id="fluentd-정보를-클라우드에-전송">2.3. Fluentd 정보를 클라우드에 전송</h4>
 <h4 id="파이썬-설치">2.4. 파이썬 설치</h4>
 <pre class="shell"><code>$ sudo pip install fluent-logger</code></pre>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="co"># test.py</span>
-<span class="ch">from</span> fluent <span class="ch">import</span> sender
-<span class="ch">from</span> fluent <span class="ch">import</span> event
-sender.setup(<span class="st">&#39;fluentd.test&#39;</span>, host=<span class="st">&#39;localhost&#39;</span>, port=<span class="dv">24224</span>)
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># test.py</span>
+<span class="im">from</span> fluent <span class="im">import</span> sender
+<span class="im">from</span> fluent <span class="im">import</span> event
+sender.setup(<span class="st">&#39;fluentd.test&#39;</span>, host<span class="op">=</span><span class="st">&#39;localhost&#39;</span>, port<span class="op">=</span><span class="dv">24224</span>)
 event.Event(<span class="st">&#39;follow&#39;</span>, {
   <span class="st">&#39;from&#39;</span>: <span class="st">&#39;userA&#39;</span>,
   <span class="co">&#39;to&#39;</span>:   <span class="st">&#39;userB&#39;</span>
-})</code></pre>
+})</code></pre></div>
 <pre class="shell"><code>$ python test.py</code></pre>
 <h4 id="td-agent-라즈베리-파이-설치">2.5. <code>td-agent</code> 라즈베리 파이 설치</h4>
 <p><code>ulimit -n</code> 명령어를 통해서 1024가 나오면 <a href="http://docs.fluentd.org/articles/before-install">NTP</a> 설정을 참조해서 변경한다. 하지만, <code>curl -L https://tool​​belt.treasuredata.com/sh/install-debian-jessie-td-agent2.sh | sh</code> ARM 아키텍처는 설치할 수 없는 것으로 보여서</p>
@@ -130,15 +133,15 @@ pi@raspberrypi:~ $  curl -L https://tool​​belt.treasuredata.com/sh/install-d
         </div>
       </div>
       </article>
-      <div class="footer">
-        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
-        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
-        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
-        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
       </div>
     </div>
-    <!-- Javascript placed at the end of the document so the pages load faster -->
-    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
   </body>
 </html>

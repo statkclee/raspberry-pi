@@ -55,6 +55,7 @@ title: xwMOOC 오픈 컴퓨터
     - [정적 웹콘텐츠 개발 환경 구축](static-web-service.html)
 1. IoT
     - [개발환경 WebIDE](iot-webide.html)
+    - [시리얼 통신(UART)](iot-serial.html)    
     - [센서(Sensor)](sensor.html)            
     - [초음파센서와 파이캠](iot-pi-cam.html)
     - [웹서비스](iot-webservice.html)

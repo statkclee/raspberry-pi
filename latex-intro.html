@@ -4,35 +4,35 @@
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
     <title>Software Carpentry: $100 달러 오픈 컴퓨터</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
-    <link rel="stylesheet" type="text/css" href="css/swc.css" />
-    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
-    <meta charset="UTF-8" />
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-59802572-7', 'auto');
-      ga('send', 'pageview');
-    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
     </script>
   </head>
   <body class="lesson">
     <div class="container card">
-      <div class="banner">
-        <a href="http://xwmooc.net" title="xwMOOC">
-          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
-        </a>
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
       </div>
       <article>
       <div class="row">
@@ -41,7 +41,7 @@
           <h2 class="subtitle">문서 프로그래밍 - 한글 LaTeX 소개</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -74,7 +74,7 @@
 </ol>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-pushpin"></span>왜 1,2,3,4번까지 과정을 거치는 것이 필요할까?</h4>
+<h4 id="왜-1234번까지-과정을-거치는-것이-필요할까"><span class="glyphicon glyphicon-pushpin"></span>왜 1,2,3,4번까지 과정을 거치는 것이 필요할까?</h4>
 </div>
 <div class="panel-body">
 <p>만약 아래 한글이나 MS워드로 문서작업을 할 경우 1,2,3,4 전체 과정이 <code>setup.exe</code> 혹은 <code>install.exe</code> 파일을 두번클릭하면 해결이 된다. 하지만, 운영체제가 달라 아래한글이나 MS워드를 설치를 못한다면 어떨까? 혹은, 버젼관리를 추가로 한다면 어떨까? <code>.epub</code>, <code>.html</code>, <code>.pdf</code> 등 다양한 배포는 문제가 없을까? 그리고, 충분한 예산이 확보되어 있는가?</p>
@@ -91,7 +91,8 @@
 <ol style="list-style-type: decimal">
 <li><strong>배포판:</strong> 과거 다양한 배포판이 윈도, 리눅스, 맥에 사용되었으나 현재는 <a href="https://www.tug.org/texlive/">TeX Live</a> 가 유일의 LaTeX 작업환경이 되었다. 물론 <a href="http://miktex.org/">MikTeX</a>이 독자적으로 유지되고 있으나 별차이가 없다.</li>
 <li><strong>폰트:</strong> 과거 폰트 메트릭(tfm), 메타폰트(MetaFont)를 사용하였으나, Type 1 을 걸쳐 트루타입과 오픈타입을 사용하도록 확대되었다.</li>
-<li><strong>그래픽:</strong> TeX/LaTeX은 기본적으로 그림은 TeX/LaTeX의 영역이 아닌 것으로 간주하고 있다. <code>dvips</code>를 사용하여 과거 EPS그림을 주로 사용했으나, 현재는 <code>.jpg</code>, <code>.png</code>, <code>.pdf</code>도 잘 처리한다.<br /></li>
+<li><strong>그래픽:</strong> TeX/LaTeX은 기본적으로 그림은 TeX/LaTeX의 영역이 아닌 것으로 간주하고 있다. <code>dvips</code>를 사용하여 과거 EPS그림을 주로 사용했으나, 현재는 <code>.jpg</code>, <code>.png</code>, <code>.pdf</code>도 잘 처리한다.<br />
+</li>
 <li><strong>문자와 입력:</strong> 컴퓨터가 미국에서 개발되어 발전되어 주로 ASCII 코드가 주를 이뤘으나 2바이트 문자권인 한중일도 컴퓨터에서 자유로이 문자를 표현하고 입력할 수 있는 방식으로 UTF-8을 권장하고 있다. 특히, <code>\usepackage[utf8x]{inputenc}</code> 사용이 필요한 경우가 많이 있다.</li>
 <li><strong>색인과 참고문헌:</strong> <code>makeindex</code>와 <code>bibtex</code>가 색인과 참고문헌 처리를 위한 표준이지만, 유니코드를 좀더 잘 처리하고자 <code>xindy</code>와 <code>biber</code>도 주목받고 있다.</li>
 <li><strong>수식:</strong> 수학표현관련 미국수학회에서 발전시킨 <strong>amsmath</strong>가 표준이다.</li>
@@ -164,15 +165,15 @@ $ sudo make install</code></pre>
         </div>
       </div>
       </article>
-      <div class="footer">
-        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
-        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
-        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
-        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
       </div>
     </div>
-    <!-- Javascript placed at the end of the document so the pages load faster -->
-    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
   </body>
 </html>
