@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 컴퓨터</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 컴퓨터</h1>
+          <h2 class="subtitle">시리얼 통신</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>와이파이나 이더넷 대신 시리얼 통신을 통해 라즈베리 파이 접속한다.</li>
+<li>UART RS-232 통신 표준을 활용한다.</li>
+</ul>
+</div>
+</section>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h3 id="uart범용-비동기화-송수신기"><span class="glyphicon glyphicon-pushpin"></span>UART(범용 비동기화 송수신기)</h3>
+</div>
+<div class="panel-body">
+<p><strong>UART</strong>는 Universal asynchronous receiver/transmitter)의 약자로 <code>범용 비동기화 송수신기</code>로 번역되며 병렬 데이터의 형태를 직렬 방식으로 전환하여 데이터를 전송하는 컴퓨터 하드웨어의 일종이다. UART는 일반적으로 EIA RS-232, RS-422, RS-485와 같은 통신 표준과 함께 사용된다.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+</div>
+</aside>
+<h3 id="자재-명세서bom">1. 자재 명세서(BOM)</h3>
+<p>UART 시리얼 방식으로 라즈베리 파이와 통신을 주고 받으려면, 다음과 같은 하드웨어가 필요하다. 즉, 기존에 사용하던 라즈베리 파이와 노트북 혹은 데스크톱 컴퓨터에 USB to TLL 시리얼 케이블만 필요하다.</p>
+<ul>
+<li>라즈베리 파이 2</li>
+<li>USB to TLL 시리얼 케이블<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></li>
+<li>노트북 컴퓨터 (USB포트지원)</li>
+</ul>
+<h3 id="와이어링-배선-연결">2. 와이어링 배선 연결</h3>
+<p><code>USB to TLL 시리얼 케이블</code>을 라즈베리 파이와 노트북에 각각 연결한다. 라즈베리 파이 GPIO 핀 배열은 <a href="http://www.raspberrypi-spy.co.uk">Raspberry-Pi Spy</a> 웹사이트에 자세히 나와 있다. <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
+<ul>
+<li><code>USB to TLL 시리얼 케이블</code>과 노트북 컴퓨터: USB 포트에 꽂는다.</li>
+<li><code>USB to TLL 시리얼 케이블</code>과 라즈베리 파이: 4개 전선줄을 GPIO 포트에 맞춰 꽂는다.
+<ul>
+<li>GPIO 2번 (적색): 전원 5V</li>
+<li>GPIO 6번 (흑색): 그라운드</li>
+<li>GPIO 8번 (흰색): UART 송신</li>
+<li>GPIO 10번 (녹색): UART 수신</li>
+</ul></li>
+</ul>
+<p><img src="fig/iot-serial.png" width="77%" /></p>
+<h3 id="소프트웨어-설치">3. 소프트웨어 설치</h3>
+<p>라즈베리 파이는 GPIO에 <code>USB to TLL 시리얼 케이블</code> 4개 전선줄을 잘 맞춰 꽂으면 되지만, 노트북 마스터 컴퓨터쪽에는 USB 포트에 연결하는 것에 더해서 RS-232에 맞는 드라이버 소프트웨어를 설치한다. 본인 컴퓨터 운영체제에 맞춰 <a href="http://www.prolific.com.tw/US/ShowProduct.aspx?p_id=225&amp;pcid=41">PL2303 Windows Driver</a>를 다운로드 받아 설치한다.</p>
+<p>만약 윈도우 8.1을 보유하고 있다면 다음과 같이 순서대로 설치한다. <a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></p>
+<ol style="list-style-type: decimal">
+<li>프로리픽 <a href="http://ananddrs.com/wp-content/uploads/2014/09/Profilic_Win8_x64_x86.zip">Profilic_Win8_x64_x86</a> 드라이버를 다운로드 받아 압축을 푼다.</li>
+<li>제어판에서 <code>장치 관리자</code>를 연다.</li>
+<li><code>포트 (COM &amp;LPT)</code> 확장한다.</li>
+<li><code>Prolifc USB-to-Serial Comm Port</code> 디바이스를 선택하고 우클릭해서 <code>속성</code>으로 들어간다.</li>
+<li><code>드라이버</code> 탭을 선택한다.</li>
+<li><code>드라이버 업체이트(P)...</code>을 클릭하고 <code>컴퓨터에서 드라이버 소프트웨어 찾아보기(R)</code>을 선택한다.</li>
+<li>드라이버를 다운로드 받아 압축 푼 디렉토리로 이동한다.</li>
+<li><code>ser2pl.inf</code> 파일을 선택하고 <code>열기</code>를 클릭한다.</li>
+<li><code>확인</code>을 클릭한다.</li>
+<li>컴퓨터를 다시 재부팅한다.</li>
+</ol>
+<h3 id="라즈베리-파이-시리얼-통신-접속">4. 라즈베리 파이 시리얼 통신 접속</h3>
+<p>다시 <code>장치관리자</code> → <code>포트 (COM &amp;LPT)</code> → <code>Prolifc USB-to-Serial Comm Port</code>의 COM 포트 번호를 확인한다. COM5, COM6, COM7 등등이 될 수 있다. PUTTY를 실행해서, 연결 유형을 <code>Serial</code>로 선택하고, <code>Serial Line</code>에 COM 포트번호, <code>Speed</code>에 115200 혹은 확인된 값을 적어 넣고 연결한다.</p>
+<p><img src="fig/iot-serial-putty.png" width="77%" /></p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://ko.wikipedia.org/wiki/UART">위키백과, UART</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a href="http://www.aliexpress.com/snapshot/7172016922.html?orderId=71490745037815">USB to TTL Serial Cable - Debug / Console Cable for Raspberry Pi Model B +</a><a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p><a href="http://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins/">Simple Guide to the RPi GPIO Header and Pins</a><a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p><a href="http://ananddrs.com/2014/09/24/pl2303-prolific-usb-to-ttl-driver-for-windows-8-1/">PL2303 Prolific USB to TTL Driver for Windows 8.1</a><a href="#fnref4">↩</a></p></li>
+</ol>
+</div>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
