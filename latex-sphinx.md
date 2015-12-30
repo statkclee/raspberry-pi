@@ -27,7 +27,7 @@ minutes: 10
 파이썬 스핑크스를 설치는 방법은 `PIP`를 사용해야 하니, `sudo apt-get install python-pip`을 사용해서 먼저 팩키지 관리자를 설치하고 나서, `sudo pip install sphinx`를 실행한다.
 
 ~~~ {.shell}
-$ sudo apt-get install python-pip
+$ sudo apt-get install -y python-pip
 $ sudo pip install sphinx
 ~~~
 
@@ -45,3 +45,36 @@ sudo vi /etc/apt/sources.list
 > :%s/security.ubuntu.com/ftp.daum.net/g  
 > :%s/extras.ubuntu.com/ftp.daum.net/g  
 
+#### 2.2. 부랑자 Vagrantfile 스크립트
+
+'sudo apt-get -y install git' 명령어로 'git'을 설치하고, 파이썬 팩키지 관리자 `sudo apt-get install -y python-pip`를 설치하고 나서, `sudo pip install sphinx`를 설치한다.
+
+~~~ {.shell}
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$install_reeborg = <<INSTALL
+sudo apt-get update
+#install git
+sudo apt-get -y install git
+
+#install Sphinx
+sudo apt-get install -y python-pip
+sudo pip install sphinx
+INSTALL
+
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty32"
+
+  config.vm.provider :virtualbox do |v|
+    v.memory = 1024
+    v.cpus = 1
+  end
+
+  ## 파이썬   
+  config.vm.provision :shell, inline: $install_reeborg
+  config.vm.synced_folder ".", "/home/vagrant/"
+
+end
+~~~

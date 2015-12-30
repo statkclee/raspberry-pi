@@ -4,35 +4,35 @@
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
     <title>Software Carpentry: $100 달러 오픈 컴퓨터</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
-    <link rel="stylesheet" type="text/css" href="css/swc.css" />
-    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
-    <meta charset="UTF-8" />
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-59802572-7', 'auto');
-      ga('send', 'pageview');
-    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
     </script>
   </head>
   <body class="lesson">
     <div class="container card">
-      <div class="banner">
-        <a href="http://xwmooc.net" title="xwMOOC">
-          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
-        </a>
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
       </div>
       <article>
       <div class="row">
@@ -41,7 +41,7 @@
           <h2 class="subtitle">문서 프로그래밍 - 파이썬 스핑크스</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -57,21 +57,48 @@
 <p><img src="fig/latex-sphinx.png" width="77%" /></p>
 <h3 id="파이썬-스핑크스-설치">2. 파이썬 스핑크스 설치</h3>
 <p>파이썬 스핑크스를 설치는 방법은 <code>PIP</code>를 사용해야 하니, <code>sudo apt-get install python-pip</code>을 사용해서 먼저 팩키지 관리자를 설치하고 나서, <code>sudo pip install sphinx</code>를 실행한다.</p>
-<pre class="shell"><code>$ sudo apt-get install python-pip
+<pre class="shell"><code>$ sudo apt-get install -y python-pip
 $ sudo pip install sphinx</code></pre>
 <h4 id="sources.list-파일을-불러오기-오류-처리">2.1. <code>sources.list</code> 파일을 불러오기 오류 처리</h4>
 <p><code>/etc/apt/sources.list</code> 파일의 정보가 원활하지 않아서 문제가 될 경우 기본설정된 주소 대신에 <code>ftp.daum.net</code>으로 변경한다. 일일이 찾아서 바꾸기 귀찮으니, <code>vi</code> 편집기의 치환기능을 사용하여 실행한다. <code>ESC</code>+<code>:</code>을 동시에 누루고 복사하여 넣고 엔터를 친다.</p>
 <pre class="shell"><code>sudo vi /etc/apt/sources.list</code></pre>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4 id="vi-저장소-갱신-문자열"><span class="glyphicon glyphicon-pushpin"></span><code>vi</code> 저장소 갱신 문자열</h4>
+<h4><span class="glyphicon glyphicon-pushpin"></span><code>vi</code> 저장소 갱신 문자열</h4>
 </div>
 <div class="panel-body">
-<p>:%s/kr.archive.ubuntu.com/ftp.daum.net/g<br />
-:%s/security.ubuntu.com/ftp.daum.net/g<br />
-:%s/extras.ubuntu.com/ftp.daum.net/g</p>
+<p>:%s/kr.archive.ubuntu.com/ftp.daum.net/g<br />:%s/security.ubuntu.com/ftp.daum.net/g<br />:%s/extras.ubuntu.com/ftp.daum.net/g</p>
 </div>
 </aside>
+<h4 id="부랑자-vagrantfile-스크립트">2.2. 부랑자 Vagrantfile 스크립트</h4>
+<p>‘sudo apt-get -y install git’ 명령어로 ’git’을 설치하고, 파이썬 팩키지 관리자 <code>sudo apt-get install -y python-pip</code>를 설치하고 나서, <code>sudo pip install sphinx</code>를 설치한다.</p>
+<pre class="shell"><code># -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$install_reeborg = &lt;&lt;INSTALL
+sudo apt-get update
+#install git
+sudo apt-get -y install git
+
+#install Sphinx
+sudo apt-get install -y python-pip
+sudo pip install sphinx
+INSTALL
+
+
+Vagrant.configure(2) do |config|
+  config.vm.box = &quot;ubuntu/trusty32&quot;
+
+  config.vm.provider :virtualbox do |v|
+    v.memory = 1024
+    v.cpus = 1
+  end
+
+  ## 파이썬   
+  config.vm.provision :shell, inline: $install_reeborg
+  config.vm.synced_folder &quot;.&quot;, &quot;/home/vagrant/&quot;
+
+end</code></pre>
 <div class="footnotes">
 <hr />
 <ol>
@@ -81,15 +108,15 @@ $ sudo pip install sphinx</code></pre>
         </div>
       </div>
       </article>
-      <div class="footer">
-        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
-        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
-        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
-        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
       </div>
     </div>
-    <!-- Javascript placed at the end of the document so the pages load faster -->
-    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
   </body>
 </html>
