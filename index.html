@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Software Carpentry: xwMOOC 오픈 컴퓨터</title>
+    <title>Software Carpentry: xwMOOC 라즈베리 파이</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -37,27 +37,15 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <h1 class="title">xwMOOC 오픈 컴퓨터</h1>
+          <h1 class="title">xwMOOC 라즈베리 파이</h1>
           
-<p><a href="http://www.xwmooc.net/">xwMOOC</a>에서 개발하고 있는 $100 달러 컴퓨터입니다. 누구나 레서피를 따라서 개발해 보세요.</p>
+<p><strong><a href="http://statkclee.github.io/xwMOOC">xwMOOC</a></strong>에서 <a href="http://computer.xwmooc.org/">$100 달러 컴퓨터</a>와 <a href="http://computers.xwmooc.org/">$100 달러 오픈 슈퍼컴퓨터</a>를 개발한 후에 데이터 과학, 딥러닝과 인공지능에 라즈베리 파이 활용에 관심과 열정을 쏟고 있습니다.</p>
 <section class="getready panel panel-warning">
 <div class="panel-heading">
 <h2 id="준비물"><span class="glyphicon glyphicon-check"></span>준비물</h2>
 </div>
 <div class="panel-body">
 <p><a href="http://raspberrypi.org/">라즈베리 파이 컴퓨터</a></p>
-</div>
-</section>
-<section class="prereq panel panel-warning">
-<div class="panel-heading">
-<h2 id="필수-전제조건"><span class="glyphicon glyphicon-education"></span>필수 전제조건</h2>
-</div>
-<div class="panel-body">
-<p><a href="http://www.xwmooc.net/csunplugged/book.html">컴퓨터 과학 언플러그드</a><br />
-<a href="http://www.xwmooc.net/rur-ple">러플</a><br />
-<a href="http://swcarpentry.github.io/python-novice-turtles/index-kr.html">파이썬 거북이</a><br />
-<a href="http://www.xwmooc.net/python">정보과학을 위한 파이썬</a><br />
-<a href="http://www.xwmooc.net/swcarpentry/">소프트웨어 카펜트리</a> <a href="http://r-pkgs.xwmooc.net/">R 팩키지</a></p>
 </div>
 </section>
 <h2 id="학습주제">학습주제</h2>
@@ -95,13 +83,8 @@
 <li><a href="vagrant-anaconda.html">부랑자(Vagrant) 아나콘다</a><br />
 </li>
 </ul></li>
-<li><a href="latex.html">문서 프로그래밍 - 한글 LaTeX</a>
-<ul>
-<li><a href="latex-intro.html">한글 LaTeX 소개</a></li>
-<li><a href="latex-virtual.html">한글 LaTeX 설치환경 가상화</a></li>
-<li><a href="latex-utils.html">한글 LaTeX 편집기</a></li>
-<li><a href="latex-sphinx.html">파이썬 스핑크스</a></li>
-</ul></li>
+<li><strong>xwMOOC 오픈 컴퓨터</strong>
+<ol style="list-style-type: decimal">
 <li><a href="100-computer.html">$100 달러 오픈 컴퓨터</a>
 <ul>
 <li><a href="100-cad.html">$100 오픈 컴퓨터 설계(CAD) 및 3D 프린팅</a><br />
@@ -115,6 +98,17 @@
 </li>
 <li><a href="static-web-service.html">정적 웹콘텐츠 개발 환경 구축</a></li>
 </ul></li>
+<li><a href="http://computers.xwmooc.org/">$100 달러 오픈 슈퍼컴퓨터</a>
+<ul>
+<li><a href="rpi-super-computer.html">RPi 슈퍼 컴퓨터</a></li>
+<li><a href="ros.html">로봇 운영체제(ROS)</a></li>
+<li><a href="iot-fluentd.html">데이터 수집기와 로거(logger)</a></li>
+<li><a href="iot-node-red.html">노드-레드(Node-RED</a></li>
+<li><a href="iot-drone-arduino.html">드론 개발(아두이노)</a></li>
+<li><a href="raspberry-pi-arch.html">아치 리눅스</a><br />
+</li>
+</ul></li>
+</ol></li>
 <li>IoT
 <ul>
 <li><a href="iot-webide.html">개발환경 WebIDE</a></li>
@@ -127,18 +121,109 @@
 <li><a href="iot-rstudio-shiny.html">R 개발 및 배포 환경</a></li>
 <li><a href="http://statkclee.github.io/web-data-python/">API 데이터 분석</a></li>
 </ul></li>
-<li>슈퍼 컴퓨터
+<li><a href="latex.html">문서 프로그래밍 - 한글 LaTeX</a>
 <ul>
-<li><a href="rpi-super-computer.html">RPi 슈퍼 컴퓨터</a></li>
-<li><a href="ros.html">로봇 운영체제(ROS)</a></li>
-<li><a href="iot-fluentd.html">데이터 수집기와 로거(logger)</a></li>
-<li><a href="iot-node-red.html">노드-레드(Node-RED</a></li>
-<li><a href="iot-drone-arduino.html">드론 개발(아두이노)</a></li>
-<li><a href="raspberry-pi-arch.html">아치 리눅스</a><br />
-</li>
-<li><a href="math-history.html">수학의 역사</a></li>
+<li><a href="latex-intro.html">한글 LaTeX 소개</a></li>
+<li><a href="latex-virtual.html">한글 LaTeX 설치환경 가상화</a></li>
+<li><a href="latex-utils.html">한글 LaTeX 편집기</a></li>
+<li><a href="latex-sphinx.html">파이썬 스핑크스</a></li>
 </ul></li>
 </ol>
+<h2 id="컴퓨터-과학-언플러그드"><a href="http://unplugged.xwmooc.org/">컴퓨터 과학 언플러그드</a></h2>
+<ol style="list-style-type: decimal">
+<li>[제1부 정보를 나타내는 원재료—데이터]
+<ul>
+<li>[점의 개수를 세다—이진수]</li>
+<li>숫자로 색깔 표현하기—이미지 표현: <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></li>
+<li>[다시 말할 수 있어요!—텍스트 압축]</li>
+<li>[카드 뒤집기 마술—오류 탐지 및 수정]</li>
+<li>[질문 20개—정보 이론]</li>
+</ul></li>
+<li>[제2부 컴퓨터를 동작시키기—알고리즘]
+<ul>
+<li>[전함 (battleship)—검색 알고리즘]</li>
+<li>가장 가벼운 것과 가장 무것운 것—정렬 알고리즘: <a href="rpi-sorting.html">파이썬으로 정렬 시각화</a>
+<ol style="list-style-type: decimal">
+<li><a href="rpi-sorting-matplotlib.html"><code>matplotlib</code> 그래프 그리기</a></li>
+<li><a href="rpi-sorting-bubble.html">거품 정렬(bubble sort)</a></li>
+<li><a href="rpi-sorting-insertion.html">삽입 정렬(insertion sort)</a></li>
+<li><a href="rpi-sorting-selection.html">선택 정렬(selection sort)</a></li>
+<li><a href="rpi-sorting-recursion.html">재귀(recursion)</a></li>
+<li><a href="rpi-sorting-quick.html">퀵(quicksort)</a></li>
+</ol></li>
+<li>[시간내 일을 마치기—정렬 네트워크(Sorting Network)]</li>
+<li>[진흙도시 프로젝트—최소생성나무(Minimal Spanning Trees)]</li>
+<li>[오렌지 게임—네트워크 라우팅(Routing)과 교착상태(Deadlock)]</li>
+<li>[돌명판(Tablets of Stone) — 네트워크 통신 프로토콜]</li>
+</ul></li>
+<li>[제3부 컴퓨터에 무엇을 수행할지 지시하기—절차의 표현]
+<ul>
+<li>[보물 찾기—유한상태 오토마타]</li>
+<li>[진군 명령—프로그래밍 언어(Programming Languages)]</li>
+</ul></li>
+<li>[제4부 정말 어려운 문제 — 난해성(Intractability)]
+<ul>
+<li>[가난한 지도 제작자 — 그래프 색칠하기]</li>
+<li>[관광 마을 — 지배 집합 (Dominating Sets)]</li>
+<li>[얼음길 — 스타이너 트리(Steiner trees)]</li>
+</ul></li>
+<li>[제5부 비밀 공유와 범죄와 전쟁 —암호화(Cryptography)]
+<ul>
+<li>[비밀공유 — 정보 은닉 프로토콜]</li>
+<li>[페루 동전 던지기 — 암호화 프로토콜]</li>
+<li>[키드 크립토(Kid Krypto) — 공개키 암호화]</li>
+</ul></li>
+<li>[제6부 사람 냄새나는 컴퓨터—컴퓨터와 상호 작용]
+<ul>
+<li>[쵸코릿 공장 — 휴먼 인터페이스 설계]</li>
+<li>[컴퓨터와 대화 — 튜링 테스트]</li>
+</ul></li>
+</ol>
+<h3 id="xwmooc-오픈-교재-16.06-기준">xwMOOC 오픈 교재 (’16.06 기준)</h3>
+<ul>
+<li><a href="http://unplugged.xwmooc.org">컴퓨터 과학 언플러그드</a><br />
+</li>
+<li><a href="http://reeborg.xwmooc.org">리보그</a>
+<ul>
+<li><a href="http://rur-ple.xwmooc.org">러플</a><br />
+</li>
+</ul></li>
+<li><a href="http://swcarpentry.github.io/python-novice-turtles/index-kr.html">파이썬 거북이</a><br />
+</li>
+<li><a href="http://python.xwmooc.org">정보과학을 위한 파이썬</a><br />
+</li>
+<li><a href="http://swcarpentry.xwmooc.org">소프트웨어 카펜트리 5.3</a></li>
+<li><a href="http://raspberry-pi.xwmooc.org/">IoT 오픈 하드웨어(라즈베리 파이)</a>
+<ul>
+<li><a href="http://computer.xwmooc.org/">$100 오픈 컴퓨터</a><br />
+</li>
+<li><a href="http://computers.xwmooc.org/">$100 오픈 슈퍼컴퓨터</a></li>
+</ul></li>
+<li><strong>데이터 과학</strong>
+<ul>
+<li><a href="http://data-science.xwmooc.org/">R 데이터과학</a></li>
+<li><a href="http://r-pkgs.xwmooc.org/">R 팩키지</a></li>
+<li><a href="http://statkclee.github.io/r-docker/">R 도커</a></li>
+<li><a href="http://think-stat.xwmooc.org/">통계적 사고</a></li>
+<li><a href="http://parallel.xwmooc.org/">R 병렬 컴퓨팅</a><br />
+</li>
+</ul></li>
+<li><strong>기계학습, 딥러닝, 인공지능</strong>
+<ul>
+<li><a href="http://statkclee.github.io/ml">기계학습</a></li>
+<li><a href="http://statkclee.github.io/trilobite">고생대 프로젝트</a></li>
+</ul></li>
+<li><a href="http://sympy.xwmooc.org/">기호 수학(Symbolic Math)</a></li>
+<li><a href="http://politics.xwmooc.org/">선거와 투표</a></li>
+</ul>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="http://statkclee.github.io/trilobite/cv-intro.html">이미지 표현</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a href="http://statkclee.github.io/trilobite/image-files.html">컴퓨터가 보는 이미지</a><a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p><a href="http://statkclee.github.io/trilobite/index.html">xwMOOC 고생대 프로젝트</a><a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
         </div>
       </div>
       </article>
