@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 라즈베리 파이</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 라즈베리 파이</h1>
+          <h2 class="subtitle">삽입 정렬(insertion sort)</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>삽입 정렬 알고리즘 작동방식과 성능에 대해 이해한다.</li>
+<li>알고리즘 성능을 비판적으로 분석하고 약점을 식별한다.</li>
+</ul>
+</div>
+</section>
+<p>정렬 알고리즘 학습이 많은 학생들에게 정말 재미없는 주제다. 학생들로 하여금 다양한 정렬 알고리즘을 작성하게 하고 시각적으로 동작하는 것을 보여줘서 알고리즘이 어떤 작업을 수행하고 있는지 더 잘 파악하도록 이해력을 높여, 조금더 희망을 갖는다면 학습 주제가 학생들에게 좀더 재미있게 다가섰으면 한다.</p>
+<h2 id="수업-계획">1. 수업 계획</h2>
+<h3 id="삽입-정렬">1.1. 삽입 정렬</h3>
+<p>삽입 정렬은 서양카드를 사용해서 쉽게 시각화해서 이해할 수 있다.</p>
+<p><img src="fig/rpi-algo-insertion-anim.gif" alt="삽입정렬 알고리즘 Gif 애니메이션" width="50%"></p>
+<ol style="list-style-type: decimal">
+<li>카드 5장을 쭉 나눠 놓는다; 만약 충분한 카드가 있다면, 학생들에게 나눠주거나 적어도 10개까지 다른 카드를 준비한다.</li>
+<li>가장 왼쪽 카드는 무시한다.</li>
+<li>다음 번 카드가 더 크다면 그대로 놔두고, 더 작다면 바꿔치기 한다.</li>
+<li>카드가 정렬된 순서로 될때는 다음번 카드를 그대로 둔다.</li>
+<li>모든 카드가 정랼될 때까지 두번 이상 상기 과정을 반복한다.</li>
+</ol>
+<h3 id="함께-고민하기">1.2. 함께 고민하기</h3>
+<p>학생들이 거품 정렬과 삽입 정렬 알고리즘 속도를 비교한다.</p>
+<p><code>display()</code> 함수 호출을 제거해서 5000개 원소를 갖는 매우 큰 리스트를 정렬한다.</p>
+<p>삽입 정렬 알고리즘에 대한 최적화 전략을 연구한다.</p>
+<h2 id="학생-학습지">2. 학생 학습지</h2>
+<h3 id="들어가며">2.1. 들어가며</h3>
+<p>삽입 정렬은 정렬되지 않는 원소를 갖는 리스트를 정렬하는 방법으로, 리스트로 들어가서, 정렬되지 않는 원소를 제고하고 나서, 제거된 원소에 대해 정렬된 위치로 파악될 때까지 다른 원소를 뒤섞어 나가는 방식이다.</p>
+<p>다음과 같은 작은 리스트로 시작해 보자:</p>
+<pre class="output"><code>[4,3,6,2]</code></pre>
+<p>첫번째 값 <code>4</code>는 무시된다. 다음 값 <code>3</code>이 대상이 되고, 첫번째 값 <code>4</code>와 비교한다. <code>4</code>가 <code>3</code> 보다 크기 때문에 위치를 바꾼다:</p>
+<pre class="output"><code>[3,4,6,2]</code></pre>
+<p>다음으로 <code>6</code>이 대상이 된다. <code>4</code> 보다 크기 때문에, 제자리에 둔다. 마지막으로 <code>2</code>가 대상이 된다. <code>6</code>이 더 크기 때문에, 두 숫자 위치를 바꾼다.</p>
+<pre class="output"><code>[4,3,2,6]</code></pre>
+<p><code>2</code>가 <code>4</code>보다 더 작다. 그래서 서로 위치를 바꾼다: <code>[3,2,4,6]</code></p>
+<p>마지막으로 <code>3</code>이 <code>2</code> 보다 더 크다. 그래서 서로 위치를 바꾼다:</p>
+<pre class="output"><code>[2,3,4,6]</code></pre>
+<h3 id="출발">2.2. 출발</h3>
+<ol style="list-style-type: decimal">
+<li><p>원소가 몇개 없는 리스트를 정렬하면서 삽입 정렬 알고리즘 코딩을 시작한다.</p></li>
+<li><p>정렬할 리스트를 생성해서 시작한다.</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">some_list <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>]</code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>정렬할 원소를 선택한다:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">i <span class="op">=</span> <span class="dv">3</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>위치 2를 골랐기 때문에 이에 상응되는 값은 리스트 <code>2</code>에 해당된다. <code>2</code> 값을 리스트 아래로 이동할 필요가 있다. 이뉴는 좌측 원소가 더 작기 때문이다. <code>while</code> 루프를 사용해서 구현을 한다:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">some_list <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>]
+
+i <span class="op">=</span> <span class="dv">3</span>
+
+<span class="cf">while</span> some_list[i<span class="dv">-1</span>] <span class="op">&gt;</span> some_list[i]:
+    some_list[i], some_list[i<span class="dv">-1</span>] <span class="op">=</span> some_list[i<span class="dv">-1</span>], some_list[i]</code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>다음으로, <code>i</code>를 매번 루프를 돌 때마다 1씩 줄인다.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">some_list <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>]
+
+i <span class="op">=</span> <span class="dv">3</span>
+
+<span class="cf">while</span> some_list[i<span class="dv">-1</span>] <span class="op">&gt;</span> some_list[i]:
+    some_list[i], some_list[i<span class="dv">-1</span>] <span class="op">=</span> some_list[i<span class="dv">-1</span>], some_list[i]
+    i <span class="op">-=</span> <span class="dv">1</span></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>코드를 실행하고 나서 인터프리터에 <code>some_list</code>를 타이핑해서 원소가 이동했는지 검사한다.</li>
+</ol>
+<h3 id="범위-밖out-of-range">2.3. 범위 밖(Out of Range)</h3>
+<ol style="list-style-type: decimal">
+<li>지금까지 코딩한 알고리즘이 원소를 리스트 올바른 위치로 옮긴 듯 보인다. 확실히 하기 위해, 다른 리스트를 가지고 시험을 해본다. 파일을 편집해서 리스트가 이제 다음과 같다.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">some_list <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>]</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>코드를 실행하고, 무슨 일이 발생했는지 확인한다. 오류 메시지가 산출된다:</li>
+</ol>
+<pre class="output"><code>IndexError: list index out of range</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>왜 이런 일이 발생했을까? 인터프리터에서 <code>i</code>를 타이핑하고 값을 살펴본다.</p></li>
+<li><p><code>display()</code> 함수를 사용해서 실제로 무슨 일이 발생했는지 살펴본다. 코드를 편집해서 바뀜일 발생할 때마다 리스트를 출력하도록 한다.</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">some_list <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>]
+
+i <span class="op">=</span> <span class="dv">3</span>
+
+<span class="cf">while</span> some_list[i<span class="dv">-1</span>] <span class="op">&gt;</span> some_list[i]:
+    some_list[i], some_list[i<span class="dv">-1</span>] <span class="op">=</span> some_list[i<span class="dv">-1</span>], some_list[i]
+    display(some_list)</code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>너무 코드가 빨리 실행이 되면 <code>sleep(1)</code> 명령어를 적어 넣는다. 물론, 코드 상단에 <code>time</code> 모듈을 가져와야 된다.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> time <span class="im">import</span> sleep
+
+<span class="co"># 작업 코드</span>
+
+some_list <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>]
+
+i <span class="op">=</span> <span class="dv">3</span>
+
+<span class="cf">while</span> some_list[i<span class="dv">-1</span>] <span class="op">&gt;</span> some_list[i]:
+    some_list[i], some_list[i<span class="dv">-1</span>] <span class="op">=</span> some_list[i<span class="dv">-1</span>], some_list[i]
+    display(some_list)
+    i <span class="op">-=</span> <span class="dv">1</span>
+    sleep(<span class="dv">1</span>)</code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li><p>값 <code>1</code>이 리스트 시작위치로 이동하고 나서, 쭉 이동해서 마지막으로 이동하고, 다시 처음으로 이동되는 것이 보이는가? 마치 두번 정렬되는 것처럼 보인다! 이런 일이 발생하는 것은 파이썬에서 리스트가 색인되는 방식 때문에 그렇다. 원소가 <code>0</code>번 위치로 이동하게 되면(<code>i</code>가 <code>0</code>이 될 때) <code>i</code>는 <code>1</code>만큼 감소해서 <code>-1</code>이 된다.</p></li>
+<li><p>파이썬에서 리스트 <code>-1</code>번째 원소는 마지막 원소가 된다. <code>i</code>가 줄어들면, -2번째, -3번째, -4번째 원소를 참조하게 된다. 이번 리스트에서 -4번째 원소는 0번째 원소이기도 하다. 파이썬에서 다시 사이클을 돌 수 없어서, 파이썬 프로그램이 -5번째 원소를 참조하게 될 때, 오류가 발생된다. 이 오류를 회피하기 위해서, <code>while</code> 루프가 <code>i &gt; 0</code> 일 때만 반복을 돌도록 만든다.</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">some_list <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>]
+
+i <span class="op">=</span> <span class="dv">3</span>
+
+<span class="cf">while</span> i <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">and</span> some_list[i<span class="dv">-1</span>] <span class="op">&gt;</span> some_list[i]:
+    some_list[i], some_list[i<span class="dv">-1</span>] <span class="op">=</span> some_list[i<span class="dv">-1</span>], some_list[i]
+    display(some_list)
+    i <span class="op">-=</span> <span class="dv">1</span>
+    sleep(<span class="dv">1</span>)</code></pre></div>
+<h3 id="삽입-정렬-마무리">2.4. 삽입 정렬 마무리</h3>
+<ol style="list-style-type: decimal">
+<li>해당 원소보다 더 적은 원소를 마주칠 때까지 오른쪽에서 왼쪽으로 리스트에 어떤 원소도 이동시킬 수 있는 코드를 작성했기 때문에, 쉽게 삽입 정렬을 마무리할 수 있다. 필요한 마무리 작업은 처음에서 마지막까지 리스트의 모든 원소에 작성한 알고리즘을 적용시키는 것이다. <code>for</code> 루프가 이런 작업에 제격이다:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">some_list <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>]
+
+<span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(some_list)):
+        <span class="cf">while</span> i <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">and</span> some_list[i<span class="dv">-1</span>] <span class="op">&gt;</span> some_list[i]:
+            some_list[i], some_list[i<span class="dv">-1</span>] <span class="op">=</span> some_list[i<span class="dv">-1</span>], some_list[i]
+            i <span class="op">-=</span> <span class="dv">1</span>
+            display(some_list)</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>상기 코드를 동작시키고, 삽입 정렬이 잘 동작하는지 살펴본다.</p></li>
+<li><p>거품 정렬에서 했던 것과 마찬가지로, 함수로 감싸서 함수 호출을 한다.</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> my_insertion_sort(some_list):
+    <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(some_list)):
+        <span class="cf">while</span> i <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">and</span> some_list[i<span class="dv">-1</span>] <span class="op">&gt;</span> some_list[i]:
+            some_list[i], some_list[i<span class="dv">-1</span>] <span class="op">=</span> some_list[i<span class="dv">-1</span>], some_list[i]
+            i<span class="op">-=</span><span class="dv">1</span>
+            display(some_list)
+    <span class="cf">return</span> some_list
+
+my_insertion_sort(create_random_list(<span class="dv">100</span>))</code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li><code>display()</code> 함수 호출을 <code>for</code> 루프 외각으로 빼면, 시각화 속도를 증가시킬 수 있다:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> my_insertion_sort(some_list):
+    <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(some_list)):
+        <span class="cf">while</span> i <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">and</span> some_list[i<span class="dv">-1</span>] <span class="op">&gt;</span> some_list[i]:
+            some_list[i], some_list[i<span class="dv">-1</span>] <span class="op">=</span> some_list[i<span class="dv">-1</span>], some_list[i]
+            i<span class="op">-=</span><span class="dv">1</span>
+        display(some_list)
+    <span class="cf">return</span> some_list
+
+my_insertion_sort(create_random_list(<span class="dv">100</span>))</code></pre></div>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
