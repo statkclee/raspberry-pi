@@ -93,4 +93,20 @@ def my_insertion_sort(some_list):
         display(some_list)
     return some_list
 
-my_insertion_sort(create_random_list(100))
+# my_insertion_sort(create_random_list(100))
+
+# 9. 선택정렬
+def my_selection_sort(some_list):
+    for i in range(len(some_list)):
+        smallest_value = i
+
+        for j in range(i+1,len(some_list)):
+            if some_list[j] < some_list[smallest_value]:
+                smallest_value = j
+
+        some_list[smallest_value], some_list[i] = some_list[i], some_list[smallest_value]
+        display(some_list)  
+
+    return some_list
+
+my_selection_sort(create_random_list(20))
