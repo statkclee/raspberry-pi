@@ -80,7 +80,7 @@ title: xwMOOC 라즈베리 파이
         1. [삽입 정렬(insertion sort)](rpi-sorting-insertion.html)
         1. [선택 정렬(selection sort)](rpi-sorting-selection.html)
         1. [재귀(recursion)](rpi-sorting-recursion.html)
-        1. [퀵(quicksort)](rpi-sorting-quick.html)
+        1. [퀵 정렬(quicksort)](rpi-sorting-quick.html)
     - [시간내 일을 마치기&mdash;정렬 네트워크(Sorting Network)]
     - [진흙도시 프로젝트&mdash;최소생성나무(Minimal Spanning Trees)]
     - [오렌지 게임&mdash;네트워크 라우팅(Routing)과 교착상태(Deadlock)]

@@ -109,4 +109,32 @@ def my_selection_sort(some_list):
 
     return some_list
 
-my_selection_sort(create_random_list(20))
+#my_selection_sort(create_random_list(20))
+
+# 10. 퀵정렬
+
+def my_quicksort(some_list, start, stop):
+    if stop - start < 1:
+        return some_list
+    else:
+        pivot = some_list[start]
+        left = start
+        right = stop
+        while left <= right:
+            while some_list[left] < pivot:
+                left += 1
+            while some_list[right] > pivot:
+                right -= 1
+            if left <= right:
+                some_list[left], some_list[right] = some_list[right], some_list[left]
+                print("Swapping", some_list[left], "with", some_list[right])
+                left += 1
+                right -= 1
+
+        display(some_list)
+
+        my_quicksort(some_list, start, right)
+        my_quicksort(some_list, left, stop)
+
+my_list = create_random_list(200)
+my_quicksort(my_list, 0, len(my_list) - 1)
