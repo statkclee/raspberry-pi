@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Software Carpentry: </title>
+    <title>Software Carpentry: xwMOOC 라즈베리 파이</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -37,8 +37,8 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <h1 class="title"></h1>
-          
+          <h1 class="title">xwMOOC 라즈베리 파이</h1>
+          <h2 class="subtitle">matplotlib 그래프 그리기</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
 <h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
@@ -51,17 +51,18 @@
 </div>
 </section>
 <p>정렬 알고리즘 학습이 많은 학생들에게 정말 재미없는 주제다. 학생들로 하여금 다양한 정렬 알고리즘을 작성하게 하고 시각적으로 동작하는 것을 보여줘서 알고리즘이 어떤 작업을 수행하고 있는지 더 잘 파악하도록 이해력을 높여, 조금더 희망을 갖는다면 학습 주제가 학생들에게 좀더 재미있게 다가섰으면 한다.</p>
-<h3 id="matplotlib-설치">1. <code>matplotlib</code> 설치</h3>
+<h2 id="수업-계획">1. 수업 계획</h2>
+<h3 id="matplotlib-설치">1.1. <code>matplotlib</code> 설치</h3>
 <p><code>matplotlib</code> 팩키지를 설치하려면, 리눅스와 맥/윈도우에서 다음을 실행한다.</p>
-<h4 id="리눅스데비안-배포판-라즈비언-포함">1.1. 리눅스(데비안 배포판, 라즈비언 포함)</h4>
+<h4 id="리눅스데비안-배포판-라즈비언-포함">1.1.1. 리눅스(데비안 배포판, 라즈비언 포함)</h4>
 <p>먼저 터미널을 열고 다음 명령어를 실행한다.</p>
 <pre class="shell"><code>$ sudo apt-get install python3-matplotlib</code></pre>
-<h4 id="맥-osx윈도우">1.2. 맥 OSX/윈도우</h4>
+<h4 id="맥-osx윈도우">1.1.2. 맥 OSX/윈도우</h4>
 <ol style="list-style-type: decimal">
 <li><code>pip</code>로 설치하는 경우 터미널 윈도우에서 <code>pip3 install matplotlib</code> 명령어를 실행한다.</li>
 <li>혹은, <a href="http://matplotlib.org/faq/installing_faq.html#how-to-install"><code>matplotlib</code> 웹사이트</a>에서 직접 설치한다.</li>
 </ol>
-<h3 id="list-comprehension-실습">2. <code>list comprehension</code> 실습</h3>
+<h3 id="list-comprehension-실습">1.2. <code>list comprehension</code> 실습</h3>
 <p>다음 출력값을 생성하는 파이썬 코드를 <code>list comprehension</code>을 사용하여 작성하시오.</p>
 <pre class="output"><code>[0,1,2,3,4,5,6,7,8,9]            # 1.번 문제 
 
@@ -78,6 +79,166 @@
 <span class="op">&gt;&gt;&gt;</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">11</span>,<span class="dv">2</span>)]   <span class="co"># 4.번 문제 </span>
 <span class="op">&gt;&gt;&gt;</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">12</span>,<span class="dv">2</span>)]   <span class="co"># 4.번 문제 </span>
 <span class="op">&gt;&gt;&gt;</span> [[i] <span class="op">*</span> <span class="dv">3</span> <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">3</span>)]  <span class="co"># 5.번 문제 </span></code></pre></div>
+<h3 id="함께-고민하기">1.3. 함께 고민하기</h3>
+<p>시각화 작업을 대부분의 학생들이 마무리한 뒤에, 다음 그래프를 어떻게 생성할 수 있는지 학생들에게 숙제 혹은 5분 시간을 주고 작업결과를 공유한다.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><img src="fig/rpi-algo-figure_6.png" alt="연습문제 1" width="100%"></td>
+<td align="left"><img src="fig/rpi-algo-figure_7.png" alt="연습문제 2" width="100%"></td>
+<td align="left"><img src="fig/rpi-algo-figure_8.png" alt="연습문제 8" width="100%"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="학생-학습지">2. 학생 학습지</h2>
+<h3 id="들어가며">2.1. 들어가며</h3>
+<p>수학, 과학, 인문학 분야에서 실험 혹은 연구결과로 나온 데이터를 시각하해서 흔히 발표한다. 많은 학문분야에서 사용되는 주요 도구로 <code>matplotlib</code> 라이브러리와 함께 파이썬 프로그래밍 언어가 사용된다. 실제로, <code>matplotlib</code>은 과학 출간에 사용되는 표준 그래프 도구로 빠르게 자리잡아가고 있다.</p>
+<p>이번 학습에서, 파이썬을 사용해서 숫자 리스트를 생성하는 방법을 학습하고 나서, 생성한 숫자를 <code>matplotlib</code> 그래프로 시각화하는 방법을 학습한다.</p>
+<h3 id="숫자-리스트-생성하기">2.2. 숫자 리스트 생성하기</h3>
+<p>리스트는 자료구조로, 자료구조는 데이터를 저장하는 한 방법이다. 파이썬에서 <code>0</code>에서 <code>9</code>까지 숫자를 저장하고자 한다면 다음과 같이 리스트를 작성한다:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">numbers <span class="op">=</span> [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]</code></pre></div>
+<p>작은 리스트에 대해서 상당히 간단하고 좋지만, <code>0</code>에서 <code>9999</code>까지 모든 숫자를 리스트에 저장하려면 자료입력 타이핑에 상당한 시간이 소요된다. 프로그래밍할 때 반복적인 작업을 본인 스스로 할 때 아마도 더 쉬운 방식이 있다. 이런 경우에, 10,000 숫자 리스트를 생성하는 간단한 방법은 루프를 사용하는 것이다.</p>
+<ol style="list-style-type: decimal">
+<li>파이썬 IDE를 열고, 다음 명령어를 타이핑하고 <code>lists.py</code> 이름으로 새로 파일을 생성한다.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+numbers <span class="op">=</span> []
+<span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">100000</span>):
+    numbers.append(i)</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>코드를 실행시키고, 인터프리터 화면에서 <code>numbers</code>를 타이핑하면, 생성한 리스트를 볼 수 있다.</li>
+</ol>
+<h3 id="list-comprehension">2.3. <code>list comprehension</code></h3>
+<p>루프를 돌려 리스트를 생성하는 것도 꽤 간단하지만, 많은 언어에 <strong>list comprehension</strong> 으로 불리는 더 강력한 방식으로 리스트를 생성시킬 수 있다. 상기 리스트 생성은 다음과 같이 단순화 된다:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">numbers <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">10000</span>)]</code></pre></div>
+<p>첫번째 <code>i</code>는 리스트에 저장될 값을 지정한다; 두번째 <code>i</code>는 0에서 10000 사이 모든 값을 표현한다.</p>
+<p><code>list comprehension</code>을 사용해서 다음 리스트를 생성하시오.</p>
+<pre class="output"><code>[0,1,2,3,4,5,6,7,8]                     # 1번 연습
+
+[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15] # 2번 연습</code></pre>
+<p><code>list comprehension</code>에 <code>range()</code> 함수에 모수 범위를 잘 이용할 수도 있다. 만약 <code>[5,6,7,8,9]</code> 리스트를 생성하려면 다른 값에서 시작하면 된다. 예를 들어, 다음과 같이 코드를 작성하면 된다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">numbers <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">5</span>,<span class="dv">10</span>)</code></pre></div>
+<p><code>list comprehension</code>을 사용해서 다음 리스트를 생성하시오.</p>
+<pre class="output"><code>[10,11,12,13,14,15,16,17,18,19]       # 1번 연습
+
+[-5,-6,-7,-8,-9,0]                    # 2번 연습</code></pre>
+<p><code>range()</code> 함수에 건너뛰기 값을 전달해서 <code>[0,2,4,6,8]</code> 처럼 건너뛰는 숫자 리스트를 생성할 수도 있다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">numbers <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">2</span>)]</code></pre></div>
+<p>아래 리스트를 생성하는데 <code>list comprehension</code>을 사용해서 파이썬 코드를 작성해본다.</p>
+<pre class="output"><code>[0,3,6,8,12]                # 1번 연습
+
+[10,8,6,4,2,0]              # 2번 연습 
+
+[0,-1,-2,-3,-4,-5]          # 3번 연습</code></pre>
+<h3 id="숫자-리스트를-그래프-그리기">2.4. 숫자 리스트를 그래프 그리기</h3>
+<ol style="list-style-type: decimal">
+<li><p>표준 그래프를 생성하려면, 두 집합의 값이 필요하다. 새로운 파이썬 코드 파일을 열고 <code>graphing.py</code>로 이름 짓고 저장한다.</p></li>
+<li><p>그래프로 도식화하는데 두 숫자 리스트를 생성하고서 시작한다. 어떤 숫자가 리스트에 담길지는 그다지 문제가 되지 않지만, 두 숫자 리스트 길이는 같아야 된다. 숫자 리스트 길이를 같도록 하는데 파이썬 내장함수 <code>len()</code>를 사용한다. 리스트를 <code>y</code>, <code>x</code>로 부르기로 한다:</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">y <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">3</span>)]
+x <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="bu">len</span>(y))]</code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>숫자가 준비되어서, 숫자 데이터를 그래프로 생성할 수 있다. 이 작업을 위해서 <code>matplotlib</code> 라이브러리를 사용한다. 파일 상단에 다음 코드를 작성해서 적어 놓는다.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>숫자를 간단한 산점도로 표현하는데, 파일 하단에 다음 두 줄을 적어놓기만 하면 된다.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plt.scatter(x,y)
+plt.show</code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>전체 파일은 다음과 같아보이면 된다.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+
+y <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">3</span>)]
+x <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="bu">len</span>(y))]
+
+plt.scatter(x,y)
+plt.show()</code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>윈도우가 팝업되면서 다음 그래프가 담겨져 나타난다.</li>
+</ol>
+<p><img src="fig/rpi-algo-figure_1.png" alt="연습문제 1" width="50%"></p>
+<ol start="7" style="list-style-type: decimal">
+<li>그래프가 담긴 윈도우를 닫고, 다른 스타일 그래프를 그려보자. 산점도를 선형 그래프를 갖도록 변경한다.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plt.scatter(x,y)
+plt.show()</code></pre></div>
+<p>상기 코드부분을 다음과 같이 변경한다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plt.plot(x,y)
+plt.show()</code></pre></div>
+<p>위와 같이 코드를 변경하고 코드를 재실행한다.</p>
+<ol start="8" style="list-style-type: decimal">
+<li>점과 선을 함께 산점도로 표현하려면, <code>plot</code>과 <code>scatter</code>를 조합한다:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plt.plot(x,y)
+plt.scatter(x,y)
+plt.show()</code></pre></div>
+<p><img src="fig/rpi-algo-figure_2.png" alt="연습문제 2" width="50%"></p>
+<ol start="9" style="list-style-type: decimal">
+<li><code>list comprehension</code> 에서 <code>y</code> 값을 변경해서, 다음 그래프 세개를 생성시키시오.
+<ul>
+<li><code>plt.bar</code> 사용해서 막대그래프를 생성한다.</li>
+</ul></li>
+</ol>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><img src="fig/rpi-algo-figure_3.png" alt="연습문제 3" width="100%"></td>
+<td align="left"><img src="fig/rpi-algo-figure_4.png" alt="연습문제 4" width="100%"></td>
+<td align="left"><img src="fig/rpi-algo-figure_5.png" alt="연습문제 5" width="100%"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="인터랙티브-임의-랜덤-그래프-그리기">2.5. 인터랙티브, 임의 랜덤 그래프 그리기</h3>
+<p>이번 학습을 마치게 되면, 값이 변경될 때 자동으로 갱신되는 인터랙티브 그래프를 생성하는 방법을 학습할 것이다.</p>
+<ol style="list-style-type: decimal">
+<li><p><code>random_plot.py</code> 로 불리는 파일을 새롭게 생성하시오.</p></li>
+<li><p><code>matplotlib</code> 팩키지 외에 추가로 라이브러리 몇개가 더 필요하다. 파일 상단에 다음 세줄을 추가한다:</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="im">from</span> time <span class="im">import</span> sleep
+<span class="im">from</span> random <span class="im">import</span> shuffle</code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>그리고 나서, 프로그램에 <code>인터랙티브 그래프 그리기(interactive plotting)</code> 기능을 활성화 시킨다.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">plt.ion()</code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li><code>x</code>, <code>y</code> 리스트를 지정한다:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">x <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">100</span>)]
+y <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="bu">len</span>(y))]</code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>루프를 사용해서 그래프를 갱신하고, <code>y</code> 리스트를 뒤섞어서 값이 계속해서 변경하도록 한다. 매번 그래프를 새로 시작해서 이전 그래프가 겹쳐지지 않도록 한다. 다음 코드 각 줄에 주석이 달려있어 어떤 역할을 수행하는지 확인한다.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">50</span>): <span class="co"># 50 회 반복한다.</span>
+    plt.clf()       <span class="co"># 그래프를 초기화한다.</span>
+    plt.bar(x,y)    <span class="co"># 막대 그래프를 그린다.</span>
+    plt.show()      <span class="co"># 막개 그래프를 화면에 표시한다.</span>
+    sleep(<span class="fl">0.5</span>)      <span class="co"># 0.5초 프로그램 실행을  멈춘다.</span>
+    shuffle(y)      <span class="co"># 데이터를 뒤섞는다.</span></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>라이브 그래프를 보려면 다음 코드를 실행시킨다. 오류가 발생되면, 다음 코드와 비교해서 동일한지 확인한다.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt
+<span class="im">from</span> time <span class="im">import</span> sleep
+<span class="im">from</span> random <span class="im">import</span> shuffle
+
+plt.ion()
+
+y <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">100</span>)]
+x <span class="op">=</span> [i <span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="bu">len</span>(y))]
+
+<span class="cf">for</span> i <span class="op">in</span> <span class="bu">range</span>(<span class="dv">50</span>): <span class="co"># 50 회 반복한다.</span>
+    plt.clf()       <span class="co"># 그래프를 초기화한다.</span>
+    plt.bar(x,y)    <span class="co"># 막대 그래프를 그린다.</span>
+    plt.show()      <span class="co"># 막개 그래프를 화면에 표시한다.</span>
+    sleep(<span class="fl">0.5</span>)      <span class="co"># 0.5초 프로그램 실행을  멈춘다.</span>
+    shuffle(y)      <span class="co"># 데이터를 뒤섞는다.</span></code></pre></div>
+<p><img src="fig/rpi-algo-anim.gif" alt="임의 인터랙티브 그래프" width="50%"></p>
+<h3 id="matplotlib-심화">2.6. <code>matplotlib</code> 심화</h3>
+<p><code>matplotlib</code> 을 사용해서 정교한 과학 그래프를 생성할 수 있는데 그래프 제목과 각축에 표식도 포함시킬 수 있다. 인터넷을 찾아 그래프에 제목과 축표식을 추가하는 방법을 찾아 적용시킨다.</p>
         </div>
       </div>
       </article>
