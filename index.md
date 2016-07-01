@@ -35,6 +35,8 @@ title: xwMOOC 라즈베리 파이
     - [소프트웨어 카펜트리 가상 개발환경](raspberry-pi-swcarpentry.html)      
     - [라즈비언 데스크톱 환경 가상화 (주피터)](raspberry-pi-virtual-desktop.html)    
     - [부랑자(Vagrant) 아나콘다](vagrant-anaconda.html)        
+1. **라즈베리 파이 교재**
+    - [감각모자(SenseHAT) 시작](rpi-sensehat.html)
 1. **xwMOOC 오픈 컴퓨터**
     1.  [$100 달러 오픈 컴퓨터](100-computer.html)  
         - [$100 오픈 컴퓨터 설계(CAD) 및 3D 프린팅](100-cad.html)    
