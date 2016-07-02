@@ -566,7 +566,37 @@ x <span class="op">=</span> number <span class="op">%</span> <span class="dv">8<
 
 sense.set_pixel(x, y, <span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</code></pre></div>
 <ol start="4" style="list-style-type: decimal">
-<li></li>
+<li>앞뒤로 이동하는 경로에 LED 숫자를 포함하는 리스트를 생성하는 것도 좋은 전략이다. 그렇게 해서 가장자리를 LED가 따라 돌게 만든다. 숫자는 상기 표 위에서 왼쪽에서 시작해서 오른쪽으로, 그리고 우측 가장자리를 따라 아래쪽으로, 표 하단에서는 역방향으로, 마지막으로 표 왼쪽에서는 위쪽방향으로 돈다.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">edge <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">15</span>, <span class="dv">23</span>, <span class="dv">31</span>, <span class="dv">39</span>, <span class="dv">47</span>, <span class="dv">55</span>, <span class="dv">63</span>, <span class="dv">62</span>, <span class="dv">61</span>, <span class="dv">60</span>, <span class="dv">59</span>, <span class="dv">58</span>, <span class="dv">57</span>, <span class="dv">56</span>, <span class="dv">48</span>, <span class="dv">40</span>, <span class="dv">32</span>, <span class="dv">24</span>, <span class="dv">16</span>, <span class="dv">8</span>]</code></pre></div>
+<p><code>len</code> 함수를 사용해서 리스트 길이를 알아낸다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">length <span class="op">=</span> <span class="bu">len</span>(edge)</code></pre></div>
+<p>길이는 <code>28</code>이 된다. 28을 360으로 나누면, 요 측정값과 리스트 위치 사이 비율이 된다. 그리고 나서 순차 픽셀 숫자를 얻어, 좌표를 식별하고 나서 LED 스위치를 켠다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> sense_hat <span class="im">import</span> SenseHat
+
+sense <span class="op">=</span> SenseHat()
+sense.clear()
+
+edge <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">15</span>, <span class="dv">23</span>, <span class="dv">31</span>, <span class="dv">39</span>, <span class="dv">47</span>, <span class="dv">55</span>, <span class="dv">63</span>, <span class="dv">62</span>, <span class="dv">61</span>, <span class="dv">60</span>, <span class="dv">59</span>, <span class="dv">58</span>, <span class="dv">57</span>, <span class="dv">56</span>, <span class="dv">48</span>, <span class="dv">40</span>, <span class="dv">32</span>, <span class="dv">24</span>, <span class="dv">16</span>, <span class="dv">8</span>]
+length <span class="op">=</span> <span class="bu">len</span>(edge)
+ratio <span class="op">=</span> length <span class="op">/</span> <span class="fl">360.0</span>
+
+<span class="cf">while</span> <span class="va">True</span>:
+    o <span class="op">=</span> sense.get_orientation()
+    pitch <span class="op">=</span> o[<span class="st">&quot;pitch&quot;</span>]
+    roll <span class="op">=</span> o[<span class="st">&quot;roll&quot;</span>]
+    yaw <span class="op">=</span> o[<span class="st">&quot;yaw&quot;</span>]
+
+    yaw_list_position <span class="op">=</span> <span class="bu">int</span>(yaw <span class="op">*</span> ratio)
+
+    yaw_pixel_number <span class="op">=</span> edge[yaw_list_position]
+
+    y <span class="op">=</span> yaw_pixel_number <span class="op">//</span> <span class="dv">8</span>
+    x <span class="op">=</span> yaw_pixel_number <span class="op">%</span> <span class="dv">8</span>
+
+    sense.set_pixel(x, y, <span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>상기 코드는 LED를 켜는 것만 있어, LED를 끄는 것을 알아내야 한다. 루프를 돌며 마지막에 이전 <code>x</code>, <code>y</code>를 기억하는 변수를 준비하고, 새로운 <code>x</code>, <code>y</code>와 다르면 <code>set_pixel</code> 함수를 사용해서 LED를 검정색으로 설정한다.</li>
 </ol>
 <div class="footnotes">
 <hr />

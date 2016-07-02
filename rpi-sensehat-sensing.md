@@ -620,4 +620,48 @@ x = number % 8
 sense.set_pixel(x, y, 255, 255, 255)
 ~~~
 
-4. 
+4. 앞뒤로 이동하는 경로에 LED 숫자를 포함하는 리스트를 생성하는 것도 좋은 전략이다.
+그렇게 해서 가장자리를 LED가 따라 돌게 만든다. 숫자는 상기 표 위에서 왼쪽에서 시작해서 오른쪽으로,
+그리고 우측 가장자리를 따라 아래쪽으로, 표 하단에서는 역방향으로, 마지막으로 표 왼쪽에서는 위쪽방향으로 돈다.
+
+~~~ {.python}
+edge = [0, 1, 2, 3, 4, 5, 6, 7, 15, 23, 31, 39, 47, 55, 63, 62, 61, 60, 59, 58, 57, 56, 48, 40, 32, 24, 16, 8]
+~~~
+
+`len` 함수를 사용해서 리스트 길이를 알아낸다.
+
+~~~ {.python}
+length = len(edge)
+~~~
+
+길이는 `28`이 된다. 28을 360으로 나누면, 요 측정값과 리스트 위치 사이 비율이 된다. 그리고 나서 순차 픽셀 숫자를 얻어, 좌표를 식별하고 나서 LED 스위치를 켠다. 
+
+~~~ {.python}
+from sense_hat import SenseHat
+
+sense = SenseHat()
+sense.clear()
+
+edge = [0, 1, 2, 3, 4, 5, 6, 7, 15, 23, 31, 39, 47, 55, 63, 62, 61, 60, 59, 58, 57, 56, 48, 40, 32, 24, 16, 8]
+length = len(edge)
+ratio = length / 360.0
+
+while True:
+    o = sense.get_orientation()
+    pitch = o["pitch"]
+    roll = o["roll"]
+    yaw = o["yaw"]
+
+    yaw_list_position = int(yaw * ratio)
+
+    yaw_pixel_number = edge[yaw_list_position]
+
+    y = yaw_pixel_number // 8
+    x = yaw_pixel_number % 8
+
+    sense.set_pixel(x, y, 255, 255, 255)
+~~~
+
+5. 상기 코드는 LED를 켜는 것만 있어, LED를 끄는 것을 알아내야 한다.
+루프를 돌며 마지막에 이전 `x`, `y`를 기억하는 변수를 준비하고, 새로운 `x`, `y`와 다르면 `set_pixel` 함수를 사용해서 LED를 검정색으로 설정한다.
+
