@@ -322,7 +322,7 @@ mc.setBlocks(x+1, y+1, z+1, x+11, y+11, z+11, tnt, 1)
 다가가서 TNT 블록중에 하나를 활성화시키고 나서 장관을 지켜보기 위해 냅다 도망간다.
 정말 많은 것이 한번에 변경되어서 그래픽을 렌더링하는데 정말 느릴 것이다.
 
-<img src="mcpi-tnt-explode.png" alt="TNT 블록 폭탄더미 폭파" width="50%">
+<img src="fig/mcpi-tnt-explode.png" alt="TNT 블록 폭탄더미 폭파" width="50%">
 
 
 
