@@ -823,3 +823,218 @@ while running:
 ~~~
 
 7. 코드를 실행시키면, 이제 LED 전광판 어느 곳이든 흰색 픽셀을 이동시킬 수 있다.
+
+
+### 6. LED 전광판
+
+감각모자 LED 전광판에는 LED 64개가 박혀있다. LED 64개 각각은 실제로 내부에 더 작은 LED가 세개 들어 있는데, TV, 모니터, 스마트폰 화면과 유사하다.
+
+#### 6.1. 색상 섞기 
+
+<img src="fig/rpi-additive_color_mixing.png" alt="가색 색상 모형" width="50%" />
+
+가색 색상 모형에서는 색상 세가지(적색, 녹색, 청색)를 섞어 사용해서 다른 색을 만들어 낸다.
+상기 그림에서 동일한 휘도를 갖는 적색, 녹색, 청색 색상을 스폿라이트로 환하게 비추고 있다.
+어떤 색도 없는 경우는 결과가 검정색으로 나타난다. 세가지 색상이 모두 합쳐지게 되면, 결과는 흰색이 된다.
+적색과 녹색이 섞이게 되면 결과는 노란색이 된다. 적색과 청색이 결합되면, 결과는 마젠타 자홍색이 된다. 
+청색과 녹색이 섞이게 되면 결과는 시안 청록색이 된다. 세가지 원색의 휘도를 바꿔서 더 많은 색상을 만드는 것이 가능하다.
+
+
+1. 다음 명령어를 루트 권한 `sudo` 으로 **파이썬3(Python 3)** 를 터미널 윈도우에서 연다.
+
+~~~ {.python}
+sudo idle3 &
+~~~
+
+2. `File > New Window` 로 새로운 창을 열고 다음 코드를 입력한다:
+
+~~~ {.python}
+from sense_hat import SenseHat
+
+sense = SenseHat()
+
+r = 255
+g = 255
+b = 255
+
+sense.clear((r, g, b))
+~~~
+
+3. `File > Save` 메뉴를 선택하고 상기 파이썬 프로그램에 대한 파일명을 지정하고 저장한다. 
+
+4. `Run > Run module` 선택해서 파이썬 프로그램을 실행시킨다.
+
+5. LED 전광판이 흰색으로 변한다.
+
+6. `r`, `g`, `b` 변수는 적색, 녹색, 청색을 나타낸다.
+변수가 갖게 되는 숫자는 각 색상이 얼마나 밝은지를 지정한다; 변수가 갖는 범위는 0 에서 255 사이다.
+상기 코드에서 각 색상마다 갖을 수 있는 최대값이 사용되었다. 그래서 결과는 흰색이다.
+
+7. 값을 바꿔서 적색은 255, 녹색과 청색은 0 으로 두고 나서, 다시 코드를 실행시킨다.
+
+8. 다른 색상은 어떻게 만들 수 있을까?
+
+#### 6.2. 배경과 전경 색상 바꾸기
+
+이러한 색상섞기 시스템이 라즈베리파이 프로그래밍에 사용된다. 스크롤링 되는 텍스트를 프로그래밍하는데 색상 섞기를 사용한다. 다음 예제에서, 전광판에 나타나는 텍스트 색상을 설정한다.
+
+1. 새로운 파이썬 프로그램 파일을 만들고 다음 코드를 타이핑한다:
+
+~~~ {.python}
+from sense_hat import SenseHat
+
+sense = SenseHat()
+
+sense.show_message("Hello my name is Tim Peake", text_colour=(255, 0, 0))
+~~~
+
+2. 다음과 같이 배경색도 변경시킬 수 있다.
+
+~~~ {.python}
+from sense_hat import SenseHat
+
+sense = SenseHat()
+
+sense.show_message("Hello my name is Tim Peake", text_colour=(255, 255, 0), back_colour=(0, 0, 255))
+~~~
+
+**콤마는 매우 중요하다. 콤마 찍는 것을 잊지말라!!!**
+
+#### 6.3. 픽셀
+
+<img src="fig/rpi-closeup_of_pixels.jpg" alt="픽셀 가까이서 보기" width="50%" />
+
+상기 이미지는 노트북 컴퓨터 LCD 화면에 픽셀을 보여주고 있다. 픽셀이 켜지고 꺼지면서 문자와 숫자 패턴을 만들어 내는 것이 보인다.
+
+이런 방식으로 모든 컴퓨터와 스마트폰 스크린이 동작한다. 감각모자 LED 전광판에 인식가능한 모양을 만들어 내려면, 여러분도 이런 작업을 수행할 필요가 있다. 감각모자에 포함된 LED 전광판은 $8 \times 8$ 픽셀 해상도를 갖는다. 따라서 형상과 아이콘을 만들게 되면 꽤 거칠게 보인다. 이런 점이 프로그래밍을 하는 것이 도전과제로 다가오게 된다!
+
+
+1. `File > New Window` 로 새로운 창을 열고 나서,
+
+2. 다음 코드를 입력한다:
+
+~~~ {.python}
+from sense_hat import SenseHat
+
+sense = SenseHat()
+
+sense.clear()
+
+x = 0
+y = 0
+
+sense.set_pixel(x, y, 255, 255, 255)
+~~~
+
+3. `File > Save` 메뉴를 선택하고 상기 파이썬 프로그램에 대한 파일명을 지정하고 저장한다. 
+
+4. `Run > Run module` 선택해서 파이썬 프로그램을 실행시킨다.
+
+5. 모퉁이에 LED 하나가 흰색으로 켜진다.
+
+6. 필요하면 색상을 바꿀 수도 있다는 것을 기억한다.
+
+#### 6.4. 좌표를 사용해서 픽셀 위치를 지정
+
+
+`x`, `y` 변수를 사용해서 어떤 개별 LED를 변경시킬지 `set_pixel` 명령어로 제어한다.
+**X** 는 수평으로 *왼쪽* 은 `0`, *오른쪽* 은 `7` 범위를 갖는다. 
+**Y** 는 수직으로 *윗쪽* 은 `0`, *아래쪽* 은 `7` 범위를 갖는다. 
+따라서, `x, y` 좌표 `0, 0`은 *좌측 최상단* 이 되고,
+ `x, y` 좌표 `7, 7`은 *우측 최하단* 이 된다.
+
+<img src="fig/rpi-coordinates.png" alt="픽셀 좌표" width="50%" />
+
+LED 전광판 각 모퉁이를 다른 색상으로 채색한다.
+다음과 같이 `set_pixel` 명령어를 여러번 사용한다:
+
+~~~ {.python}
+from sense_hat import SenseHat
+
+sense = SenseHat()
+
+sense.clear()
+sense.set_pixel(0, 0, 255, 0, 0)
+sense.set_pixel(0, 7, 0, 255, 0)
+sense.set_pixel(7, 0, 0, 0, 255)
+sense.set_pixel(7, 7, 255, 0, 255)
+~~~
+
+#### 6.5. LED 전광판에 형상과 패턴을 그리기
+
+코드로 `set_pixel` 명령어를 사용해서 형상과 패턴을 그리고 싶을 것이다. 
+`set_pixel` 명령어가 있다. 이 명령어를 가지고 코드 한줄로 전체 64개 LED를 조정할 수 있다.
+예를 들어, 마인크래프트 클리퍼 얼굴(Creeper face)을 LED 전광판에 표시한다:
+
+~~~ {.python}
+from sense_hat import SenseHat
+
+sense = SenseHat()
+
+O = (0, 255, 0) # 녹색
+X = (0, 0, 0) # 검정색
+
+creeper_pixels = [
+    O, O, O, O, O, O, O, O,
+    O, O, O, O, O, O, O, O,
+    O, X, X, O, O, X, X, O,
+    O, X, X, O, O, X, X, O,
+    O, O, O, X, X, O, O, O,
+    O, O, X, X, X, X, O, O,
+    O, O, X, X, X, X, O, O,
+    O, O, X, O, O, X, O, O
+]
+
+sense.set_pixels(creeper_pixels)
+~~~
+
+마인크래프트 스티브 예제처럼 두가지 색깔 이상을 사용할 수도 있다.
+
+~~~ {.python}
+from sense_hat import SenseHat
+
+sense = SenseHat()
+
+B = (102, 51, 0)
+b = (0, 0, 255)
+S = (205,133,63)
+W = (255, 255, 255)
+
+steve_pixels = [
+    B, B, B, B, B, B, B, B,
+    B, B, B, B, B, B, B, B,
+    B, S, S, S, S, S, S, B,
+    S, S, S, S, S, S, S, S,
+    S, W, b, S, S, b, W, S,
+    S, S, S, B, B, S, S, S,
+    S, S, B, S, S, B, S, S,
+    S, S, B, B, B, B, S, S
+]
+
+sense.set_pixels(steve_pixels)
+~~~
+
+#### 6.6. 파일에서 이미지 불러오기
+
+LED 전광판을 일일이 설정하는 것 대신에, 파일에서 불러온 이미지를 사용할 수도 있다.
+전세계 국기처럼 이미지를 많이 갖는 경우 편리한 기능이 된다.
+
+1. 윈도우, 맥 OSX, 리눅스에서 이미지 편집도구를 사용해서 파일을 생성한다.
+라즈베리파이에 $8 \times 8$ 픽셀 크기로 `JPEG` 혹은 `PNG`로 SD카드에 저장만 되면,
+LED 전광판에 명령어 하나도 직접 불러올 수 있다.
+
+2. `Menu > Accessories > File Manage`메뉴를 사용해서 라즈베리파이 `파일관리자(File Manager)`를 연다.
+
+3. `astro-pi-hat` 폴더에 `examples` 폴더로 찾아 들어간다. 더블클릭할 수 있는 `space_invader.png` 파일을 폴더에서 찾아낸다.
+
+4. `load_image` 함수를 사용해서 감각모자 LED 전광판에 이미지를 불러온다. 파일을 불러올 때 전체 파일 경로 정보가 필요하다. `space_invader.png` 파일이 있는 전체 경로는 `/home/pi/astro-pi-hat/examples/space_invader.png`이 된다.
+
+다음에 코드가 나와 있다.
+
+~~~ {.python}
+from sense_hat import SenseHat
+
+sense = SenseHat()
+
+sense.load_image("/home/pi/astro-pi-hat/examples/space_invader.png")
+~~~
