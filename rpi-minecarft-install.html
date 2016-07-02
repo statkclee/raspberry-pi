@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 라즈베리 파이</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 라즈베리 파이</h1>
+          <h2 class="subtitle">마인크래프트 설치</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>마인크래프트 파이를 설치한다.</li>
+<li>마인크래프트를 실행한다.</li>
+<li>마인크래프트 기본 명령어를 학습한다.</li>
+</ul>
+</div>
+</section>
+<h2 id="마인크래프트-파이-설치">마인크래프트 파이 설치</h2>
+<p>2014년 9월 이후 <a href="http://www.raspbian.org/">라즈비안(Raspbian)</a> 라즈베리 파이에 마인크래프트가 기본 설치되어 있다.</p>
+<p><img src="fig/minecraft-pi-shortcut.png" alt="마인크래프트 파이 단축 아이콘" width="20%"></p>
+<p>만약 이전 라즈비안 버젼을 사용한다면, 터미널 윈도우를 열고 다음 명령어를 타이핑한다. (단, 인터넷에 연결이 되어 있어야 한다.)</p>
+<pre class="shell"><code>sudo apt-get update
+sudo apt-get install minecraft-pi</code></pre>
+<p>상기 작업을 끝낸 후에는 마인크래프트 파이와 파이썬 라이브러리가 설치되어야 한다.</p>
+<h3 id="마인크래프트-테스트">마인크래프트 테스트</h3>
+<p>마인크래프트를 실행하기 위해서, 데스크톱 아이콘을 마우스로 두번 클릭하거나 혹은 터미널 윈도우에서 <code>minecraft-pi</code>를 키보드로 타이핑한다.</p>
+<p><img src="fig/mcpi-start.png" alt="마인크래프트 파이 실행" width="50%"></p>
+<p>마인크래프트 파이(Minecraft Pi)가 실행되어 적재되면, <strong>Start Game</strong>(게임 시작하기)을 클릭하고, <strong>Create New</strong>(새로 생성하기)를 클릭한다. 담겨진 윈도우가 살짝 오프셋되어 있다. 따라서, 윈도우를 잡기 위해서는 마인크래프트 윈도우 뒤에 제목막대(title bar)를 잡아야 한다.</p>
+<p><img src="fig/mcpi-game.png" alt="마인크래프트 파이 게임" width="50%"></p>
+<p>이제 마인크래프트 게임에 여러분이 들어가 있다.</p>
+<h2 id="마인크래프트-파이-실행">마인크래프트 파이 실행</h2>
+<p>주위를 둘러보는데 마우스를 사용하고, 키보드에 다음 단축키를 사용한다.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">단축키</th>
+<th align="center">동작</th>
+<th align="center">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">W</td>
+<td align="center">전진</td>
+<td align="center">Forward</td>
+</tr>
+<tr class="even">
+<td align="center">A</td>
+<td align="center">왼쪽</td>
+<td align="center">Left</td>
+</tr>
+<tr class="odd">
+<td align="center">S</td>
+<td align="center">후진</td>
+<td align="center">Backward</td>
+</tr>
+<tr class="even">
+<td align="center">D</td>
+<td align="center">오른쪽</td>
+<td align="center">Right</td>
+</tr>
+<tr class="odd">
+<td align="center">E</td>
+<td align="center">소장목록</td>
+<td align="center">Inventory</td>
+</tr>
+<tr class="even">
+<td align="center">Space</td>
+<td align="center">뛰다</td>
+<td align="center">Jump</td>
+</tr>
+<tr class="odd">
+<td align="center">Double Space</td>
+<td align="center">날다/떨어지다</td>
+<td align="center">Fly / Fall</td>
+</tr>
+<tr class="even">
+<td align="center">Esc</td>
+<td align="center">일시정지/메뉴</td>
+<td align="center">Pause / Game menu</td>
+</tr>
+<tr class="odd">
+<td align="center">Tab</td>
+<td align="center">마우스커서 해제</td>
+<td align="center">Release mouse cursor</td>
+</tr>
+</tbody>
+</table>
+<p>빠른 그리기 패널(quick draw panel)에서 아이템을 선택하는데, <code>E</code> 를 누르거나, 마우스 가운데 스크롤 휠, 혹은 키보드에 숫자를 사용해서 소장목록(inventory)에서 원하는 것을 고른다.</p>
+<p><img src="fig/mcpi-inventory.png" alt="소장목록(inventory)" width="50%"></p>
+<p>스페이스바(space bar)를 두번 눌러 하늘로 날 수 있다. 누른 스페이스바를 해제하게 되면 하늘을 나는 것을 멈춘다. 만약 다시 스페이스바를 두번 누르게 되면 지상으로 떨어지게 된다.</p>
+<p><img src="fig/mcpi-flying.png" alt="하늘로 날아오르기" width="50%"></p>
+<p>칼을 손에 잡고, 앞에 있는 블록을 클릭하면 해당 블록을 제거할(혹은 파고 들어갈) 수 있다. 손에 블록이 있으면, 우클릭을 사용해서 앞에 손에 있는 블록을 놓거나 혹은 좌클릭으로 블록을 제거할 수 있다.</p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

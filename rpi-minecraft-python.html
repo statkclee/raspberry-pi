@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 라즈베리 파이</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 라즈베리 파이</h1>
+          <h2 class="subtitle">파이썬 프로그래밍</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>파이썬 프로그램을 작성한다.</li>
+<li>변수 선언과 값을 대입한다.</li>
+<li>반복문과 조건문을 학습한다.</li>
+<li>API 프로그래밍을 실습한다.</li>
+</ul>
+</div>
+</section>
+<h3 id="hello-world">Hello World !!!</h3>
+<p>마인크래프트가 실행중이고 세상(world)이 생성되고 나면, <code>Tab</code> 키를 누르게 되면 마우스를 자유로이 사용할 수 있게 되는데 마인크래프트 게임에서 벗어나 마우스 포인터를 옮길 수 있다. 데스트톱(바탕화면)에 <strong>IDLE</strong> (IDLE3이 아님)을 열고 윈도우를 옮겨서 나란히 놓는다.</p>
+<p>파이썬 윈도우에 직접 명령어를 타이핑하거나 파일을 생성해서 콛를 적어 저장하고 나중에 다시 실행할 수 있다.</p>
+<p>만약 파일을 생성하고자 한다면, <code>File &gt; New window</code>(파일&gt;새창) 다음에 <code>File &gt; Save</code>(파일&gt;저장하기) 수행한다. 대체로 파일을 홈(home) 폴더나 새 프로젝트 폴더에 파이썬 프로그램 코드 파일을 저장한다.</p>
+<p>마인크래프트 라이브러리를 가져오고, 게임에 연결을 생성하고, 마인크래프트 화면에 “Hello World” 메시지를 찍어 테스트한다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> mcpi <span class="im">import</span> minecraft
+
+mc <span class="op">=</span> minecraft.Minecraft.create()
+
+mc.postToChat(<span class="st">&quot;Hello world&quot;</span>)</code></pre></div>
+<p>만약 명령어를 파이썬 윈도우에서 직접 입력한다면, 각 라인을 입력하고 <code>Enter</code> 키를 친다. 만약 파일에서 코드를 입력한다면, <code>Ctrl + S</code>를 눌러 저장하고, <code>F5</code>를 눌러 실행한다. 작성한 코드를 실행하면, 게임 화면에 작성한 메시지가 보여야 한다.</p>
+<p><img src="fig/mcpi-idle.png" alt="Hello World" width="50%"></p>
+<p>마인크래프트 윈도우에서 “Hello World”를 본다면, 이제 본격적으로 프로그래밍을 시작한다.</p>
+<h3 id="현재-위치-찾기">현재 위치 찾기</h3>
+<p>현재 본인의 위치를 찾기 위해서, 다음을 타이핑한다:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">pos <span class="op">=</span> mc.player.getPos()
+<span class="bu">print</span> pos</code></pre></div>
+<pre class="output"><code>Vec3(645.305762678,37.8643559655,-194.585066121)</code></pre>
+<p>대안으로, 좌표를 얻어 변수에 나눠 저장하는 멋진 방식으로 파이썬 개봉(unpacking) 기법을 사용한다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">x, y, z <span class="op">=</span> mc.player.getPos()</code></pre></div>
+<p>이제 <code>x</code>, <code>y</code>, <code>z</code>가 현재 위치 좌표 각각의 정보를 담고 있다. <code>x</code>와 <code>z</code>는 걷는 방향(전진/후진, 좌측/우측) 정보를, <code>y</code>는 상/하 정보를 담고 있다. 마인크래프트 좌표계는 다음과 같이 구성된다. 윈도우 <code>F3</code>를 클릭(노트북이나 맥에서 <code>Fn+F3</code>)하게 되면 디버그 화면에서 좌측 상단에 좌표정보를 확인할 수 있다.</p>
+<ul>
+<li><code>x</code>축은 원점에서 동쪽(양수), 서쪽(음수), 즉 경도 (longitude)</li>
+<li><code>z</code>축은 원점에서 남쪽(양수), 북쪽(음수), 즉 위도 (latitude)</li>
+<li><code>y</code>축은 원점에서 높낮이(0~255, 64가 해수면), 즉 표고 (elevation)</li>
+</ul>
+<p><img src="fig/coordinates.png" alt="마인크래프트 좌표계" width="50%"></p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h2 id="좌표coordinate"><span class="glyphicon glyphicon-pushpin"></span>좌표(Coordinate)</h2>
+</div>
+<div class="panel-body">
+<p>데카르트가 침대에 누워 천장을 바라보며 날아가고 있는 파리의 위치를 정확히 표현하기 위해서 <code>x</code>축과 <code>y</code>으로 표현되는 직교 좌표계를 고안했다고 한다. <strong>좌표(coordiante)</strong> 는 위치를 유일하게 표현하는 숫자 집합이다. 마인크래프트에서도 3차원 좌표계를 사용해서 사용자 및 물체의 위치를 표현한다. 참조 <a href="http://en.wikipedia.org/wiki/Coordinate_system">영문 좌표계(Coordinate System)</a>, <a href="https://ko.wikipedia.org/wiki/%EC%A2%8C%ED%91%9C%EA%B3%84">국문 좌표계</a>, <a href="http://minecraft.gamepedia.com/Coordinates">마인크래프트 좌표</a></p>
+</div>
+</aside>
+<p><code>getPos()</code> 메쏘드가 당해 시점에 플레이어 위치를 반환하는 것에 주목한다. 만약 위치를 이동하게 되면, 다시 함수를 호출하거나 저장된 위치정보를 사용해야 한다.</p>
+<h3 id="순간이동teleport-텔레포트">순간이동(Teleport, 텔레포트)</h3>
+<p>현재 위치정보를 알아낼 수도 있을 뿐만 아니라, 특정 지점을 명시해서 순간이동(teleport)도 할 수 있다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">x, y, z <span class="op">=</span> mc.player.getPos()
+mc.player.setPos(x, y<span class="dv">+100</span>, z)</code></pre></div>
+<p>상기 명령어는 플레이어를 공중으로 100 칸 순간이동 시킨다. 이것이 의미하는 바는 하늘 중간으로 플레이어를 순간이동 시킬 수 있고, 처음 시작한 장소로 바로 되돌아 올 수도 있다.</p>
+<p>다른 곳으로 지금 순간이동해 보세요!</p>
+<h2 id="블록block-설치">블록(block) 설치</h2>
+<p><code>mc.setBlock()</code> 메쏘드를 사용해서 특정 좌표위치에 한개 블록을 놓을 수 있다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">x, y, z <span class="op">=</span> mc.player.getPos()
+mc.setBlock(x<span class="dv">+1</span>, y, z, <span class="dv">1</span>)</code></pre></div>
+<p>플레이어가 서있는 옆에 돌블록(stone block)이 나타나야 한다. 만약 플레이어 앞에 즉시 보이지 않는다면, 플레이어 뒤나 옆에 자리하고 있을 수 있다. 마인크래프트 윈도우로 돌아가서 마우스를 사용해서 플레이어 앞에 바로 회색 블록이 보일 때까지 주변을 돌려본다.</p>
+<p><img src="fig/mcpi-setblock.png" alt="블록 설치" width="50%"></p>
+<p><code>set block</code>에 전달되는 인자는 <code>x</code>, <code>y</code>, <code>z</code>, 그리고 <code>id</code>다. <code>(x,y,z)</code>는 세계(world)에서 위치를 나타낸다. (한개 블록 위치를 플레이어가 서 있는 장소에서 한칸 떨어지게 <code>x+1</code>으로 명시했다) <code>id</code>는 설치하고자 하는 블록 유형을 나타낸다. <code>1</code>은 돌이 된다.</p>
+<p>다른 유형의 블록을 시도해보라.</p>
+<pre class="output"><code>Air:   0
+Grass: 2
+Dirt:  3</code></pre>
+<p>이제 눈앞에 보이는 블록을 뭔가 다른 것으로 바꿔보자.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">mc.setBlock(x<span class="dv">+1</span>, y, z, <span class="dv">2</span>)</code></pre></div>
+<p>눈 앞에 회색 돌블록이 변경된 것을 봐야 한다.</p>
+<p><img src="fig/mcpi-setblock2.png" alt="블록 변경 설치" width="50%"></p>
+<h3 id="변수로서-블록">변수로서 블록</h3>
+<p>프로그램 코드 가독성을 높이기 위해서 변수를 사용해서 ID를 저장할 수 있다. ID가 <code>block</code>으로 읽어올 수 있다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> mcpi <span class="im">import</span> block
+
+dirt <span class="op">=</span> block.DIRT.<span class="bu">id</span>
+mc.setBlock(x,y,z, dirt)</code></pre></div>
+<p>혹은, 만약 ID를 알고 있다면, 직접 설정할 수 있다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">dirt <span class="op">=</span> <span class="dv">3</span>
+mc.setBlock(x,y,z, dirt)</code></pre></div>
+<h3 id="특수-블록">특수 블록</h3>
+<p>추가적인 속성(property)을 갖는 블록이 몇개 있다. 양모(wool) 같은 경우에는 색깔을 추가로 설정해야 한다. 양모 색깔을 설정하기 위해서 <code>setBlock</code>에 네번째 매개변수를 선택사항 옵션으로 사용한다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">wool <span class="op">=</span> <span class="dv">35</span>
+mc.setBlock(x,y,z, wool, <span class="dv">1</span>)</code></pre></div>
+<p>여기서 네번째 매개변수 <code>1</code>은 양모색깔을 오렌지색으로 설정한다. 네번째 매개변수가 없다면, 디폴트(<code>0</code>)로 하얀색으로 설정한다. 이용가능한 다른 색깔은 다음과 같다:</p>
+<pre class="input"><code>2: Magenta
+3: Light Blue
+4: Yellow</code></pre>
+<p>숫자를 변경해서 시도해 보고 블록 색깔이 바뀌는 것을 지켜보자.</p>
+<p>추가적인 속성을 갖는 다른 블록에는 나무(<code>17</code>): 떡갈 나무(oak), 가문비 나무(spruce), 자작 나무(birch); 키큰 잔디(<code>31</code>): 관목, 잔디, 고사리; 토치(<code>50</code>): 동쪽, 서쪽, 북쪽, 남쪽; 그리고 추가로 더 있다. 전체 세부내용에 대해서는 <a href="http://www.stuffaboutcode.com/p/minecraft-api-reference.html">API 참고 문헌</a>을 살펴보기 바란다.</p>
+<h3 id="다수-블록-설치">다수 블록 설치</h3>
+<p><code>setBlock</code> 메쏘드로 블록 한개를 설치할 수도 있지만, <code>setBlocks</code>으로 특정 공간을 채울 수도 있다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">stone <span class="op">=</span> <span class="dv">1</span>
+x, y, z <span class="op">=</span> mc.player.getPos()
+mc.setBlocks(x<span class="dv">+1</span>, y<span class="dv">+1</span>, z<span class="dv">+1</span>, x<span class="dv">+11</span>, y<span class="dv">+11</span>, z<span class="dv">+11</span>, stone)</code></pre></div>
+<p>10 x 10 x 10 정육면체를 단단한 돌로 채운다.</p>
+<p><img src="fig/mcpi-setblocks.png" alt="정육면체 돌" width="50%"></p>
+<p><code>setBlocks</code>함수로 더 용량을 갖는 도형을 생성할 수 있지만, 생성하는데 시간이 더 오래 걸릴 수도 있다.</p>
+<h3 id="걸어가면서-블록-설치하며-지나가기">걸어가면서 블록 설치하며 지나가기</h3>
+<p>이제 어떻게 블록을 설치하는지 알기 때문에, 걸어가면서 이동경로를 따라서 블록을 떨어뜨려 설치해보자.</p>
+<p>다음 코드는 걸어가는 곳마다 플레이어 뒤에 꽃을 떨어뜨려 지나간다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> mcpi <span class="im">import</span> minecraft
+<span class="im">from</span> time <span class="im">import</span> sleep
+
+mc <span class="op">=</span> minecraft.Minecraft.create()
+
+flower <span class="op">=</span> <span class="dv">38</span>
+
+<span class="cf">while</span> <span class="va">True</span>:
+    x, y, z <span class="op">=</span> mc.player.getPos()
+    mc.setBlock(x, y, z, flower)
+    sleep(<span class="fl">0.1</span>)</code></pre></div>
+<p>이제 잠시 동안 앞으로 전진하고 나서 뒤를 돌아 지나온 이동 경로에 꽃이 떨어져 있는지 살펴보자.</p>
+<p><img src="fig/mcpi-flowers.png" alt="꽃" width="50%"></p>
+<p><code>while True</code> 루프를 사용해서 무한반복된다. 무한반복을 중지시키려면, 파이썬 윈도우에서 <code>Ctrl + C</code>를 누른다.</p>
+<p>스페이스바를 두번 눌러 하늘로 날아보자. 하늘을 날면서 걸어간 경로에 꽃이 보인다.</p>
+<p><img src="fig/mcpi-flowers-sky.png" alt="하늘길 꽃" width="50%"></p>
+<p>잔디위를 걸을 때만 꽃을 지나온 경로에 떨어 뜨리고 싶다면 어떨까? <code>getBlock</code>을 사용해서 블록이 어떤 유형인지 알아낼 수 있다:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">x, y, z <span class="op">=</span> mc.player.getPos()  <span class="co"># player position (x, y, z)</span>
+this_block <span class="op">=</span> mc.getBlock(x, y, z)  <span class="co"># block ID</span>
+<span class="bu">print</span>(this_block)</code></pre></div>
+<p>상기 코드는 플레이어가 <em>있는</em> 블록 위치를 알려준다(<code>0</code>일 것이다–공기블록). 플레이어가 <em>서있는</em> 블록 유형을 알고 싶다. 이를 위해서는 <code>y</code>에 1을 빼서 <code>getBlock()</code>을 사용하게 되면 플레이어가 서있는 블록의 유형을 식별할 수 있다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">x,y,z <span class="op">=</span> mc.player.getPos() <span class="co"># 플레이어 위치 (x,y,z)</span>
+block_beneth <span class="op">=</span> mc.getBlock(x, y<span class="dv">-1</span>, z) <span class="co"># 블록 ID</span>
+<span class="bu">print</span>(block_beneth)</code></pre></div>
+<p>상기 코드는 플레이어가 서있는 블록 ID 정보를 출력하여 알려준다.</p>
+<p>플레이어가 현재 서있는 곳 어디서나 블록 ID를 출력하는 루프를 실행하는 다음 코드를 테스트해보라.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">while</span> <span class="va">True</span>:
+    x, y, z <span class="op">=</span> mc.player.getPos()
+    block_beneath <span class="op">=</span> mc.getBlock(x, y<span class="dv">-1</span>, z)
+    <span class="bu">print</span>(block_beneath)</code></pre></div>
+<p><img src="fig/mcpi-block-test.png" alt="밟고 서 있는 블록 유형" width="50%"></p>
+<p><code>if</code> 문장을 사용해서 꽃을 심을 것인지 심지 않을 것인지 선택한다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">grass <span class="op">=</span> <span class="dv">2</span>
+flower <span class="op">=</span> <span class="dv">38</span>
+
+<span class="cf">while</span> <span class="va">True</span>:
+    x, y, z <span class="op">=</span> mc.player.getPos()  <span class="co"># 플레이어 위치 (x, y, z)</span>
+    block_beneath <span class="op">=</span> mc.getBlock(x, y<span class="dv">-1</span>, z)  <span class="co"># 블록 ID</span>
+
+    <span class="cf">if</span> block_beneath <span class="op">==</span> grass:
+        mc.setBlock(x, y, z, flower)
+    sleep(<span class="fl">0.1</span>)</code></pre></div>
+<p>아마도 다음에 만약 플레이어가 잔디 위에 있지 않는다면, 서있는 블록을 뒤집어 잔디위에 서있게 한다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">if</span> block_beneath <span class="op">==</span> grass:
+    mc.setBlock(x, y, z, flower)
+<span class="cf">else</span>:
+    mc.setBlock(x, y<span class="dv">-1</span>, z, grass)</code></pre></div>
+<p>이제 앞으로 전진하는데, 만약 잔디 위를 걷게되면 뒤에 꽃을 놓게 된다. 만약 걸어가는 다음 블록이 잔디가 아니라면, 잔디로 뒤집는다. 뒤를 돌아 다시 걷게 되면, 플레이어가 걸어 간 뒤에는 꽃이 놓여지게 된다.</p>
+<p><img src="fig/mcpi-flowers-grass.png" alt="잔디길과 꽃길" width="50%"></p>
+<h3 id="폭탄-블록-가지고-놀기">폭탄 블록 가지고 놀기</h3>
+<p>또다른 흥미로운 블록은 TNT다! 정상적인 일반 TNT 블록을 위치시킬때, 다음과 같이 코드를 작성한다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">tnt <span class="op">=</span> <span class="dv">46</span>
+mc.setBlock(x, y, z, tnt)</code></pre></div>
+<p><img src="fig/mcpi-tnt.png" alt="TNT 폭탄" width="50%"></p>
+<p>하지만, TNT 폭탁이 매우 단조롭다. <code>data</code>에 <code>1</code>값을 적용해보자.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">tnt <span class="op">=</span> <span class="dv">46</span>
+mc.setBlock(x, y, z, tnt, <span class="dv">1</span>)</code></pre></div>
+<p>이제 칼을 사용해서 TNT 블록을 좌클릭하자: 폭탄이 활성화되고 수초내에 폭발할 것이다!</p>
+<p>이제 엄청나게 큰 TNT 블록 폭탄더미를 만들어보자.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">tnt <span class="op">=</span> <span class="dv">46</span>
+mc.setBlocks(x<span class="dv">+1</span>, y<span class="dv">+1</span>, z<span class="dv">+1</span>, x<span class="dv">+11</span>, y<span class="dv">+11</span>, z<span class="dv">+11</span>, tnt, <span class="dv">1</span>)</code></pre></div>
+<p><img src="fig/mcpi-tnt-blocks.png" alt="TNT 블록 폭탄더미" width="50%"></p>
+<p>이제 매우 커다란 TNT 블록으로 가득찬 정육면체를 볼 수 있다. 다가가서 TNT 블록중에 하나를 활성화시키고 나서 장관을 지켜보기 위해 냅다 도망간다. 정말 많은 것이 한번에 변경되어서 그래픽을 렌더링하는데 정말 느릴 것이다.</p>
+<p><img src="mcpi-tnt-explode.png" alt="TNT 블록 폭탄더미 폭파" width="50%"></p>
+<h2 id="다음-학습">다음 학습</h2>
+<p>이제 마인크래프트 세상을 여기저기 돌아다니는 방법과 파이썬 인터페이스 프로그래밍을 익혔기 때문에 할 수 있는 것은 무척이나 많다.</p>
+<h3 id="네트워크-게임">네트워크 게임</h3>
+<p>만약 로컬 네트워크로 라즈베리 파이에 다수 학생이 접속한다면, 동일한 마인크래프트 세계에 접속해서 함께 게임을 즐길 수 있다. 플레이어는 마인크래프트 세상에서 서로를 만나게 된다.</p>
+<h3 id="api-참고-문헌">API 참고 문헌</h3>
+<p>블록 ID에 대한 전체 목록과 좀더 폭넓은 문서에 대해서 <a href="http://www.stuffaboutcode.com/p/minecraft-api-reference.html">stuffaboutcode.com</a>을 참조하기 바란다.</p>
+<h3 id="게임-만들기">게임 만들기</h3>
+<p>또다른 학습 교재를 읽어보고 두더지 잡기(whac-a-mole) 게임을 만들어 보세요: <a href="https://www.raspberrypi.org/learning/minecraft-whac-a-block-game/">Minecraft Whac-a-Block</a></p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
