@@ -361,6 +361,219 @@ ratio <span class="op">=</span> <span class="dv">255</span> <span class="op">/</
     <span class="cf">if</span> blue <span class="op">&gt;</span> <span class="dv">255</span>:
         blue <span class="op">=</span> <span class="dv">255</span>
     sense.clear(<span class="dv">0</span>, <span class="dv">0</span>, blue)</code></pre></div>
+<h3 id="움직임">4. 움직임</h3>
+<h4 id="관성측정장비">4.1. 관성측정장비</h4>
+<p>관성측정장비(IMU, Inertial Measurement Unit)는 내부에 센서가 3개 구비되어 있다:</p>
+<ul>
+<li>자이로스코프 (운동량과 회전을 측정)</li>
+<li>가속도 센서 (가속도를 측정하고 중력 방향을 찾는데 사용)</li>
+<li>지자계 센서 (지구 자기장을 측정, 나침반과 유사)</li>
+</ul>
+<p><img src="fig/rpi-apollo_imu.jpg" alt="아폴로 우주선 관성측정장비" width="50%" /></p>
+<p>운동 센서가 그런데 왜 중요할까? 우주공간에 떠 있을 때, 항상 정답을 알고 있어야 되는 정말 중요한 질문이 있다: <strong>내가 어느 방향을 가리키고 있는가?</strong></p>
+<p>방향을 알지 못하면, 정말 큰 문제에 봉착하게 된다. 위와 같은 IMU 센서는 유인, 무인 우주선에 사용되어 이동한 것을 추적하고 방향을 이해하는데 사용된다. 심지어 초기 우주선에도 장착되어 있다. 할아버지 할머니에게 <a href="http://en.wikipedia.org/wiki/Apollo_program">아폴로 임무</a>을 기억하는지 물어보라. 아폴로 임무는 인간을 달표면에 착륙시키는 것이다.</p>
+<p>아폴로 사령선에 장착된 IMU 센서 그림이 위에 나와 있다. 감각모자에 작착된 아주 작은 검은색 사각형 반도체와 비교할 때 얼마나 작은지 금방 크기가 비교된다; 1975년과 2016년 기술 격차를 보여주고 있다. 크기는 그렇지만, 감각모자에 장착된 IMU는 아폴로 우주선에 장착된 IMU보다 정확도가 떨어질 수 있지만, 백만배나 더 값이 저렴하다.</p>
+<h4 id="방향-표시-방법">4.2. 방향 표시 방법</h4>
+<p>지구가 남극과 북극을 축으로 자전하는 것은 알고 있다. 우주든 지구든 모든 물체는 회전하는데 축이 <strong>3개</strong> 필요하다. 각 축을 따라 얼마나 회전했는지 알고 있다면, 물체가 어느 방향을 가르키고 있는지도 알게 된다.</p>
+<p>축 3개는 다음과 같다:</p>
+<ul>
+<li>피치(Pitch) : 비행기가 이륙하는 것과 유사</li>
+<li>롤(Roll) : 비행기가 승리를 축하하는 회전 비행과 유사</li>
+<li>요(Yaw) : 자동차처럼 비행기를 조정하는 것과 유사</li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=pQ24NtnaLl8">짧은 동영상</a>에 비행기와 연관되어 각 축이 어떻게 위치하는지 보여주고 있다. 임의 방향을 가르키고 있는 비행기를 상상해 보자. 비행기를 원하는 위치로 가져오려면, 각 축을 알고 있는 정도만큼 회전시키면 된다.</p>
+<p><img src="fig/rpi-orientation.png" alt="감각모자 방향" width="50%" /></p>
+<p>감각모자와 연관해서 해당 축이 어디에 해당되는지 상기 그림이 보여주고 있다.</p>
+<p>인터넷에서 프로그램을 다운로드 받아 3D 데모 프로그램을 구현해서 체험을 해 보자.</p>
+<h4 id="아폴로-소유즈-데모">4.3. 아폴로 소유즈 데모</h4>
+<p><img src="fig/rpi-apollo_soyuz.jpg" alt="아폴로 소유즈" width="50%" /></p>
+<p>다음 그림은 아폴로 소유즈(Apollo Soyuz)<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> 우주선을 보여주고 있는데 인간을 1970년대 달 표면에 착륙시키는데 사용되었다. 3D 데모는 동일한 우주선이지만 정교성에서 조금 떨어진다.</p>
+<p>필요한 소프트웨어를 다운로드 받는데 라즈베리파이와 감각모자가 인터넷에 연결되어야 한다.</p>
+<p>터미널 윈도우에 아래 명령어를 타이핑한다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">sudo apt<span class="op">-</span>get install python3<span class="op">-</span>pip
+sudo pip<span class="fl">-3.2</span> install pi3d
+git clone git:<span class="op">//</span>github.com<span class="op">/</span>astro<span class="op">-</span>pi<span class="op">/</span>apollo<span class="op">-</span>soyuz
+cd apollo<span class="op">-</span>soyuz
+sudo .<span class="op">/</span>soyuz.py</code></pre></div>
+<p>라즈베리파이 1을 갖는 사용자는 3D 데모 프로그램이 뜨는데 약 3~4분이 걸리고, 라즈베리파이 2는 약 30초가 걸린다. 우주선이 화면에 나타나면 손에 감각모자가 장착된 라즈베리파이를 들고 이리저리 움직인다. 주추진로켓이 라즈베리파이 SD카드가 꽂힌 곳이다.</p>
+<p>우주선을 갖고 피치, 롤, 요 움직임을 직접 체험한다. 어느 방향이 어느 방향인지 헤깔리면, <a href="https://www.youtube.com/watch?v=pQ24NtnaLl8">짧은 동영상</a>을 다시 참조한다.</p>
+<p>3D 데모 코드는 기본적으로 감각모자 IMU 센서에 접근해서 <code>get_orientation</code> 함수를 호출한다. 그러면 IMU 센서가 각 축(피치, 롤, 요)에 대해 0에서 360 사이 값을 각도로 반환한다. 그리고 나면 우주선 모형이 IMU 센서 호출된 각도만큼 회전해서 동일한 방향을 가리키게 된다. 매우 빠르게 반복해서 우주선 모형과 IMU 센서가 전달하는 것과 같은 방향을 유지하게 된다.</p>
+<p><code>Esc</code> 키를 눌러 데모를 빠져나온다. 좀더 간단한 코드를 살펴보자.</p>
+<h4 id="내가-어느-방향을-가리키고-있는가">4.4. 내가 어느 방향을 가리키고 있는가?</h4>
+<ol style="list-style-type: decimal">
+<li>다음 명령어를 루트 권한 <code>sudo</code> 으로 <strong>파이썬3(Python 3)</strong> 를 터미널 윈도우에서 연다.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">sudo idle3 <span class="op">&amp;</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><code>File &gt; New Window</code> 로 새로운 창을 열고 다음 코드를 입력한다:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> sense_hat <span class="im">import</span> SenseHat
+sense <span class="op">=</span> SenseHat()
+sense.clear()
+
+o <span class="op">=</span> sense.get_orientation()
+pitch <span class="op">=</span> o[<span class="st">&quot;pitch&quot;</span>]
+roll <span class="op">=</span> o[<span class="st">&quot;roll&quot;</span>]
+yaw <span class="op">=</span> o[<span class="st">&quot;yaw&quot;</span>]
+<span class="bu">print</span>(<span class="st">&quot;pitch </span><span class="sc">%s</span><span class="st"> roll </span><span class="sc">%s</span><span class="st"> yaw </span><span class="sc">%s</span><span class="st">&quot;</span> <span class="op">%</span> (pitch, roll, yaw))</code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li><p><code>File &gt; Save</code> 메뉴를 선택하고 상기 파이썬 프로그램에 대한 파일명을 지정하고 저장한다.</p></li>
+<li><p><code>Run &gt; Run module</code> 선택해서 파이썬 프로그램을 실행시킨다.</p></li>
+<li><p><code>IMU Init Failed, please run as root / use sudo</code> 오류 메시지(파이썬 코드 실행 마지막 줄에 붉은색 글씨)가 뜨게 되면, 상기 절차를 충실히 따르지 않는 것으로 볼 수 있다. 모든 것을 닫고, 첫번째 단계부터 다시 시작한다.</p></li>
+<li><p>결과가 다음과 같이 나오면 성공이다.</p></li>
+</ol>
+<pre class="output"><code>IMU Init Succeeded
+pitch 356.35723002363454 roll 303.4986602798494 yaw 339.19880231669873</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>소수점 아래 모든 숫자는 필요없으니 반올림한다. <code>print(&quot;pitch %s roll %s yaw %s&quot; % (pitch, roll, yaw))</code> 행 바로 앞에 다음 코드를 추가한다:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">pitch <span class="op">=</span> <span class="bu">round</span>(pitch, <span class="dv">1</span>)
+roll <span class="op">=</span> <span class="bu">round</span>(roll, <span class="dv">1</span>)
+yaw <span class="op">=</span> <span class="bu">round</span>(yaw, <span class="dv">1</span>)</code></pre></div>
+<h4 id="시간에-따른-이동방향-모니터링">4.5. 시간에 따른 이동방향 모니터링</h4>
+<ol style="list-style-type: decimal">
+<li>운동방향 변화를 모니터링하는 것이 필요해서 <code>while</code> 루프에 위에서 작성한 코드를 넣고, 재실행한다.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="cf">while</span> <span class="va">True</span>:
+    o <span class="op">=</span> sense.get_orientation()
+    pitch <span class="op">=</span> o[<span class="st">&quot;pitch&quot;</span>]
+    roll <span class="op">=</span> o[<span class="st">&quot;roll&quot;</span>]
+    yaw <span class="op">=</span> o[<span class="st">&quot;yaw&quot;</span>]
+
+    pitch <span class="op">=</span> <span class="bu">round</span>(pitch, <span class="dv">1</span>)
+    roll <span class="op">=</span> <span class="bu">round</span>(roll, <span class="dv">1</span>)
+    yaw <span class="op">=</span> <span class="bu">round</span>(yaw, <span class="dv">1</span>)
+
+    <span class="bu">print</span>(<span class="st">&quot;pitch </span><span class="sc">%s</span><span class="st"> roll </span><span class="sc">%s</span><span class="st"> yaw </span><span class="sc">%s</span><span class="st">&quot;</span> <span class="op">%</span> (pitch, roll, yaw))</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>손에 라즈베리파이를 들고서 움직이면, 숫자가 바뀌는 것이 보인다. 예를 들어 피치방향으로만 축을 변경시켜본다. 다른 축에도 동일한 작업을 수행한다.</p></li>
+<li><p><code>Ctrl + C</code> 키를 눌러 프로그램을 종료시킨다.</p></li>
+</ol>
+<h4 id="led-전광판에-운동방향정보-출력">4.5. LED 전광판에 운동방향정보 출력</h4>
+<ol style="list-style-type: decimal">
+<li>항상 3차원에 있는 것을 2차원으로 표시하는 것은 쉽지 않다. 특히 전광판 크기가 <span class="math inline">8 × 8</span> 픽셀 크기를 갖는 경우는 더욱 그렇다. 이것을 구현하는 한방식은 각축마다 LED 하나를 갖추고 다른 방식으로 이동시키는 것이다. 예를 들어,</li>
+</ol>
+<ul>
+<li>피치 LED는 위와 아래를 표현한다.</li>
+<li>롤 LED는 옆으로 표현한다.</li>
+<li>요 LED는 가장자리를 따라간다.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>다음에 조금더 똑똑한 기법이 나와 있다. 가로축을 따라 LED 숫자가 배치된 표가 나와 있다.</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="left">0</th>
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">3</th>
+<th align="left">4</th>
+<th align="left">5</th>
+<th align="left">6</th>
+<th align="left">7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">8</td>
+<td align="left">9</td>
+<td align="left">10</td>
+<td align="left">11</td>
+<td align="left">12</td>
+<td align="left">13</td>
+<td align="left">14</td>
+<td align="left">15</td>
+</tr>
+<tr class="even">
+<td align="left">16</td>
+<td align="left">17</td>
+<td align="left">18</td>
+<td align="left">19</td>
+<td align="left">20</td>
+<td align="left">21</td>
+<td align="left">22</td>
+<td align="left">23</td>
+</tr>
+<tr class="odd">
+<td align="left">24</td>
+<td align="left">25</td>
+<td align="left">26</td>
+<td align="left">27</td>
+<td align="left">28</td>
+<td align="left">29</td>
+<td align="left">30</td>
+<td align="left">31</td>
+</tr>
+<tr class="even">
+<td align="left">32</td>
+<td align="left">33</td>
+<td align="left">34</td>
+<td align="left">35</td>
+<td align="left">36</td>
+<td align="left">37</td>
+<td align="left">38</td>
+<td align="left">39</td>
+</tr>
+<tr class="odd">
+<td align="left">40</td>
+<td align="left">41</td>
+<td align="left">42</td>
+<td align="left">43</td>
+<td align="left">44</td>
+<td align="left">45</td>
+<td align="left">46</td>
+<td align="left">47</td>
+</tr>
+<tr class="even">
+<td align="left">48</td>
+<td align="left">49</td>
+<td align="left">50</td>
+<td align="left">51</td>
+<td align="left">52</td>
+<td align="left">53</td>
+<td align="left">54</td>
+<td align="left">55</td>
+</tr>
+<tr class="odd">
+<td align="left">56</td>
+<td align="left">57</td>
+<td align="left">58</td>
+<td align="left">59</td>
+<td align="left">60</td>
+<td align="left">61</td>
+<td align="left">62</td>
+<td align="left">63</td>
+</tr>
+</tbody>
+</table>
+<p>어떤 숫자도 다음 코드를 통해 <span class="math inline">(<em>X</em>, <em>Y</em>)</span> 좌표로 전환한다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">y <span class="op">=</span> number <span class="op">//</span> <span class="dv">8</span>
+x <span class="op">=</span> number <span class="op">%</span> <span class="dv">8</span></code></pre></div>
+<p>어떠한 <code>y</code> 값에 대해서도 8로 <code>//</code> 나눈다. 정수만 취하고, 나머지는 버린다. 그리고 <code>x</code>에 대해서, 8로 <code>%</code> 나머지 연산을 수행하고, <strong>나머지만</strong> 취한다.</p>
+<p>예를 드어 (가장 마지막 줄에 위치한 60을 사용해보자)</p>
+<ul>
+<li><code>60 // 8 = 7</code></li>
+<li><code>60 % 8 = 4</code></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>파이썬 코드로 돌려본다:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">number <span class="op">=</span> <span class="dv">60</span>
+
+y <span class="op">=</span> number <span class="op">//</span> <span class="dv">8</span>
+x <span class="op">=</span> number <span class="op">%</span> <span class="dv">8</span>
+
+sense.set_pixel(x, y, <span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li></li>
+</ol>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>구소련의 우주 정류장 조립을 목적으로 발사한 우주선<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
         </div>
       </div>
       </article>
