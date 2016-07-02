@@ -22,7 +22,6 @@ subtitle: 감각모자로 주변 감지
 |        압력             |           버튼          |
 |        움직임           |                         |
 
-
 ### 1. 온도 
 
 감각 모자에는 다양한 센서가 포함되어 있는데, 온도센서도 그중 하나다.
@@ -665,3 +664,162 @@ while True:
 5. 상기 코드는 LED를 켜는 것만 있어, LED를 끄는 것을 알아내야 한다.
 루프를 돌며 마지막에 이전 `x`, `y`를 기억하는 변수를 준비하고, 새로운 `x`, `y`와 다르면 `set_pixel` 함수를 사용해서 LED를 검정색으로 설정한다.
 
+
+### 5. 조이스틱
+
+감각모자 조이스틱은 네방향 키보드 방향키와 조이스틱 중간클릭은 엔터키에 매핑된다.
+따라서 조이스틱이 키보드 방향키와 엔터키를 누르는 것과 정확하게 동일한 효과를 갖는다.
+아래쪽 방향은 HDMI 포트 아래쪽으로 향하는 것을 기억한다.
+
+<img src="fig/rpi-cursor_keys.jpg" alt="조이스틱 키보드 매핑" width="50%" />
+
+#### 5.1. 키보드 매핑
+
+
+1. 다음 명령어를 루트 권한 `sudo` 으로 **파이썬3(Python 3)** 를 터미널 윈도우에서 연다.
+
+~~~ {.python}
+sudo idle3 &
+~~~
+
+2. 파이썬 쉘 윈도우가 나타난다. 터미널 윈도우를 닫아도 된다.
+
+3. `File > New Window` 로 새로운 창을 열고 나서,
+
+4. 다음 코드를 입력한다:
+
+~~~ {.python}
+import pygame
+
+from pygame.locals import *
+from sense_hat import SenseHat
+
+pygame.init()
+pygame.display.set_mode((640, 480))
+sense = SenseHat()
+sense.clear()
+
+running = True
+
+while running:
+    for event in pygame.event.get():
+        print(event)
+        if event.type == QUIT:
+            running = False
+            print("BYE")
+~~~
+
+5. `File > Save` 메뉴를 선택하고 상기 파이썬 프로그램에 대한 파일명을 지정하고 저장한다. 
+
+6. `Run > Run module` 선택해서 파이썬 프로그램을 실행시킨다.
+
+    키보드 키를 눌렀는지는 [pygame](http://www.pygame.org/docs/) 파이썬 모듈를 사용해서 처리했다.
+
+7. 배경이 까만 윈도우가 나타난다. 마우스를 사용해서 스크린 한쪽면으로 이동시켜, 파이썬 쉘 윈도우도 함께 볼 수 있도록 화면을 정리한다.
+
+8. 배경이 까만 윈도우를 선택해서 활성화 시키고 마우스를 이리저리 이동시키고, 키보드 키를 눌렀다가 떼고, 감각모자 조이스틱도 이리저리 움직인다. 한동안 키를 눌르고 잠시 멈추고나서 몇초뒤에 풀어준다. 이벤트 두개가 발생하는 것이 보일 것이다; 키가 눌렀을 때 이벤트와 키를 풀었을 때 이벤트. 상기 프로그램에서는 키를 눌렀을 때 **KEY DOWN** 이벤트만 사용했다.
+
+9. 배경이 검은 pygame 윈도우 모퉁이에 `x` 를 클릭한다. 파이썬 쉘 윈도우에 `BYE` 메시지가 보이지만, 배경이 까만 윈도우는 사라지지 않는다.
+
+`for event in pygame.event.get():` 구문을 사용해서 pygame 이벤트 큐를 사용했다.
+모든 키보드 마우스 이벤트에 대한 루프를 돌린다.
+루프 내부에 `print(event)`를 사용해서 어떤 이벤트인지 화면에 출력하고 나서 이벤트 유형이 `QUIT`인지도 검사한다.
+만약 `QUIT`라면, `running` 상태가 `False`로 되고, `while` 루프가 종료되고 프로그램이 끝나게 된다.
+마우스를 이동시키고, 마우스를 클릭하고, 키보드를 누르거나 풀게 되면 파이썬 쉘에 텍스트를 출력하는 것이 위에 작성된 프로그램이다.
+
+#### 5.2. 코드로 조이스틱 이동 감지하기
+
+조이스틱이 어떻게 동작하는지 생각해보자.
+LED 전광판을 사용해서 조이스틱 작동방식에 대해 생각해본다.
+픽셀을 흰색으로 만들고, 조이스틱을 사용해서 픽셀이 $8 \times 8$ 크기 전광판을 돌아다니게 한다.
+이를 구현하는데, 이벤트를 사용해서 키가 눌렸는지 탐지한다. 예를 들어, 키가 아래로 눌린 경우, 픽셀을 이동시키는데 어떤 단계가 필요할까?
+
+> * 현재 `x`, `y` 위치 정보를 사용해서 LED를 OFF 해서 끈다.
+> * 아래 `DOWN`이 눌러진 경우 `y`에 1을 더한다.
+> * 위 `UP`이 눌러진 경우, `y`에서 1을 뺀다.
+> * 우측 `RIGHT`이 눌러진 경우, `x`에 1을 더한다.
+> * 좌측 `LEFT`가 눌러진 경우, `x`에서 1을 뺀다.
+> * 갱신된 `x`, `y` 위치 정보를 사용해서 LED를 ON 해서 켠다.
+
+1. 아래 DOWN 키에 대해 코드를 추가하면서 코딩을 시작한다. 이전 프로그램에서 사용된 `print(event)` 명령어를 삭제하고, 들여쓰기 수준을 동일하게 만들고 코드를 아래와 같이 추가시킨다:
+
+~~~ {.python}
+if event.type == KEYDOWN:
+    sense.set_pixel(x, y, 0, 0, 0)  # 검정색 0,0,0 이 OFF를 의미
+
+    if event.key == K_DOWN:
+        y = y + 1
+
+        sense.set_pixel(x, y, 255, 255, 255)
+~~~
+
+
+2. 저장하고 코드를 실행시킨다. 키보드 아래 방향키 `DOWN`키 혹은 조이스틱을 사용해서 픽셀을 아래로 이동 시킬 수 있다.
+계속하게 `DOWN` 방향키를 누르게 되면, 종국에는 다음과 같은 오류가 발생된다.
+
+~~~ {.error}
+ValueError: Y position must be between 0 and 7
+~~~
+
+3. `y` 값은 0-7 사이만 가능하다. 그렇지 않는 경우 전광판 가장자리에서 떨어져 나가게 된다.
+그런 이유로 인해 오류가 발생된다; 감각모자는 범위 밖에 있는 값은 이해하지 못한다.
+방향키 `DOWN`을 누를 때마다 `y`에 1이 계속 추가되는 구조라서, `y`가 7 이상 넘어가게 되면 멈출 필요가 있다.
+
+`and y < 7` 구문(`y`가 7보다 작음)을 추가하면 문제가 해결된다.
+
+~~~ {.python}
+if event.key == K_DOWN and y < 7:
+    y = y + 1
+~~~
+
+4. 저장하고 나서 코드를 다시 실행시킨다; 이번에는 전광판 가장자리로 하얀점이 이동되지 않게 된다. 
+
+5. 이제 정상적으로 동작하기 때문에, 조이스틱에 다른 방향을 추가할 필요가 있다.
+코드에 `if event.key == K_DOWN:` 이 추가되면, 다른 것도 정의해서 추가한다:
+
+* `K_UP`
+* `K_LEFT`
+* `K_RIGHT`
+* `K_RETURN`
+
+6. 각 방향에 대해 코드를 추가해서 전체 코드를 완성한다.
+
+~~~ {.python}
+import pygame
+
+from pygame.locals import *
+from sense_hat import SenseHat
+
+pygame.init()
+pygame.display.set_mode(640, 480)
+
+sense = SenseHat()
+sense.clear()
+
+running = True
+
+x = 0
+y = 0
+sense.set_pixel(x, y, 255, 255, 255)
+
+while running:
+    for event in pygame.event.get():
+        if event.type == KEYDOWN:
+            sense.set_pixel(x, y, 0, 0, 0)  # Black 0,0,0 means OFF
+
+            if event.key == K_DOWN and y < 7:
+                y = y + 1
+            elif event.key == K_UP and y > 0:
+                y = y - 1
+            elif event.key == K_RIGHT and x < 7:
+                x = x + 1
+            elif event.key == K_LEFT and x > 0:
+                x = x - 1
+
+        sense.set_pixel(x, y, 255, 255, 255)
+        if event.type == QUIT:
+            running = False
+            print("BYE")
+~~~
+
+7. 코드를 실행시키면, 이제 LED 전광판 어느 곳이든 흰색 픽셀을 이동시킬 수 있다.
