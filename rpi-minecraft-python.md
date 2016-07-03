@@ -11,7 +11,7 @@ subtitle: 파이썬 프로그래밍
 > *   반복문과 조건문을 학습한다.
 > *   API 프로그래밍을 실습한다. 
 
-### Hello World !!!
+### 1. Hello World !!!
 
 마인크래프트가 실행중이고 세상(world)이 생성되고 나면, `Tab` 키를 누르게 되면 마우스를 자유로이 사용할 수 있게 되는데 마인크래프트 게임에서 벗어나 마우스 포인터를 옮길 수 있다. 
 데스트톱(바탕화면)에 **IDLE** (IDLE3이 아님)을 열고 윈도우를 옮겨서 나란히 놓는다.
@@ -39,7 +39,7 @@ mc.postToChat("Hello world")
 
 마인크래프트 윈도우에서 "Hello World"를 본다면, 이제 본격적으로 프로그래밍을 시작한다.
 
-### 현재 위치 찾기
+### 2. 현재 위치 찾기
 
 현재 본인의 위치를 찾기 위해서, 다음을 타이핑한다:
 
@@ -79,7 +79,7 @@ x, y, z = mc.player.getPos()
 `getPos()` 메쏘드가 당해 시점에 플레이어 위치를 반환하는 것에 주목한다.
 만약 위치를 이동하게 되면, 다시 함수를 호출하거나 저장된 위치정보를 사용해야 한다.
 
-### 순간이동(Teleport, 텔레포트)
+### 3. 순간이동(Teleport, 텔레포트)
 
 현재 위치정보를 알아낼 수도 있을 뿐만 아니라, 특정 지점을 명시해서 순간이동(teleport)도 할 수 있다.
 
@@ -94,7 +94,7 @@ mc.player.setPos(x, y+100, z)
 
 다른 곳으로 지금 순간이동해 보세요!
 
-## 블록(block) 설치
+### 4. 블록(block) 설치
 
 `mc.setBlock()` 메쏘드를 사용해서 특정 좌표위치에 한개 블록을 놓을 수 있다.
 
@@ -132,7 +132,7 @@ mc.setBlock(x+1, y, z, 2)
 
 <img src="fig/mcpi-setblock2.png" alt="블록 변경 설치" width="50%">
 
-### 변수로서 블록
+#### 4.1. 변수로서 블록
 
 프로그램 코드 가독성을 높이기 위해서 변수를 사용해서 ID를 저장할 수 있다.
 ID가 `block`으로 읽어올 수 있다.
@@ -151,7 +151,7 @@ dirt = 3
 mc.setBlock(x,y,z, dirt)
 ~~~
 
-### 특수 블록
+#### 4.2. 특수 블록
 
 추가적인 속성(property)을 갖는 블록이 몇개 있다. 양모(wool) 같은 경우에는 색깔을 추가로 설정해야 한다.
 양모 색깔을 설정하기 위해서 `setBlock`에 네번째 매개변수를 선택사항 옵션으로 사용한다.
@@ -176,7 +176,7 @@ mc.setBlock(x,y,z, wool, 1)
 키큰 잔디(`31`):  관목, 잔디, 고사리; 토치(`50`): 동쪽, 서쪽, 북쪽, 남쪽; 그리고 추가로 더 있다.
 전체 세부내용에 대해서는 [API 참고 문헌](http://www.stuffaboutcode.com/p/minecraft-api-reference.html)을 살펴보기 바란다.
 
-### 다수 블록 설치
+#### 4.3. 다수 블록 설치
 
 `setBlock` 메쏘드로 블록 한개를 설치할 수도 있지만, `setBlocks`으로 특정 공간을 채울 수도 있다.
 
@@ -192,7 +192,7 @@ mc.setBlocks(x+1, y+1, z+1, x+11, y+11, z+11, stone)
 
 `setBlocks`함수로 더 용량을 갖는 도형을 생성할 수 있지만, 생성하는데 시간이 더 오래 걸릴 수도 있다.
 
-### 걸어가면서 블록 설치하며 지나가기
+#### 4.4. 걸어가면서 블록 설치하며 지나가기
 
 이제 어떻게 블록을 설치하는지 알기 때문에, 걸어가면서 이동경로를 따라서 블록을 떨어뜨려 설치해보자.
 
@@ -287,7 +287,7 @@ else:
 <img src="fig/mcpi-flowers-grass.png" alt="잔디길과 꽃길" width="50%">
 
 
-### 폭탄 블록 가지고 놀기
+### 5. 폭탄 블록 가지고 놀기
 
 또다른 흥미로운 블록은 TNT다! 
 정상적인 일반 TNT 블록을 위치시킬때, 다음과 같이 코드를 작성한다.
@@ -324,7 +324,49 @@ mc.setBlocks(x+1, y+1, z+1, x+11, y+11, z+11, tnt, 1)
 
 <img src="fig/mcpi-tnt-explode.png" alt="TNT 블록 폭탄더미 폭파" width="50%">
 
+### 6. 흐르는 용암가지고 놀기
 
+가지고 놀기 좋은 블록은 흐르는 용암(flowing lava) 블록이다.
+
+~~~ {.python}
+from mcpi.minecraft import Minecraft
+
+mc = Minecraft.create()
+
+x, y, z = mc.player.getPos()
+
+lava = 10
+
+mc.setBlock(x+3, y+3, z, lava)
+~~~
+
+방금전에 설치한 블록을 찾아보라. 블록에서 용암이 땅으로 흐르는 것이 보일 것이다.
+
+용암에 관해 매우 좋은 점은 용암이 식으면 돌이 된다는 점이다.
+다른 위치로 이동해서 다음 코드를 실행한다:
+
+~~~ {.python}
+from mcpi.minecraft import Minecraft
+from time import sleep
+
+mc = Minecraft.create()
+
+x, y, z = mc.player.getPos()
+
+lava = 10
+water = 8
+air = 0
+
+mc.setBlock(x+3, y+3, z, lava)
+sleep(20)
+mc.setBlock(x+3,y+5, z, water)
+sleep(4)
+mc.setBlock(x+3, y+5, z, air)
+~~~
+
+`sleep` 모수를 적절히 조절해서 더 많은 혹은 더 적은 용암이 흐르게 한다.
+
+<img src="fig/rpi-lava.png" alt="흐르는 용암" width="50%">
 
 
 ## 다음 학습

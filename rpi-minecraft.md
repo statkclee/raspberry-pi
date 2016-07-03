@@ -16,9 +16,9 @@ subtitle: 마인크래프트
 
 ## 학습주제
         
-1.  [마인크래프트 설치](rpi-minecarft-install.html)
-2.  [파이썬 프로그래밍](rpi-minecraft-python.html)
-3.  [두더지 잡기 게임 만들기](02-whac-a-block.html)
+1. [마인크래프트 설치](rpi-minecarft-install.html)
+1. [파이썬 프로그래밍](rpi-minecraft-python.html)
+1. [두더지 잡기 게임 만들기](https://www.raspberrypi.org/learning/minecraft-whac-a-block-game/)
 
 
 > ### 원문 출처 및 저작 라이선스 {.getready}
