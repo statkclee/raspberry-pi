@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 라즈베리 파이</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 라즈베리 파이</h1>
+          <h2 class="subtitle">파이카메라(picamera) 시작</h2>
+<p>라즈베리파이 카메라 모듈(picamera, 파이카메라)을 사용해서 사진을 찍고, 동영상도 찍고, 이미지에 효과도 넣을 수 있다.</p>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>라즈베리파이에 카메라 모듈을 연결한다.</li>
+<li>파이썬으로 카메라 모듈을 제어한다.</li>
+<li><code>start_preview()</code> <code>stop_preview()</code> 명령어를 사용해서 카메라 미리보기를 제어한다.</li>
+<li><code>capture()</code> 명령어로 정지화면 사진을 찍는다.</li>
+<li><code>start_recording()</code> <code>stop_recording()</code> 명령어로 동영상을 촬영한다.</li>
+<li><code>omxplayer</code> 플레이어로 촬영한 동영상을 재생한다.</li>
+<li>휘도(brightness)와 명암(contrast)를 조정한다.</li>
+<li>이미지 효과와 노출 모드(exposure mode)를 적용한다.</li>
+</ul>
+</div>
+</section>
+<section class="getready panel panel-warning">
+<div class="panel-heading">
+<h3 id="원문-출처-및-저작-라이선스"><span class="glyphicon glyphicon-check"></span>원문 출처 및 저작 라이선스</h3>
+</div>
+<div class="panel-body">
+<p>이 번역의 원작 “<a href="https://www.raspberrypi.org/learning/getting-started-with-picamera/">GETTING STARTED WITH PICAMERA</a>”은 라즈베리파이 재단에서 개발하여 공개하고 있다. 이 책은 크리에이티브 커먼스(Creative Commons)의 저작자표시(BY, Attribution), 동일조건변경허락(SA, Share-Alike) 라이선스(https://creativecommons.org/licenses/by-sa/2.0/kr/](https://creativecommons.org/licenses/by-sa/2.0/kr/) 를 준용합니다.</p>
+</div>
+</section>
+<h3 id="필요한-하드웨어와-소프트웨어">1. 필요한 하드웨어와 소프트웨어</h3>
+<p><img src="fig/rpi-camera.png" alt="라즈베리파이 카메라" width="30%"></p>
+<ul>
+<li>하드웨어
+<ul>
+<li>SD카드가 장착된 라즈베리 파이</li>
+<li>라즈베리파이 기본 주변장치(USB 마우스, 키보드, 전원장치 등)</li>
+<li>파이카메라</li>
+</ul></li>
+<li>소프트웨어
+<ul>
+<li>라즈비언 최신버젼 : <code>sudo apt-get dist-upgrade</code></li>
+</ul></li>
+</ul>
+<p>먼저 라즈베리파이 전원을 내리고, 라즈베리파이 카메라 포트에 파이카메라 모듈을 연결시킨다. 그리고 나서, 라즈베리파이을 켜고 소프트웨어를 활성화시킨다.</p>
+<ol style="list-style-type: decimal">
+<li>카메라 포트 위치를 찾아 파이카메라를 연결시킨다:</li>
+</ol>
+<p><img src="fig/rpi-connect-camera.jpg" alt="라즈베리파이 카메라 연결" width="50%"></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>라즈베리파이 부팅해서 시작한다.</p></li>
+<li><p><strong>Raspberry Pi Configuration Tool</strong> 을 선택한다. <code>Menu &gt; Preferences &gt; Raspberry Pi Configuration Tool</code>.</p></li>
+</ol>
+<p><img src="fig/rpi-raspi-config-menu.png" alt="라즈베리파이 카메라 환경설정" width="50%"></p>
+<ol start="4" style="list-style-type: decimal">
+<li>카메라 소프트웨어를 활성화시킨다:</li>
+</ol>
+<p><img src="fig/rpi-raspi-config.png" alt="라즈베리파이 카메라 활성화" width="50%"></p>
+<p>만약 활성화되지 않았다면, 활성화시키고, 라즈베리파이를 재부팅한다.</p>
+<h3 id="카메라-미리보기-기능">2. 카메라 미리보기 기능</h3>
+<p>카메라를 연결시켰고, 소프트웨어도 활성화시켰으니, 카메라 미리보기 기능을 시작할 준비가 되었다.</p>
+<ol style="list-style-type: decimal">
+<li><code>Menu</code> 주메뉴에서 <strong>파이썬3(Python 3)</strong> 을 선택해서 연다. <code>Menu &gt; Programming &gt; Python 3 (IDLE)</code>.</li>
+</ol>
+<p><img src="fig/rpi-python3-app-menu.png" alt="파이썬3 실행" width="50%"></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>새로 파일을 열고 <code>camera.py</code>로 저장한다. 절대로 <code>picamera.py</code> 파일명을 사용해서 저장하지 않는다.</p></li>
+<li><p>다음 코드를 <code>camera.py</code> 편집창에 타이핑한다.</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> picamera <span class="im">import</span> PiCamera
+<span class="im">from</span> time <span class="im">import</span> sleep
+
+camera <span class="op">=</span> PiCamera()
+
+camera.start_preview()
+sleep(<span class="dv">10</span>)
+camera.stop_preview()</code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Ctrl + S</strong> 키를 눌러 입력한 내용을 저장하고 나서, <strong>F5</strong> 키를 눌러 실행시킨다. 카메라 미리보기 기능이 10 동안 동작하고 나서 종료된다. 카메라를 옮겨서 카메라가 촬영한 것을 미리보기 기능을 살펴본다.</li>
+</ol>
+<p>생방송 카메라 비리보기 기능은 다음과 같이 모니터 화면을 꽉 채워야 된다.</p>
+<p><img src="fig/rpi-preview.jpg" alt="라즈베리파이 카메라 미리보기" width="50%"></p>
+<p><strong>카메라 미리보기 기능은 라즈베리파이가 모니터에 직접 연결될 때만 동작된다. 원격연결(SSH, VNC)된 경우 카메라 미리보기 기능이 작동되지 않는다.</strong></p>
+<ol start="5" style="list-style-type: decimal">
+<li>미리보기로 볼 때 위와 아래가 뒤바뀐 경우 다음 코드로 회전시켜 보정한다:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">camera.rotation <span class="op">=</span> <span class="dv">180</span>
+camera.start_preview()
+sleep(<span class="dv">10</span>)
+camera.stop_preview()</code></pre></div>
+<p>이미지를 <code>90</code>, <code>180</code>, <code>270</code>도로 회전시키거나 <code>0</code>으로 설정해서 초기 재설정시킨다.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>알파수준을 조정해서 카메라 미리보기 투명도를 변경시킬 수도 있다:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> picamera <span class="im">import</span> PiCamera
+<span class="im">from</span> time <span class="im">import</span> sleep
+
+camera <span class="op">=</span> PiCamera()
+
+camera.start_preview(alpha<span class="op">=</span><span class="dv">200</span>)
+sleep(<span class="dv">10</span>)
+camera.stop_preview()</code></pre></div>
+<p><code>alpha</code> 값은 <code>0</code> 에서 <code>255</code> 사이 값을 갖는다.</p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

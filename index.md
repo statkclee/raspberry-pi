@@ -43,6 +43,7 @@ title: xwMOOC 라즈베리 파이
         - [마인크래프트 설치](rpi-minecarft-install.html)
         - [파이썬 프로그래밍](rpi-minecraft-python.html)
         - [두더지 잡기 게임 만들기](https://www.raspberrypi.org/learning/minecraft-whac-a-block-game/)
+    - [파이카메라(picamera) 시작](rpi-picam.html)        
 1. **xwMOOC 오픈 컴퓨터**
     1.  [$100 달러 오픈 컴퓨터](100-computer.html)  
         - [$100 오픈 컴퓨터 설계(CAD) 및 3D 프린팅](100-cad.html)    
