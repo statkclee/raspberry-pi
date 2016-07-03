@@ -35,9 +35,10 @@ title: xwMOOC 라즈베리 파이
     - [소프트웨어 카펜트리 가상 개발환경](raspberry-pi-swcarpentry.html)      
     - [라즈비언 데스크톱 환경 가상화 (주피터)](raspberry-pi-virtual-desktop.html)    
     - [부랑자(Vagrant) 아나콘다](vagrant-anaconda.html)        
-1. **라즈베리 파이 교재**
+1. **[라즈베리 파이 교재](https://www.raspberrypi.org)**
     - [감각모자(SenseHAT) 시작](rpi-sensehat.html)
     - [감각모자로 주변 감지](rpi-sensehat-sensing.html)
+    - [감각모자 데이터 로거(Logger)](rpi-logger.html) [^logger]
     - [마인크래프트](rpi-minecraft.html)
         - [마인크래프트 설치](rpi-minecarft-install.html)
         - [파이썬 프로그래밍](rpi-minecraft-python.html)
@@ -57,7 +58,7 @@ title: xwMOOC 라즈베리 파이
         - [노드-레드(Node-RED](iot-node-red.html)
         - [드론 개발(아두이노)](iot-drone-arduino.html)
         - [아치 리눅스](raspberry-pi-arch.html)        
-1. IoT
+1. **사물인터넷(IoT)**
     - [개발환경 WebIDE](iot-webide.html)
     - [시리얼 통신(UART)](iot-serial.html)    
     - [센서(Sensor)](sensor.html)            
@@ -134,3 +135,5 @@ title: xwMOOC 라즈베리 파이
 - [기호 수학(Symbolic Math)](http://sympy.xwmooc.org/)
 - [선거와 투표](http://politics.xwmooc.org/)
 
+
+[^logger]: 제조 공정의 상태에 관하여 습도, 유량, 액위(液位), 압력, 온도, 속도, 점도 등의 여러 가지 양이나 각종 기기의 동작의 시간적 변화 등을 기억해 두는 장치를 말한다. [출처](http://terms.naver.com/entry.nhn?docId=342881&cid=50321&categoryId=50321)
