@@ -83,5 +83,60 @@ def my_bubble_sort(some_list):
 
     return some_list
 
-my_bubble_sort(create_random_list(100))
+# my_bubble_sort(create_random_list(100))
 
+# 8. 삽입정렬
+def my_insertion_sort(some_list):
+    for i in range(1,len(some_list)):
+        while i > 0 and some_list[i-1] > some_list[i]:
+            some_list[i], some_list[i-1] = some_list[i-1], some_list[i]
+            i-=1
+        display(some_list)
+    return some_list
+
+# my_insertion_sort(create_random_list(100))
+
+# 9. 선택정렬
+def my_selection_sort(some_list):
+    for i in range(len(some_list)):
+        smallest_value = i
+
+        for j in range(i+1,len(some_list)):
+            if some_list[j] < some_list[smallest_value]:
+                smallest_value = j
+
+        some_list[smallest_value], some_list[i] = some_list[i], some_list[smallest_value]
+        display(some_list)  
+
+    return some_list
+
+#my_selection_sort(create_random_list(20))
+
+# 10. 퀵정렬
+
+def my_quicksort(some_list, start, stop):
+    if stop - start < 1:
+        return some_list
+    else:
+        pivot = some_list[start]
+        left = start
+        right = stop
+        while left <= right:
+            while some_list[left] < pivot:
+                left += 1
+            while some_list[right] > pivot:
+                right -= 1
+            if left <= right:
+                some_list[left], some_list[right] = some_list[right], some_list[left]
+                print("Swapping", some_list[left], "with", some_list[right])
+                left += 1
+                right -= 1
+
+        display(some_list)
+
+        my_quicksort(some_list, start, right)
+        my_quicksort(some_list, left, stop)
+
+my_list = create_random_list(200)
+my_quicksort(my_list, 0, len(my_list) - 1)
+>>>>>>> b464c5eb34d4b685d0e1a9daf67080f5f4cb08e8

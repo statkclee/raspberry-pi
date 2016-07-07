@@ -35,6 +35,15 @@ title: xwMOOC 라즈베리 파이
     - [소프트웨어 카펜트리 가상 개발환경](raspberry-pi-swcarpentry.html)      
     - [라즈비언 데스크톱 환경 가상화 (주피터)](raspberry-pi-virtual-desktop.html)    
     - [부랑자(Vagrant) 아나콘다](vagrant-anaconda.html)        
+1. **[라즈베리 파이 교재](https://www.raspberrypi.org)**
+    - [감각모자(SenseHAT) 시작](rpi-sensehat.html)
+    - [감각모자로 주변 감지](rpi-sensehat-sensing.html)
+    - [감각모자 데이터 로거(Logger)](rpi-logger.html) [^logger]
+    - [마인크래프트](rpi-minecraft.html)
+        - [마인크래프트 설치](rpi-minecarft-install.html)
+        - [파이썬 프로그래밍](rpi-minecraft-python.html)
+        - [두더지 잡기 게임 만들기](https://www.raspberrypi.org/learning/minecraft-whac-a-block-game/)
+    - [파이카메라(picamera) 시작](rpi-picam.html)        
 1. **xwMOOC 오픈 컴퓨터**
     1.  [$100 달러 오픈 컴퓨터](100-computer.html)  
         - [$100 오픈 컴퓨터 설계(CAD) 및 3D 프린팅](100-cad.html)    
@@ -50,7 +59,7 @@ title: xwMOOC 라즈베리 파이
         - [노드-레드(Node-RED](iot-node-red.html)
         - [드론 개발(아두이노)](iot-drone-arduino.html)
         - [아치 리눅스](raspberry-pi-arch.html)        
-1. IoT
+1. **사물인터넷(IoT)**
     - [개발환경 WebIDE](iot-webide.html)
     - [시리얼 통신(UART)](iot-serial.html)    
     - [센서(Sensor)](sensor.html)            
@@ -80,7 +89,7 @@ title: xwMOOC 라즈베리 파이
         1. [삽입 정렬(insertion sort)](rpi-sorting-insertion.html)
         1. [선택 정렬(selection sort)](rpi-sorting-selection.html)
         1. [재귀(recursion)](rpi-sorting-recursion.html)
-        1. [퀵(quicksort)](rpi-sorting-quick.html)
+        1. [퀵 정렬(quicksort)](rpi-sorting-quick.html)
     - [시간내 일을 마치기&mdash;정렬 네트워크(Sorting Network)]
     - [진흙도시 프로젝트&mdash;최소생성나무(Minimal Spanning Trees)]
     - [오렌지 게임&mdash;네트워크 라우팅(Routing)과 교착상태(Deadlock)]
@@ -127,3 +136,5 @@ title: xwMOOC 라즈베리 파이
 - [기호 수학(Symbolic Math)](http://sympy.xwmooc.org/)
 - [선거와 투표](http://politics.xwmooc.org/)
 
+
+[^logger]: 제조 공정의 상태에 관하여 습도, 유량, 액위(液位), 압력, 온도, 속도, 점도 등의 여러 가지 양이나 각종 기기의 동작의 시간적 변화 등을 기억해 두는 장치를 말한다. [출처](http://terms.naver.com/entry.nhn?docId=342881&cid=50321&categoryId=50321)
