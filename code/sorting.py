@@ -14,7 +14,7 @@ def create_random_list(length):
 def display(some_list):
     plt.clf()
     plt.bar(range(len(some_list)),some_list)
-    plt.draw(block=True)
+    plt.draw()
 
 ### 1. 리스트 정렬
 ##some_list = [3,2,1]
@@ -79,7 +79,9 @@ def my_bubble_sort(some_list):
                 some_list[i],some_list[i+1] = some_list[i + 1],some_list[i]
                 swapped = True
         display(some_list)
+        sleep(0.5)
 
     return some_list
 
 my_bubble_sort(create_random_list(100))
+
