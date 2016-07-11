@@ -67,11 +67,6 @@ title: xwMOOC 라즈베리 파이
     - [웹서비스](iot-webservice.html)
     - [R 개발 및 배포 환경](iot-rstudio-shiny.html)
     - [API 데이터 분석](http://statkclee.github.io/web-data-python/)
-1.  [문서 프로그래밍 - 한글 LaTeX](latex.html)
-    - [한글 LaTeX 소개](latex-intro.html)
-    - [한글 LaTeX 설치환경 가상화](latex-virtual.html)
-    - [한글 LaTeX 편집기](latex-utils.html)
-    - [파이썬 스핑크스](latex-sphinx.html)
 
 ## [컴퓨터 과학 언플러그드](http://unplugged.xwmooc.org/)
 
