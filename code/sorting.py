@@ -79,6 +79,7 @@ def my_bubble_sort(some_list):
                 some_list[i],some_list[i+1] = some_list[i + 1],some_list[i]
                 swapped = True
         display(some_list)
+        sleep(0.5)
 
     return some_list
 
@@ -138,3 +139,4 @@ def my_quicksort(some_list, start, stop):
 
 my_list = create_random_list(200)
 my_quicksort(my_list, 0, len(my_list) - 1)
+>>>>>>> b464c5eb34d4b685d0e1a9daf67080f5f4cb08e8

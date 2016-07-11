@@ -93,16 +93,23 @@ title: xwMOOC 라즈베리 파이
     - [보물 찾기&mdash;유한상태 오토마타]
     - [진군 명령&mdash;프로그래밍 언어(Programming Languages)]
 4. [제4부 정말 어려운 문제 &mdash; 난해성(Intractability)]
-    -  [가난한 지도 제작자 &mdash; 그래프 색칠하기]
-    -  [관광 마을 &mdash; 지배 집합 (Dominating Sets)]
-    -  [얼음길 &mdash; 스타이너 트리(Steiner trees)]
+    - [가난한 지도 제작자 &mdash; 그래프 색칠하기]
+    - [관광 마을 &mdash; 지배 집합 (Dominating Sets)]
+    - [얼음길 &mdash; 스타이너 트리(Steiner trees)]
 5. [제5부 비밀 공유와 범죄와 전쟁 &mdash;암호화(Cryptography)]
     - [비밀공유 &mdash; 정보 은닉 프로토콜]
     - [페루 동전 던지기 &mdash; 암호화 프로토콜]
     - [키드 크립토(Kid Krypto) &mdash; 공개키 암호화]
 6. [제6부 사람 냄새나는 컴퓨터&mdash;컴퓨터와 상호 작용]
     - [쵸코릿 공장 &mdash; 휴먼 인터페이스 설계]
-    - [컴퓨터와 대화 &mdash; 튜링 테스트]
+    - 컴퓨터와 대화 &mdash; 튜링 테스트  [^6-1] [^6-2] [^6-3]
+        - [컴퓨터는 어떻게 생각하나?](rpi-turing-think.html)
+        - [컴퓨터는 스스로 생각할 수 있나?](rpi-turing-think-self.html)
+        - [채팅로봇 만들기](rpi-turing-chatbot.html)
+
+[^6-1]: [HOW DO COMPUTERS THINK?](https://www.raspberrypi.org/learning/turing-test-lessons/lesson-1/plan/)
+[^6-2]: [CAN COMPUTERS THINK FOR THEMSELVES?](https://www.raspberrypi.org/learning/turing-test-lessons/lesson-2/plan/)
+[^6-3]: [MAKE A CHATTING ROBOT](https://www.raspberrypi.org/learning/turing-test-lessons/lesson-3/plan/)
 
 [^1-2-image01]: [이미지 표현](http://statkclee.github.io/trilobite/cv-intro.html)
 [^1-2-image02]: [컴퓨터가 보는 이미지](http://statkclee.github.io/trilobite/image-files.html)
