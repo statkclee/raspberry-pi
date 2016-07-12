@@ -40,7 +40,7 @@ subtitle: 컴퓨터는 스스로 생각할 수 있나?
 5. 텍스트 편집기 윈도우에 다음 코드를 타이핑하도록 유도한다. 주석과 프로그램 코드 행 간의 차이를 지적한다. 주석은 컴퓨터가 무시하는 프로그램 일부로, 프로그램에서 어떤 일이 진행되는지 주석을 달아 적어두는 곳이다.
 
 ~~~ {.python}
-# My Python Program by ....
+# My Python Program by ...
 
 name = input('what is your name: '),
 print("Nice to meet you ", name)
