@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 라즈베리 파이</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 라즈베리 파이</h1>
+          <h2 class="subtitle">채팅로봇 만들기</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>라즈베리파이 컴퓨터의 입출력 장치를 식별하고 활용한다.</li>
+<li>라즈베리파이에 채팅로봇 프로그램에 코드를 추가해서 텍스트가 큰 소리로 읽혀지게 한다.</li>
+<li>지금까지 생성한 채팅로봇 프로그램을 검증하고 평가한다.</li>
+</ul>
+</div>
+</section>
+<h3 id="들어가며">들어가며</h3>
+<p>이번 학습을 통해 학생들에게 화면에 대화를 출력하는 채팅로봇 프로그램을 생성하고, 로봇이 질문하는 것을 듣고 로봇이 대화를 하게 변환한다.</p>
+<p><code>espeak</code> 프로그램을 다운로드해서 라즈비언 운영체제가 장착된 SD카드에 설치한다.</p>
+<pre class="shell"><code>sudo apt-get install espeak</code></pre>
+<p>로봇의 소리를 들을 수 있도록 헤드폰이 필요하고, 경우에 따라서는 전체 학급에서 소리를 들을 수 있도록 스피커가 필요할 수도 있다.</p>
+<p>마지막으로, <code>amixer cset numid=3 1</code> 명령어를 타이핑해서 HDMI가 아니고 헤드폰으로 소리가 강제로 내보낼 수 있도록 조치한다. 혹은 파이썬 게임 아이콘을 더블 클릭하고 *Force Headphones** 를 선택한다.</p>
+<h3 id="시작">시작</h3>
+<p>책상위에 다음 자재들을 연결되지 않은 상태로 놓아둔다:</p>
+<ul>
+<li>라즈베리파이</li>
+<li>스피커</li>
+<li>헤드폰</li>
+<li>파이카메라 (자재가 있는 경우)</li>
+<li>웹캠</li>
+<li>키보드</li>
+<li>마우스</li>
+<li>모니터</li>
+</ul>
+<p>학생들을 그룹으로 정렬하고, 각 그룹에 다른 색상을 갖는 포스트잇 혹은 종이를 배포한다. 각 자재에 다음 정보를 적어 넣을 수 있는 시간을 할당한다.</p>
+<ul>
+<li>다음 자재는 무엇인가?</li>
+<li>각 자재가 입력장치, 처리장치, 출력 장치인가?</li>
+<li>각 자재가 수행하는 역할은 무엇인가?</li>
+</ul>
+<p>학생들이 포스트잇 혹은 종이위에 정보를 모두 적어 놓은 후에, 그룹별로 정답을 토의할 시간을 갖는다. 어느 부품을 잘못 식별했는지, 정말 흥미로운 자재는 어떤 것인지, 학급에서 이유를 자유로이 토의한다. 모든 컴퓨터는 입력과 출력을 갖는다는 것을 설명한다. 로봇 목소리가 헤드폰 혹은 스피커를 통해 외부로 전달될 때, 채팅로봇 프로그램에 있어 이점이 중요하다.</p>
+<p><img src="fig/rpi-audio_output.png" width="50%" alt="오디오 출력을 헤드폰으로 강제선택함"/></p>
+<h3 id="주요활동">주요활동</h3>
+<ol style="list-style-type: decimal">
+<li><p>학생들에게 라즈베리파이 장비를 설치하고, 전원 켜서 사용자명 <code>pi</code>, 비밀번호 <code>raspberry</code>를 입력해서 로그인하게 만든다. <strong>IDLE3</strong> 프로그램을 사용해서 채팅로봇 프로그램을 적재시킨다.</p></li>
+<li><p>이전 학습에서 나온 숙제를 사용해서, 학생들에게 더 많은 질문을 <code>input</code>과 <code>print</code> 함수를 사용해서 추가하도록 지침을 준다.</p></li>
+<li><p>이제 프로그램의 단어를 라즈베리파이가 발음하도록 학생들에게 코드를 추가하도록 한다. 다음 코드를 프로그램 상단에 추가한다.</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># My Python Program by ...</span>
+<span class="im">import</span> os, time
+
+<span class="kw">def</span> robot(text):
+    os.system(<span class="st">&quot;espeak &#39; &quot;</span> <span class="op">+</span> text <span class="op">+</span> <span class="st">&quot; &#39; &quot;</span>)
+
+robot(<span class="st">&quot;Hello&quot;</span>)</code></pre></div>
+<p><strong>들여쓰기는 매우 중요하다; IDLE3 텍스트 편집기는 자동으로 들여쓰기 기능을 제공한다. 추가로 공백과 인용부호를 잘 사용하는 것도 중요하다. 프로그램에 공백 혹은 인용부호가 없으면 동작하지 않는다.</strong></p>
+<ol start="4" style="list-style-type: decimal">
+<li><p><strong>File</strong> 다음에 <strong>Save As</strong> 를 클릭해서, <strong>robot1</strong> 으로 이름을 짓고 저장한다. 프로그램을 실행시키면, “hello” 소리가 들여야 한다.</p></li>
+<li><p>다음으로, 질문을 화면에 출력시키는 대신에, 로봇 목소리로 말을 듣고, 대답을 한다.</p></li>
+</ol>
+<p>이를 위해서, <code>print</code> 단어를 함수명 <code>robot</code>으로 바꾸고 나서, 콤마 <code>,</code>를 제거하고 <code>+</code> 기호로 치환한다. 편집한 것을 저장하게 하고 바로 테스트하게 만든다. 어떤 일이 생겼는지 설명할 수 있나요? 가산점으로 로봇이 질문을 하게 만들 수도 있다!!! <code>robot</code> 함수를 사용해서 입력 라인 바로 위에 명령문을 추가시키면 된다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">robot(<span class="st">&#39;What is your name&#39;</span>)
+name <span class="op">=</span> <span class="bu">input</span>(<span class="st">&#39;What is your name: &#39;</span>)
+robot(<span class="st">&quot;Nice to meet you &quot;</span> <span class="op">+</span> name)</code></pre></div>
+<p><img src="fig/rpi-espeak2.png" width="87%" alt="질문하는 로봇"/></p>
+<p>옆좌석 학생과 자리를 바꾸게 한다. 몇분을 주고 옆사람 프로그램을 테스트하고, 주석 <code>#</code> 기호를 사용해서 주석으로 적어도 한개 이상 개선점을 적도록 유도한다. 학생이 다시 좌석으로 돌아와서 주석을 보고 프로그램을 갱신한다.</p>
+<p>조금더 확장하면, 옆좌석 친구 프로그램 코드 한줄을 삭제하고, 친구가 변경된 프로그램을 수정할 수 있는지 살펴본다.</p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
