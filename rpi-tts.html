@@ -84,7 +84,11 @@ sudo apt-get upgrade</code></pre>
 <pre class="shell"><code>sudo apt-get install -y espeak</code></pre>
 <p><code>espeak</code>를 다음 명령어로 테스트한다: 영문 여성 목소리, 대문자 강조(<code>-k</code>), 천천히 말하기(<code>-s</code>)를 <code>-</code> 선택옵션으로 사용한다.</p>
 <pre class="shell"><code>espeak -ven+f3 -k5 -s150 &quot;I&#39;ve just picked up a fault in the AE35 unit&quot;</code></pre>
-<h4 id="구글-tts">3. 구글 TTS</h4>
+<h4 id="pico-tts">3. Pico TTS</h4>
+<p>구글 안드로이드 TTS 엔진은 다음과 같이 사용한다.</p>
+<pre class="shell"><code>sudo apt-get install libttspico-utils
+pico2wave -w lookdave.wav &quot;Look Dave, I can see you&#39;re really upset about this.&quot; &amp;&amp; aplay lookdave.wav</code></pre>
+<h4 id="구글-tts-버젼-1">4. 구글 TTS (버젼 1)</h4>
 <p>구글 TTS엔진은 <code>festival</code>, <code>espeak</code>와는 다소 차이가 있다. 음성 파일을 만들어 내기 위해서 텍스트를 구글 클라우드 서버로 보낸다. 결과가 RPi로 되돌아오고, <code>mplayer</code>로 음성을 재생한다. 이것이 의미하는 것은 인터넷에 연결되어야 하는 제약이 있지만, 음성 품질은 아주 좋다.</p>
 <p>구글 TTS 엔진에 접속하는 ax206geek 배쉬 스크립트를 사용해 본다. 먼저 <code>speech.sh</code> 파일을 생성한다.</p>
 <pre class="shell"><code>nano speech.sh</code></pre>
@@ -97,12 +101,17 @@ say $*</code></pre>
 <pre class="shell"><code>chmod u+x speech.sh</code></pre>
 <p>다음 명령어로 테스트를 해본다.</p>
 <pre class="shell"><code>./speech.sh Look Dave, I can see you&#39;re really upset about this.</code></pre>
-<p>텍스트를 음성으로 변환하는데 구글을 사용할 경우 100 바이트로 제한이 있다.</p>
-<h4 id="pico-tts">4. Pico TTS</h4>
-<p>구글 안드로이드 TTS 엔진은 다음과 같이 사용한다.</p>
-<pre class="shell"><code>sudo apt-get install libttspico-utils
-pico2wave -w lookdave.wav &quot;Look Dave, I can see you&#39;re really upset about this.&quot; &amp;&amp; aplay lookdave.wav</code></pre>
-<h3 id="소리-출력장치-설정-rpi-audio-config">소리 출력장치 설정 <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></h3>
+<p>텍스트를 음성으로 변환하는데 구글을 사용할 경우 100 바이트(문자)로 제한이 있다.</p>
+<h4 id="구글-tts-버젼-2-rpi-google-tts">5. 구글 TTS (버젼 2) <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></h4>
+<p><a href="http://en.wikipedia.org/wiki/Speech_synthesis">음성 합성(Speech Synthesis)</a> 기술을 사용하여 좀더 사람에 가까운 인간다운 목소리를 구현할 수 있다.</p>
+<pre class="shell"><code>$ apt-get install mpg123
+$ cd /usr/bin/
+$ svn co http://projects.mattdyson.org/projects/speech speech
+$ chmod +x speech/googletts
+$ ln -s speech/googletts
+$ googletts &quot;Hello world, the installation of the text to speech script is now complete&quot;</code></pre>
+<p><code>mpg123</code> 팩키지가 필요하다 구글 번역서비스가 반환하는 MP3 파일을 재생하는데 필요하다. 핵심이 되는 <code>googletts</code> TTS 파일은 <a href="http://projects.mattdyson.org/projects/speech/googletts" class="uri">http://projects.mattdyson.org/projects/speech/googletts</a> 사이트에서 바로 구할 수 있다.</p>
+<h3 id="소리-출력장치-설정-rpi-audio-config">소리 출력장치 설정 <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></h3>
 <p>RPi 소리 출력장치를 기본디폴트설정된 <strong>HDMI</strong> 대신 <strong>헤드폰 오디오 잭</strong> 으로 변경할 경우 다음 명령어를 타이핑한다.</p>
 <ul>
 <li><code>amixer cset numid=3 1</code> : <code>1</code>은 헤드폰 오디오 잭</li>
@@ -115,7 +124,8 @@ pico2wave -w lookdave.wav &quot;Look Dave, I can see you&#39;re really upset abo
 <hr />
 <ol>
 <li id="fn1"><p><a href="http://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis)">RPi Text to Speech (Speech Synthesis)</a><a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p><a href="https://www.raspberrypi.org/documentation/configuration/audio-config.md">AUDIO CONFIGURATION</a><a href="#fnref2">↩</a></p></li>
+<li id="fn2"><p><a href="http://mattdyson.org/blog/2014/07/text-to-speech-on-a-raspberry-pi-using-google-translate/">Text to Speech on a Raspberry Pi using Google Translate</a><a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p><a href="https://www.raspberrypi.org/documentation/configuration/audio-config.md">AUDIO CONFIGURATION</a><a href="#fnref3">↩</a></p></li>
 </ol>
 </div>
         </div>

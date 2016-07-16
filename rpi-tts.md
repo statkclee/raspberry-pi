@@ -96,7 +96,16 @@ sudo apt-get install -y espeak
 espeak -ven+f3 -k5 -s150 "I've just picked up a fault in the AE35 unit"
 ~~~
 
-#### 3. 구글 TTS
+#### 3. Pico TTS
+
+구글 안드로이드 TTS 엔진은 다음과 같이 사용한다.
+
+~~~ {.shell}
+sudo apt-get install libttspico-utils
+pico2wave -w lookdave.wav "Look Dave, I can see you're really upset about this." && aplay lookdave.wav
+~~~
+
+#### 4. 구글 TTS (버젼 1)
 
 구글 TTS엔진은 `festival`, `espeak`와는 다소 차이가 있다. 음성 파일을 만들어 내기 위해서 텍스트를 구글 클라우드 서버로 보낸다. 결과가 RPi로 되돌아오고, `mplayer`로 음성을 재생한다.
 이것이 의미하는 것은 인터넷에 연결되어야 하는 제약이 있지만, 음성 품질은 아주 좋다.
@@ -129,17 +138,27 @@ chmod u+x speech.sh
 ./speech.sh Look Dave, I can see you're really upset about this.
 ~~~
 
-텍스트를 음성으로 변환하는데 구글을 사용할 경우 100 바이트로 제한이 있다.
+텍스트를 음성으로 변환하는데 구글을 사용할 경우 100 바이트(문자)로 제한이 있다.
 
-#### 4. Pico TTS
+#### 5. 구글 TTS (버젼 2) [^rpi-google-tts]
 
-구글 안드로이드 TTS 엔진은 다음과 같이 사용한다.
+[^rpi-google-tts]: [Text to Speech on a Raspberry Pi using Google Translate](http://mattdyson.org/blog/2014/07/text-to-speech-on-a-raspberry-pi-using-google-translate/)
+
+[음성 합성(Speech Synthesis)](http://en.wikipedia.org/wiki/Speech_synthesis) 기술을 사용하여 좀더 사람에 가까운 인간다운 목소리를 구현할 수 있다.
 
 ~~~ {.shell}
-sudo apt-get install libttspico-utils
-pico2wave -w lookdave.wav "Look Dave, I can see you're really upset about this." && aplay lookdave.wav
+$ apt-get install mpg123
+$ cd /usr/bin/
+$ svn co http://projects.mattdyson.org/projects/speech speech
+$ chmod +x speech/googletts
+$ ln -s speech/googletts
+$ googletts "Hello world, the installation of the text to speech script is now complete"
 ~~~
- 
+
+`mpg123` 팩키지가 필요하다 구글 번역서비스가 반환하는 MP3 파일을 재생하는데 필요하다. 
+핵심이 되는 `googletts` TTS 파일은 [http://projects.mattdyson.org/projects/speech/googletts](http://projects.mattdyson.org/projects/speech/googletts) 사이트에서 바로 구할 수 있다.
+
+
 ### 소리 출력장치 설정 [^rpi-audio-config]
 
 [^rpi-audio-config]: [AUDIO CONFIGURATION](https://www.raspberrypi.org/documentation/configuration/audio-config.md)
