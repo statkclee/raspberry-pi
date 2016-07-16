@@ -147,8 +147,9 @@ chmod u+x speech.sh
 [음성 합성(Speech Synthesis)](http://en.wikipedia.org/wiki/Speech_synthesis) 기술을 사용하여 좀더 사람에 가까운 인간다운 목소리를 구현할 수 있다.
 
 ~~~ {.shell}
-$ apt-get install mpg123
+$ sudo apt-get install mpg123
 $ cd /usr/bin/
+$ sudo apt-get isntall subversion
 $ svn co http://projects.mattdyson.org/projects/speech speech
 $ chmod +x speech/googletts
 $ ln -s speech/googletts

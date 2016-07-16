@@ -104,8 +104,9 @@ say $*</code></pre>
 <p>텍스트를 음성으로 변환하는데 구글을 사용할 경우 100 바이트(문자)로 제한이 있다.</p>
 <h4 id="구글-tts-버젼-2-rpi-google-tts">5. 구글 TTS (버젼 2) <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></h4>
 <p><a href="http://en.wikipedia.org/wiki/Speech_synthesis">음성 합성(Speech Synthesis)</a> 기술을 사용하여 좀더 사람에 가까운 인간다운 목소리를 구현할 수 있다.</p>
-<pre class="shell"><code>$ apt-get install mpg123
+<pre class="shell"><code>$ sudo apt-get install mpg123
 $ cd /usr/bin/
+$ sudo apt-get isntall subversion
 $ svn co http://projects.mattdyson.org/projects/speech speech
 $ chmod +x speech/googletts
 $ ln -s speech/googletts

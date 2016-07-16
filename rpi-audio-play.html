@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 라즈베리 파이</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 라즈베리 파이</h1>
+          <h2 class="subtitle">인공지능 준비-소리파일 재생</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li><code>wav</code>, <code>mp3</code> 음성 파일을 명령라인 인터페이스로 재생한다.</li>
+</ul>
+</div>
+</section>
+<h3 id="가장-먼저-확인할-사항-rpi-cmd-audio">1. 가장 먼저 확인할 사항 <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></h3>
+<p><code>wav</code>, <code>mp3</code> 음성 파일을 RPi 명령라인 인터페이스로 재생할 때 가장 먼저 확인할 사항은 <code>snd_bcm2835</code> 가 적재되어 있는지 확인하는 것이다.</p>
+<pre class="shell"><code>$ lsmod | grep snd_bcm2835</code></pre>
+<p>만약 <code>snd_bcm2835</code> 적재되지 않는 경우, 다음 명령어를 실행해서 올린다.</p>
+<pre class="shell"><code>$ sudo modprobe snd_bcm2835 </code></pre>
+<p>그래도 자동으로 적재되지 않는 경우, 부팅할 때 자동으로 올라가도록 다음 과정을 거쳐 설정을 한다:</p>
+<pre class="shell"><code>$ cd /etc
+$ sudo nano modules</code></pre>
+<p><strong>snd-bcm2835</strong> 을 추가한다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># /etc/modules: kernel modules to load at boot time.</span>
+<span class="co">#</span>
+<span class="co"># This file contains the names of kernel modules that should be</span>
+<span class="co"># loaded at boot time, one per line. Lines beginning with &quot;#&quot; are</span>
+<span class="co"># ignored. Parameters can be specified after the module name.</span>
+ 
+snd<span class="op">-</span>bcm2835</code></pre></div>
+<h3 id="오디오-출력단자-확인">2. 오디오 출력단자 확인</h3>
+<p>다음으로 오디오 출력단자를 확인한다. 기본디폴트 설정으로 아날로그 출력단자로 설정되지 않는 경우, <code>HDMI</code>가 설정된다. 하지만, 다음 명령어를 통해 강제로 설정하는 것도 가능하다:</p>
+<pre class="shell"><code>$ amixer cset numid=3 n</code></pre>
+<p>여기서 <strong>n</strong> 값을 지정해서 출력단자를 지정한다. <code>0=auto, 1=analog, 2=hdmi</code> 예를 들어, 아날로그 출력단자로 지정하는 경우 다음과 같이 명령어를 설정한다.</p>
+<pre class="shell"><code>$ amixer cset numid=3 1</code></pre>
+<h3 id="wav-파일-aplay로-재생">3. <code>wav</code> 파일 <code>aplay</code>로 재생</h3>
+<p><code>aplay</code> 프로그램으로 <code>wav</code> 파일을 재생하기 전에 <code>.wav</code> 파일이 필요하다.</p>
+<pre class="shell"><code>$ wget http://www.freespecialeffects.co.uk/soundfx/sirens/police_s.wav
+$ wget http://www.freespecialeffects.co.uk/soundfx/computers/bleep_01.wav</code></pre>
+<p>다운로드 받은 <code>.wav</code> 파일을 다음 명령어로 재생시킨다:</p>
+<pre class="shell"><code>$ aplay police_s.wav</code></pre>
+<h3 id="mp3-파일-mpg321로-재생">4. <code>mp3</code> 파일 <code>mpg321</code>로 재생</h3>
+<p><code>mp3</code> 파일을 재생하는 방법은 많지만, <code>mpg321</code> 프로그램을 사용해서 명령라인 인터페이스로 실행시킨다.</p>
+<pre class="shell"><code>$ sudo apt-get -y install mpg321</code></pre>
+<p>소프트웨어를 설치한 다음 재생시킬 <code>mp3</code> 파일을 다운로드 받는다.</p>
+<pre class="shell"><code>$ wget http://www.freespecialeffects.co.uk/soundfx/household/bubbling_water_1.mp3</code></pre>
+<p><code>mp3</code> 파일을 <code>mpg321</code> 프로그램으로 재생시킨다.</p>
+<pre class="shell"><code>$ mpg321 bubbling_water_1.mp3</code></pre>
+<p>소리 볼륨을 <code>-g</code> 매개변수를 사용해서 조절하는 것도 가능하다. 다음 예제에서는 50%로 볼륨을 조정했다.</p>
+<pre class="shell"><code>$ mpg321 -g 50 bubbling_water_1.mp3</code></pre>
+<h3 id="mp3-파일-omxplayer로-재생">5. <code>mp3</code> 파일 <code>omxplayer</code>로 재생</h3>
+<p><code>mp3</code> 파일을 재생하는데, <code>omxplayer</code> 재생기도 권장할 만한다.</p>
+<pre class="shell"><code>$ sudo apt-get -y install omxplayer</code></pre>
+<p>소프트웨어를 설치한 다음 재생시킬 <code>mp3</code> 파일을 다운로드 받는다.</p>
+<p><code>mp3</code> 파일을 <code>omxplayer</code> 프로그램으로 재생시킨다.</p>
+<pre class="shell"><code>$ omxplayer bubbling_water_1.mp3</code></pre>
+<p>소리 볼륨을 <code>+</code>, <code>-</code> 키보드 자판 키를 눌러 조절하는 것도 가능하다.</p>
+<pre class="shell"><code>$ mpg321 -g 50 bubbling_water_1.mp3</code></pre>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="http://www.raspberrypi-spy.co.uk/2013/06/raspberry-pi-command-line-audio/">Raspberry Pi Command Line Audio</a><a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
