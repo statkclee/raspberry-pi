@@ -60,6 +60,7 @@ title: xwMOOC 라즈베리 파이
         - [드론 개발(아두이노)](iot-drone-arduino.html)
         - [아치 리눅스](raspberry-pi-arch.html)        
 1. **사물인터넷(IoT)**
+    - [인공지능 준비-TTS(Text-to-Speech)](rpi-tts.html)
     - [개발환경 WebIDE](iot-webide.html)
     - [시리얼 통신(UART)](iot-serial.html)    
     - [센서(Sensor)](sensor.html)            
