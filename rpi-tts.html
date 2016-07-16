@@ -102,7 +102,7 @@ say $*</code></pre>
 <p>구글 안드로이드 TTS 엔진은 다음과 같이 사용한다.</p>
 <pre class="shell"><code>sudo apt-get install libttspico-utils
 pico2wave -w lookdave.wav &quot;Look Dave, I can see you&#39;re really upset about this.&quot; &amp;&amp; aplay lookdave.wav</code></pre>
-<h3 id="소리-출력장치-설정">소리 출력장치 설정</h3>
+<h3 id="소리-출력장치-설정-rpi-audio-config">소리 출력장치 설정 <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></h3>
 <p>RPi 소리 출력장치를 기본디폴트설정된 <strong>HDMI</strong> 대신 <strong>헤드폰 오디오 잭</strong> 으로 변경할 경우 다음 명령어를 타이핑한다.</p>
 <ul>
 <li><code>amixer cset numid=3 1</code> : <code>1</code>은 헤드폰 오디오 잭</li>
@@ -115,6 +115,7 @@ pico2wave -w lookdave.wav &quot;Look Dave, I can see you&#39;re really upset abo
 <hr />
 <ol>
 <li id="fn1"><p><a href="http://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis)">RPi Text to Speech (Speech Synthesis)</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a href="https://www.raspberrypi.org/documentation/configuration/audio-config.md">AUDIO CONFIGURATION</a><a href="#fnref2">↩</a></p></li>
 </ol>
 </div>
         </div>

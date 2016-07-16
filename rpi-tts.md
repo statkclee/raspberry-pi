@@ -139,8 +139,11 @@ chmod u+x speech.sh
 sudo apt-get install libttspico-utils
 pico2wave -w lookdave.wav "Look Dave, I can see you're really upset about this." && aplay lookdave.wav
 ~~~
+ 
+### 소리 출력장치 설정 [^rpi-audio-config]
 
-### 소리 출력장치 설정
+[^rpi-audio-config]: [AUDIO CONFIGURATION](https://www.raspberrypi.org/documentation/configuration/audio-config.md)
+
 
 RPi 소리 출력장치를 기본디폴트설정된 **HDMI** 대신 **헤드폰 오디오 잭** 으로 변경할 경우 다음 명령어를 타이핑한다.
 
