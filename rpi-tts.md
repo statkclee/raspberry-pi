@@ -81,3 +81,61 @@ RPi의 현재 IP주소를 음성으로 출력시킬 수도 있다.
 hostname -I | festival --tts
 ~~~
 
+### `espeak` TTS
+
+`espeak`는 `festival` 보다 최신 음성 합성 팩키지다. 소리가 좀더 깨끗하지만, 다소 울리는 느낌을 준다. 다음 명령어로 `espeak`를 설치한다.
+
+~~~ {.shell}
+sudo apt-get install -y espeak
+~~~
+
+`espeak`를 다음 명령어로 테스트한다: 영문 여성 목소리, 대문자 강조(`-k`), 천천히 말하기(`-s`)를 `-` 선택옵션으로 사용한다.
+
+
+~~~ {.shell}
+espeak -ven+f3 -k5 -s150 "I've just picked up a fault in the AE35 unit"
+~~~
+
+### 구글 TTS
+
+구글 TTS엔진은 `festival`, `espeak`와는 다소 차이가 있다. 음성 파일을 만들어 내기 위해서 텍스트를 구글 클라우드 서버로 보낸다. 결과가 RPi로 되돌아오고, `mplayer`로 음성을 재생한다.
+이것이 의미하는 것은 인터넷에 연결되어야 하는 제약이 있지만, 음성 품질은 아주 좋다.
+
+구글 TTS 엔진에 접속하는 ax206geek 배쉬 스크립트를 사용해 본다. 먼저 `speech.sh` 파일을 생성한다.
+
+~~~ {.shell}
+nano speech.sh
+~~~
+
+다음 행을 `speech.sh` 파일에 추가하고 저장한다. 
+
+~~~ {.shell}
+#!/bin/bash
+say() { local IFS=+;/usr/bin/mplayer -ao alsa -really-quiet -noconsolecontrols "http://translate.google.com/translate_tts?tl=en&q=$*"; }
+say $*
+~~~
+
+다른 방법으로 인터넷에 저장된 파일, [speech.sh](http://elinux.org/images/8/87/Speech.sh)을 저장한다.
+
+저장하거나, 편집을 완료한 배쉬 스크립트에 실행권한을 부여한다:
+
+~~~ {.shell}
+chmod u+x speech.sh
+~~~
+
+다음 명령어로 테스트를 해본다.
+
+~~~ {.shell}
+./speech.sh Look Dave, I can see you're really upset about this.
+~~~
+
+텍스트를 음성으로 변환하는데 구글을 사용할 경우 100 바이트로 제한이 있다.
+
+### Pico TTS
+
+구글 안드로이드 TTS 엔진은 다음과 같이 사용한다.
+
+~~~ {.shell}
+sudo apt-get install libttspico-utils
+pico2wave -w lookdave.wav "Look Dave, I can see you're really upset about this." && aplay lookdave.wav
+~~~
