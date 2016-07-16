@@ -61,7 +61,7 @@ sudo apt-get install mplayer
 sudo nano /etc/mplayer/mplayer.conf
 ~~~
 
-### Festival TTS
+#### 1. Festival TTS
 
 `festival`은 로봇같은 음성을 낸다. RPi 로봇 프로젝트에 활용하면 좋을 듯 하다.
 
@@ -81,7 +81,7 @@ RPi의 현재 IP주소를 음성으로 출력시킬 수도 있다.
 hostname -I | festival --tts
 ~~~
 
-### `espeak` TTS
+#### 2. `espeak` TTS
 
 `espeak`는 `festival` 보다 최신 음성 합성 팩키지다. 소리가 좀더 깨끗하지만, 다소 울리는 느낌을 준다. 다음 명령어로 `espeak`를 설치한다.
 
@@ -96,7 +96,7 @@ sudo apt-get install -y espeak
 espeak -ven+f3 -k5 -s150 "I've just picked up a fault in the AE35 unit"
 ~~~
 
-### 구글 TTS
+#### 3. 구글 TTS
 
 구글 TTS엔진은 `festival`, `espeak`와는 다소 차이가 있다. 음성 파일을 만들어 내기 위해서 텍스트를 구글 클라우드 서버로 보낸다. 결과가 RPi로 되돌아오고, `mplayer`로 음성을 재생한다.
 이것이 의미하는 것은 인터넷에 연결되어야 하는 제약이 있지만, 음성 품질은 아주 좋다.
@@ -131,7 +131,7 @@ chmod u+x speech.sh
 
 텍스트를 음성으로 변환하는데 구글을 사용할 경우 100 바이트로 제한이 있다.
 
-### Pico TTS
+#### 4. Pico TTS
 
 구글 안드로이드 TTS 엔진은 다음과 같이 사용한다.
 
@@ -139,3 +139,17 @@ chmod u+x speech.sh
 sudo apt-get install libttspico-utils
 pico2wave -w lookdave.wav "Look Dave, I can see you're really upset about this." && aplay lookdave.wav
 ~~~
+
+### 소리 출력장치 설정
+
+RPi 소리 출력장치를 기본디폴트설정된 **HDMI** 대신 **헤드폰 오디오 잭** 으로 변경할 경우 다음 명령어를 타이핑한다.
+
+* `amixer cset numid=3 1` : `1`은 헤드폰 오디오 잭
+* `amixer cset numid=3 2` : `2`는 HDMI
+* `amixer cset numid=3 0` : `0`은 기본디폴트 설정으로 자동
+
+~~~ {.shell}
+amixer cset numid=3 1
+~~~
+
+혹은, `raspi-config` 명령어를 입력하여 환경설정으로 들어가서, `Advanced Options` `Audio` 로 들어가서 헤드폰 오디오 잭 혹은 HDMI로 설정한다.
