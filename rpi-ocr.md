@@ -33,7 +33,7 @@ $ sudo apt-get -s install tesseract-ocr imagemagick
 
 |                                   |                                    |
 |-----------------------------------|-----------------------------------|
-| <img src="fig/rpi-numberplate_UK_front.JPG" alt="OCR 훈련 데이터 (앞)" width="50%" /> | <img src="fig/rpi-numberplate_UK_rear2.JPG" alt="OCR 훈련 데이터 (뒤)" width="50%" /> |
+| <img src="fig/rpi-Numberplate_UK_front.JPG" alt="OCR 훈련 데이터 (앞)" width="50%" /> | <img src="fig/rpi-Numberplate_UK_rear2.JPG" alt="OCR 훈련 데이터 (뒤)" width="50%" /> |
 
 ~~~ {.shell}
 $ wget http://wiki.raspberrytorte.com/images/f/f9/Numberplate_UK_front.JPG
