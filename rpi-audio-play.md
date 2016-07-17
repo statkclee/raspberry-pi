@@ -9,9 +9,11 @@ subtitle: 인공지능 준비-소리파일 재생
 > * `wav`, `mp3` 음성 파일을 명령라인 인터페이스로 재생한다.
 
 
-### 1. 가장 먼저 확인할 사항 [^rpi-cmd-audio]
+### 1. 가장 먼저 확인할 사항 [^rpi-cmd-audio] [^rpi-play-audio]
 
 [^rpi-cmd-audio]: [Raspberry Pi Command Line Audio](http://www.raspberrypi-spy.co.uk/2013/06/raspberry-pi-command-line-audio/)
+
+[^rpi-play-audio]: [6. Playing Audio](http://workshop.raspberrypiaustralia.com/audio/2014/08/31/06-playing-audio/)
 
 `wav`, `mp3` 음성 파일을 RPi 명령라인 인터페이스로 재생할 때 가장 먼저 확인할 사항은 
 `snd_bcm2835` 가 적재되어 있는지 확인하는 것이다.
@@ -44,6 +46,17 @@ $ sudo nano modules
  
 snd-bcm2835
 ~~~
+
+> ### 스피커 테스트 {.callout}
+>
+> `speaker-test` 프로그램이 라즈비언 내에 포함되어 있어 이를 통해 소리가 나는지 사전 검사한다.
+> `ctrl+c` 키를 눌러 소리가 나면, 혹은 소리가 나지 않으면 상황을 파악하고 정지시킨다.
+>
+> ~~~ {.shell}
+> $ speaker-test -t sine -f 600 > /dev/null
+> ~~~
+
+
 
 ### 2. 오디오 출력단자 확인
 
