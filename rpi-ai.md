@@ -19,7 +19,7 @@ subtitle: 인공지능 준비
 <img src="fig/rpi-ai-prereq.png" alt="라즈베리파이 사전준비" width="77%" />
 
 1. **시각정보**  
-    * [웹캠(WebCam)](rpi-ocr.html)
+    * [웹캠(WebCam)](rpi-webcam.html)
     * [광학 문자 판독기 -- (Optical Character Reader, OCR)](rpi-ocr.html)
 1. **청각정보**  
     * [청각 정보 출력 -- 스피커](rpi-audio-play.html)  
