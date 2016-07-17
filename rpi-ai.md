@@ -24,4 +24,4 @@ subtitle: 인공지능 준비
 1. **청각정보**  
     * [청각 정보 출력 -- 스피커](rpi-audio-play.html)  
         - [텍스트를 음성으로 변환 -- TTS(Text-to-Speech)](rpi-tts.html)  
-    * 청각 정보 입력 -- 마이크
+    * [청각 정보 입력 -- 녹음(마이크)](rpi-audio-record.html)

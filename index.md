@@ -61,8 +61,13 @@ title: xwMOOC 라즈베리 파이
         - [아치 리눅스](raspberry-pi-arch.html)        
 1. **사물인터넷(IoT)**
     - [인공지능 준비](rpi-ai.html)
-        - [인공지능 준비-TTS(Text-to-Speech)](rpi-tts.html)
-        - [인공지능 준비-소리파일 재생](rpi-audio-play.html)
+        1. **시각정보**  
+            * [웹캠(WebCam)](rpi-webcam.html)
+            * [광학 문자 판독기 -- (Optical Character Reader, OCR)](rpi-ocr.html)
+        1. **청각정보**  
+            * [청각 정보 출력 -- 스피커](rpi-audio-play.html)  
+                - [텍스트를 음성으로 변환 -- TTS(Text-to-Speech)](rpi-tts.html)  
+            * [청각 정보 입력 -- 녹음(마이크)](rpi-audio-record.html)
     - [개발환경 WebIDE](iot-webide.html)
     - [시리얼 통신(UART)](iot-serial.html)    
     - [센서(Sensor)](sensor.html)            

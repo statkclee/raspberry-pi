@@ -38,36 +38,35 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <h1 class="title">xwMOOC 라즈베리 파이</h1>
-          <h2 class="subtitle">인공지능 준비</h2>
+          <h2 class="subtitle">청각 정보 입력 – 녹음(마이크)</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
 <h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
-<li>라즈베리파이 인공지능 개발을 위한 사전준비 상황을 점검한다.</li>
+<li>USB 마이크로폰을 사용해서 목소리를 저장한다.</li>
 </ul>
 </div>
 </section>
-<h3 id="라즈베리파이-사전준비">라즈베리파이 사전준비</h3>
-<p>라즈베리파이를 인공지능 기계로 전환하는데 있어 먼저 입출력 장비를 갖춘다. 시각정보처리를 위해 <strong>카메라</strong> 를 시각정보 입력 장비로 잡고, 출력은 <strong>모니터</strong> 로 설정한다. 청각정보처리를 위해 <strong>마이크</strong> 를 청각정보 입력 장비로 잡고, 출력은 <strong>스피커</strong> 로 설정한다.</p>
-<p><img src="fig/rpi-ai-prereq.png" alt="라즈베리파이 사전준비" width="77%" /></p>
-<ol style="list-style-type: decimal">
-<li><strong>시각정보</strong>
-<ul>
-<li><a href="rpi-webcam.html">웹캠(WebCam)</a></li>
-<li><a href="rpi-ocr.html">광학 문자 판독기 – (Optical Character Reader, OCR)</a></li>
-</ul></li>
-<li><strong>청각정보</strong>
-<ul>
-<li><a href="rpi-audio-play.html">청각 정보 출력 – 스피커</a>
-<ul>
-<li><a href="rpi-tts.html">텍스트를 음성으로 변환 – TTS(Text-to-Speech)</a><br />
-</li>
-</ul></li>
-<li><a href="rpi-audio-record.html">청각 정보 입력 – 녹음(마이크)</a></li>
-</ul></li>
+<h3 id="목소리-저장-rpi-voice-record">목소리 저장 <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></h3>
+<p>USB 웹캠 혹은 USB 마이크로폰을 장착하고 터미널 윈도우를 연다.</p>
+<pre class="shell"><code>$ arecord /home/pi/voice-record-file.wav -D sysdefault:CARD=1</code></pre>
+<p>상기 명령어를 입력하고 마이크로폰에 녹음을 시작한다. 녹음이 끝나면, 최소 6초 정도 시간을 두고 터미널 윈도우를 닫는다. 그러면 녹음된 것이 <code>voice-record-file.wav</code> 파일에 저장된다.</p>
+<h3 id="목소리-재생">목소리 재생</h3>
+<p><code>voice-record-file.wav</code> 저장된 파일을 재생시킬 경우 <code>omxplayer</code>, 혹은 <code>aplayer</code>를 사용해서 목소리를 재생시킨다.</p>
+<pre class="shell"><code>$ omxplayer -p -o hdmi /home/pi/voice-record-file.wav</code></pre>
+<p>만약, <code>hdmi</code> 단자가 아니고 아날로그 잭에 연결시킨 경우는 <code>-o local</code> 옵션을 주면 된다.</p>
+<pre class="shell"><code>$ omxplayer -p -o local /home/pi/voice-record-file.wav</code></pre>
+<p><code>omxplayer</code> 가 아니고 <code>aplay</code>를 사용해서 오디오를 재생시켜도 된다.</p>
+<pre class="shell"><code>$ amixer cset numid=3 1
+$ aplay /home/pi/voice-record-file.wav</code></pre>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="http://www.instructables.com/id/How-to-Record-Voice-With-USB-Microphone-Then-Play-/">How to record voice with USB microphone then play it on Raspberry Pi 2</a><a href="#fnref1">↩</a></p></li>
 </ol>
+</div>
         </div>
       </div>
       </article>
