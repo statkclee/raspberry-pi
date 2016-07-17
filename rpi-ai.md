@@ -18,9 +18,9 @@ subtitle: 인공지능 준비
 
 <img src="fig/rpi-ai-prereq.png" alt="라즈베리파이 사전준비" width="77%" />
 
-**시각정보**  
-1. OCR  
-**청각정보**  
-1. [청각 정보 출력 -- 스피커](rpi-audio-play.html)  
-    - [텍스트를 음성으로 변환 -- TTS(Text-to-Speech)](rpi-tts.html)  
-2. 청각 정보 입력 -- 마이크
+1. **시각정보**  
+    * [광학 문자 판독기 -- (Optical Character Reader, OCR)](rpi-ocr.html)
+1. **청각정보**  
+    * [청각 정보 출력 -- 스피커](rpi-audio-play.html)  
+        - [텍스트를 음성으로 변환 -- TTS(Text-to-Speech)](rpi-tts.html)  
+    * 청각 정보 입력 -- 마이크

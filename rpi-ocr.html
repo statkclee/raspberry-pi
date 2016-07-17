@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 라즈베리 파이</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 라즈베리 파이</h1>
+          <h2 class="subtitle">광학 문자 판독기 – (Optical Character Reader, OCR)</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>라즈베리파이를 광학문자 판독기로 변환한다.</li>
+</ul>
+</div>
+</section>
+<h3 id="광학문자-판독기-rpi-ocr">1. 광학문자 판독기 <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></h3>
+<p><a href="https://github.com/tesseract-ocr">Tesseract</a>는 최초 HP 연구소에서 1985년과 1994년 사이 개발되었고, 1996년 윈도우 포팅을 위해서 일부 수정이 되었고, 1998년 C++로 일부 수정을 했다.</p>
+<p>2005년 <a href="https://github.com/tesseract-ocr">Tesseract</a>가 HP에 의해 오픈소스화 되었고, 그 이후 구글에서 주도적으로 개발되고 있다. 라이선스는 아파치2.0을 따르고 있다.</p>
+<h3 id="설치">2. 설치</h3>
+<p><code>tesseract-ocr</code>은 광학문자 판독기고, <code>imagemagick</code>은 200개 이상의 다양한 이미지를 읽고 간단한 조작을 하는데 최상의 이미지 소프트웨어다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">$ sudo apt<span class="op">-</span>get <span class="op">-</span>s install tesseract<span class="op">-</span>ocr imagemagick</code></pre></div>
+<h3 id="ocr-예행연습">3. OCR 예행연습</h3>
+<p>인식할 문자에 명암(contrast)이 좋은 경우 <code>tesseract</code> 인식율은 좋다.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><img src="fig/rpi-numberplate_UK_front.JPG" alt="OCR 훈련 데이터 (앞)" width="50%" /></td>
+<td align="left"><img src="fig/rpi-numberplate_UK_rear2.JPG" alt="OCR 훈련 데이터 (뒤)" width="50%" /></td>
+</tr>
+</tbody>
+</table>
+<pre class="shell"><code>$ tesseract rpi-numberplate_UK_front.JPG rpi-numberplate_UK_front
+$ cat rpi-numberplate_UK_front</code></pre>
+<pre class="output"><code>|23456789
+ABCDEFGH
+JKLMNDPIJ
+RSTUVHXYZ</code></pre>
+<pre class="shell"><code>$ tesseract rpi-numberplate_UK_rear.JPG rpi-numberplate_UK_rear
+$ cat rpi-numberplate_UK_rear</code></pre>
+<pre class="output"><code>|23456789
+ABCDEFGH
+JKLMNDPIJ
+RSTUVHXYZ</code></pre>
+<p><strong>기본적인 훈련만으로 <code>tesseract</code> 문자인식 소프트웨어 성능이 이 정도 나오는 것은 나쁜 것은 아니다.</strong></p>
+<h3 id="라즈베리파이-ocr-사례">3. 라즈베리파이 OCR 사례</h3>
+<p>라즈베리파이에 장착된 파이캠으로 사진을 칼라로 찍어 이를 흑백 이미지로 변환하고 나서, <code>tesseract</code> 광학문자판독기에 넣어 문자를 인식하는 과정을 실습한다.</p>
+<ol style="list-style-type: decimal">
+<li>파이캠으로 사진을 찍거나 웹페이지 사진을 가져온다. 사진은 칼라사진이다.</li>
+<li>흑백 이미지로 변환하는데 임계값을 설정하여 <code>convert</code> 변환한다.</li>
+<li><code>tesseract</code> 광학문자 인식기에 넣어 결과를 도출한다.</li>
+<li>문자인식률을 검토한다.</li>
+</ol>
+<pre class="shell"><code>$ wget http://www.mattmahoney.net/ocr/stock_gs200.jpg
+$ convert stock_gs200.jpg -threshold 70% stock_gs200bw.jpg
+$ tesseract stock_gs200bw.jpg stock_gs200bw
+$ cat stock_gs200bw.txt</code></pre>
+<pre class="output"><code>Nasdag82AMEX
+
+Stocksinboldmscorfellsxormare
+
+.; USA Track your invesmwnts with our continuously
+Iouqy updated stocks. Vlsit us on the web at
+~â€˜Â°&#39;â€œ mnney.usatoday.mm</code></pre>
+<p>인터넷에서 이미지를 받아 작업흐름에 맞춰 넣어 처음이지만, 결과가 나쁘지는 않다. 하지만, 개선의 여지도 많아 보인다.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="http://wiki.raspberrytorte.com/index.php?title=Optical_Character_Recognition">Optical Character Recognition</a><a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
