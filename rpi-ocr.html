@@ -65,20 +65,22 @@
 </tr>
 </tbody>
 </table>
-<pre class="shell"><code>$ tesseract rpi-numberplate_UK_front.JPG rpi-numberplate_UK_front
-$ cat rpi-numberplate_UK_front</code></pre>
+<pre class="shell"><code>$ wget http://wiki.raspberrytorte.com/images/f/f9/Numberplate_UK_front.JPG
+$ wget http://wiki.raspberrytorte.com/images/0/0d/Numberplate_UK_rear2.JPG
+$ tesseract numberplate_UK_front.JPG rpi-numberplate_UK_front
+$ cat rpi-numberplate_UK_front.txt</code></pre>
 <pre class="output"><code>|23456789
 ABCDEFGH
 JKLMNDPIJ
 RSTUVHXYZ</code></pre>
-<pre class="shell"><code>$ tesseract rpi-numberplate_UK_rear.JPG rpi-numberplate_UK_rear
-$ cat rpi-numberplate_UK_rear</code></pre>
+<pre class="shell"><code>$ tesseract numberplate_UK_rear.JPG rpi-numberplate_UK_rear
+$ cat rpi-numberplate_UK_rear.txt</code></pre>
 <pre class="output"><code>|23456789
 ABCDEFGH
 JKLMNDPIJ
 RSTUVHXYZ</code></pre>
 <p><strong>기본적인 훈련만으로 <code>tesseract</code> 문자인식 소프트웨어 성능이 이 정도 나오는 것은 나쁜 것은 아니다.</strong></p>
-<h3 id="라즈베리파이-ocr-사례">3. 라즈베리파이 OCR 사례</h3>
+<h3 id="라즈베리파이-ocr-사례">4. 라즈베리파이 OCR 사례</h3>
 <p>라즈베리파이에 장착된 파이캠으로 사진을 칼라로 찍어 이를 흑백 이미지로 변환하고 나서, <code>tesseract</code> 광학문자판독기에 넣어 문자를 인식하는 과정을 실습한다.</p>
 <ol style="list-style-type: decimal">
 <li>파이캠으로 사진을 찍거나 웹페이지 사진을 가져온다. 사진은 칼라사진이다.</li>
@@ -86,6 +88,28 @@ RSTUVHXYZ</code></pre>
 <li><code>tesseract</code> 광학문자 인식기에 넣어 결과를 도출한다.</li>
 <li>문자인식률을 검토한다.</li>
 </ol>
+<p>예를 들어, <code>raspistill -o image.jpg</code> 명령어로 파이캠으로 사진을 찍어 <code>image.jpg</code>로 저장하고, 이를 <code>convert</code> 명령어로 <code>imagebw.jpg</code> 흑백이미지로 변환하고 나서, 이를 <code>tesseract</code>에 넣어 문자를 추출하여 <code>imagebw.txt</code> 파일에 저장한다.</p>
+<pre class="shell"><code>$ raspistill -o image.jpg | convert image.jpg  -threshold 20% imagebw.jpg | tesseract imagebw.jpg  imagebw | cat imagebw.txt</code></pre>
+<h4 id="이미지에서-문자-추출-작업흐름">4.1. 이미지에서 문자 추출 작업흐름</h4>
+<p>이미지에서 문자를 뽑아내는 과정은 생각만큼 간단하지는 않는다. 즉, 이미지를 넣어주고, <code>tesseract</code> 에 넣어주면 문자가 뽑히지는 않는다. 경우에 따라서는 잘 뽑혀지지만, 그렇지 않는 경우가 더 많다.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><img src="fig/rpi-04-20130623173123-00.jpg" alt="자동차 원본" width="30%" /></td>
+<td align="left"><img src="fig/rpi-04-20130623173123-00bw.jpg" alt="자동차 흑백" width="30%" /></td>
+<td align="left"><img src="fig/rpi-04-20130623173123-00bwcut.jpg" alt="자동차 흑백 자르기" width="135%" /></td>
+</tr>
+</tbody>
+</table>
+<p>자동차 번호판을 인식하기 위해서, 칼라 원본이미지를 흑백으로 변환한 두에도 문자가 추출되지 않아, 인식할 자동차 번호판을 먼저 식별하고 나서, 번호판을 잘라내고 나서, 잘라낸 이미지를 <code>tesseract</code>로 보내 문자추출을 하여 자동차 번호판을 인식하는 과정을 거친다.</p>
+<pre class="shell"><code>$ tesseract 04-20130623173123-00.jpg 04-20130623173123-00 
+$ convert 04-20130623173123-00bw.jpg  -threshold 20% 04-20130623173123-00bw.jpg 
+$ tesseract 04-20130623173123-00bw.jpg 04-20130623173123-00bw
+$ cat 04-20130623173123-00bw.txt
+$ tesseract 04-20130623173123-00bwcut.jpg 04-20130623173123-00bwcut
+$ cat 04-20130623173123-00bwcut.txt
+um Km}</code></pre>
+<h4 id="인터넷-이미지에서-문자-추출-사례">4.2. 인터넷 이미지에서 문자 추출 사례</h4>
 <pre class="shell"><code>$ wget http://www.mattmahoney.net/ocr/stock_gs200.jpg
 $ convert stock_gs200.jpg -threshold 70% stock_gs200bw.jpg
 $ tesseract stock_gs200bw.jpg stock_gs200bw
