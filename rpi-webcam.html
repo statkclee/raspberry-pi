@@ -61,9 +61,10 @@
 <h3 id="fswebcam-설치">1. <code>fswebcam</code> 설치</h3>
 <p><code>fswebcam</code> 팩키지를 먼저 설치한다.</p>
 <pre class="shell"><code>$ sudo apt-get install fswebcam</code></pre>
-<h3 id="기본-사용법">2. 기본 사용법</h3>
+<h3 id="기본-사용법-rpi-webcam-ts">2. 기본 사용법 <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></h3>
 <p><code>fswebcam</code> 명령어 다음에 파일명을 입력하면, 웹캠을 사용해서 사진이 찍히고, 지정된 파일명으로 저장된다:</p>
-<pre class="shell"><code>$ fswebcam image.jpg</code></pre>
+<pre class="shell"><code>$ fswebcam image.jpg
+$ # fswebcam -p YUYV -d /dev/video0 image.jpg</code></pre>
 <p>상기 명령어를 실행시키면 다음과 같은 정보가 화면에 출력된다.</p>
 <pre class="output"><code>--- Opening /dev/video0...
 Trying source module v4l2...
@@ -79,7 +80,8 @@ Writing JPEG image to &#39;image.jpg&#39;.</code></pre>
 <p>기본디폴트 설정된 해상도가 사용되었고, 하단에 시간도장(Timestamp)이 찍힌 배너가 나타난다.</p>
 <h4 id="해상도-지정">2.1. 해상도 지정</h4>
 <p>해상도(resolution)를 <span class="math inline">1280 × 720</span> 으로 지정해서 찍으려면, <code>-r</code> 플래그를 사용한다.</p>
-<pre class="shell"><code>$ fswebcam -r 1280x720 image2.jpg</code></pre>
+<pre class="shell"><code>$ fswebcam -r 1280x720 image2.jpg
+$ # fswebcam -p YUYV -d /dev/video0 -r 1280x720 image2.jpg</code></pre>
 <p>상기 명령어를 실행시키면 다음과 같은 결과가 화면에 출력된다.</p>
 <pre class="output"><code>--- Opening /dev/video0...
 Trying source module v4l2...
@@ -93,7 +95,8 @@ Writing JPEG image to &#39;image2.jpg&#39;.</code></pre>
 <p><img src="fig/rpi-webcam-image2.jpg" alt="RPi 웹캠으로 해상도 조정해서 찍은 사진" width="77%" /></p>
 <h4 id="배너를-지정하지-않는-경우">2.2. 배너를 지정하지 않는 경우</h4>
 <p><code>--no-banner</code> 옵션플래그를 추가한다:</p>
-<pre class="shell"><code>$ fswebcam -r 1280x720 --no-banner image3.jpg</code></pre>
+<pre class="shell"><code>$ fswebcam -r 1280x720 --no-banner image3.jpg
+$ # fswebcam -p YUYV -d /dev/video0 -r 1280x720 --no-banner image2.jpg</code></pre>
 <p>상기 명령어를 실행시키면 다음과 같은 결과가 화면에 출력된다.</p>
 <pre class="output"><code>--- Opening /dev/video0...
 Trying source module v4l2...
@@ -115,7 +118,7 @@ Writing JPEG image to &#39;image3.jpg&#39;.</code></pre>
 
 <span class="ot">DATE=$(</span><span class="kw">date</span> +<span class="st">&quot;%Y-%m-%d_%H%M&quot;</span><span class="ot">)</span>
 
-<span class="kw">fswebcam</span> -r 1280x720 --no-banner /home/pi/webcam/<span class="ot">$DATE</span>.jpg</code></pre></div>
+<span class="kw">fswebcam</span> -r 1280x720 --no-banner -p YUYV -d /dev/video0 /home/pi/webcam/<span class="ot">$DATE</span>.jpg</code></pre></div>
 <p>상기 배쉬 스크립트를 실행시키면, 사진을 찍고 나서 시간도장이 포함된 파일명으로 저장시킨다. 먼저 상기 스크립트를 <code>webcam.sh</code>로 저장시키고, 아스키 텍스트 파일을 실행파일로 변경시킨다.</p>
 <pre class="shell"><code>$ chmod +x webcam.sh</code></pre>
 <p>그리고 나서, 다음 명령어로 실행시킨다.</p>
@@ -144,6 +147,12 @@ Writing JPEG image to &#39;/home/pi/webcam/2013-06-07_2338.jpg&#39;.</code></pre
 <h3 id="crontab"><code class="callout">crontab</code></h3>
 <p><code>crantab</code>에 대한 자세한 사항은 <a href="https://www.raspberrypi.org/documentation/linux/usage/cron.md">SCHEDULING TASKS WITH CRON</a> 참조한다.</p>
 </blockquote>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://www.raspberrypi.org/forums/viewtopic.php?f=45&amp;t=60076">fswebcam - gd-jpeg: JPEG library reports unrecoverable error</a><a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
         </div>
       </div>
       </article>

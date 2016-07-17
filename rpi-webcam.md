@@ -24,12 +24,15 @@ RPi로 사진을 찍거나 동영상을 녹화할 경우 [파이캠](https://www
 $ sudo apt-get install fswebcam
 ~~~
 
-### 2. 기본 사용법
+### 2. 기본 사용법 [^rpi-webcam-ts]
+
+[^rpi-webcam-ts]: [fswebcam - gd-jpeg: JPEG library reports unrecoverable error](https://www.raspberrypi.org/forums/viewtopic.php?f=45&t=60076)
 
 `fswebcam` 명령어 다음에 파일명을 입력하면, 웹캠을 사용해서 사진이 찍히고, 지정된 파일명으로 저장된다:
 
 ~~~ {.shell}
 $ fswebcam image.jpg
+$ # fswebcam -p YUYV -d /dev/video0 image.jpg
 ~~~
 
 상기 명령어를 실행시키면 다음과 같은 정보가 화면에 출력된다.
@@ -58,6 +61,7 @@ Writing JPEG image to 'image.jpg'.
 
 ~~~ {.shell}
 $ fswebcam -r 1280x720 image2.jpg
+$ # fswebcam -p YUYV -d /dev/video0 -r 1280x720 image2.jpg
 ~~~
 
 상기 명령어를 실행시키면 다음과 같은 결과가 화면에 출력된다.
@@ -83,6 +87,7 @@ Writing JPEG image to 'image2.jpg'.
 
 ~~~ {.shell}
 $ fswebcam -r 1280x720 --no-banner image3.jpg
+$ # fswebcam -p YUYV -d /dev/video0 -r 1280x720 --no-banner image2.jpg
 ~~~
 
 상기 명령어를 실행시키면 다음과 같은 결과가 화면에 출력된다.
@@ -121,7 +126,7 @@ $ mkdir webcam
 
 DATE=$(date +"%Y-%m-%d_%H%M")
 
-fswebcam -r 1280x720 --no-banner /home/pi/webcam/$DATE.jpg
+fswebcam -r 1280x720 --no-banner -p YUYV -d /dev/video0 /home/pi/webcam/$DATE.jpg
 ~~~
 
 상기 배쉬 스크립트를 실행시키면, 사진을 찍고 나서 시간도장이 포함된 파일명으로 저장시킨다.
