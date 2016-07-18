@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Software Carpentry: R 파이썬 소프트레이어 클라우드, xwMOOC</title>
+    <title>Software Carpentry: xwMOOC 라즈베리 파이</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -37,11 +37,11 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <h1 class="title">R 파이썬 소프트레이어 클라우드, xwMOOC</h1>
-          <h2 class="subtitle">라즈베리파이 응용프로그램 유틸리티</h2>
+          <h1 class="title">xwMOOC 라즈베리 파이</h1>
+          <h2 class="subtitle">RPi 로그인 및 유틸리티</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -96,6 +96,20 @@ pi@raspberrypi ~ $</code></pre>
 <pre class="input"><code>pi@raspberrypi ~ $ sudo apt-get install -y apache2</code></pre>
 <p><code>/var/www/</code> 폴더에 <code>index.html</code> 파일을 수정하거나 개발된 웹서비스를 웹서비스 제공 디렉토리에 저장하면 된다.</p>
 <p><img src="fig/raspberry-pi-webserver.png" width="70%" /></p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h3 id="리눅스-혹은-맥에서-ssh-로그인"><span class="glyphicon glyphicon-pushpin"></span>리눅스 혹은 맥에서 SSH 로그인</h3>
+</div>
+<div class="panel-body">
+<p>리눅스와 맥에서 <code>ssh</code> 로그인 하는 경우 먼저 <code>hostname -I</code> 명령어를 통해 IP 주소를 확인하고 이를 확인해서 <code>ssh pi@&lt;IP주소&gt;</code> 방식으로 로그인한다.</p>
+<p>RPi 터미널에서 확인한 사항</p>
+<pre class="shell"><code>pi@raspberrypi:~ $ hostname -I
+192.168.0.11</code></pre>
+<p>리눅스 혹은 맥 터미널에서 확인된 RPi IP주소, <code>192.168.0.11</code> 입력하여 로그인한다.</p>
+<pre class="shell"><code>$ ssh pi@192.168.0.11 
+pi@192.168.0.11&#39;s password: </code></pre>
+</div>
+</aside>
 <h3 id="화면-캡쳐">2. 화면 캡쳐</h3>
 <h4 id="명령라인-인터페이스-화면-캡쳐">2.1. 명령라인 인터페이스 화면 캡쳐</h4>
 <p>라즈베리 파이 명령라인 인터페이스(CLI)를 쓰게 되면 터미널 콘솔에 찍히는 색깔이 검은색 바탕에 흰색이 아니고, 사용자명/호스트 컴퓨터명/현재 디렉토리/파일과 디렉토리에 시각정보를 입혀서 보기 좋게 표현한다. 이런 화면을 잡아낼 때 사용하는 것이 <strong>fbgrab</strong> 이다.</p>
@@ -175,7 +189,7 @@ pi@raspberrypi ~ $ sudo apt-get install epiphany-browser</code></pre>
 <p><code>alsa-base.conf</code> 출력 장치를 위와 같이 변경하고 저장하고 나서 재시작하면 USB 오디오 장치가 디폴트 출력장치로 변경된다.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-pushpin"></span>라즈베리 파이 음악 프로젝트</h4>
+<h4 id="라즈베리-파이-음악-프로젝트"><span class="glyphicon glyphicon-pushpin"></span>라즈베리 파이 음악 프로젝트</h4>
 </div>
 <div class="panel-body">
 <ul>
@@ -206,7 +220,7 @@ pi@raspberrypi ~ $ sudo apt-get install epiphany-browser</code></pre>
 <pre class="input"><code>$ vcgencmd version</code></pre>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-pushpin"></span>왜 우분투(Ubuntu) 배포판이 라즈베리 파이 운영체제가 아닐까?</h4>
+<h4 id="왜-우분투ubuntu-배포판이-라즈베리-파이-운영체제가-아닐까"><span class="glyphicon glyphicon-pushpin"></span>왜 우분투(Ubuntu) 배포판이 라즈베리 파이 운영체제가 아닐까?</h4>
 </div>
 <div class="panel-body">
 <p>라즈베리 파이 재단에서 처음에 우분투를 검토했으나 우분투가 ARMv7 이상만 지원하기 때문에 라즈비언 배포판을 별도로 개발했다. 하지만, 아치 리눅스는 ARM기반 컴퓨터를 목표로 개발되서 라즈베리 파이에서도 이용가능하다.</p>

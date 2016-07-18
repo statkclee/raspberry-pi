@@ -1,7 +1,7 @@
 ---
 layout: page
-title: R 파이썬 소프트레이어 클라우드, xwMOOC
-subtitle: 라즈베리파이 응용프로그램 유틸리티
+title: xwMOOC 라즈베리 파이
+subtitle: RPi 로그인 및 유틸리티
 minutes: 10
 ---
 
@@ -67,6 +67,24 @@ pi@raspberrypi ~ $ sudo apt-get install -y apache2
 
 <img src="fig/raspberry-pi-webserver.png" width="70%" />
 
+> ### 리눅스 혹은 맥에서 SSH 로그인 {.callout}
+> 
+> 리눅스와 맥에서 `ssh` 로그인 하는 경우 먼저 `hostname -I` 명령어를 통해 IP 주소를 확인하고 이를 확인해서 `ssh pi@<IP주소>` 방식으로 로그인한다.
+> 
+> RPi 터미널에서 확인한 사항
+> 
+> ~~~ {.shell}
+> pi@raspberrypi:~ $ hostname -I
+> 192.168.0.11
+> ~~~
+> 
+> 리눅스 혹은 맥 터미널에서 확인된 RPi IP주소, `192.168.0.11` 입력하여 
+> 로그인한다.
+> 
+> ~~~ {.shell}
+> $ ssh pi@192.168.0.11 
+> pi@192.168.0.11's password: 
+> ~~~
 
 ### 2. 화면 캡쳐
 
