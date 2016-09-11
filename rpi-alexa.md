@@ -14,7 +14,7 @@ minutes: 10
 > ### 라즈베리 파이 인공지능 동영상  {.prereq}
 > | TheRaspberryPiGuy 개발동영상  | 구현 동영상 |
 > |:------------------------------------------------------------------:|:------------------------------------------------------------------:|
-> | <iframe width="350" height="260" src="https://www.youtube.com/embed/tcI8ibjUOzg" frameborder="0" allowfullscreen></iframe> | <iframe width="350" height="260" src="https://www.youtube.com/embed/tcI8ibjUOzg" frameborder="0" allowfullscreen></iframe>|
+> | <iframe width="350" height="260" src="https://www.youtube.com/embed/tcI8ibjUOzg" frameborder="0" allowfullscreen></iframe> | <iframe width="350" height="260" src="https://www.youtube.com/embed/f8_5OYWDPsM" frameborder="0" allowfullscreen></iframe>|
 
 ### 1. 라즈베리파이 인공지능
 
@@ -84,11 +84,15 @@ minutes: 10
 1. `python main.py` 명령어로 인공지능 비서 작업을 시작시킨다.
 
 ~~~ {.shell}
-$ ifconfig
-$ git clone https://github.com/the-raspberry-pi-guy/Artificial-Intelligence-Pi
-$ cd Artificial-Intelligence-Pi
-$ sudo ./setup.sh
-$ python main.py 
+pi@raspberrypi:~ $ ifconfig
+pi@raspberrypi:~ $ git clone https://github.com/the-raspberry-pi-guy/Artificial-Intelligence-Pi
+pi@raspberrypi:~ $ cd Artificial-Intelligence-Pi
+pi@raspberrypi:~/Artificial-Intelligence-Pi $ sudo ./setup.sh
+pi@raspberrypi:~/Artificial-Intelligence-Pi $ python main.py
+Welcome to Alexa. I will help you in anyway I can.
+  Press Ctrl-C to quit
+Checking Internet Connection
+All systems GO 
 ~~~
 
 ### 3. 라즈베리파이 인공지능 시연
@@ -100,6 +104,22 @@ $ python main.py
 <img src="fig/rpi-alexa-log.png" alt="알렉사 놀이 이력" width="50%" />
 
 좌측 메뉴에 **Settings** 를 클릭하면, `Account` &rarr; `Sports Update` 에 가장 좋아하는 팀을 설정하여 *"Alexa, what's my Sports Update"* 라고 묻게 되면 등록한 스포츠팀의 결과를 바로 알려준다.
+
+#### 3.1. 알렉사 질문 목록
+
+알렉사에 질문할 수 있는 것은 재미난 것부터 다양하다. 아마존에서 공식적으로 제공하는 질문 목록을 살펴보자.
+[^ask-alexa] [^ask-alexa-101]
+
+[^ask-alexa]: [Ask Alexa](https://www.amazon.com/gp/help/customer/display.html?nodeId=201549800)
+[^ask-alexa-101]: [101 Pop Culture Things to Ask Alexa](http://thingstoaskalexa.com/index.php/2016/03/10/101-pop-culture-things-to-ask-alexa/)
+
+
+* 영어철자: "How do you spell [word]?" ... "How do you spell statistics?"
+* 정의: "What is the definition of [word]?" ... "What is the definition of statistics?"
+* 스포츠 경기결과: "Did the [sports team] win?" ... "Did the st. louis win?"
+* 계산기: "What is 7 plus 7?"
+* 지리: "What is the latitude and longitude of [location]?" ... "What is the latitude and longitude of 워싱턴 DC?"
+* 영양정보: "How many calories are in [food]?" ... "How many calories are in Hotdog?"
 
 
 
