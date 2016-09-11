@@ -61,6 +61,7 @@ title: xwMOOC 라즈베리 파이
         - [아치 리눅스](raspberry-pi-arch.html)        
 1. **사물인터넷(IoT)**
     - [인공지능 준비](rpi-ai.html)
+        1. [라즈베리파이 인공지능 -- 아마존 알렉사](rpi-alexa.html)    
         1. **시각정보**  
             * [웹캠(WebCam)](rpi-webcam.html)
             * [광학 문자 판독기 -- (Optical Character Reader, OCR)](rpi-ocr.html)
