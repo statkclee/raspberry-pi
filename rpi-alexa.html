@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 컴퓨터</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 컴퓨터</h1>
+          <h2 class="subtitle">라즈베리파이 인공지능 – 아마존 알렉사</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>라즈베리파이 인공지능을 구현한다.</li>
+<li>아마존 알렉사를 통해 인공지능 비서를 개발한다.</li>
+<li>인공지능의 각 구성요소 및 작동방식을 이해한다.</li>
+</ul>
+</div>
+</section>
+<section class="prereq panel panel-warning">
+<div class="panel-heading">
+<h3 id="라즈베리-파이-인공지능-동영상"><span class="glyphicon glyphicon-education"></span>라즈베리 파이 인공지능 동영상</h3>
+</div>
+<div class="panel-body">
+<table>
+<thead>
+<tr class="header">
+<th align="center">TheRaspberryPiGuy 개발동영상</th>
+<th align="center">구현 동영상</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><iframe width="350" height="260" src="https://www.youtube.com/embed/tcI8ibjUOzg" frameborder="0" allowfullscreen></iframe></td>
+<td align="center"><iframe width="350" height="260" src="https://www.youtube.com/embed/f8_5OYWDPsM" frameborder="0" allowfullscreen></iframe></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<h3 id="라즈베리파이-인공지능">1. 라즈베리파이 인공지능</h3>
+<p>아이폰은 정말 많은 것을 바꿔 놓았으며, 전세계 기업들이 애플 아이폰처럼 누구나 갖고자 하는 기계로 이를 바탕으로 강력한 생태계를 생성하여 30% 수수료를 얻을 수 있는 플랫폼을 찾게 만드는 계기가 되었으며, 인공지능이 그 가능성 중 하나로 보고 있다. 아마존 에코(Echo)는 알렉사가 내장되어 질문에 답을 하는 인공지능 비서다.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<p><a href="https://www.amazon.com/dp/B00X4WHP5E/ref=fs_ods_fs_ha_dr">아마존 에코</a>는 2016. 9월 현재 $180에 판매되고 있다. 이를 무료로 경험할 수 있다면 어떨까?</p>
+<h3 id="라즈베리파이-인공지능-자재">2. 라즈베리파이 인공지능 자재</h3>
+<h4 id="하드웨어-자재">2.1. 하드웨어 자재</h4>
+<p>라즈베리파이 인공지능을 만들어 보는데 하드웨어 자재와 여러 소프트웨어가 필요하다. 먼저 하드웨어 자재부터 살펴본다.</p>
+<p>라즈베리파이 2, 3가 있으면 되고, 알렉사 명령을 제어하는데 버튼으로 감각모자를 사용한다. 또한, 인공지능 비서 알렉사 상태 정보가 감각모자 LED 화면을 통해 제공된다. 마이크를 통해 키보드나 마우스 대신 음성으로 원하는 바가 전달되고, 스피커를 통해 인공지능 비서 알렉사가 응답한 결과가 전송된다.</p>
+<ol style="list-style-type: decimal">
+<li><a href="http://bit.ly/1NKiK0h">라즈베리 파이 2(알리바마)</a>: $ 36.88</li>
+<li><a href="http://bit.ly/2c3q3oY">감각모자(SenseHAT)</a>, <a href="https://thepihut.com/products/raspberry-pi-sense-hat-astro-pi">정품</a>: $10.02</li>
+<li><a href="http://bit.ly/2cnJAz9">마이크(Microphone)</a> : $7.99</li>
+<li><a href="http://bit.ly/2cvxaa8">스피커(3.5mm loud speaker)</a>: $8.39</li>
+</ol>
+<h4 id="하드웨어-자재-전선-연결-및-꽂기">2.2. 하드웨어 자재 전선 연결 및 꽂기</h4>
+<p>준비된 자재를 라즈베리파이 컴퓨터에 연결하여 꽂는 과정을 와이어링(Wiring)한다고 표현한다. 마우스와 키보드, 감각모자, 마이크와 스피커를 장착하는 과정은 그다지 어렵지 않다.</p>
+<h4 id="소프트웨어-설치">2.2. 소프트웨어 설치</h4>
+<h5 id="인공지능-서버쪽-소프트웨어-설정">2.2.1. 인공지능 서버쪽 소프트웨어 설정</h5>
+<p><a href="http://developer.amazon.com/">아마존 개발자 웹사이트 (Amazon’s Developer Console)</a>를 방문하여 회원가입하고 필요한 인증을 맞춰야 한다.</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://developer.amazon.com/">아마존 개발자 웹사이트</a>에 로그인한다.</li>
+<li>상기 메뉴에서 <strong>ALEXA</strong> 를 선택한다.</li>
+<li><code>Register a Product Type</code>에서 <code>Device</code>를 선택한다.</li>
+<li><code>Device Type ID</code>, <code>Display Name</code>을 <strong>RaspberryPiAI</strong> 로 통일한다. <img src="fig/rpi-alexa-device-info.png" alt="알렉사 장치정보" width="50%" /></li>
+<li><code>Security Profile</code>에서 <strong>Web Settings</strong> 를 클릭하여 <code>Allowed Origns</code>, <code>Allowed Return URLs</code> 를 설정한다.
+<ul>
+<li><code>http://localhost:5000</code>, <code>http://&lt;라즈베리파이 IP&gt;:5000</code></li>
+<li><code>http://localhost:5000/code</code>, <code>http://&lt;라즈베리파이 IP&gt;:5000/code</code> <img src="fig/rpi-alexa-web-setting.png" alt="알렉사 웹설정" width="50%" /></li>
+</ul></li>
+<li><code>Security Profile</code>에서 <strong>General</strong> 에 필요한 꼭 기억해야 될 정보가 나타난다. 이 정보를 라즈베리파이 클라이언트 소프트웨어 설정에 그대로 사용한다. <img src="fig/rpi-alexa-key.png" alt="알렉사 열쇠" width="50%" /></li>
+<li><code>Device Details</code> 에 기타 설정을 한다. <img src="fig/rpi-alexa-etc.png" alt="알렉사 기타설정" width="50%" /></li>
+</ol>
+<h5 id="라즈베리파이-클라이언트-소프트웨어-설정">2.2.2. 라즈베리파이 클라이언트 소프트웨어 설정</h5>
+<p><a href="https://www.youtube.com/user/TheRaspberryPiGuy">TheRaspberryPiGuy</a>에서 <a href="https://github.com/the-raspberry-pi-guy/Artificial-Intelligence-Pi">GitHub Artificial-Intelligence-Pi</a>를 준비해 놨다.</p>
+<p><code>ifconfig</code> 명령어를 통해 라즈베리파이 IP주소를 확인하고, 가능하면 작업 컴퓨터에서 라즈베리파이로 <code>ssh</code> 로그인한다.</p>
+<ol style="list-style-type: decimal">
+<li><code>git clone</code> 명령어를 통해 <code>Artificial-Intelligence-Pi</code> 저장소에 개발된 코드를 받아온다.</li>
+<li><code>cd Artificial-Intelligence-Pi</code> 명령어로 디렉토리를 변경한다.</li>
+<li><code>sudo ./setup.sh</code> 라즈베리파이와 아마존 알렉사를 연결한다. 인공지능 서버쪽 소프트웨어 설정에서 확인된 다음 정보를 설치과정에서 복사하여 붙여넣어 연결시킨다.
+<ul>
+<li>Security Profile</li>
+<li>Security Profile Description</li>
+<li>Security Profile ID</li>
+<li>Client ID</li>
+<li>Client Secret<br />
+</li>
+</ul></li>
+<li><code>python main.py</code> 명령어로 인공지능 비서 작업을 시작시킨다.</li>
+</ol>
+<pre class="shell"><code>pi@raspberrypi:~ $ ifconfig
+pi@raspberrypi:~ $ git clone https://github.com/the-raspberry-pi-guy/Artificial-Intelligence-Pi
+pi@raspberrypi:~ $ cd Artificial-Intelligence-Pi
+pi@raspberrypi:~/Artificial-Intelligence-Pi $ sudo ./setup.sh
+pi@raspberrypi:~/Artificial-Intelligence-Pi $ python main.py
+Welcome to Alexa. I will help you in anyway I can.
+  Press Ctrl-C to quit
+Checking Internet Connection
+All systems GO </code></pre>
+<h3 id="라즈베리파이-인공지능-시연">3. 라즈베리파이 인공지능 시연</h3>
+<p>현재시점에서 알렉사는 영어만 지원되고 있다. 1000명의 직원이 열심히 일을 하고 있다고 하니 다른 언어에 대한 지원도 확대될 것으로 보인다. 특히 알렉사는 기본적으로 아마존이 위치한 시애틀 인근을 상정하여 서비스를 하고 있기 때문이 이점을 염두에 두고 똑똑한 인공지능 비서로 시험을 진행한다.</p>
+<p><a href="http://alexa.amazon.com/">아마존 알렉사</a> 사이트를 통해 알렉사에게 문의한 내용이 결과값과 함께 쭉 나열되어 나타난다.</p>
+<p><img src="fig/rpi-alexa-log.png" alt="알렉사 놀이 이력" width="50%" /></p>
+<p>좌측 메뉴에 <strong>Settings</strong> 를 클릭하면, <code>Account</code> → <code>Sports Update</code> 에 가장 좋아하는 팀을 설정하여 <em>“Alexa, what’s my Sports Update”</em> 라고 묻게 되면 등록한 스포츠팀의 결과를 바로 알려준다.</p>
+<h4 id="알렉사-질문-목록">3.1. 알렉사 질문 목록</h4>
+<p>알렉사에 질문할 수 있는 것은 재미난 것부터 다양하다. 아마존에서 공식적으로 제공하는 질문 목록을 살펴보자. <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
+<ul>
+<li>영어철자: “How do you spell [word]?” … “How do you spell statistics?”</li>
+<li>정의: “What is the definition of [word]?” … “What is the definition of statistics?”</li>
+<li>스포츠 경기결과: “Did the [sports team] win?” … “Did the st. louis win?”</li>
+<li>계산기: “What is 7 plus 7?”</li>
+<li>지리: “What is the latitude and longitude of [location]?” … “What is the latitude and longitude of 워싱턴 DC?”</li>
+<li>영양정보: “How many calories are in [food]?” … “How many calories are in Hotdog?”</li>
+</ul>
+<p>좌측 메뉴에 <strong>Settings</strong> 를 클릭하면, <code>Account</code> → <code>Calendar</code>에서 Google 계정을 연동시키게 되면 일정정보가 공유되어 알렉사가 개인비서로서 역할을 자연스럽게 수행하게 된다.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="http://www.bloter.net/archives/253314">아마존 음성비서 ‘알렉사’, 세상 바꿀 두 번째 성배</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=201549800">Ask Alexa</a><a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p><a href="http://thingstoaskalexa.com/index.php/2016/03/10/101-pop-culture-things-to-ask-alexa/">101 Pop Culture Things to Ask Alexa</a><a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

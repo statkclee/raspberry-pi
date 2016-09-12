@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 라즈베리 파이</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 라즈베리 파이</h1>
+          <h2 class="subtitle">청각 정보 입력 – 녹음(마이크)</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>USB 마이크로폰을 사용해서 목소리를 저장한다.</li>
+</ul>
+</div>
+</section>
+<h3 id="목소리-저장-rpi-voice-record">목소리 저장 <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></h3>
+<p>USB 웹캠 혹은 USB 마이크로폰을 장착하고 터미널 윈도우를 연다.</p>
+<pre class="shell"><code>$ arecord /home/pi/voice-record-file.wav -D sysdefault:CARD=1</code></pre>
+<p>상기 명령어를 입력하고 마이크로폰에 녹음을 시작한다. 녹음이 끝나면, 최소 6초 정도 시간을 두고 터미널 윈도우를 닫는다. 그러면 녹음된 것이 <code>voice-record-file.wav</code> 파일에 저장된다.</p>
+<h3 id="목소리-재생">목소리 재생</h3>
+<p><code>voice-record-file.wav</code> 저장된 파일을 재생시킬 경우 <code>omxplayer</code>, 혹은 <code>aplayer</code>를 사용해서 목소리를 재생시킨다.</p>
+<pre class="shell"><code>$ omxplayer -p -o hdmi /home/pi/voice-record-file.wav</code></pre>
+<p>만약, <code>hdmi</code> 단자가 아니고 아날로그 잭에 연결시킨 경우는 <code>-o local</code> 옵션을 주면 된다.</p>
+<pre class="shell"><code>$ omxplayer -p -o local /home/pi/voice-record-file.wav</code></pre>
+<p><code>omxplayer</code> 가 아니고 <code>aplay</code>를 사용해서 오디오를 재생시켜도 된다.</p>
+<pre class="shell"><code>$ amixer cset numid=3 1
+$ aplay /home/pi/voice-record-file.wav</code></pre>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="http://www.instructables.com/id/How-to-Record-Voice-With-USB-Microphone-Then-Play-/">How to record voice with USB microphone then play it on Raspberry Pi 2</a><a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

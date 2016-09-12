@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 라즈베리 파이</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 라즈베리 파이</h1>
+          <h2 class="subtitle">인공지능 준비-TTS(Text-to-Speech)</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>텍스트를 음성으로 변환(Text-to-Speech, TTS)을 이해한다.</li>
+<li><code>HDMI</code> 대신 USB를 지원하는 스피커로 와이어링한다.</li>
+<li>라즈베리파이 리눅스 팩키지를 설정한다.</li>
+</ul>
+</div>
+</section>
+<h3 id="텍스트를-음성으로-변환하는-기능을-사용하는-이유-rpi-tts">텍스트를 음성으로 변환하는 기능을 사용하는 이유 <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></h3>
+<p>문자로 화면 대신에 음성함수(speech function)을 사용하게 되면, LCD 혹은 모니터가 필요하지 않게 된다. 이어폰, MP3 플레이어 스피커, PC 스피커를 사용하여 출력으로 내보내면 된다.</p>
+<p>음성 출력이 필요한 경우는 다음과 같다.</p>
+<ul>
+<li>상태 메시지 전달: 예를 들어, 인터넷 연결되거나 끊어진 경우</li>
+<li>사용자 인터페이스: 예를 들어, RPi 인터넷 라디오로 지정한 채널 혹은 선택한 모드 음성으로 알려줌.</li>
+<li>주기능: 예를 들어, 현재 시간이나 날씨 예보정보를 전달해 준다.</li>
+</ul>
+<h3 id="tts-지원-팩키지-설치">TTS 지원 팩키지 설치</h3>
+<p>음성을 출력시키려면 RPi에 오디오(Audio) 팩키지를 몇개 설치해야 된다. 먼저 라즈비언 배포판을 갱신한다. 경우에 따라서 처음하는 경우 시간이 다소 소요될 수 있다.</p>
+<pre class="shell"><code>sudo apt-get update
+sudo apt-get upgrade</code></pre>
+<p>RPi에 소리관련 팩키지가 설치되지 않았다면, <code>alsa</code> 소리 유틸리티를 설치한다.</p>
+<pre class="shell"><code>sudo apt-get install alsa-utils</code></pre>
+<p><code>etc/modules</code> 파일을 편집해서… <code>snd_bcm2835</code> 행을 추가한다.</p>
+<pre class="shell"><code>sudo nano /etc/modules</code></pre>
+<p><code>etc/modules</code> 파일에 이미 <code>snd_bcm2835</code> 행이 추가된 경우 그냥 넘어간다.</p>
+<p><code>mplayer</code> 오디오/영화 재생기를 설치한다.</p>
+<pre class="shell"><code>sudo apt-get install mplayer</code></pre>
+<p><code>mplayer</code> 오류 메시지를 해결하려면, <code>/etc/mplayer/mplayer.conf</code> 파일을 열어, <code>nolirc=yes</code> 행을 추가한다.</p>
+<pre class="shell"><code>sudo nano /etc/mplayer/mplayer.conf</code></pre>
+<h4 id="festival-tts">1. Festival TTS</h4>
+<p><code>festival</code>은 로봇같은 음성을 낸다. RPi 로봇 프로젝트에 활용하면 좋을 듯 하다.</p>
+<pre class="shell"><code>sudo apt-get install festival</code></pre>
+<p>설치를 한 다음, 다음을 실행해서 테스트한다.</p>
+<pre class="shell"><code>echo “Just what do you think you&#39;re doing, Dave?” | festival --tts</code></pre>
+<p>RPi의 현재 IP주소를 음성으로 출력시킬 수도 있다.</p>
+<pre class="shell"><code>hostname -I | festival --tts</code></pre>
+<h4 id="espeak-tts">2. <code>espeak</code> TTS</h4>
+<p><code>espeak</code>는 <code>festival</code> 보다 최신 음성 합성 팩키지다. 소리가 좀더 깨끗하지만, 다소 울리는 느낌을 준다. 다음 명령어로 <code>espeak</code>를 설치한다.</p>
+<pre class="shell"><code>sudo apt-get install -y espeak</code></pre>
+<p><code>espeak</code>를 다음 명령어로 테스트한다: 영문 여성 목소리, 대문자 강조(<code>-k</code>), 천천히 말하기(<code>-s</code>)를 <code>-</code> 선택옵션으로 사용한다.</p>
+<pre class="shell"><code>espeak -ven+f3 -k5 -s150 &quot;I&#39;ve just picked up a fault in the AE35 unit&quot;</code></pre>
+<h4 id="pico-tts">3. Pico TTS</h4>
+<p>구글 안드로이드 TTS 엔진은 다음과 같이 사용한다.</p>
+<pre class="shell"><code>sudo apt-get install libttspico-utils
+pico2wave -w lookdave.wav &quot;Look Dave, I can see you&#39;re really upset about this.&quot; &amp;&amp; aplay lookdave.wav</code></pre>
+<h4 id="구글-tts-버젼-1">4. 구글 TTS (버젼 1)</h4>
+<p>구글 TTS엔진은 <code>festival</code>, <code>espeak</code>와는 다소 차이가 있다. 음성 파일을 만들어 내기 위해서 텍스트를 구글 클라우드 서버로 보낸다. 결과가 RPi로 되돌아오고, <code>mplayer</code>로 음성을 재생한다. 이것이 의미하는 것은 인터넷에 연결되어야 하는 제약이 있지만, 음성 품질은 아주 좋다.</p>
+<p>구글 TTS 엔진에 접속하는 ax206geek 배쉬 스크립트를 사용해 본다. 먼저 <code>speech.sh</code> 파일을 생성한다.</p>
+<pre class="shell"><code>nano speech.sh</code></pre>
+<p>다음 행을 <code>speech.sh</code> 파일에 추가하고 저장한다.</p>
+<pre class="shell"><code>#!/bin/bash
+say() { local IFS=+;/usr/bin/mplayer -ao alsa -really-quiet -noconsolecontrols &quot;http://translate.google.com/translate_tts?tl=en&amp;q=$*&quot;; }
+say $*</code></pre>
+<p>다른 방법으로 인터넷에 저장된 파일, <a href="http://elinux.org/images/8/87/Speech.sh">speech.sh</a>을 저장한다.</p>
+<p>저장하거나, 편집을 완료한 배쉬 스크립트에 실행권한을 부여한다:</p>
+<pre class="shell"><code>chmod u+x speech.sh</code></pre>
+<p>다음 명령어로 테스트를 해본다.</p>
+<pre class="shell"><code>./speech.sh Look Dave, I can see you&#39;re really upset about this.</code></pre>
+<p>텍스트를 음성으로 변환하는데 구글을 사용할 경우 100 바이트(문자)로 제한이 있다.</p>
+<h4 id="구글-tts-버젼-2-rpi-google-tts">5. 구글 TTS (버젼 2) <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></h4>
+<p><a href="http://en.wikipedia.org/wiki/Speech_synthesis">음성 합성(Speech Synthesis)</a> 기술을 사용하여 좀더 사람에 가까운 인간다운 목소리를 구현할 수 있다.</p>
+<pre class="shell"><code>$ sudo apt-get install mpg123
+$ cd /usr/bin/
+$ sudo apt-get isntall subversion
+$ svn co http://projects.mattdyson.org/projects/speech speech
+$ chmod +x speech/googletts
+$ ln -s speech/googletts
+$ googletts &quot;Hello world, the installation of the text to speech script is now complete&quot;</code></pre>
+<p><code>mpg123</code> 팩키지가 필요하다 구글 번역서비스가 반환하는 MP3 파일을 재생하는데 필요하다. 핵심이 되는 <code>googletts</code> TTS 파일은 <a href="http://projects.mattdyson.org/projects/speech/googletts" class="uri">http://projects.mattdyson.org/projects/speech/googletts</a> 사이트에서 바로 구할 수 있다.</p>
+<h3 id="소리-출력장치-설정-rpi-audio-config">소리 출력장치 설정 <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></h3>
+<p>RPi 소리 출력장치를 기본디폴트설정된 <strong>HDMI</strong> 대신 <strong>헤드폰 오디오 잭</strong> 으로 변경할 경우 다음 명령어를 타이핑한다.</p>
+<ul>
+<li><code>amixer cset numid=3 1</code> : <code>1</code>은 헤드폰 오디오 잭</li>
+<li><code>amixer cset numid=3 2</code> : <code>2</code>는 HDMI</li>
+<li><code>amixer cset numid=3 0</code> : <code>0</code>은 기본디폴트 설정으로 자동</li>
+</ul>
+<pre class="shell"><code>amixer cset numid=3 1</code></pre>
+<p>혹은, <code>raspi-config</code> 명령어를 입력하여 환경설정으로 들어가서, <code>Advanced Options</code> <code>Audio</code> 로 들어가서 헤드폰 오디오 잭 혹은 HDMI로 설정한다.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="http://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis)">RPi Text to Speech (Speech Synthesis)</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a href="http://mattdyson.org/blog/2014/07/text-to-speech-on-a-raspberry-pi-using-google-translate/">Text to Speech on a Raspberry Pi using Google Translate</a><a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p><a href="https://www.raspberrypi.org/documentation/configuration/audio-config.md">AUDIO CONFIGURATION</a><a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

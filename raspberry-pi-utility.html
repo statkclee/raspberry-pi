@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
   <head>
@@ -227,3 +228,248 @@ pi@raspberrypi ~ $ sudo apt-get install epiphany-browser</code></pre>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
   </body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 라즈베리 파이</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 라즈베리 파이</h1>
+          <h2 class="subtitle">RPi 로그인 및 유틸리티</h2>
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>운영체제가 장착된 라즈베리 파이에 세가지 인터페이스로 접속한다.</li>
+<li>콘솔, GUI, 미디어센터 화면을 캡쳐한다.</li>
+<li>동영상, 소리, 웹브라우져 설정한다.</li>
+</ul>
+</div>
+</section>
+<p><img src="fig/raspberry-pi-fullstack-toolchain.png" width="70%" /></p>
+<h3 id="라즈베리-파이에-접근하는-세가지-방법">1. 라즈베리 파이에 접근하는 세가지 방법</h3>
+<p>라즈베리 파이에 접근하는 세가지 방법은 명령라인인터페이스(CLI), 데스크톱(GUI), 웹을 통한 세가지 방법이 있다.</p>
+<h4 id="xrdp-원격-데스크톱-접근">1.1. XRDP 원격 데스크톱 접근</h4>
+<pre class="input"><code># 원격 데스트톱 연결 프로그램 설치 및 설정
+pi@raspberrypi ~ $ sudo apt-get update
+pi@raspberrypi ~ $ sudo apt-get install -y xrdp
+pi@raspberrypi ~ $ sudo service xrdp restart # sudo /etc/init.d/xrdp start 명령어도 가능.</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="center">원격 데스크톱</th>
+<th align="center">승인</th>
+<th align="center">연결 연결된 화면</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><img src="fig/raspberry-pi-mstsc-01.png" width="100%" /></td>
+<td align="center"><img src="fig/raspberry-pi-mstsc-02.png" width="100%" /></td>
+<td align="center"><img src="fig/raspberry-pi-mstsc-connected.png" width="70%" /></td>
+</tr>
+</tbody>
+</table>
+<p>원격 데스크톱 서비스를 이용할 수 있는 다양한 방법이 있다. <a href="http://www.raspians.com/knowledgebase/?knowledgebase=setting-up-a-remote-desktop-view-the-pi-on-your-windows-pc/">Xming</a>, <a href="https://www.raspberrypi.org/documentation/remote-access/vnc/">VNC</a>를 사용하여 <code>mstsc</code> 원격 데스크톱 연결과 같은 효과를 낼 수 있다.</p>
+<h4 id="명령라인-인터페이스-cli를-통한-방법">1.2. 명령라인 인터페이스 CLI를 통한 방법</h4>
+<p>__Git Bash__를 설치하고 콘솔에서 라즈베리 파이 IP를 입력한다. 명령어는 <code>ssh pi@192.168.103.107</code>으로 ssh (보안쉘, Secure Shell)로 <code>192.168.103.107</code> IP를 갖는 호스트 컴퓨터에 <code>pi</code>사용자로 로그인한다. 비밀번호는 <code>raspberry</code>를 입력하면 라즈베리파이에 로그인했다.</p>
+<pre class="input"><code>admin@STATKCLEE /c/pyr-cloudlayer (gh-pages)
+$ ssh pi@192.168.103.107
+pi@192.168.103.107&#39;s password:
+Linux raspberrypi 3.18.11-v7+ #781 SMP PREEMPT Tue Apr 21 18:07:59 BST 2015 armv7l
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Thu Jul 30 16:59:13 2015 from 192.168.103.125
+pi@raspberrypi ~ $</code></pre>
+<h4 id="웹-인터페이스를-통한-방법">1.3. 웹 인터페이스를 통한 방법</h4>
+<p>라즈베리파이를 웹서버로 만들기 위해서 아파치 웹서버를 설치한다. <code>sudo apt-get install -y apache2</code> 명령어를 콘솔에서 입력하면 아파치 웹서버가 설치되어 웹브라우져를 통해 라즈베리파이에 접근할 수 있다.</p>
+<pre class="input"><code>pi@raspberrypi ~ $ sudo apt-get install -y apache2</code></pre>
+<p><code>/var/www/</code> 폴더에 <code>index.html</code> 파일을 수정하거나 개발된 웹서비스를 웹서비스 제공 디렉토리에 저장하면 된다.</p>
+<p><img src="fig/raspberry-pi-webserver.png" width="70%" /></p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h3 id="리눅스-혹은-맥에서-ssh-로그인"><span class="glyphicon glyphicon-pushpin"></span>리눅스 혹은 맥에서 SSH 로그인</h3>
+</div>
+<div class="panel-body">
+<p>리눅스와 맥에서 <code>ssh</code> 로그인 하는 경우 먼저 <code>hostname -I</code> 명령어를 통해 IP 주소를 확인하고 이를 확인해서 <code>ssh pi@&lt;IP주소&gt;</code> 방식으로 로그인한다.</p>
+<p>RPi 터미널에서 확인한 사항</p>
+<pre class="shell"><code>pi@raspberrypi:~ $ hostname -I
+192.168.0.11</code></pre>
+<p>리눅스 혹은 맥 터미널에서 확인된 RPi IP주소, <code>192.168.0.11</code> 입력하여 로그인한다.</p>
+<pre class="shell"><code>$ ssh pi@192.168.0.11 
+pi@192.168.0.11&#39;s password: </code></pre>
+</div>
+</aside>
+<h3 id="화면-캡쳐">2. 화면 캡쳐</h3>
+<h4 id="명령라인-인터페이스-화면-캡쳐">2.1. 명령라인 인터페이스 화면 캡쳐</h4>
+<p>라즈베리 파이 명령라인 인터페이스(CLI)를 쓰게 되면 터미널 콘솔에 찍히는 색깔이 검은색 바탕에 흰색이 아니고, 사용자명/호스트 컴퓨터명/현재 디렉토리/파일과 디렉토리에 시각정보를 입혀서 보기 좋게 표현한다. 이런 화면을 잡아낼 때 사용하는 것이 <strong>fbgrab</strong> 이다.</p>
+<p><strong>fbgrab 설치 및 실행 명령어</strong> <code>sudo apt-get install fbgrab</code> 명령어를 넣어 설치하고, <code>sudo fbgrab screenshot.png</code> 와 같이 타이핑하면 콘솔화면이 저장된다. <code>ssh</code>를 통해 원격으로 접속해서 해당 명령어를 입력한 경우 원격 접속한 터미널 화면이 캡쳐되는 것이 아니라 라즈베리 파이에서 돌고 있는 해당 화면이 직접 캡쳐된다.</p>
+<p><img src="fig/raspberry-pi-fbgrab.png" width="50%" /></p>
+<p>참조: <a href="http://echo.tistory.com/45">[라즈베리파이 기초] (6) 콘솔 화면 캡쳐</a></p>
+<h4 id="화면-캡쳐한-것-가져오기">2.2. 화면 캡쳐한 것 가져오기</h4>
+<p>라즈베리 파이 하드웨어에 미디어센터 OSMC를 올린 사례를 살펴보자. OSMC는 오픈일렉(OpenElec)과 달리 sftp, scp 등을 지원한다. 이러한 기능을 통해서 OSMC 에서 캡쳐한 파일을 가져다가 편집등 작업을 할 수 있다.</p>
+<ol style="list-style-type: decimal">
+<li>라즈베리 파이 OSMC 미디어 센터 화면 캡쳐하는 방법
+<ul>
+<li>단축키 <code>Ctrl + S</code>를 눌러 설정한다. (주의: 처음 <code>Ctrl+S</code>를 누르면 캡쳐한 파일을 저장할 디렉토리 지정하라고 안내가 나옴)</li>
+<li><a href="https://github.com/AndrewFromMelbourne/raspi2png">raspi2png</a> 프로그램으로 화면 캡쳐함.</li>
+</ul></li>
+<li>라즈베리 파이 OSMC 캡쳐된 파일 로컬 컴퓨터로 복사해서 가져오는 방법
+<ul>
+<li><a href="https://filezilla-project.org/">filezilla</a>, <a href="http://winscp.net/eng/docs/lang:ko">Winscp</a> 등등 <a href="https://ko.wikipedia.org/wiki/파일_전송_프로토콜">파일전송프로토콜(FTP)</a> 프로그램을 사용해서 가져온다.</li>
+<li>명령라인 인터페이스 <code>sftp</code>를 통해 원격 컴퓨터에 접속해서 <code>get</code> 명령어로 해당 파일을 가져온다.</li>
+<li><code>scp</code> 명령어를 통해서 원격 컴퓨터(OSMC 라즈베리 파이)에서 복사해서 가져온다. -. 윈도우 환경에서 <strong>bash</strong> 명령어를 사용하기 위해서는 <a href="https://msysgit.github.io/">Git Bash</a>를 설치해서 가져온다.
+<ul>
+<li>git 대몬을 다음 명령어로 띄운다. <code>git daemon --base-path=. --export-all</code></li>
+<li>새로운 창을 열고 <code>scp -r osmc@192.168.103.130:~/snapshot.png winsnapshot.png</code> 명령어처럼 192.168.103.130 호스트에 <code>osmc</code> 사용자로 로그인해서 <code>~/</code> 디렉토리에 <code>snapshot.png</code> 파일을 복사해서 로컬 컴퓨터에 <code>winsnapshot.png</code> 이름으로 가져온다.</li>
+</ul></li>
+</ul></li>
+</ol>
+<p><img src="fig/raspberry-pi-screenshot-scp.png" width="70%" /></p>
+<p><code>raspi2png</code> 프로그램의 실행파일은 <code>git clone</code> 명령어로 복제한 디렉토리 <em>raspi2png</em> <strong>아래 raspi2png</strong> 이다. 프로그램이 설치된 디렉토리로 들어가서 <code>./raspi2png</code> 명령어를 실행하면 snapshot.png 파일이 자동 생성된다.</p>
+<pre class="input"><code>osmc@osmc:~/raspi2png$ sudo passwd root
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+root@osmc:/home/osmc# git clone https://github.com/AndrewFromMelbourne/raspi2png.git
+root@osmc:/home/osmc# cd raspi2png/
+root@osmc:/home/osmc/raspi2png# ls
+LICENSE  Makefile  README.md  raspi2png  raspi2png.c
+root@osmc:/home/osmc/raspi2png# ./raspi2png
+root@osmc:/home/osmc/raspi2png# ls
+LICENSE  Makefile  README.md  raspi2png  raspi2png.c  snapshot.png</code></pre>
+<p><img src="fig/raspberry-pi-snapshot.png" width="50%" /></p>
+<p>참조: <a href="http://echo.tistory.com/48">[라즈베리파이 기초] (7) 라즈베리파이 스크린샷 끝!!</a></p>
+<h3 id="인터넷">4. 인터넷</h3>
+<p>에피퍼니(epiphany) 웹브라우져가 현재 라즈비언에는 기본으로 설치되어 있다. 만약, 다른 웹브라우져 설치를 원한다면, <a href="http://computers.tutsplus.com/articles/how-to-install-alternative-web-browsers-on-the-raspberry-pi--mac-60717">How to Install Alternative Web Browsers on the Raspberry Pi</a> 웹사이트를 참조한다. GUI 뿐만 아니라 Lynx같은 CLI 기반 다양한 웹브라우져가 있다.</p>
+<ul>
+<li>Midori</li>
+<li>NetSurf</li>
+<li>Dillo</li>
+<li>Lynx</li>
+<li>Luakit</li>
+<li>크롬(Chromium) : <code>sudo apt-get install chromium</code></li>
+<li>얼음쪽제미(Iceweasel), 불여우(Firefox): <code>sudo apt-get install iceweasel</code>
+<ul>
+<li>불여우를 여러 이유로 사용할 수 없어 포크해서 동일한 웹브라우져로 이름은 얼음쪽제비로 작명하고 라즈베리 파이에서 사용하게 함.</li>
+</ul></li>
+</ul>
+<pre class="input"><code>pi@raspberrypi ~ $ sudo apt-get update
+pi@raspberrypi ~ $ sudo apt-get dist-upgrade
+pi@raspberrypi ~ $ sudo apt-get install epiphany-browser</code></pre>
+<h3 id="동영상">5. 동영상</h3>
+<h4 id="라즈베리-파이-소리-설정">5.1. 라즈베리 파이 소리 설정</h4>
+<p><a href="https://www.raspberrypi.org/documentation/configuration/audio-config.md">Audio Configuration</a>을 참조한다.</p>
+<p>라즈비언은 <em>고급 리눅스 음향 아키텍쳐 (Advanced Linux Sound Architecture, ALSA)</em>를 사용한다. <code>aplay</code> 명령어로 테스트할 수 있다.</p>
+<pre class="input"><code>$ aplay /usr/share/scratch/Media/Sounds/Human/PartyNoise.wav</code></pre>
+<p>소리는 디폴트 기본설정으로 HDMI 를 사용한다. 만약 라즈베리 파이에 설치된 아날로그 잭을 통해서 소리를 내보내려면 <code>sudo raspi-config</code> 에서 <code>Advanced Options</code> → <code>Audio</code> → <code>Force 3.5mm(headphone) jack</code> 을 선택한다.</p>
+<pre class="input"><code>$ alsamixer</code></pre>
+<p><code>alsamixer</code> 명령어를 통해서 음향을 화살표 위아래로 조정한다.</p>
+<p>라즈베리 파이 USB 오디오 장치를 이용해서도 소리를 들을 수 있다.</p>
+<pre class="input"><code>$  sudo nano /etc/modprobe.d/alsa-base.conf</code></pre>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">options snd-usb-audio index=-2</td>
+<td align="center">&amp;rarra;</td>
+<td align="left">options snd-usb-audio index=0</td>
+</tr>
+</tbody>
+</table>
+<p><code>alsa-base.conf</code> 출력 장치를 위와 같이 변경하고 저장하고 나서 재시작하면 USB 오디오 장치가 디폴트 출력장치로 변경된다.</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h4 id="라즈베리-파이-음악-프로젝트"><span class="glyphicon glyphicon-pushpin"></span>라즈베리 파이 음악 프로젝트</h4>
+</div>
+<div class="panel-body">
+<ul>
+<li><a href="https://ccrma.stanford.edu/~eberdahl/Satellite/">Satellite CCRMA</a>
+<ul>
+<li><a href="https://ccrma.stanford.edu/~eberdahl/Papers/NIME2011SatelliteCCRMA.pdf">Satellite CCRMA: A Musical Interaction and Sound Synthesis Platform (2011)</a></li>
+<li><a href="https://ccrma.stanford.edu/~eberdahl/Papers/NIME2013SatelliteCCRMA.pdf">Embedded Networking and Hardware-Accelerated Graphics with Satellite CCRMA(2013)</a></li>
+<li><a href="https://ccrma.stanford.edu/~eberdahl/Papers/NIME2014EmbeddedAcousticInstruments.pdf">How to Make Embedded Acoustic Instruments(2014)</a></li>
+</ul></li>
+<li><a href="https://volumio.org/">Volumio</a>는 <a href="http://www.raspyfi.com/">RaspyFi</a>에서 진화한 오디오 애호가를 위한 음악재생기다.</li>
+<li><a href="https://www.raspberrypi.org/blog/pi-synthesisers/">PI Synthesisers</a></li>
+</ul>
+</div>
+</aside>
+<h4 id="라즈베리-파이에서-유튜브-동영상-감사">5.2. 라즈베리 파이에서 유튜브 동영상 감사</h4>
+<ol style="list-style-type: decimal">
+<li>에피퍼니 웹브라우져를 연다.</li>
+<li><a href="https://www.youtube.com/html5">YouTube HTML5 동영상 플레이어</a> 웹사이트에 접속한다.</li>
+<li>유튜브 동영상을 <code>HTML5 동영상 플레이어</code>로 설정한다.</li>
+</ol>
+<p><a href="http://raspberrypi.stackexchange.com/questions/13955/watch-youtube-in-browser-with-raspbian">Watch YouTube in Browser with Raspbian</a>참조</p>
+<h3 id="미디어센터-셋톱박스">6. 미디어센터 (셋톱박스)</h3>
+<p>미디어 콘텐츠 소비에 최적화 된 미디어센터는 기존 <a href="http://www.raspbmc.com/index.html">RaspBMC</a>를 거쳐 현재는 <a href="https://osmc.tv/">OSMC</a>로 진화되었다. 라즈베리파이 NOOBS에 포함된 (네트워크 설치) 미디어센터로 <a href="http://kodi.tv/">Kodi, 이전 XBMC로 불림</a> 다양한 미디어 콘텐츠를 라즈베리 파이에서 경험할 수 있다. OSMC를 설치하는 방법은 크게 인터넷에 연결된 NOOBS에서 설치하는 방법과 <a href="https://osmc.tv/">OSMC</a> 웹사이트에서 포맷된 USB(마이크로SD)에 설치하는 방법으로 크게 나눌 수 있다.</p>
+<p>자세한 사항은 <a href="08-raspberry-pi-os.html">라즈베리 파이 활용</a>을 참조한다.</p>
+<h3 id="펌웨어-갱신하기">7. 펌웨어 갱신하기</h3>
+<p>일부 라즈베리 파이 펌웨어(firmware)가 SD카드에 저장되어 있고 부팅할 때 관여를 한다. 인터넷이 연결된 라즈베리 파이에서 <code>sudo rpi-update</code> 명령어를 통해서 펌웨어를 최신버젼으로 갱신한다.</p>
+<p>현재 라즈베리 파이 펌웨어 정보는 <code>vcgencmd version</code> 명령어로 확인한다.</p>
+<pre class="input"><code>$ vcgencmd version</code></pre>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h4 id="왜-우분투ubuntu-배포판이-라즈베리-파이-운영체제가-아닐까"><span class="glyphicon glyphicon-pushpin"></span>왜 우분투(Ubuntu) 배포판이 라즈베리 파이 운영체제가 아닐까?</h4>
+</div>
+<div class="panel-body">
+<p>라즈베리 파이 재단에서 처음에 우분투를 검토했으나 우분투가 ARMv7 이상만 지원하기 때문에 라즈비언 배포판을 별도로 개발했다. 하지만, 아치 리눅스는 ARM기반 컴퓨터를 목표로 개발되서 라즈베리 파이에서도 이용가능하다.</p>
+</div>
+</aside>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
+>>>>>>> d196d4a288b194ef01b3e4796fa8e43d57b33e3a

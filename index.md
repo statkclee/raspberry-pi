@@ -20,7 +20,7 @@ title: xwMOOC 라즈베리 파이
     - [데비안 라즈비언(Raspbian) 운영체제](raspberry-pi-raspbian.html) 
     - [라즈베리 파이 게임](raspberry-pi-game.html) 
     - [라즈베리파이 응용프로그램](raspberry-pi-app.html)
-    - [라즈베리파이 응용프로그램 유틸리티](raspberry-pi-utility.html)
+    - [RPi 로그인 및 유틸리티](raspberry-pi-utility.html)
     - [라즈베리파이 서버](raspberry-pi-server.html)
 1.  [라즈베리 파이 프로그래밍](raspberry-pi-programming.html)    
     - [과학기술 파이썬 툴체인](raspberry-pi-programming-science.html)
@@ -60,6 +60,15 @@ title: xwMOOC 라즈베리 파이
         - [드론 개발(아두이노)](iot-drone-arduino.html)
         - [아치 리눅스](raspberry-pi-arch.html)        
 1. **사물인터넷(IoT)**
+    - [인공지능 준비](rpi-ai.html)
+        1. [라즈베리파이 인공지능 -- 아마존 알렉사](rpi-alexa.html)    
+        1. **시각정보**  
+            * [웹캠(WebCam)](rpi-webcam.html)
+            * [광학 문자 판독기 -- (Optical Character Reader, OCR)](rpi-ocr.html)
+        1. **청각정보**  
+            * [청각 정보 출력 -- 스피커](rpi-audio-play.html)  
+                - [텍스트를 음성으로 변환 -- TTS(Text-to-Speech)](rpi-tts.html)  
+            * [청각 정보 입력 -- 녹음(마이크)](rpi-audio-record.html)
     - [개발환경 WebIDE](iot-webide.html)
     - [시리얼 통신(UART)](iot-serial.html)    
     - [센서(Sensor)](sensor.html)            
