@@ -4,35 +4,35 @@
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
     <title>Software Carpentry: R 파이썬 소프트레이어 클라우드, xwMOOC</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
-    <link rel="stylesheet" type="text/css" href="css/swc.css" />
-    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
-    <meta charset="UTF-8" />
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-59802572-7', 'auto');
-      ga('send', 'pageview');
-    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
     </script>
   </head>
   <body class="lesson">
     <div class="container card">
-      <div class="banner">
-        <a href="http://xwmooc.net" title="xwMOOC">
-          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
-        </a>
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
       </div>
       <article>
       <div class="row">
@@ -41,7 +41,7 @@
           <h2 class="subtitle">라즈비언 운영체제 (데비안, Debian)</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -58,75 +58,75 @@
 <thead>
 <tr class="header">
 <th align="center">구분</th>
-<th align="left">RPi 1 모델 A</th>
-<th align="left">RPi 1 모델 B</th>
-<th align="left">RPi 1모델 B+</th>
-<th align="left">RPi 2 모델 B</th>
+<th>RPi 1 모델 A</th>
+<th>RPi 1 모델 B</th>
+<th>RPi 1모델 B+</th>
+<th>RPi 2 모델 B</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="center">사진</td>
-<td align="left"><img src="fig/raspberry-pi-model-A.jpg" width="200%" /></td>
-<td align="left"><img src="fig/raspberry-pi-model-B.jpg" width="100%" /></td>
-<td align="left"><img src="fig/raspberry-pi-model-B-plus.jpg" width="50%" /></td>
-<td align="left"><img src="fig/raspberry-pi-2-model-B.jpg" width="50%" /></td>
+<td><img src="fig/raspberry-pi-model-A.jpg" width="200%" /></td>
+<td><img src="fig/raspberry-pi-model-B.jpg" width="100%" /></td>
+<td><img src="fig/raspberry-pi-model-B-plus.jpg" width="50%" /></td>
+<td><img src="fig/raspberry-pi-2-model-B.jpg" width="50%" /></td>
 </tr>
 <tr class="even">
 <td align="center">SOC(System-on-Chip)</td>
-<td align="left">BCM2835</td>
-<td align="left">BCM2835</td>
-<td align="left">BCM2835</td>
-<td align="left">BCM2836</td>
+<td>BCM2835</td>
+<td>BCM2835</td>
+<td>BCM2835</td>
+<td>BCM2836</td>
 </tr>
 <tr class="odd">
 <td align="center">GPU</td>
-<td align="left">브로드컴 VideoCore IV</td>
-<td align="left">브로드컴 VideoCore IV</td>
-<td align="left">브로드컴 VideoCore IV</td>
-<td align="left">브로드컴 VideoCore IV</td>
+<td>브로드컴 VideoCore IV</td>
+<td>브로드컴 VideoCore IV</td>
+<td>브로드컴 VideoCore IV</td>
+<td>브로드컴 VideoCore IV</td>
 </tr>
 <tr class="even">
 <td align="center">CPU</td>
-<td align="left">ARM11 700 MHz</td>
-<td align="left">ARM11 700 MHz</td>
-<td align="left">ARM11 700 MHz</td>
-<td align="left">ARM Cortex A7 900 MHz</td>
+<td>ARM11 700 MHz</td>
+<td>ARM11 700 MHz</td>
+<td>ARM11 700 MHz</td>
+<td>ARM Cortex A7 900 MHz</td>
 </tr>
 <tr class="odd">
 <td align="center">주기억장치</td>
-<td align="left">256 MB</td>
-<td align="left">512 MB</td>
-<td align="left">512 MB</td>
-<td align="left">1 GB</td>
+<td>256 MB</td>
+<td>512 MB</td>
+<td>512 MB</td>
+<td>1 GB</td>
 </tr>
 <tr class="even">
 <td align="center">USB 포트</td>
-<td align="left">1</td>
-<td align="left">2</td>
-<td align="left">4</td>
-<td align="left">4</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>4</td>
 </tr>
 <tr class="odd">
 <td align="center">이더넷 포트</td>
-<td align="left">0</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
 </tr>
 <tr class="even">
 <td align="center">가격</td>
-<td align="left">$25</td>
-<td align="left">$35</td>
-<td align="left">$35</td>
-<td align="left">$35</td>
+<td>$25</td>
+<td>$35</td>
+<td>$35</td>
+<td>$35</td>
 </tr>
 <tr class="odd">
 <td align="center">전력</td>
-<td align="left">300 mA (5V)</td>
-<td align="left">700 mA (5V)</td>
-<td align="left">600 mA (5V)</td>
-<td align="left">800 mA (5V)</td>
+<td>300 mA (5V)</td>
+<td>700 mA (5V)</td>
+<td>600 mA (5V)</td>
+<td>800 mA (5V)</td>
 </tr>
 </tbody>
 </table>
@@ -146,7 +146,8 @@
 <li>1~3 단계는 SoC 제조사인 브로드컴이 소스코드를 공개하지 않고 칩에 넣거나 컴파일한 바이너리 파일을 배포한다.</li>
 </ul></li>
 <li><strong>리눅스 커널(Linux Kernel)</strong> : 리눅스 커널을 키보드에서 올라온 정보를 화면에 출력하는 역할처럼 라즈베리 파이 하드웨어와 응용프로그램을 연결하는데 모두 관여한다. 새로운 하드웨어가 나오면 리눅스 커널이 존재를 인지하고 사용하는 방법을 알아야 응용프로그램에서 사용할 수 있게 지원한다. USB, HDMI, 이더넷 포트 모두 꽂으면 동작할 수 있게 하는 것도 리눅스 커널의 역할이다. 커널 적재가 끝나면 자동으로 <code>init</code> 프로그램을 호출해서 라즈베리 하드웨어 초기화를 종료하고 나서, 나머지 프로그램 (데몬, 그래픽사용자 인터페이스)을 순차적으로 올리게 한다.</li>
-<li><strong>데몬(Daemons)</strong> : 데몬은 서로 다른 기능을 담당하는 소프트웨어로 조용히 뒤에 떠있다. <code>cron</code>, <code>autofs</code> 를 예로 들 수 있는데, <code>crontab</code> 은 조용히 떠있다 정해진 시간이 되면 자동으로 소프트웨어를 실행하는 역할을 담당하고, <code>autofs</code>는 USB 같은 이동식 디스크 장비를 마운트시키는 역할을 한다.<br /></li>
+<li><strong>데몬(Daemons)</strong> : 데몬은 서로 다른 기능을 담당하는 소프트웨어로 조용히 뒤에 떠있다. <code>cron</code>, <code>autofs</code> 를 예로 들 수 있는데, <code>crontab</code> 은 조용히 떠있다 정해진 시간이 되면 자동으로 소프트웨어를 실행하는 역할을 담당하고, <code>autofs</code>는 USB 같은 이동식 디스크 장비를 마운트시키는 역할을 한다.<br />
+</li>
 <li><strong>쉘(Shell)/쉘 유틸리티(Shell Utility)</strong> : 라지비언은 배쉬(bash) 쉘을 사용하는데, 스트립트를 사용해서 작업 자동화를 쉽게 해준다. 예를 들어, 프로그램을 실행, 키보드 입력 받고, 출력 내보내기 등이 여기에 포함된다. 쉘 유틸리티는 파일 복사, 디렉토리 생성, 팩키지 관리(APT, Advanced Packaging Tool) 등 좀더 큰 단위 작업을 지원한다.</li>
 <li><strong>X.Org 그래픽 서버</strong> : X.Org 역할은 마우스 포인터 이동을 포함한 모든 그래픽 사용자 인터페이스에 대한 구성요소를 제공한다.</li>
 <li><strong>데스크톱 환경(Desktop Environment)</strong> : X.Org 가 적재되면, 마이크로소프트 윈도우 환경과 마찬가지로 데스크톱 환경에서 인터넷 검색, 동영상 감상 등 다양한 작업을 직관적이고 쉽게할 수 있도록 지원한다. 라즈베리 파이에 특화된 데스크톱 환경이 LXDE (Lightweight X11 Desktop Environment)다.</li>
@@ -155,72 +156,76 @@
 <h4 id="파일-시스템">2.1. 파일 시스템</h4>
 <p>파일 시스템(file system, 문화어: 파일체계)은 컴퓨터에서 파일이나 자료를 쉽게 발견 및 접근할 수 있도록 보관 또는 조직하는 체제를 말하는데, 리눅스는 모든 것을 파일 시스템 계층 구조를 가지고 관리한다. 즉, 루트 디렉토리 <code>/</code> 밑으로 리눅스의 모든 파일과 디바이스는 계층 구조를 갖는다. <a href="http://www.linuxfoundation.org/collaborate/workgroups/lsb/fhs">Filesystem Hierarchy Standard, FHS</a>, <a href="https://ko.wikipedia.org/wiki/파일시스템_계층구조_표준">파일시스템 계층구조 표준</a>에 따라 리눅스의 모든 정보는 파일로 관리되고, 파일이 아닌 것은 프로세스다.</p>
 <table>
+<colgroup>
+<col width="23%" />
+<col width="76%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="center">디렉토리 명칭</th>
-<th align="left">설명</th>
+<th>설명</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="center">/</td>
-<td align="left">기본 계층 모든 파일 시스템 계층의 기본인 루트 디렉토리</td>
+<td>기본 계층 모든 파일 시스템 계층의 기본인 루트 디렉토리</td>
 </tr>
 <tr class="even">
 <td align="center">/bin/</td>
-<td align="left">모든 사용자를 위해 단일 사용자 모드에서 사용 가능해야 하는 명령어 바이너리, 예를 들면, cat, ls, cp.</td>
+<td>모든 사용자를 위해 단일 사용자 모드에서 사용 가능해야 하는 명령어 바이너리, 예를 들면, cat, ls, cp.</td>
 </tr>
 <tr class="odd">
 <td align="center">/boot/</td>
-<td align="left">부트 로더 파일, 예를 들면, kernels, initrd. 흔히 별개의 파티션에 놓는다.</td>
+<td>부트 로더 파일, 예를 들면, kernels, initrd. 흔히 별개의 파티션에 놓는다.</td>
 </tr>
 <tr class="even">
 <td align="center">/dev/</td>
-<td align="left">라즈베리 파이에 부착되는 모든 장치는 여기에서 이용가능하다, 예를 들면 /dev/null, /dev/sda1</td>
+<td>라즈베리 파이에 부착되는 모든 장치는 여기에서 이용가능하다, 예를 들면 /dev/null, /dev/sda1</td>
 </tr>
 <tr class="odd">
 <td align="center">/etc/</td>
-<td align="left">소프트웨어 팩키지에 대한 설정 파일. 예를 들면, /etc/opt/, /etc/X11, /etc/xml/</td>
+<td>소프트웨어 팩키지에 대한 설정 파일. 예를 들면, /etc/opt/, /etc/X11, /etc/xml/</td>
 </tr>
 <tr class="even">
 <td align="center">/home/</td>
-<td align="left">저장된 파일, 개인 설정, 기타 등을 포함한 사용자의 홈 디렉토리.</td>
+<td>저장된 파일, 개인 설정, 기타 등을 포함한 사용자의 홈 디렉토리.</td>
 </tr>
 <tr class="odd">
 <td align="center">/lib/</td>
-<td align="left">/bin/과 /sbin/에 있는 바이너리에 필요한 라이브러리, 해당 폴더에 확장자 <code>.so</code>를 갖는다.</td>
+<td>/bin/과 /sbin/에 있는 바이너리에 필요한 라이브러리, 해당 폴더에 확장자 <code>.so</code>를 갖는다.</td>
 </tr>
 <tr class="even">
 <td align="center">/media/, /mnt/</td>
-<td align="left">CD-ROM과 같은 이동식 미디어의 마운트 지점, 임시로 마운트된 파일 시스템</td>
+<td>CD-ROM과 같은 이동식 미디어의 마운트 지점, 임시로 마운트된 파일 시스템</td>
 </tr>
 <tr class="odd">
 <td align="center">/opt/</td>
-<td align="left">라즈비언에 디폴트 기본설치되지 않는, 선택 가능한 응용 소프트웨어 패키지.</td>
+<td>라즈비언에 디폴트 기본설치되지 않는, 선택 가능한 응용 소프트웨어 패키지.</td>
 </tr>
 <tr class="even">
 <td align="center">/proc /</td>
-<td align="left">/proc 폴더의 모든 파일은 특수한 파일로, 커널에 환경정보와 다양한 통계정보에 접근할 수 있게 한다.</td>
+<td>/proc 폴더의 모든 파일은 특수한 파일로, 커널에 환경정보와 다양한 통계정보에 접근할 수 있게 한다.</td>
 </tr>
 <tr class="odd">
 <td align="center">/root /</td>
-<td align="left">루트 사용자의 홈 디렉토리.</td>
+<td>루트 사용자의 홈 디렉토리.</td>
 </tr>
 <tr class="even">
 <td align="center">/sbin /</td>
-<td align="left">필수 시스템 바이너리, 예를 들면, init, ip, mount.</td>
+<td>필수 시스템 바이너리, 예를 들면, init, ip, mount.</td>
 </tr>
 <tr class="odd">
 <td align="center">/tmp /</td>
-<td align="left">임시 파일 (/var/tmp 참고). 시스템이 재부팅되면 보존되지 않는 경우가 흔하다.</td>
+<td>임시 파일 (/var/tmp 참고). 시스템이 재부팅되면 보존되지 않는 경우가 흔하다.</td>
 </tr>
 <tr class="even">
 <td align="center">/usr /</td>
-<td align="left">읽기 전용 사용자 데이터가 있는 보조 계층 구조. 주요 (다중) 사용자의 유틸리티와 애플리케이션을 포함하고 있다.</td>
+<td>읽기 전용 사용자 데이터가 있는 보조 계층 구조. 주요 (다중) 사용자의 유틸리티와 애플리케이션을 포함하고 있다.</td>
 </tr>
 <tr class="odd">
 <td align="center">/var /</td>
-<td align="left">일반적인 시스템의 운영 체제에서 내용이 자주 바뀔 듯한 파일, 변하기 쉬운 파일 로그, 스풀 파일, 임시전자 우편 파일 등.</td>
+<td>일반적인 시스템의 운영 체제에서 내용이 자주 바뀔 듯한 파일, 변하기 쉬운 파일 로그, 스풀 파일, 임시전자 우편 파일 등.</td>
 </tr>
 </tbody>
 </table>
@@ -296,7 +301,7 @@ iface wlan0 inet dhcp
 <p>이외에도 소스 파일을 받아서 컴파일해서 설치하는 방식도 있고, Aptitude, RPM, dpkg 등 다양한 방식이 있다.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-pushpin"></span>팩키지 CRUD</h4>
+<h4 id="팩키지-crud"><span class="glyphicon glyphicon-pushpin"></span>팩키지 CRUD</h4>
 </div>
 <div class="panel-body">
 <p>팩키지는 설치, 사용(읽기), 갱신, 삭제의 생애주기를 갖는다. - Create: 설치 및 생성 - Read: 읽기 및 사용 - Update: 갱신 - Delete: 제거 및 삭제</p>
@@ -319,15 +324,15 @@ iface wlan0 inet dhcp
         </div>
       </div>
       </article>
-      <div class="footer">
-        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
-        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
-        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
-        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
       </div>
     </div>
-    <!-- Javascript placed at the end of the document so the pages load faster -->
-    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
   </body>
 </html>

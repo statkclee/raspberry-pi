@@ -4,35 +4,35 @@
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
     <title>Software Carpentry: xwMOOC 컴퓨터</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
-    <link rel="stylesheet" type="text/css" href="css/swc.css" />
-    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
-    <meta charset="UTF-8" />
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-59802572-7', 'auto');
-      ga('send', 'pageview');
-    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
     </script>
   </head>
   <body class="lesson">
     <div class="container card">
-      <div class="banner">
-        <a href="http://xwmooc.net" title="xwMOOC">
-          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
-        </a>
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
       </div>
       <article>
       <div class="row">
@@ -41,7 +41,7 @@
           <h2 class="subtitle">(로봇) 센서</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -88,32 +88,32 @@
 <p><strong><a href="http://pyserial.sourceforge.net/pyserial.html">PySerial</a></strong>을 사용해서도 거리 정보를 확인할 수 있다.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h3><span class="glyphicon glyphicon-pushpin"></span>소리를 이용한 거리 측정 공식</h3>
+<h3 id="소리를-이용한-거리-측정-공식"><span class="glyphicon glyphicon-pushpin"></span>소리를 이용한 거리 측정 공식</h3>
 </div>
 <div class="panel-body">
 <p>소리가 이동하는 거리 = 공기중 음속 (343.6 (미터/초))* 소리가 이동한 시간 <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
 </div>
 </aside>
 <p><img src="fig/sensor-ultrasnoic.png" width="77%" /></p>
-<p><code>Sharp GP2D12</code> 센서는 적외선 IR 광선과 삼각법을 사용한다는 점에서 차이가 있다. 또한 <code>GP2D12</code>는 감지 범위가 10cm 에서 최대 80cm까지 제약이 있다. 적외선 IR센서 좌측에서 적외선이 방출되고 이를 IR 수신기가 받아들이게 된다. 거리 공식은 <span class="math"><em>사</em><em>정</em><em>거</em><em>리</em> = (6787/(<em>전</em><em>압</em> − 3)) − 4</span>, 여기서 전압(Volt)는 ADC에서 나온 아날로그 전압이다.</p>
-<pre class="sourceCode python"><code class="sourceCode python">
-<span class="dt">int</span> IR_SENSOR = <span class="dv">18</span>; // Sensor is connected to the analog A3
-<span class="dt">int</span> intSensorResult = <span class="dv">0</span>; //Sensor result
-<span class="dt">float</span> fltSensorCalc = <span class="dv">0</span>; //Calculated value
+<p><code>Sharp GP2D12</code> 센서는 적외선 IR 광선과 삼각법을 사용한다는 점에서 차이가 있다. 또한 <code>GP2D12</code>는 감지 범위가 10cm 에서 최대 80cm까지 제약이 있다. 적외선 IR센서 좌측에서 적외선이 방출되고 이를 IR 수신기가 받아들이게 된다. 거리 공식은 <span class="math inline"><em>사</em><em>정</em><em>거</em><em>리</em> = (6787/(<em>전</em><em>압</em> − 3)) − 4</span>, 여기서 전압(Volt)는 ADC에서 나온 아날로그 전압이다.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="bu">int</span> IR_SENSOR <span class="op">=</span> <span class="dv">18</span><span class="op">;</span> <span class="op">//</span> Sensor <span class="op">is</span> connected to the analog A3
+<span class="bu">int</span> intSensorResult <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="op">//</span>Sensor result
+<span class="bu">float</span> fltSensorCalc <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="op">//</span>Calculated value
 
 void setup(){
-Serial.begin(<span class="dv">115200</span>); // Setup communication <span class="kw">with</span> computer to present results serial monitor
+Serial.begin(<span class="dv">115200</span>)<span class="op">;</span> <span class="op">//</span> Setup communication <span class="cf">with</span> computer to present results serial monitor
 }
 
 void loop(){
-// read the value <span class="ch">from</span> the ir sensor
-intSensorResult = analogRead(IR_SENSOR); //Get sensor value
-fltSensorCalc = (<span class="fl">6787.0</span> / (intSensorResult - <span class="fl">3.0</span>)) - <span class="fl">4.0</span>; //Calculate distance in cm
+<span class="op">//</span> read the value <span class="im">from</span> the ir sensor
+intSensorResult <span class="op">=</span> analogRead(IR_SENSOR)<span class="op">;</span> <span class="op">//</span>Get sensor value
+fltSensorCalc <span class="op">=</span> (<span class="fl">6787.0</span> <span class="op">/</span> (intSensorResult <span class="op">-</span> <span class="fl">3.0</span>)) <span class="op">-</span> <span class="fl">4.0</span><span class="op">;</span> <span class="op">//</span>Calculate distance <span class="op">in</span> cm
 
-Serial.<span class="dt">print</span>(fltSensorCalc); //Send distance to computer
-Serial.println(<span class="st">&quot; cm&quot;</span>); //Add cm to result
-delay(<span class="dv">200</span>); //Wait
-}</code></pre>
+Serial.<span class="bu">print</span>(fltSensorCalc)<span class="op">;</span> <span class="op">//</span>Send distance to computer
+Serial.println(<span class="st">&quot; cm&quot;</span>)<span class="op">;</span> <span class="op">//</span>Add cm to result
+delay(<span class="dv">200</span>)<span class="op">;</span> <span class="op">//</span>Wait
+}</code></pre></div>
 <p>적외선 센서를 사용할 경우 몇가지 제약이 있다.</p>
 <ul>
 <li>햇빛에 영향을 받아 야외에서 사용하기 쉽지 않다.</li>
@@ -129,15 +129,15 @@ delay(<span class="dv">200</span>); //Wait
         </div>
       </div>
       </article>
-      <div class="footer">
-        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
-        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
-        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
-        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
       </div>
     </div>
-    <!-- Javascript placed at the end of the document so the pages load faster -->
-    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
   </body>
 </html>

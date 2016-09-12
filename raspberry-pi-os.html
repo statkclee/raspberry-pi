@@ -81,49 +81,44 @@
 <h4 id="다양한-리눅스-배포판"><span class="glyphicon glyphicon-pushpin"></span>다양한 리눅스 배포판</h4>
 </div>
 <div class="panel-body">
-<table style="width:53%;">
-<colgroup>
-<col width="15%" />
-<col width="12%" />
-<col width="25%" />
-</colgroup>
+<table>
 <thead>
 <tr class="header">
 <th align="center">리눅스 배포판</th>
-<th align="left">명 칭</th>
-<th align="left">활용분야</th>
+<th>명 칭</th>
+<th>활용분야</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="center"><img src="fig/linux-ubuntu-logo.png" width="20%" /></td>
-<td align="left">우분투</td>
-<td align="left">사용하기 편한 개인용 컴퓨터(데스크톱, 노트북) 및 서버</td>
+<td>우분투</td>
+<td>사용하기 편한 개인용 컴퓨터(데스크톱, 노트북) 및 서버</td>
 </tr>
 <tr class="even">
 <td align="center"><img src="fig/linux-redhat-logo.png" width="10%" /></td>
-<td align="left">레드햇</td>
-<td align="left">금융 등 기업 대상 상업용</td>
+<td>레드햇</td>
+<td>금융 등 기업 대상 상업용</td>
 </tr>
 <tr class="odd">
 <td align="center"><img src="fig/linux-coreos-logo.png" width="10%" /></td>
-<td align="left">코어OS</td>
-<td align="left">클라우드 분산 컴퓨팅 환경 컨테이너 배포</td>
+<td>코어OS</td>
+<td>클라우드 분산 컴퓨팅 환경 컨테이너 배포</td>
 </tr>
 <tr class="even">
 <td align="center"><img src="fig/linux-mintos-logo.png" width="15%" /></td>
-<td align="left">민트OS</td>
-<td align="left">우분투를 기반으로 좀더 사용하기 쉽고 시각적으로 보기 좋은 환경</td>
+<td>민트OS</td>
+<td>우분투를 기반으로 좀더 사용하기 쉽고 시각적으로 보기 좋은 환경</td>
 </tr>
 <tr class="odd">
 <td align="center"><img src="fig/linux-lubuntu-logo.png" width="15%" /></td>
-<td align="left">루부투</td>
-<td align="left">LXDE와 Ubuntu 합성어로 우분투 기반 유니티 대신 LXDE를 사용하고 &gt; 저성능 컴퓨터용으로 설계</td>
+<td>루부투</td>
+<td>LXDE와 Ubuntu 합성어로 우분투 기반 유니티 대신 LXDE를 사용하고 &gt; 저성능 컴퓨터용으로 설계</td>
 </tr>
 <tr class="even">
 <td align="center"><img src="fig/linux-debian-logo.png" width="15%" /></td>
-<td align="left">데비안</td>
-<td align="left">안정성과 높은 신뢰성을 갖지만 출시 주기가 길다</td>
+<td>데비안</td>
+<td>안정성과 높은 신뢰성을 갖지만 출시 주기가 길다</td>
 </tr>
 </tbody>
 </table>
@@ -224,20 +219,16 @@ pi@raspberrypi ~ $ sudo nano /etc/default/keyboard</code></pre>
 <h4 id="osmc">2.1. OSMC</h4>
 <p><a href="https://osmc.tv/">OSMC, 이전 RaspBMC</a>는 라즈베리파이 NOOBS에 포함된 (네트워크 설치) 미디어센터로 <a href="http://kodi.tv/">Kodi, 이전 XBMC로 불림</a> 다양한 미디어 콘텐츠를 라즈베리 파이에 경험할 수 있다. OSMC를 설치하는 방법은 크게 인터넷에 연결된 NOOBS에서 설치하는 방법과 <a href="https://osmc.tv/">OSMC</a> 웹사이트에서 포맷된 USB(마이크로SD)에 설치하는 방법으로 크게 나눌 수 있다.</p>
 <h5 id="osmc-두가지-설치방법">2.1.1. OSMC 두가지 설치방법</h5>
-<table style="width:71%;">
-<colgroup>
-<col width="19%" />
-<col width="51%" />
-</colgroup>
+<table>
 <thead>
 <tr class="header">
-<th align="left">NOOBS</th>
+<th>NOOBS</th>
 <th align="center"><a href="https://osmc.tv/download/">OSMC 다운로드</a></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><img src="fig/raspberry-pi-osmc-install.png" width="70%" /></td>
+<td><img src="fig/raspberry-pi-osmc-install.png" width="70%" /></td>
 <td align="center"><img src="fig/raspberry-pi-osmc-pc-install.png" width="70%" /></td>
 </tr>
 </tbody>
@@ -278,20 +269,16 @@ root@osmc:~# sudo apt-get install -y fonts-nanum fonts-nanum-coding fonts-nanum-
 root@osmc:~# nano /usr/share/kodi/addons/skin.osmc/16x9/Font.xml
 root@osmc:~# reboot</code></pre>
 <p>다시 재부팅하고 나서, OSMC 초기화면에서 <code>Settings</code> → <code>Appearance</code> → <code>Language</code> 에서 <code>Korean</code>을 선택하면 모든 설정이 끝난다. 그러면 OSMC 영문을 OSMC 한글로 볼 수 있게 된다.</p>
-<table style="width:71%;">
-<colgroup>
-<col width="19%" />
-<col width="51%" />
-</colgroup>
+<table>
 <thead>
 <tr class="header">
-<th align="left">OSMC 영문</th>
+<th>OSMC 영문</th>
 <th align="center">OSMC 한글</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><img src="fig/raspberry-pi-osmc-english.png" width="50%" /></td>
+<td><img src="fig/raspberry-pi-osmc-english.png" width="50%" /></td>
 <td align="center"><img src="fig/raspberry-pi-osmc-hangul.png" width="100%" /></td>
 </tr>
 </tbody>
@@ -428,15 +415,11 @@ OpenELEC:~ #</code></pre>
 <li>라즈베리파이에 SD카드를 끼워넣고 설치 작업을 완료한다.</li>
 </ol>
 <p>참조: <a href="http://blog.petrockblock.com/retropie/retropie-downloads/retropie-sd-card-image-for-raspberry-pi-2/">RetroPie SD-card Image for Raspberry Pi 2 Version 2.6</a></p>
-<table style="width:38%;">
-<colgroup>
-<col width="5%" />
-<col width="31%" />
-</colgroup>
+<table>
 <tbody>
 <tr class="odd">
-<td align="left"><img src="fig/raspberry-pi-retro-menu.png" width="70%" /></td>
-<td align="left"><img src="fig/raspberry-pi-retro-quake.png" width="100%" /></td>
+<td><img src="fig/raspberry-pi-retro-menu.png" width="70%" /></td>
+<td><img src="fig/raspberry-pi-retro-quake.png" width="100%" /></td>
 </tr>
 </tbody>
 </table>
@@ -457,15 +440,11 @@ OpenELEC:~ #</code></pre>
 </ul></li>
 <li>라즈베리파이에 SD카드를 끼워넣고 설치 작업을 완료한다.</li>
 </ol>
-<table style="width:38%;">
-<colgroup>
-<col width="5%" />
-<col width="31%" />
-</colgroup>
+<table>
 <tbody>
 <tr class="odd">
-<td align="left"><img src="fig/raspberry-pi-piplay-menu.png" width="70%" /></td>
-<td align="left"><img src="fig/raspberry-pi-piplay-loading.png" width="70%" /></td>
+<td><img src="fig/raspberry-pi-piplay-menu.png" width="70%" /></td>
+<td><img src="fig/raspberry-pi-piplay-loading.png" width="70%" /></td>
 </tr>
 </tbody>
 </table>

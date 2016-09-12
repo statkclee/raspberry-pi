@@ -4,35 +4,35 @@
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
     <title>Software Carpentry: xwMOOC 컴퓨터</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
-    <link rel="stylesheet" type="text/css" href="css/swc.css" />
-    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
-    <meta charset="UTF-8" />
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-59802572-7', 'auto');
-      ga('send', 'pageview');
-    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
     </script>
   </head>
   <body class="lesson">
     <div class="container card">
-      <div class="banner">
-        <a href="http://xwmooc.net" title="xwMOOC">
-          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
-        </a>
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
       </div>
       <article>
       <div class="row">
@@ -41,7 +41,7 @@
           <h2 class="subtitle">라즈베리파이로 할 수 있는 것들</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -55,7 +55,8 @@
 <h3 id="라즈베리-파이로-할-수-있는-것들">2. 라즈베리 파이로 할 수 있는 것들</h3>
 <p>라즈베리 파이에 운영체제를 올리게 되면 그 운영체제에 맞는 다양한 응용프로그램을 통해서 다양한 작업을 수행할 수 있다.</p>
 <div class="figure">
-<img src="fig/iot-raspberry-pi-what-to-to.png" alt="라즈베리 파이로 할 수 있는 것들" /><p class="caption">라즈베리 파이로 할 수 있는 것들</p>
+<img src="fig/iot-raspberry-pi-what-to-to.png" alt="라즈베리 파이로 할 수 있는 것들" />
+<p class="caption">라즈베리 파이로 할 수 있는 것들</p>
 </div>
 <p>라즈베리 파이 하드웨어를 갖게되면 다양한 소프트웨어를 설치해서 글을 작성하고, 계산을 하고, 발표 준비를 하고, 데이터관리 등 오피스 작업을 수행할 수 있고, 인터넷을 사용해서 정보를 찾고 다양한 SNS 서비스를 사용하고, 미디어센터를 활용하여 고급 멀티미디어 감상도 가능하다. 라즈베리 파이에 설치되어 있는 게임도 즐길 수 있으면, 직접 마인크래프트 게임을 만들 수도 있다.</p>
 <p>파이썬과 스크래치가 기본으로 설치되어 있어 별도 설정없이도 소프트웨어 개발이 가능하고, 라즈베리 파이가 갖고 있는 GPIO를 활용하여 사물인터넷 IoT 개발도 가능하다.</p>
@@ -64,7 +65,7 @@
 <p><img src="fig/raspberry-pi-overview.png" width="70%" /></p>
 <section class="prereq panel panel-warning">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-education"></span>라즈베리 파이 구성</h4>
+<h4 id="라즈베리-파이-구성"><span class="glyphicon glyphicon-education"></span>라즈베리 파이 구성</h4>
 </div>
 <div class="panel-body">
 <ul>
@@ -105,7 +106,7 @@ pi@raspberrypi ~ $ sudo reboot</code></pre>
 <p>두가지 방법 모두 장단점이 있지만, 수천 수만명의 엔지니어링 시간이 투입된 소프트웨어를 가져다 사용하는 것이 본인이 맨처음부터 작성하는 것보다 더 효과적인 경우가 많다. 예를 들어, 자동차 운전의 필수품, 내비를 생각해 보자. 원하는 것은 _가_지점에서 _나_지점으로 이동하는 것인데 경우의 수는 상당히 많게 된다. 고속도로를 탈 수도 있고, 지방국도를 이용할 수도 있고, 안전을 생각해 우회할 수도 있고 다양한 방법이 존재한다. 이를 본인 직접 프로그램을 하는 것도 좋은데 타인이나 회사가 개발해 놓은 내비게이션(Navigation) 소프트웨어를 설치해 활용하는 것도 좋은 대안 중에 하나가 된다. 경우에 따라서는 _가_지점에서 _나_지점까지 본인이 처음에 생각지도 못한 기막히 길을 소프트웨어가 알려주기도 한다.</p>
 <section class="prereq panel panel-warning">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-education"></span>라즈베리 파이에 소프트웨어 설치 방법</h4>
+<h4 id="라즈베리-파이에-소프트웨어-설치-방법"><span class="glyphicon glyphicon-education"></span>라즈베리 파이에 소프트웨어 설치 방법</h4>
 </div>
 <div class="panel-body">
 <ol style="list-style-type: decimal">
@@ -125,15 +126,15 @@ pi@raspberrypi ~ $ sudo reboot</code></pre>
         </div>
       </div>
       </article>
-      <div class="footer">
-        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
-        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
-        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
-        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
       </div>
     </div>
-    <!-- Javascript placed at the end of the document so the pages load faster -->
-    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
   </body>
 </html>

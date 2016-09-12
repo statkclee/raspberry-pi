@@ -4,35 +4,35 @@
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
     <title>Software Carpentry: xwMOOC 컴퓨터</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
-    <link rel="stylesheet" type="text/css" href="css/swc.css" />
-    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
-    <meta charset="UTF-8" />
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-59802572-7', 'auto');
-      ga('send', 'pageview');
-    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
     </script>
   </head>
   <body class="lesson">
     <div class="container card">
-      <div class="banner">
-        <a href="http://xwmooc.net" title="xwMOOC">
-          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
-        </a>
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
       </div>
       <article>
       <div class="row">
@@ -41,7 +41,7 @@
           <h2 class="subtitle">윈도우 가상 개발환경 구축</h2>
 <section class="objectives panel panel-warning">
 <div class="panel-heading">
-<h3><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
 </div>
 <div class="panel-body">
 <ul>
@@ -59,7 +59,8 @@
 <li>가상상자에 다운로드 받은 우분투 14.04 버젼을 설치한다.
 <ul>
 <li>가상상자를 실행하고 <code>새로 만들기(N)</code>를 클릭한다.</li>
-<li>가상상자 명칭을 <code>ubuntu</code>로 정하고 기본설정값을 따라 설정을 완료하면 <code>ubuntu</code> 전원 꺼짐 상태로 가상상자 하나가 생성된다.<br /></li>
+<li>가상상자 명칭을 <code>ubuntu</code>로 정하고 기본설정값을 따라 설정을 완료하면 <code>ubuntu</code> 전원 꺼짐 상태로 가상상자 하나가 생성된다.<br />
+</li>
 </ul></li>
 <li><code>ubuntu</code> 가상상자를 우클릭 <code>설정</code>으로 들어가고 대화상자에서 <code>어댑터 1</code> <code>브리지 어댑터</code>를 선택하고 저장한다.</li>
 <li>다시 <code>ubuntu</code> 가상상자를 우클릭하고 <code>시작(T)</code>를 눌러 다운로드 받은 우분투 이미지를 선택한다.</li>
@@ -70,7 +71,7 @@
 </ol>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-pushpin"></span>우분투 <code>ssh</code> 원격 로그인</h4>
+<h4 id="우분투-ssh-원격-로그인"><span class="glyphicon glyphicon-pushpin"></span>우분투 <code>ssh</code> 원격 로그인</h4>
 </div>
 <div class="panel-body">
 <p>기본 설치된 우분투 이미지에는 <code>ssh</code> 서비스가 제공되지 않아서 필히 <code>sudo apt-get install -y openssh-server</code> 명령어로 설치를 해야 원격작업을 할 수 있게 된다.</p>
@@ -115,7 +116,7 @@ xwmooc@xwmooc-VirtualBox:~$</code></pre>
 <p><a href="https://www.vagrantup.com/downloads.html">부랑자 다운로드</a> 웹사이트에서 소프트웨어는 다운로드 받으면 된다.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h4><span class="glyphicon glyphicon-pushpin"></span>다양한 부랑자 공개 박스</h4>
+<h4 id="다양한-부랑자-공개-박스"><span class="glyphicon glyphicon-pushpin"></span>다양한 부랑자 공개 박스</h4>
 </div>
 <div class="panel-body">
 <ul>
@@ -149,7 +150,7 @@ $ vagrant ssh</code></pre>
 <li><code>vagrant ssh</code>를 통해 배쉬쉘 접속한다.</li>
 </ul>
 <h4 id="빅데이터-스파크spark-가상-컴퓨터-설치">2.2. 빅데이터 스파크(Spark) 가상 컴퓨터 설치</h4>
-<p><a href="https://github.com/">GitHub</a>에 공개된 버츄얼박스 <a href="https://spark.apache.org/">아파치 스파트(Spark)</a> 이미지를 다운로드 받아 실습해본다. <a href="https://github.com/spark-mooc/mooc-setup/archive/master.zip">https://github.com/spark-mooc/mooc-setup/archive/master.zip</a> 파일을 다운로드한다.</p>
+<p><a href="https://github.com/">GitHub</a>에 공개된 버츄얼박스 <a href="https://spark.apache.org/">아파치 스파트(Spark)</a> 이미지를 다운로드 받아 실습해본다. <a href="https://github.com/spark-mooc/mooc-setup/archive/master.zip" class="uri">https://github.com/spark-mooc/mooc-setup/archive/master.zip</a> 파일을 다운로드한다.</p>
 <pre class="input"><code>[xwmooc:~/spark ] $ wget https://github.com/spark-mooc/mooc-setup/archive/master.zip^C
 [xwmooc:~/spark ] $ unzip master.zip 
 [xwmooc:~/spark ] $ wget http://nbviewer.ipython.org/github/spark-mooc/mooc-setup/blob/master/lab0_student.ipynb
@@ -261,15 +262,15 @@ Encryption:     disabled</code></pre>
         </div>
       </div>
       </article>
-      <div class="footer">
-        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
-        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
-        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
-        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
       </div>
     </div>
-    <!-- Javascript placed at the end of the document so the pages load faster -->
-    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
     <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
   </body>
 </html>
