@@ -76,6 +76,8 @@ title: xwMOOC 라즈베리 파이
     - [웹서비스](iot-webservice.html)
     - [R 개발 및 배포 환경](iot-rstudio-shiny.html)
     - [API 데이터 분석](http://statkclee.github.io/web-data-python/)
+1. **라즈베리파이 프로젝트**
+    - [기상청 날씨](rpi-weather-station.html)
 
 ## [컴퓨터 과학 언플러그드](http://unplugged.xwmooc.org/)
 
