@@ -43,6 +43,7 @@ title: xwMOOC 라즈베리 파이
         - [마인크래프트 설치](rpi-minecarft-install.html)
         - [파이썬 프로그래밍](rpi-minecraft-python.html)
         - [두더지 잡기 게임 만들기](https://www.raspberrypi.org/learning/minecraft-whac-a-block-game/)
+        - [R 마인크래프트](r-minecraft.html)
     - [파이카메라(picamera) 시작](rpi-picam.html)        
 1. **xwMOOC 오픈 컴퓨터**
     1.  [$100 달러 오픈 컴퓨터](100-computer.html)  
@@ -77,7 +78,7 @@ title: xwMOOC 라즈베리 파이
     - [R 개발 및 배포 환경](iot-rstudio-shiny.html)
     - [API 데이터 분석](http://statkclee.github.io/web-data-python/)
 1. **라즈베리파이 프로젝트**
-    - [기상청 날씨](rpi-weather-station.html)
+    - [우리집 날씨와 기상청 날씨](rpi-weather-station.html)
 
 ## [컴퓨터 과학 언플러그드](http://unplugged.xwmooc.org/)
 
