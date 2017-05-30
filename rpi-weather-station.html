@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: xwMOOC 라즈베리 파이</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">xwMOOC 라즈베리 파이</h1>
+          
+<section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h3 id="학습-목표"><span class="glyphicon glyphicon-certificate"></span>학습 목표</h3>
+</div>
+<div class="panel-body">
+<ul>
+<li>기상청에서 받아보던 날씨 정보를 직접 확인해보자.</li>
+</ul>
+</div>
+</section>
+<h2 id="라즈베리파이-생태계">라즈베리파이 생태계</h2>
+<p>기상청에서 받아보던 날씨 정보를 직접 나만의 기상시설을 만들어 보자. 기상청 예보 및 현재 기상 정보는 양질의 기상정보를 생산하기 위해서 숙련된 고급 전문인력과 축적된 경험과 데이터, 그리고 최첨단 장비가 유기적으로 결합되어 있고 이렇게 생산된 정보를 방송과 통신을 통해 대중에게 전달되는 과정을 거치게 된다.</p>
+<p>하지만, 개인적으로 생각해보면 혹은 경험으로 보면 나하고 아무상관없는 정보가 될 수도 있다. 왜냐하면 내주변에 기상관측시설이 있어 그 정보를 바탕으로 날씨정보가 생산된다면 좋겠지만, 현실은 그렇지 못하다. 대한민국 모든 시민들의 날씨정보를 충족시킬 수 있기 위해서는 거의 모든 곳에 고가의 기상 관측 센서를 설치하고 실시간으로 뿜어내는 대량의 데이터를 처리하고 이를 날씨 예측모형에 넣어 예보해야 하는데 그것이 그렇게 간단한 것은 아니다.</p>
+<p>이에, 나만의 날씨정보를 만들어 낼 수 있도록 가그마한 기상대를 만들어 보자.</p>
+<p><img src="fig/weather_concept_architecture.png" alt="날씨 개념 아키텍쳐" width="77%" /></p>
+<p>나만의 기상대를 만들때 필요한 것은 센서, 날씨 정보 처리장치, 출력 및 표현 방법이 필요하다.</p>
+<ul>
+<li>센서: 감각모자(라즈베리파이 재단), GrovePi(덱스터)</li>
+<li>날씨 정보 처리장치 : 라즈베리파이</li>
+<li>출력 및 표현: 파이썬 <code>matplotlib</code></li>
+</ul>
+<h2 id="날씨현황-감지">날씨현황 감지</h2>
+<p>가장 먼저 날씨현황을 감지해야 하는데 여러가지 방법이 있지만 굳이 값비싼 기상정보 수집을 위한 기기를 갖추지 않고도 외부에서 관측하여 처리한 정보를 실시간으로 바로 받아오는 방법도 가능하다. 즉 API를 활용하여 날씨정보를 바로 받아오는 것이다.</p>
+<p>외부 웹 날씨 API를 사용하지 않고 가능한 다른 방식은 직접 기기를 설치해서 측정하고 데이터를 가공하여 적절한 날씨 정보로 변환하여 활용하는 방법이다. 이를 위해서 라즈베리파이 재단에서 제공하는 감각모자(SenseHAT), 덱스터(Dexter Industries)에서 제공하는 <code>GrovePi</code>를 활용한다.</p>
+<h3 id="웹-api-rpi-web-api">웹 API [^rpi-web-api]</h3>
+<p>오라클에서 자금을 내어 아주 간단한 기상장비가 설치되면 각 기상장비에서 측정된 정보가 오라클로 넘어가고 오라클에서는 이를 잘 정제하여 웹API REST 형태로 데이터를 제공한다. 자세한 사항은 <a href="https://www.raspberrypi.org/education/weather-station/faqs/">RASPBERRY PI ORACLE WEATHER STATION FAQS</a>를 참조한다.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">센서명(영문)</th>
+<th align="left">센서명 (국문)</th>
+<th align="left">목적</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Rain gauge</td>
+<td align="left">강우</td>
+<td align="left">밀리미터 단위로 강우량 측정</td>
+</tr>
+<tr class="even">
+<td align="left">Anemometer</td>
+<td align="left">풍량</td>
+<td align="left">시간당 킬로미터 단위로 바람속도 측정</td>
+</tr>
+<tr class="odd">
+<td align="left">Weathervane</td>
+<td align="left">풍향</td>
+<td align="left">각도 단위로 바람의 방향 측정</td>
+</tr>
+<tr class="even">
+<td align="left">Soil temperature probe</td>
+<td align="left">토양온도</td>
+<td align="left">섭씨 단위로 토양 온도 측정</td>
+</tr>
+<tr class="odd">
+<td align="left">Temperature sensor</td>
+<td align="left">온도센서</td>
+<td align="left">섭씨 단위로 공기온도 측정</td>
+</tr>
+<tr class="even">
+<td align="left">Humidity sensor</td>
+<td align="left">습도센서</td>
+<td align="left">공기중의 함유된 상대습도를 측정</td>
+</tr>
+<tr class="odd">
+<td align="left">Pressure sensor</td>
+<td align="left">기압센서</td>
+<td align="left">파스칼 단위로 대기압을 측정</td>
+</tr>
+<tr class="even">
+<td align="left">Air quality sensor</td>
+<td align="left">공기질</td>
+<td align="left">상대퍼센티지로 공기질 측정</td>
+</tr>
+</tbody>
+</table>
+<p><img src="fig/rpi-weather-oracle-api.png" alt="오라클 REST API" width="55%" /></p>
+<p>오라클에서 제공하는 REST API에 맞춰 데이터를 불러와서 파싱한 후에 온도와 시간만 뽑아 데이터를 저정하고 나서, 온도변화를 시각화한다.</p>
+<p>``` {python rip-weather-webapi} from requests import get import matplotlib.pyplot as plt from dateutil import parser</p>
+<p>url = ‘https://apex.oracle.com/pls/apex/raspberrypi/weatherstation/getallmeasurements/490722’</p>
+<p>weather = get(url).json() data = weather[‘items’]</p>
+<p>while ‘next’ in weather: url = weather[‘next’][‘$ref’] print(‘fetching {0}’.format(url)) weather = get(url).json() data += weather[‘items’]</p>
+<p>temperatures = [record[‘ambient_temp’] for record in data] timestamps = [parser.parse(record[‘reading_timestamp’]) for record in data]</p>
+<p>plt.plot(timestamps, temperatures) #plt.xlim(min(timestamps),max(timestamps)) plt.show() ```</p>
+<h3 id="웹-api-rpi-web-api-1">웹 API [^rpi-web-api]</h3>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
