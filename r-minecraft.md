@@ -1,28 +1,7 @@
----
-layout: page
-title: xwMOOC 데이터과학
-subtitle: R 마인크래프트
-output:
-  html_document: 
-    keep_md: yes
-    toc: yes
-  pdf_document:
-    latex_engine: xelatex
-mainfont: NanumGothic
----
+# xwMOOC 데이터과학
 
 
-```{r, include=FALSE}
-source("tools/chunk-options.R") 
-library(tidyverse)
-library(extrafont)
-library(gridExtra)
-library(fpp)
-library(ggthemes)
-library(xts)
-library(tidyquant)
-library(DT)
-```
+
 
 ## 1. R 마인크래프트
 
@@ -110,14 +89,15 @@ R에서 API를 통해 마인크래프트에 접속하는 것은 초딩도 한다
 `miner` 팩키지를 설치하고 나서, `mc_connect("127.0.0.1")` 명령어를 통해 로컬 컴퓨터에 접속한다.
 그리고 `chatPost` 명령어를 통해 채팅을 통해 헬로월드를 통해 R코드를 마인크래프트에 정상적으로 전송할 수 있음을 확인한다.
 
-``` {r minecraft-helloworld, eval=FALSE}
+
+~~~{.r}
 devtools::install_github('ropenscilabs/miner')
 
 library(miner)
 mc_connect("127.0.0.1")
 
 chatPost("안녕하세요...")
-```
+~~~
 
 <img src="fig/minecraft-hello-world.png" alt="마인크래프트 헬로월드" width="77%" />
 
@@ -127,7 +107,8 @@ chatPost("안녕하세요...")
 예제 코드를 가져와서 R 로고를 두가지 색상으로 이미지를 줄여 조정한 후에 for 루프를 돌려 블록을 놓아 
 R로고를 마인크래프트에 생성시킨다.
 
-``` {r minecraft-rlogo, eval=FALSE}
+
+~~~{.r}
 # 0. 환경설정
 library(miner)
 library(imager)
@@ -172,7 +153,7 @@ for(i in 1:nrow(logo)) {
                gray[2], gray[3])
   }
 }
-```
+~~~
 
 <img src="fig/minecraft-rlogo.png" alt="마인크래프트 R로고" width="77%" />
 
