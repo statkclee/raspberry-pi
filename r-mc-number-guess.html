@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: </title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-59802572-7', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://xwmooc.net" title="xwMOOC">
+          <img alt="xwMOOC banner" src="img/xwMOOC.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title"></h1>
+          
+<h1 id="xwmooc-데이터과학">xwMOOC 데이터과학</h1>
+<h2 id="숫자-맞추기-문제-개요-micraft-chatbot">숫자 맞추기 문제 개요 <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></h2>
+<p>마인크래프트 챗봇이 숫자를 내면 플레이어가 숫자를 맞추는 문제다. 물론 가장 적은 횟수로 문제를 맞춰야 한다.</p>
+<ol style="list-style-type: decimal">
+<li>마인크래프트 서버가 1 에서 100 사이 숫자를 난수로 하나 생성시킨다.</li>
+<li>플레이어가 서버가 낸 숫자를 맞춘다.</li>
+<li>한번에 맞출 확률이 당근 <span class="math inline">$\frac {1} {100}$</span> 확률이기 때문에 서버가 플레이어가 숫자를 맞추도록 추가 정보를 채팅창을 통해 제공한다.
+<ul>
+<li>채팅창에 플레이어가 숫자를 맞추면 프로그램은 종료된다.</li>
+<li>숫자가 플레이어가 제시한 숫자보다 큰지 적은지 정보를 채팅창을 통해 제공한다.</li>
+</ul></li>
+</ol>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h3 id="마인크래프트-채팅-단축키"><span class="glyphicon glyphicon-pushpin"></span>마인크래프트 채팅 단축키</h3>
+</div>
+<div class="panel-body">
+<p>마인크래프트 채팅창에 메시지를 입력하는 방법은 키보드에서 <code>t</code> 키를 누르면 된다. 한글이 눌러진 상태에서 채팅창 활성화를 위해 <code>t</code> 키를 누리지 않도록 주의한다.</p>
+</div>
+</aside>
+<h2 id="r-마인크래프트-코드">R 마인크래프트 코드</h2>
+<p>균등분포에서 0과 1사이 숫자를 하나 생성하고 이를 <code>number</code>로 저장하고 <code>chatPost</code>를 통해 챗팅 숫자 문제 맞추기를 시작한다.</p>
+<p>숫자를 맞출 때까지 <code>while</code> 루프를 돌린다. 채팅창에 숫자를 입력하게 되면 입력된 숫자가 서버가 생성시킨 <code>number</code>와 같은지 확인한다. 만약 맞추지 못한다면 추가적인 정보를 제공하서 다시 채팅창에 숫자를 맞추도록 정보를 제공한다. 그리고 숫자를 맞추게 되면 프로그램을 종료시킨다.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 0. 환경설정 ------------------------------</span>
+<span class="kw">library</span>(miner)
+<span class="kw">mc_connect</span>(<span class="st">&quot;127.0.0.1&quot;</span>)
+
+<span class="co"># 1. 숫자생성 ------------------------------</span>
+
+number &lt;-<span class="st"> </span><span class="kw">ceiling</span>(<span class="kw">runif</span>(<span class="dv">1</span>) *<span class="st"> </span><span class="dv">100</span>)
+<span class="kw">chatPost</span>(<span class="st">&quot;저는 챗봇입니다. 1 에서 100사이 숫자를 하나 골랐습니다. 그 숫자를 맞춰보세요. t키를 눌러 챗팅 윈도우에 답하세요.&quot;</span>)
+
+<span class="co"># 2. 숫자맞추기 ------------------------------</span>
+
+while (<span class="ot">TRUE</span>) {
+  
+  ## 가장 최근 챗팅 메시지가 있는지 폴링
+  msg &lt;-<span class="st"> </span><span class="kw">getChatPosts</span>()
+  
+  ## 마지막 폴링이후 메시지가 없다면 아무일도 수행하지 않음.
+  if (<span class="kw">nrow</span>(msg) &gt;<span class="st"> </span><span class="dv">0</span>) {
+    
+    ## 모든 메시지에 대해 반복 돌림.
+    for (msgi in <span class="kw">seq_len</span>(<span class="kw">nrow</span>(msg))) {
+      
+      ## 메시지가 숫자인지 확인
+      numi &lt;-<span class="st"> </span><span class="kw">suppressWarnings</span>(<span class="kw">as.numeric</span>(<span class="kw">as.character</span>(msg[msgi, <span class="st">&#39;message&#39;</span>])))
+      if (!<span class="kw">is.na</span>(numi)) {
+        
+        ## 숫자 비교
+        if (number ==<span class="st"> </span>numi) {
+          <span class="kw">chatPost</span>(<span class="st">&#39;훌륭합니다. 맞췄습니다!!!&#39;</span>)
+        } else {
+          <span class="kw">chatPost</span>(<span class="kw">sprintf</span>(<span class="st">&quot;아니요, 숫자는 %s 보다 %s 다시 맞춰보세요!&quot;</span>,
+                           numi, <span class="kw">ifelse</span>(numi &gt;<span class="st"> </span>number, <span class="st">&#39;작아요.&#39;</span>, <span class="st">&#39;큽니다.&#39;</span>)))
+        }
+        
+      }
+    }
+  }
+}</code></pre></div>
+<p><img src="fig/minecraft-number-guess.png" alt="마인크래프트 숫자 맞추기" width="77%" /></p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://ropenscilabs.github.io/miner_book/number-guess-chat-bot-in-minecraft.html">umber-guess chat bot in Minecraft</a><a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://xwmooc.net">xwMOOC</a>
+        <a class="label swc-blue-bg" href="https://github.com/statkclee/raspberry-pi">Source</a>
+        <a class="label swc-blue-bg" href="mailto:i@xwmooc.net">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
