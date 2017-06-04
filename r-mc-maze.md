@@ -22,6 +22,7 @@
 # 0. 환경설정 ----------------------------------------------
 # devtools::install_github('Vessy/Rmaze')
 library(Rmaze)
+library(miner)
 
 # 1. 미로 예제 ---------------------------------------------
 # Rmaze::runExample()
@@ -85,3 +86,89 @@ plotMazeSolution(rb_maze, n, n)
 ~~~
 
 <img src="fig/minecraft-r-maze-algorithm-4.png" style="display: block; margin: auto;" />
+
+## 2. 마인크래프트 미로
+
+미로를 마인크래프트 내부에 구현하기 위해서 다음 단계를 걸쳐 미로를 생성시킨다.
+
+1. 미로 크기 템플릿 생성
+1. 미로를 데이터프레임에 변환시켜 저장
+1. setBlock() 함수로 미로를 생성
+
+
+~~~{.r}
+# 1. 마인크래프트 서버 접속 ---------------------------------------------
+
+mc_connect("127.0.0.1")
+
+# 2. 마인크래프트 미로 생성 -----------------------------------
+
+## 2.1. 마인크래프트 미로 템플릿 ------------------------------
+df <- matrix(NA, nrow = n*4, ncol = n*4)
+
+df[c(1, nrow(df)), ] <- 1
+df[, c(1, nrow(df))] <- 1
+
+df[1, ncol(df) - 1:2] <- NA
+df[nrow(df), 2:3] <- NA
+
+## 2.2. 미로를 데이터프레임에 변환하여 저장 ------------------------------
+
+library(igraph)
+maze_df <- as_data_frame(rb_maze)
+library(data.table)
+setDT(maze_df)
+
+for (v in c('from', 'to')) {
+  maze_df[, (paste0(v, 'x')) := as.numeric(sub('A_([0-9]*)_[0-9]*', '\\1', get(v)))]
+  maze_df[, (paste0(v, 'y')) := as.numeric(sub('A_[0-9]*_([0-9]*)', '\\1', get(v)))]
+}
+
+maze_df[fromx < tox, direction := 'top']
+maze_df[fromy < toy, direction := 'right']
+
+maze_df[, x := nrow(df) - fromx * 4 + 3 - as.numeric(direction == 'top') * 2]
+maze_df[, y := fromy * 4 - 1 + as.numeric(direction == 'right') * 2]
+
+for (i in seq_len(nrow(maze_df))) {
+  cell <- maze_df[i]
+  if (cell$wall == 'ON') {
+    df[cell$x + -1:0, cell$y + -1:0] <- 1
+  }
+  if (cell$direction == 'top' & cell$wall == 'ON') {
+    df[cell$x - 0:1, cell$y - 1:2] <- 2
+  }
+  if (cell$direction == 'right' & cell$wall == 'ON') {
+    df[cell$x - 2:3, cell$y - 0:1] <- 3
+  }
+}
+
+## 2.3. 미로를 마인크래트에 생성 ------------------------------
+nr <- dim(df)[1]
+nc <- dim(df)[2]
+
+setPlayerPos(1, 80,1)
+## 미로를 위한 공간 생성
+setBlocks(1, 80, 1, nr, 54, nc, 0)
+## 밑바닥 생성
+setBlocks(1, 79, 1, nr, 50, nc, 57)
+## 미로 덮개
+setBlocks(1, 84, 1, nr, 54, nc, 95)
+## 플레이어가 돌아다닐 수 있는 키크기 블록 3개 생성
+for (i in 1:nrow(df)) {
+  for (j in 1:ncol(df)) {
+    if (!is.na(df[i, j])) {
+      setBlock(i, 81, j, 41)
+      setBlock(i, 82, j, 41)
+      setBlock(i, 83, j, 41)
+    }
+  }
+}
+~~~
+
+위에서 내려다본 미로와 미로내부에 들어가서 본 모습은 다음과 같다.
+
+| | |
+|-|-|
+|<img src="fig/minecraft-five-maze.png" alt="마인크래프트 5 * 5 미로" width="97%" /> | <img src="fig/minecraft-maze-inside.png" alt="마인크래프트 5 * 5 미로 내부" width="97%" />|
+
