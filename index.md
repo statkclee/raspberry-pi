@@ -46,6 +46,7 @@ title: xwMOOC 라즈베리 파이
         - [R 마인크래프트](r-minecraft.html)
             - [마인크래프 세상 속 위치](r-mc-position.html)
             - [하늘로 가는 계단](r-mc-stair.html)
+            - [지나가며 꽃을 뿌리기](r-mc-flower.html)
             - [챗봇이 낸 문제 맞추기](r-mc-number-guess.html)
             - [로고와 이미지](r-mc-images.html)
             - [무지개(rainbow)](r-mc-rainbow.html)
