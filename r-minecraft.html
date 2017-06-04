@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Software Carpentry: xwMOOC 데이터과학</title>
+    <title>Software Carpentry: </title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -37,8 +37,19 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <h1 class="title">xwMOOC 데이터과학</h1>
-          <h2 class="subtitle">R 마인크래프트</h2>
+          <h1 class="title"></h1>
+          
+<h1 id="xwmooc-데이터과학">xwMOOC 데이터과학</h1>
+<h2 id="r-마인크래프트-목차">0. R 마인크래프트 목차</h2>
+<ul>
+<li><a href="r-mc-position.html">마인크래프 세상 속 위치</a></li>
+<li><a href="r-mc-stair.html">하늘로 가는 계단</a></li>
+<li><a href="r-mc-flower.html">지나온 길에 꽃을 뿌리기</a></li>
+<li><a href="r-mc-number-guess.html">챗봇이 낸 문제 맞추기</a></li>
+<li><a href="r-mc-images.html">로고와 이미지</a></li>
+<li><a href="r-mc-rainbow.html">무지개(rainbow)</a></li>
+<li><a href="r-mc-maze.html">미로</a></li>
+</ul>
 <h2 id="r-마인크래프트">1. R 마인크래프트</h2>
 <p><a href="https://github.com/ropenscilabs/miner">miner: R package for controlling Minecraft via API</a> 팩키지가 개발되어 R을 활용한 마인크래프트 도전이 가능하게 되었습니다. 마인크래프트 서버를 통해 마인크래프트 R 코딩을 하기 위해서 사전에 설정된 두가지 방법이 존재한다.</p>
 <ul>
@@ -77,10 +88,10 @@
 <li><a href="https://sourceforge.net/projects/python-with-minecraft-mac/files/?source=navbar">Download the setup files for Mac OS (Minecraft Tools Mac.zip)</a></li>
 </ul>
 <p>압축을 풀면 <code>Minecraft Tools</code> 폴터 아래 <strong>install_API.bat</strong> 파일을 실행하면 Spigot 마인크래프트 서버 설치를 수행한다. <strong>Start_Server</strong>를 실행하면 서버가 실행된다.</p>
-<p><img src="fig/minecraft-spigot-server.png" alt="마인크래프트 Spigot 서버" width="77%" /></p>
+<p><img src="fig/minecraft-spigot-server.png" alt="마인크래프트 Spigot 서버" width="57%" /></p>
 <h4 id="spigot-마인크래프트-접속">2.2.1. Spigot 마인크래프트 접속</h4>
 <p>마인크래프트 론쳐에서 마인크래프트 1.9.4 버젼으로 설정하고 <code>localhost</code>로 접속을 하게 되면 된다. Spigot 마인크래프트 서버는 1.6.4 버젼은 지원을 중단한 것으로 보인다.</p>
-<p><img src="fig/mincraft-spigot-server_join.png" alt="마인크래프트 Spigot 서버 접속" width="77%" /></p>
+<p><img src="fig/mincraft-spigot-server_join.png" alt="마인크래프트 Spigot 서버 접속" width="57%" /></p>
 <h3 id="r에서-마인크래프트-서버에-접속">2.3. R에서 마인크래프트 서버에 접속</h3>
 <p>R에서 API를 통해 마인크래프트에 접속하는 것은 초딩도 한다는 R 프로그래밍에 경험이 조금만 있다면 쉽게 할 수 있다.</p>
 <p><code>miner</code> 팩키지를 설치하고 나서, <code>mc_connect(&quot;127.0.0.1&quot;)</code> 명령어를 통해 로컬 컴퓨터에 접속한다. 그리고 <code>chatPost</code> 명령어를 통해 채팅을 통해 헬로월드를 통해 R코드를 마인크래프트에 정상적으로 전송할 수 있음을 확인한다.</p>
@@ -94,6 +105,77 @@
 <h2 id="마인크래프트-프로그래밍-정보">3. 마인크래프트 프로그래밍 정보</h2>
 <p>마인크래프트를 실행한 후에 윈도우에서는 <code>F3</code>를 클릭(노트북이나 맥에서 <code>Fn+F3</code>)하게 되면 디버그 화면에서 좌측 상단에 좌표정보를 확인할 수 있다. <code>F3</code>를 다시 클릭하게 되면 디버깅 정보가 사라진다.</p>
 <p><img src="fig/minecraft-f3-debug.png" alt="마인크래프트 F3 디버깅 정보" width="57%" /></p>
+<h2 id="마인크래프트-기본-사용법">4. 마인크래프트 기본 사용법</h2>
+<p>주위를 둘러보는데 마우스를 사용하고, 키보드의 다음 단축키를 사용한다.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">단축키</th>
+<th align="center">동작</th>
+<th align="center">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">W</td>
+<td align="center">전진</td>
+<td align="center">Forward</td>
+</tr>
+<tr class="even">
+<td align="center">A</td>
+<td align="center">왼쪽</td>
+<td align="center">Left</td>
+</tr>
+<tr class="odd">
+<td align="center">S</td>
+<td align="center">후진</td>
+<td align="center">Backward</td>
+</tr>
+<tr class="even">
+<td align="center">D</td>
+<td align="center">오른쪽</td>
+<td align="center">Right</td>
+</tr>
+<tr class="odd">
+<td align="center">E</td>
+<td align="center">소장목록</td>
+<td align="center">Inventory</td>
+</tr>
+<tr class="even">
+<td align="center">Space</td>
+<td align="center">뛰다</td>
+<td align="center">Jump</td>
+</tr>
+<tr class="odd">
+<td align="center">Double Space</td>
+<td align="center">날다/떨어지다</td>
+<td align="center">Fly / Fall</td>
+</tr>
+<tr class="even">
+<td align="center">Esc</td>
+<td align="center">일시정지/메뉴</td>
+<td align="center">Pause / Game menu</td>
+</tr>
+<tr class="odd">
+<td align="center">Tab</td>
+<td align="center">마우스커서 해제</td>
+<td align="center">Release mouse cursor</td>
+</tr>
+</tbody>
+</table>
+<p>빠른 그리기 패널(quick draw panel)에서 아이템을 선택하는데, <code>E</code> 를 누르거나, 마우스 가운데 스크롤 휠, 혹은 키보드에 숫자를 사용해서 소장목록(inventory)에서 원하는 것을 고른다.</p>
+<p><img src="fig/mcpi-inventory.png" alt="소장목록(inventory)" width="50%"></p>
+<p>스페이스바(space bar)를 두번 눌러 하늘로 날 수 있다. 누른 스페이스바를 해제하게 되면 하늘을 나는 것을 멈춘다. 만약 다시 스페이스바를 두번 누르게 되면 지상으로 떨어지게 된다.</p>
+<p><img src="fig/mcpi-flying.png" alt="하늘로 날아오르기" width="50%"></p>
+<p>칼을 손에 잡고, 앞에 있는 블록을 클릭하면 해당 블록을 제거할(혹은 파고 들어갈) 수 있다. 손에 블록이 있으면, 우클릭을 사용해서 앞에 손에 있는 블록을 놓거나 혹은 좌클릭으로 블록을 제거할 수 있다.</p>
+<aside class="callout panel panel-info">
+<div class="panel-heading">
+<h3 id="생존survival-모드-창작creative-모드"><span class="glyphicon glyphicon-pushpin"></span>생존(survival) 모드, 창작(creative) 모드</h3>
+</div>
+<div class="panel-body">
+<p>좀비가 돌아다니면서 어두워지면 게임이 어려워지는 경우 채팅창을 활성화(키보드 <code>t</code> 누름)시켜 <code>/gamemode c</code>를 입력하면 창작(creative) 모드로 들어가고 반대로 창작모드에서 생존 모드로 돌아가려면 채팅창에 <code>/gamemode c</code>를 입력하면 된다.</p>
+</div>
+</aside>
         </div>
       </div>
       </article>

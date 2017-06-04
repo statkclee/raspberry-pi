@@ -5,7 +5,7 @@ subtitle: R 마인크래프트
 output:
   html_document: 
     keep_md: yes
-    toc: yes
+    toc: no
   pdf_document:
     latex_engine: xelatex
 mainfont: NanumGothic
@@ -14,15 +14,17 @@ mainfont: NanumGothic
 
 ```{r, include=FALSE}
 source("tools/chunk-options.R") 
-library(tidyverse)
-library(extrafont)
-library(gridExtra)
-library(fpp)
-library(ggthemes)
-library(xts)
-library(tidyquant)
-library(DT)
 ```
+
+## 0. R 마인크래프트 목차
+
+- [마인크래프 세상 속 위치](r-mc-position.html)
+- [하늘로 가는 계단](r-mc-stair.html)
+- [지나온 길에 꽃을 뿌리기](r-mc-flower.html)
+- [챗봇이 낸 문제 맞추기](r-mc-number-guess.html)
+- [로고와 이미지](r-mc-images.html)
+- [무지개(rainbow)](r-mc-rainbow.html)
+- [미로](r-mc-maze.html)
 
 ## 1. R 마인크래프트
 
@@ -93,14 +95,14 @@ library(DT)
 Spigot 마인크래프트 서버 설치를 수행한다.
 **Start_Server**를 실행하면 서버가 실행된다.
 
-<img src="fig/minecraft-spigot-server.png" alt="마인크래프트 Spigot 서버" width="77%" />
+<img src="fig/minecraft-spigot-server.png" alt="마인크래프트 Spigot 서버" width="57%" />
 
 #### 2.2.1. Spigot 마인크래프트 접속
 
 마인크래프트 론쳐에서 마인크래프트 1.9.4 버젼으로 설정하고 `localhost`로 접속을 하게 되면 된다.
 Spigot 마인크래프트 서버는 1.6.4 버젼은 지원을 중단한 것으로 보인다. 
 
-<img src="fig/mincraft-spigot-server_join.png" alt="마인크래프트 Spigot 서버 접속" width="77%" />
+<img src="fig/mincraft-spigot-server_join.png" alt="마인크래프트 Spigot 서버 접속" width="57%" />
 
 
 ### 2.3. R에서 마인크래프트 서버에 접속
@@ -127,4 +129,40 @@ chatPost("안녕하세요...")
 좌측 상단에 좌표정보를 확인할 수 있다. `F3`를 다시 클릭하게 되면 디버깅 정보가 사라진다.
 
 <img src="fig/minecraft-f3-debug.png" alt="마인크래프트 F3 디버깅 정보" width="57%" />
+
+## 4. 마인크래프트 기본 사용법
+
+주위를 둘러보는데 마우스를 사용하고, 키보드의 다음 단축키를 사용한다.
+
+| 단축키      | 동작           | Action              |
+|:-----------:|:--------------:|:-------------------:|
+| W           | 전진           | Forward             |
+| A           | 왼쪽           | Left                |
+| S           | 후진           | Backward            |
+| D           | 오른쪽         | Right               |
+| E           | 소장목록       | Inventory           |
+| Space       | 뛰다           | Jump                |
+| Double Space| 날다/떨어지다  | Fly / Fall          |
+| Esc         | 일시정지/메뉴  | Pause / Game menu   |
+| Tab         | 마우스커서 해제| Release mouse cursor|
+
+빠른 그리기 패널(quick draw panel)에서 아이템을 선택하는데, `E` 를 누르거나, 
+마우스 가운데 스크롤 휠, 혹은 키보드에 숫자를 사용해서 소장목록(inventory)에서 원하는 것을 고른다.
+
+<img src="fig/mcpi-inventory.png" alt="소장목록(inventory)" width="50%">
+
+스페이스바(space bar)를 두번 눌러 하늘로 날 수 있다. 누른 스페이스바를 해제하게 되면 하늘을 나는 것을 멈춘다.
+만약 다시 스페이스바를 두번 누르게 되면 지상으로 떨어지게 된다.
+
+<img src="fig/mcpi-flying.png" alt="하늘로 날아오르기" width="50%">
+
+칼을 손에 잡고, 앞에 있는 블록을 클릭하면 해당 블록을 제거할(혹은 파고 들어갈) 수 있다. 
+손에 블록이 있으면, 우클릭을 사용해서 앞에 손에 있는 블록을 놓거나 혹은 좌클릭으로 블록을 제거할 수 있다.
+
+> ### 생존(survival) 모드, 창작(creative) 모드 {.callout}
+>
+> 좀비가 돌아다니면서 어두워지면 게임이 어려워지는 경우 채팅창을 활성화(키보드 `t` 누름)시켜 
+> `/gamemode c`를 입력하면 창작(creative) 모드로 들어가고 반대로 창작모드에서 
+> 생존 모드로 돌아가려면 채팅창에 `/gamemode c`를 입력하면 된다.
+
 
