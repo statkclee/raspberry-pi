@@ -25,6 +25,7 @@ source("tools/chunk-options.R")
 - [로고와 이미지](r-mc-images.html)
 - [무지개(rainbow)](r-mc-rainbow.html)
 - [미로](r-mc-maze.html)
+- [데이터과학 시작 - 산점도](r-mc-stat.html)
 
 ## 1. R 마인크래프트
 
