@@ -1,20 +1,7 @@
----
-layout: page
-title: xwMOOC 라즈베리파이
-subtitle: RPi CLI/GUI 원격로그인(vnc)
-output:
-  html_document: 
-    keep_md: yes
-    toc: yes
-  pdf_document:
-    latex_engine: xelatex
-mainfont: NanumGothic
----
+# xwMOOC 라즈베리파이
 
 
-```{r, include=FALSE}
-source("tools/chunk-options.R") 
-```
+
 
 ## 1. 라즈베리 파이에 접근하는 세가지 방법
 
@@ -22,12 +9,13 @@ source("tools/chunk-options.R")
 
 ### 1.1. XRDP 원격 데스크톱 접근
 
-``` {r rpi-connect-cli, eval=FALSE}
+
+~~~{.r}
 # 원격 데스트톱 연결 프로그램 설치 및 설정
 pi@raspberrypi ~ $ sudo apt-get update
 pi@raspberrypi ~ $ sudo apt-get install -y xrdp
 pi@raspberrypi ~ $ sudo service xrdp restart # sudo /etc/init.d/xrdp start 명령어도 가능.
-```
+~~~
 
 |  원격 데스크톱 | 승인 | 연결 연결된 화면 | 
 |:-------------------------------:|:----------------------------------:|:----------------------------------:|
@@ -41,7 +29,8 @@ pi@raspberrypi ~ $ sudo service xrdp restart # sudo /etc/init.d/xrdp start 명�
 __Git Bash__를 설치하고 콘솔에서 라즈베리 파이 IP를 입력한다. 명령어는 `ssh pi@192.168.103.107`으로 ssh (보안쉘, Secure Shell)로 `192.168.103.107` IP를 갖는 호스트 컴퓨터에 `pi`사용자로 로그인한다.
 비밀번호는 `raspberry`를 입력하면 라즈베리파이에 로그인했다.
 
-``` {r rpi-connect-gui, eval=FALSE}
+
+~~~{.r}
 admin@STATxxxxxx /c/pyr-cloudlayer (gh-pages)
 $ ssh pi@192.168.103.107
 pi@192.168.103.107 s password:
@@ -55,15 +44,16 @@ Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Thu Jul 30 16:59:13 2015 from 192.168.103.125
 pi@raspberrypi ~ $
-```
+~~~
 
 ### 1.3. 웹 인터페이스를 통한 방법
 
 라즈베리파이를 웹서버로 만들기 위해서 아파치 웹서버를 설치한다. `sudo apt-get install -y apache2` 명령어를 콘솔에서 입력하면 아파치 웹서버가 설치되어 웹브라우져를 통해 라즈베리파이에 접근할 수 있다.
 
-``` {r rpi-connect-webserver, eval=FALSE}
+
+~~~{.r}
 pi@raspberrypi ~ $ sudo apt-get install -y apache2
-```
+~~~
 
 `/var/www/` 폴더에 `index.html` 파일을 수정하거나 개발된 웹서비스를 웹서비스 제공 디렉토리에 저장하면 된다.
 
@@ -94,24 +84,27 @@ pi@raspberrypi ~ $ sudo apt-get install -y apache2
 RPi 터미널에서 먼저 사전에 확인할 사항은 IP주소를 확인한 것이다.
 
 
-``` {r rpi-connect-check-hostname, eval=FALSE}
+
+~~~{.r}
 pi@raspberrypi:~ $ hostname -I
 192.168.0.11
-```
+~~~
 
 리눅스 혹은 맥 터미널에서 확인된 RPi IP주소, `192.168.0.11` 입력하여 로그인한다.
  
-``` {r rpi-connect-ssh, eval=FALSE}
+
+~~~{.r}
 $ ssh pi@192.168.0.11 
 pi@192.168.0.11 s password: 
-```
+~~~
 
 외부 IP주소를 통해 접속할 경우 IP주소를 넣고 `ssh IP주소 -l pi` 명령어로 로그인 접속한다.
 여기서 사전에 확인할 사항은 라즈베리파이에 ssh-server가 설치되어야 한다.
 
 즉,`sudo apt-get install openssh-server` 명령어로 라즈베리파이에 사전에 설치를 완료한다.
 
-``` {r rpi-connect-remote-ssh, eval=FALSE}
+
+~~~{.r}
 raspberry-pi $ ssh 169.XXX.XX.XXX -l pi
 The authenticity of host '169.XXX.XX.XXX (169.XXX.XX.XXX)' can't be established.
 ECDSA key fingerprint is SHA256:yy7lEiSYXXXXXXXXXXXXXXXXXaakW5/7KXXXXX4.
@@ -128,14 +121,15 @@ permitted by applicable law.
 You have new mail.
 Last login: Sat Jun 17 11:03:38 2017 from XX0::XX60:4XXX:7XXX:1XXX%wlan0
 pi@raspberrypi:~ $ 
-```
+~~~
 
 #### 2.1.2. 유선 CLI 터미널 접속
 
 유선 CLI를 통해 라즈베리파이에 접속할 경우 `ssh pi@raspberrypi.local` 명령어를 입력하고
 비밀번호 `raspberry`를 입력하면 바로 로그인할 수 있게 된다.
 
-``` {r rpi-connect-local-ssh, eval=FALSE}
+
+~~~{.r}
 raspberry-pi $ ssh pi@raspberrypi.local
 pi@raspberrypi.local s password: 
 
@@ -148,7 +142,7 @@ permitted by applicable law.
 You have new mail.
 Last login: Sat Jun 17 10:05:44 2017 from XX0::XX60:4XXX:7XXX:1XXX%wlan0
 pi@raspberrypi:~ $ 
-```
+~~~
 
 <img src="fig/rpi-minecraft-vnc.png" alt="라즈베리파이 마인크래프트 VNC 실행" width="70%" />
 
@@ -182,23 +176,26 @@ IP주소를 넣어주는 것이 차이가 된다. 예를 들어 `210.29.100.23` 
 > 
 > VNC에서 마인크래프트를 실행하게 되면 검은 화면이 나와 이를 맞춰주는 작업이 필요하다.
 > 
-> ``` {r rpi-minecraft, eval=FALSE}
+> 
+> ~~~{.r}
 > $ sudo nano /root/.vnc/config.d/vncserver-x11
-> ```
+> ~~~
 > 
 > 명령어를 실행하여 다음 내용을 저장한다. 
 > 
-> ``` {r rpi-minecraft-edit, eval=FALSE}
+> 
+> ~~~{.r}
 > CaptureTech=raspi
 > ExperimentalRaspiCapture=1
 > ServerPreferredEncoding=JPEG
-> ```
+> ~~~
 > 
 > 그리고 나서, 다음 명령어를 실행하면 정상적으로 마인크래프트가 실행되는 것이 확인된다.
 > 
-> ``` {r rpi-minecraft-restart, eval=FALSE}
+> 
+> ~~~{.r}
 > $ sudo systemctl restart vncserver-x11-serviced
-> ```
+> ~~~
 
 [^rpi-minecraft]: [Minecraft from VNC](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=162495)
 
