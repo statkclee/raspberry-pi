@@ -21,6 +21,7 @@ title: xwMOOC 라즈베리 파이
     - [라즈베리 파이 게임](raspberry-pi-game.html) 
     - [라즈베리파이 응용프로그램](raspberry-pi-app.html)
     - [RPi 로그인 및 유틸리티](raspberry-pi-utility.html)
+    - [RPi GUI 원격로그인(vnc)](raspberry-pi-vnc.html)
     - [라즈베리파이 서버](raspberry-pi-server.html)
 1.  [라즈베리 파이 프로그래밍](raspberry-pi-programming.html)    
     - [과학기술 파이썬 툴체인](raspberry-pi-programming-science.html)
