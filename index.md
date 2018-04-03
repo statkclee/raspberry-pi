@@ -55,7 +55,8 @@ title: xwMOOC 라즈베리 파이
             - [무지개(rainbow)](r-mc-rainbow.html)
             - [미로](r-mc-maze.html)
             - [데이터과학 시작 - 산점도](r-mc-stat.html)
-    - [파이카메라(picamera) 시작](rpi-picam.html)        
+    - [파이카메라(picamera) 시작](rpi-picam.html) 
+    - [스크래치 &rarr; 파이썬 프로그래밍](rpi-block-text.html)       
 1. **xwMOOC 오픈 컴퓨터**
     1.  [$100 달러 오픈 컴퓨터](100-computer.html)  
         - [$100 오픈 컴퓨터 설계(CAD) 및 3D 프린팅](100-cad.html)    
